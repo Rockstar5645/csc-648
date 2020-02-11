@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <ul>
+            {% for teammate in team %}
+            <li><a href="{{ teammate.link }}">{{ teammate.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
