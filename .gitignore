@@ -1,0 +1,5 @@
+# ignore mac spacific file attributes
+.DS_store
+
+# ignore python virtual environments
+env
