@@ -8,12 +8,13 @@ app = Flask(__name__)
 # this will later be removed when team data is moved to DB
 # ...or not, doesnt really matter
 
-team = [ 
+team = [
+
     {
-        'name': 'Bakulia Kurmant',
-        'link': '/bakulia',
+        'name': 'Avery Chen',
+        'link': '/avery',
         'position': 'position',
-        'image': 'static/images/bakulia.jpeg',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
@@ -45,12 +46,13 @@ team = [
         'description': 'description here'
     },
     {
-        'name': 'Avery Chen',
-        'link': '/avery',
+        'name': 'Bakulia Kurmant',
+        'link': '/bakulia',
         'position': 'position',
-        'image': 'static/images/test_image.jpeg',
+        'image': 'static/images/bakulia.jpeg',
         'description': 'description here'
     }
+
 ]
 
 ##################################################
