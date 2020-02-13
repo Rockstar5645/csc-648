@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-import os
 app = Flask(__name__)
 
 ##################################################
@@ -8,6 +7,7 @@ app = Flask(__name__)
 # NOTE: list of team members and associated data, 
 # this will later be removed when team data is moved to DB
 # ...or not, doesnt really matter
+
 team = [ 
     {
         'name': 'Bakulia',
@@ -27,7 +27,7 @@ team = [
         'name': 'Chris Eckhardt',
         'link': '/chris',
         'position': 'position',
-        'image': 'resources/images/test_image.jpeg',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
