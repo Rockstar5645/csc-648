@@ -10,14 +10,14 @@ app = Flask(__name__)
 
 team = [ 
     {
-        'name': 'Bakulia',
+        'name': 'Bakulia Kurmant',
         'link': '/bakulia',
         'position': 'position',
         'image': 'static/images/bakulia.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Akhil',
+        'name': 'Akhil Ghandu',
         'link': '/akhil',
         'position': 'position',
         'image': 'static/images/test_image.jpeg',
@@ -31,21 +31,21 @@ team = [
         'description': 'description here'
     },
     {
-        'name': 'Elliot',
+        'name': 'Elliot Yardley',
         'link': '/elliot',
         'position': 'position',
         'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Thomas',
+        'name': 'Thomas Yu',
         'link': '/thomas',
         'position': 'position',
         'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Avery',
+        'name': 'Avery Chen',
         'link': '/avery',
         'position': 'position',
         'image': 'static/images/test_image.jpeg',
