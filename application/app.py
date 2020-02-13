@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import os
 app = Flask(__name__)
 
 ##################################################
@@ -26,7 +27,7 @@ team = [
         'name': 'Chris Eckhardt',
         'link': '/chris',
         'position': 'position',
-        'image': 'image url',
+        'image': 'resources/images/test_image.jpeg',
         'description': 'description here'
     },
     {
