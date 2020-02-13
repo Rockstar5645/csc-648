@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <title>{{ 'name' }}'s Page</title>
-    </head>
-    <body>
-      <div>
-        <p>{{ team_member.image }}</p>
-        <h1>{{ team_member.name }}</h1>
-        <h2>{{ team_member.position }}</h2>
-        <p>{{ team_member.description}}</p>
-      </div>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>
+    {% block title %}
+      {{ team_member.name }}'s Page
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+{% block content %}
+  <div>
+    <p>{{ team_member.image }}</p>
+    <h1>{{ team_member.name }}</h1>
+    <h2>{{ team_member.position }}</h2>
+    <p>{{ team_member.description}}</p>
+  </div>
+{% endblock %}

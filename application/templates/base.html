@@ -4,6 +4,15 @@
 
 <!-- Base Template Example -->
 <!-- https://flask.palletsprojects.com/en/1.1.x/tutorial/templates/ -->
+
+<!-- 
+    Base html page that contains the Bootstrap references and basic page structure.
+    Most html pages in the application will extend this page. Pages extending this page
+    will need to implement the title, header, and content blocks.
+
+    TODO: add navigation
+ -->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,7 +29,7 @@
   </head>
   <body>
     <h1>
-    {% block header %}{% endblock %}
+      {% block header %}{% endblock %}
     </h1>
 
     {% block content %}{% endblock %}
