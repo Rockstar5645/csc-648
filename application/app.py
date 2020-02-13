@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
 ##################################################
@@ -13,42 +13,42 @@ team = [
         'name': 'Bakulia',
         'link': '/bakulia',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/bakulia.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Akhil',
         'link': '/akhil',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Chris Eckhardt',
         'link': '/chris',
         'position': 'position',
-        'image': 'static/images/test_image.jpeg',
+        'image': 'static/images/chris.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Elliot',
         'link': '/elliot',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Thomas',
         'link': '/thomas',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Avery',
         'link': '/avery',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     }
 ]
