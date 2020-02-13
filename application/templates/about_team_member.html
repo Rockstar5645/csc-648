@@ -7,7 +7,7 @@
 
     <img src="{{ team_member.image }}" class="img-fluid rounded-circle w-50 border border-dark" alt="test image">
     
-    <h1>
+    <h1 class="text-primary">
       <b>
         {% block title %}
           {{ team_member.name }}
@@ -15,7 +15,7 @@
       </b>
     </h1>
 
-    <h2 class="text-muted">{{ team_member.position }}</h2>
+    <h2 class="text-secondary">{{ team_member.position }}</h2>
 
     <p class="lead">{{ team_member.description}}</p>
 
