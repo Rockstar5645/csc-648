@@ -7,6 +7,7 @@ app = Flask(__name__)
 # NOTE: list of team members and associated data, 
 # this will later be removed when team data is moved to DB
 # ...or not, doesnt really matter
+
 team = [ 
     {
         'name': 'Bakulia',
@@ -26,7 +27,7 @@ team = [
         'name': 'Chris Eckhardt',
         'link': '/chris',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
