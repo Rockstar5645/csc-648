@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
 ##################################################
@@ -8,49 +8,51 @@ app = Flask(__name__)
 # this will later be removed when team data is moved to DB
 # ...or not, doesnt really matter
 
-team = [ 
+team = [
+
     {
-        'name': 'Bakulia',
-        'link': '/bakulia',
+        'name': 'Avery Chen',
+        'link': '/avery',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Akhil',
+        'name': 'Akhil Ghandu',
         'link': '/akhil',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
         'name': 'Chris Eckhardt',
         'link': '/chris',
         'position': 'position',
+        'image': 'static/images/chris.jpeg',
+        'description': 'description here'
+    },
+    {
+        'name': 'Elliot Yardley',
+        'link': '/elliot',
+        'position': 'position',
         'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Elliot',
-        'link': '/elliot',
-        'position': 'position',
-        'image': 'image url',
-        'description': 'description here'
-    },
-    {
-        'name': 'Thomas',
+        'name': 'Thomas Yu',
         'link': '/thomas',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/test_image.jpeg',
         'description': 'description here'
     },
     {
-        'name': 'Avery',
-        'link': '/avery',
+        'name': 'Bakulia Kurmant',
+        'link': '/bakulia',
         'position': 'position',
-        'image': 'image url',
+        'image': 'static/images/bakulia.jpeg',
         'description': 'description here'
     }
+
 ]
 
 ##################################################
@@ -106,5 +108,5 @@ def avery():
 # NOTE: This instantiates and runs the flask application
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
-    # app.run()
+    # app.run(host='0.0.0.0')
+    app.run()

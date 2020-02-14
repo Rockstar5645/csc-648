@@ -3,3 +3,11 @@
 
 # ignore python virtual environments
 env
+
+# ignore python cache files
+__pycache__/
+
+# ignore production wsgi related files 
+myapp.ini
+wsgi.py
+
