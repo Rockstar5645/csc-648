@@ -1,5 +1,8 @@
 # csc648 Repository
 
+# TO INSTALL VIRTUAL ENVIRONMENT USE THIS COMMAND
+pip install -r requirements.txt
+
 ## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 
 ## Please do the following steps before completing Milestone 0.
@@ -11,3 +14,5 @@
 2. Add ALL members of your team to this repository. For it to count, they must ACCEPT the invite.
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
+
+
