@@ -73,10 +73,10 @@ def admin():
 ##################################################
 #                TEAM MEMBER PAGES               #
 ##################################################
-# NOTE: Defines team member about page routes
+# NOTE: Defines team member "about" page routes
 
-@app.route("/bakulia")
-def bakulia():
+@app.route("/avery")
+def avery():
     return render_template("/about_team_member.html", team_member=team[0])
 
 @app.route("/akhil")
@@ -95,8 +95,8 @@ def elliot():
 def thomas():
     return render_template("/about_team_member.html", team_member=team[4])
 
-@app.route("/avery")
-def avery():
+@app.route("/bakulia")
+def bakulia():
     return render_template("/about_team_member.html", team_member=team[5])
 
 
