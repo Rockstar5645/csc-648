@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
-{# TODO: add social media buttons #}
-
 {% block content %}
   <div class="container text-center">
 
-    <img src="{{ team_member.image }}" class="img-fluid rounded-circle w-50 border border-dark" alt="test image">
+    <img src="{{ team_member.image }}" class="img-fluid rounded-circle mx-auto d-block w-50" alt="{{  team_member.name }}">
     
     <h1 class="text-primary">
       <b>
@@ -18,6 +16,34 @@
     <h2 class="text-secondary">{{ team_member.position }}</h2>
 
     <p class="lead">{{ team_member.description}}</p>
+
+    {# TODO: Consider not hard-coding this. Possibly loop through a list of social-media links. #}
+    {# TODO: Create an icon css class #}
+    <span style="font-size: 48px;">
+      {% if team_member.facebook and 'www.facebook.com' in team_member.facebook %}
+        <a href="{{ team_member.facebook }}" style="text-decoration: none;">
+          <i class="fab fa-facebook-square" style="color: #3b5998;"></i>
+        </a>
+      {% endif %}
+
+      {% if team_member.twitter and 'www.twitter.com' in team_member.twitter %}
+        <a href="{{ team_member.twitter }}" style="text-decoration: none;">
+          <i class="fab fa-twitter-square" style="color: #1da1f2"></i>
+        </a>
+      {% endif %}
+
+      {% if team_member.instagram and 'www.instagram.com' in team_member.instagram %}
+        <a href="{{ team_member.instagram }}" style="text-decoration: none;">
+          <i class="fab fa-instagram-square" style="color: #e1306c"></i>
+        </a>
+      {% endif %}
+
+      {% if team_member.linkedin and 'www.linkedin.com' in team_member.linkedin %}
+        <a href="{{ team_member.linkedin }}" style="text-decoration: none;">
+          <i class="fab fa-linkedin" style="color: #2867b2;"></i>
+        </a>
+      {% endif %}      
+    </span>
 
   </div>
 {% endblock %}
