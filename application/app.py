@@ -35,7 +35,7 @@ team = [
         'name': 'Elliot Yardley',
         'link': '/elliot',
         'position': 'position',
-        'image': 'static/images/test_image.jpeg',
+        'image': 'static/images/elliot.jpg',
         'description': 'description here'
     },
     {
