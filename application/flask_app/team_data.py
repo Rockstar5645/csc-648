@@ -1,5 +1,4 @@
 
-
 team = [
         {
             'name': 'Avery Chen',
@@ -15,9 +14,9 @@ team = [
         {
             'name': 'Akhil Ghandu',
             'link': '/akhil',
-            'position': 'position',
-            'image': 'static/images/test_image.jpeg',
-            'description': 'description here',
+            'position': 'GitHub Master',
+            'image': 'static/images/akhil.jpg',
+            'description': '<object Object>',
             'facebook': '',
             'twitter': '',
             'instagram': '',
