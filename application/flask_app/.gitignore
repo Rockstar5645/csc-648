@@ -3,3 +3,6 @@ __pycache__/
 
 # ignore files with .pyc extension 
 *.pyc
+
+# ignore config file
+config.py
