@@ -10,4 +10,4 @@ class Team_Member(db.Model):
     descrition = db.Column(db.String(50), unique=False, nullable=False)
 
     def __repr__(self):
-        return f"Team_member('{self.name}', '{self.position}', '{self.image_path}', '{self.description}')"
+        return "Team_member({0}, {1}, {2}, {3})".format(self.id, self.name, self.link)
