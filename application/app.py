@@ -18,11 +18,11 @@ team = [
         'description': 'description here'
     },
     {
-        'name': 'Akhil Ghandu',
+        'name': 'Akhil Gandu',
         'link': '/akhil',
-        'position': 'position',
+        'position': 'GitHub Master',
         'image': 'static/images/akhil.jpg',
-        'description': 'description here'
+        'description': 'Master of GitHub'
     },
     {
         'name': 'Chris Eckhardt',
