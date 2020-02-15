@@ -1,59 +1,16 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from database.database_manager import Database_Manager
+from config import Config
+from tests.team_data import team
+import os, sys
+
+
 app = Flask(__name__)
+app.config['AQLALCHEMY_DATABASE_URI'] = Config.database
+db = SQLAlchemy(app)
+database_manager = Database_Manager(db)
 
-##################################################
-#                    TEAM LIST                   #
-##################################################
-# NOTE: list of team members and associated data, 
-# this will later be removed when team data is moved to DB
-# ...or not, doesnt really matter
-
-team = [
-
-    {
-        'name': 'Avery Chen',
-        'link': '/avery',
-        'position': 'position',
-        'image': 'static/images/test_image.jpeg',
-        'description': 'description here'
-    },
-    {
-        'name': 'Akhil Ghandu',
-        'link': '/akhil',
-        'position': 'position',
-        'image': 'static/images/test_image.jpeg',
-        'description': 'description here'
-    },
-    {
-        'name': 'Chris Eckhardt',
-        'link': '/chris',
-        'position': 'position',
-        'image': 'static/images/chris.jpeg',
-        'description': 'description here'
-    },
-    {
-        'name': 'Elliot Yardley',
-        'link': '/elliot',
-        'position': 'position',
-        'image': 'static/images/test_image.jpeg',
-        'description': 'description here'
-    },
-    {
-        'name': 'Thomas Yu',
-        'link': '/thomas',
-        'position': 'position',
-        'image': 'static/images/test_image.jpeg',
-        'description': 'description here'
-    },
-    {
-        'name': 'Bakulia Kurmant',
-        'link': '/bakulia',
-        'position': 'position',
-        'image': 'static/images/bakulia.jpeg',
-        'description': 'description here'
-    }
-
-]
 
 ##################################################
 #             MAIN DIRECTORY PAGES               #
@@ -99,14 +56,10 @@ def thomas():
 def bakulia():
     return render_template("/about_team_member.html", team_member=team[5])
 
-
-
-
 ##################################################
 #             RUN FLASK APPLICATION              #
 ##################################################
-# NOTE: This instantiates and runs the flask application
+# NOTE: run flask server
 
 if __name__ == "__main__":
-    # app.run(host='0.0.0.0')
-    app.run()
+    app.run(host='0.0.0.0')
