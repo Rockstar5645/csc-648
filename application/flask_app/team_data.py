@@ -1,9 +1,4 @@
-##################################################
-#                    TEAM LIST                   #
-##################################################
-# NOTE: list of team members and associated data, 
-# this will later be removed when team data is moved to DB
-# ...or not, doesnt really matter
+
 
 team = [
         {

@@ -5,13 +5,16 @@
 <!-- Base Template Example -->
 <!-- https://flask.palletsprojects.com/en/1.1.x/tutorial/templates/ -->
 
-<!-- 
-    Base html page that contains the Bootstrap references and basic page structure.
-    Most html pages in the application will extend this page. Pages extending this page
-    will need to implement the title, header, and content blocks.
+<!-- Font Awesome Documentation -->
+<!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
 
-    TODO: add navigation
- -->
+{# 
+  Base html page that contains the Bootstrap references and basic page structure.
+  Most html pages in the application will extend this page. Pages extending this page
+  will need to implement the title, header, and content blocks.
+
+  TODO: add navigation
+#}
 
 <!doctype html>
 <html lang="en">
@@ -21,7 +24,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome Kit -->
+    <!-- https://fontawesome.com/license/free -->
+    <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
 
     <title>
         {% block title %}{% endblock %}

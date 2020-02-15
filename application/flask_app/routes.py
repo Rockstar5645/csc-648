@@ -1,15 +1,7 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from database.database_manager import Database_Manager
-from config import Config
-from tests.team_data import team
-import os, sys
+from flask import render_template
+from flask_app import app
+from flask_app.team_data import team
 
-
-app = Flask(__name__)
-app.config['AQLALCHEMY_DATABASE_URI'] = Config.database
-db = SQLAlchemy(app)
-database_manager = Database_Manager(db)
 
 
 ##################################################
@@ -55,11 +47,3 @@ def thomas():
 @app.route("/bakulia")
 def bakulia():
     return render_template("/about_team_member.html", team_member=team[5])
-
-##################################################
-#             RUN FLASK APPLICATION              #
-##################################################
-# NOTE: run flask server
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')

@@ -1,4 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
+from __main__ import db
 
 
 class Team_Member(db.Model):
