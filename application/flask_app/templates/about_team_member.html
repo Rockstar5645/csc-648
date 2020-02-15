@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container text-center">
+  <div class="container text-center" style="margin-top: 2em;">
 
     {# TODO: Make the image responsive. Will likely need to edit the image files so they have a consistent aspect ratio. #}
     <img src="{{ team_member.image }}" class="rounded-circle" width="465" height="470" alt="{{  team_member.name }}">
     
-    <h1 class="text-primary">
+    <h1 class="text-primary" style="margin-top: 0.5em;">
       <b>
         {% block title %}
           {{ team_member.name }}
