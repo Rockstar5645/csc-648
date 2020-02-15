@@ -21,7 +21,7 @@ team = [
         'name': 'Akhil Ghandu',
         'link': '/akhil',
         'position': 'position',
-        'image': 'static/images/test_image.jpeg',
+        'image': 'static/images/akhil.jpg',
         'description': 'description here'
     },
     {
