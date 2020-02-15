@@ -3,7 +3,8 @@
 {% block content %}
   <div class="container text-center">
 
-    <img src="{{ team_member.image }}" class="img-fluid rounded-circle mx-auto d-block w-50" alt="{{  team_member.name }}">
+    {# TODO: Make the image responsive. Will likely need to edit the image files so they have a consistent aspect ratio. #}
+    <img src="{{ team_member.image }}" class="rounded-circle" width="465" height="470" alt="{{  team_member.name }}">
     
     <h1 class="text-primary">
       <b>
