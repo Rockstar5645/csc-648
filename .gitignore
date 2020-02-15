@@ -7,6 +7,9 @@ env
 # ignore python cache files
 __pycache__/
 
+# ignore files with .pyc extension 
+*.pyc
+
 # ignore production wsgi related files 
 myapp.ini
 wsgi.py
