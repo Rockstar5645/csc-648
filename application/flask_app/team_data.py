@@ -36,9 +36,9 @@ team = [
         {
             'name': 'Elliot Yardley',
             'link': '/elliot',
-            'position': 'position',
+            'position': 'Front-end lead',
             'image': 'static/images/elliot.jpg',
-            'description': 'description here',
+            'description': 'Graduate Student, SFSU',
             'facebook': '',
             'twitter': '',
             'instagram': '',
