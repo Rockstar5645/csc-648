@@ -4,23 +4,23 @@ team = [
             'name': 'Avery Chen',
             'link': '/avery',
             'position': 'position',
-            'image': 'static/images/test_image.jpeg',
-            'description': 'description here',
+            'image': 'static/images/avery.jpg',
+            'description': 'Undergraduate student at SFSU',
             'facebook': '',
             'twitter': '',
             'instagram': '',
             'linkedin': ''
         },
         {
-            'name': 'Akhil Ghandu',
+            'name': 'Akhil Gandu',
             'link': '/akhil',
             'position': 'GitHub Master',
             'image': 'static/images/akhil.jpg',
-            'description': '<object Object>',
-            'facebook': '',
-            'twitter': '',
-            'instagram': '',
-            'linkedin': ''
+            'description': 'Graduate Student at SFSU',
+            'facebook': 'https://www.facebook.com/rockstar290',
+            'twitter': 'https://twitter.com/Rockstar5645',
+            'instagram': 'https://www.instagram.com/akhil_gandu/',
+            'linkedin': 'https://www.linkedin.com/in/akhilgandu/'
         },
         {
             'name': 'Chris Eckhardt',
@@ -47,7 +47,7 @@ team = [
         {
             'name': 'Thomas Yu',
             'link': '/thomas',
-            'position': 'position',
+            'position': 'Front End Mamber',
             'image': 'static/images/test_image.jpeg',
             'description': 'description here',
             'facebook': '',
