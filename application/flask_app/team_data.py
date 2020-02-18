@@ -47,7 +47,7 @@ team = [
         {
             'name': 'Thomas Yu',
             'link': '/thomas',
-            'position': 'position',
+            'position': 'Front End Mamber',
             'image': 'static/images/test_image.jpeg',
             'description': 'description here',
             'facebook': '',
