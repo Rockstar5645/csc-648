@@ -3,7 +3,7 @@ team = [
         {
             'name': 'Avery Chen',
             'link': '/avery',
-            'position': 'position',
+            'position': 'Back End Member',
             'image': 'static/images/avery.jpg',
             'description': 'Undergraduate student at SFSU',
             'facebook': '',
