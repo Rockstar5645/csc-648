@@ -2,8 +2,6 @@ from flask import render_template
 from flask_app import app
 from flask_app.team_data import team
 
-
-
 ##################################################
 #             MAIN DIRECTORY PAGES               #
 ##################################################
