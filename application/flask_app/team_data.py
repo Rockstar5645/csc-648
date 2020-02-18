@@ -27,9 +27,9 @@ team = [
             'link': '/chris',
             'position': 'Back-end lead',
             'image': 'static/images/chris.jpeg',
-            'description': 'Chris is currently a senior undergrad at San Francisco State, and an Army veteran. He has a strong interest in C/C++, embedded systems, and systems design. In his free time he enjoys going on adventures with his dog.',
-            'facebook': 'https://www.facebook.com/christopher.e.eckhardt',
-            'twitter': 'https://twitter.com/ChrisEEckhardt',
+            'description': 'Undergrad @ SFState',
+            'facebook': '',
+            'twitter': '',
             'instagram': 'https://www.instagram.com/chris_evan_eckhardt/',
             'linkedin': 'https://www.linkedin.com/in/christopher-eckhardt-04abb1119/'
         },
