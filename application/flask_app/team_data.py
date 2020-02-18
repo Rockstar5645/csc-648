@@ -58,12 +58,12 @@ team = [
         {
             'name': 'Bakulia Kurmant',
             'link': '/bakulia',
-            'position': 'position',
+            'position': 'Team Lead',
             'image': 'static/images/bakulia.jpeg',
-            'description': 'description here',
+            'description': 'In my spare time I like going outdoors, techno music, reading, traveling',
             'facebook': '',
             'twitter': '',
-            'instagram': '',
-            'linkedin': ''
+            'instagram': 'https://www.instagram.com/bakuliak/?hl=en',
+            'linkedin': 'https://www.linkedin.com/in/bakulia-kurmant/'
         }
     ]
