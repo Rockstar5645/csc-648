@@ -9,12 +9,13 @@ from flask_app.db.config import db_conn
 class DB_Manager(object):
 
     def __init__(self):
-        self.engine = create_engine(db_conn, convert_unicode=True)
-        self.db_session = scoped_session(sessionmaker(autocommit=False,
+        if not db_conn == '':
+            self.engine = create_engine(db_conn, convert_unicode=True)
+            self.db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=self.engine))
-        self.Base = declarative_base()
-        self.Base.query = self.db_session.query_property()
+            self.Base = declarative_base()
+            self.Base.query = self.db_session.query_property()
 
     def init_db(self):
         # import all modules here that might define models so that
