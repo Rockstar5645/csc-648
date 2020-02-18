@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 class DB_Manager(object):
 
     def __init__(self):
-        self.engine = create_engine('sqlite:////tmp/test.db', convert_unicode=True)
+        self.engine = create_engine(db_conn, convert_unicode=True)
         self.db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=self.engine))
