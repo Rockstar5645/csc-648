@@ -12,7 +12,7 @@ team = [
             'linkedin': ''
         },
         {
-            'name': 'Akhil Ghandu',
+            'name': 'Akhil Gandu',
             'link': '/akhil',
             'position': 'GitHub Master',
             'image': 'static/images/akhil.jpg',
