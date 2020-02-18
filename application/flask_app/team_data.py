@@ -12,15 +12,15 @@ team = [
             'linkedin': ''
         },
         {
-            'name': 'Akhil Ghandu',
+            'name': 'Akhil Gandu',
             'link': '/akhil',
             'position': 'GitHub Master',
             'image': 'static/images/akhil.jpg',
-            'description': '<object Object>',
-            'facebook': '',
-            'twitter': '',
-            'instagram': '',
-            'linkedin': ''
+            'description': 'Graduate Student at SFSU',
+            'facebook': 'https://www.facebook.com/rockstar290',
+            'twitter': 'https://twitter.com/Rockstar5645',
+            'instagram': 'https://www.instagram.com/akhil_gandu/',
+            'linkedin': 'https://www.linkedin.com/in/akhilgandu/'
         },
         {
             'name': 'Chris Eckhardt',
