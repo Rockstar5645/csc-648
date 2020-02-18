@@ -47,9 +47,9 @@ team = [
         {
             'name': 'Thomas Yu',
             'link': '/thomas',
-            'position': 'Front End Mamber',
-            'image': 'static/images/test_image.jpeg',
-            'description': 'description here',
+            'position': 'Front End Member',
+            'image': 'static/images/Thomas.jpg',
+            'description': 'Undergraduate Student, SFSU',
             'facebook': '',
             'twitter': '',
             'instagram': '',
