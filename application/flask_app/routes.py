@@ -3,8 +3,6 @@ from flask_app.forms import RegistrationForm, LoginForm
 from flask_app import app
 from flask_app.team_data import team
 
-
-
 ##################################################
 #             MAIN DIRECTORY PAGES               #
 ##################################################

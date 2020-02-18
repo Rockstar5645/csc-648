@@ -3,7 +3,7 @@ team = [
         {
             'name': 'Avery Chen',
             'link': '/avery',
-            'position': 'position',
+            'position': 'Back End Member',
             'image': 'static/images/avery.jpg',
             'description': 'Undergraduate student at SFSU',
             'facebook': '',
@@ -47,9 +47,9 @@ team = [
         {
             'name': 'Thomas Yu',
             'link': '/thomas',
-            'position': 'Front End Mamber',
+            'position': 'Front End Member',
             'image': 'static/images/Thomas.jpg',
-            'description': 'description here',
+            'description': 'Undergraduate Student, SFSU',
             'facebook': '',
             'twitter': '',
             'instagram': '',
@@ -58,12 +58,12 @@ team = [
         {
             'name': 'Bakulia Kurmant',
             'link': '/bakulia',
-            'position': 'position',
+            'position': 'Team Lead',
             'image': 'static/images/bakulia.jpeg',
-            'description': 'description here',
+            'description': 'In my spare time I like going outdoors, techno music, reading, traveling',
             'facebook': '',
             'twitter': '',
-            'instagram': '',
-            'linkedin': ''
+            'instagram': 'https://www.instagram.com/bakuliak/?hl=en',
+            'linkedin': 'https://www.linkedin.com/in/bakulia-kurmant/'
         }
     ]

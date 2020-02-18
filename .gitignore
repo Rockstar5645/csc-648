@@ -13,6 +13,7 @@ __pycache__/
 # ignore production wsgi related files 
 myapp.ini
 wsgi.py
+.idea
 
 # ignore jetbrains IDE stuff
 .idea
