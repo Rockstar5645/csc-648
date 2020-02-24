@@ -3,6 +3,7 @@ from flask_app.forms import RegistrationForm, LoginForm
 from flask_app import app
 from flask_app.team_data import team
 
+
 ##################################################
 #             MAIN DIRECTORY PAGES               #
 ##################################################
@@ -27,6 +28,10 @@ def login():
 def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
+
+@app.rout("/search_results")
+def search_results():
+    return '<h1>Search results should populate here.</h1>'
 
 ##################################################
 #                TEAM MEMBER PAGES               #

@@ -11,3 +11,14 @@ class Team_Member(db.Model):
 
     def __repr__(self):
         return "Team_member({0}, {1}, {2}, {3})".format(self.id, self.name, self.link)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True, nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+
+class Image_Post(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        image_path = db.Column(db.String(60), unique=False, nullable=False)
+
+

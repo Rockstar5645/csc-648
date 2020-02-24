@@ -16,3 +16,8 @@ class LoginForm(Form):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField("Remember Me")
     submit = SubmitField('Login')
+
+class SearchForm(Form):
+    term = StringField("Search", validators=[DataRequired()])
+    submit = SubmitField("Search")
+
