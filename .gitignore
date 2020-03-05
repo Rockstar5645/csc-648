@@ -15,3 +15,5 @@ myapp.ini
 wsgi.py
 .idea
 
+# ignore jetbrains IDE stuff
+.idea

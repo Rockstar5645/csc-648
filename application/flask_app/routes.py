@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_app.forms import RegistrationForm, LoginForm
 from flask_app import app
 from flask_app.team_data import team
 
@@ -16,6 +17,16 @@ def about():
 # @login_required # this decorator will be implimented later
 def admin():
     return render_template('admin.html') 
+
+@app.route("/login")
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Login', form=form)
+
+@app.route("/register")
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title='Register', form=form)
 
 ##################################################
 #                TEAM MEMBER PAGES               #
