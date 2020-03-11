@@ -1,5 +1,5 @@
-from flask import render_template
-from flask_app.forms import RegistrationForm, LoginForm
+from flask import render_template, request, redirect
+from flask_app.forms import RegistrationForm, LoginForm, SearchForm
 from flask_app import app
 from flask_app.team_data import team
 
@@ -9,7 +9,7 @@ from flask_app.team_data import team
 ##################################################
 # NOTE: Defines Main directories page routes
 
-@app.route("/") # this will be moved to the actual home page later, but needs to be here for now
+#@app.route("/") # this will be moved to the actual home page later, but needs to be here for now
 @app.route("/about") 
 def about():
     return render_template('about.html', team=team) # team list is getting passed to about page
@@ -29,9 +29,16 @@ def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
 
-@app.rout("/search_results")
-def search_results():
-    return '<h1>Search results should populate here.</h1>'
+@app.route('/', methods=['GET', 'POST']) # this is only here for M2, will be moved later
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    results = []
+    if request.method == 'POST':
+        results = ['test', 'test', 'test'] # for test obviously, jeez
+        redirect('/search', code=302)
+        return render_template("search.html", form=form, data=results)
+    return render_template("search.html", form=form, data=[])
 
 ##################################################
 #                TEAM MEMBER PAGES               #
