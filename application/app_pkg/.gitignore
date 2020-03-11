@@ -1,0 +1,11 @@
+# ignore python cache files
+__pycache__/
+
+# ignore files with .pyc extension 
+*.pyc
+
+# ignore config file
+config.yaml
+
+# ignore virtual environment
+venv
