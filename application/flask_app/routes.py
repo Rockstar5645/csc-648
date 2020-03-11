@@ -1,8 +1,7 @@
 from flask import render_template, request, redirect
 from flask_app.forms import RegistrationForm, LoginForm, SearchForm
-from flask_app import app
+from flask_app import app, db_manager
 from flask_app.team_data import team
-
 
 ##################################################
 #             MAIN DIRECTORY PAGES               #
@@ -31,14 +30,15 @@ def register():
 
 @app.route('/', methods=['GET', 'POST']) # this is only here for M2, will be moved later
 @app.route('/search', methods=['GET', 'POST'])
-def search():
+def search_page():
     form = SearchForm()
     results = []
     if request.method == 'POST':
-        results = ['test', 'test', 'test'] # for test obviously, jeez
+        # results = ['test', 'test', 'test'] # for test obviously, jeez
+        results = db_manager.search(form.term.data)
         redirect('/search', code=302)
         return render_template("search.html", form=form, data=results)
-    return render_template("search.html", form=form, data=[])
+    return render_template("search.html", form=form, data=results)
 
 ##################################################
 #                TEAM MEMBER PAGES               #

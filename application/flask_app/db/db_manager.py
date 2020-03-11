@@ -23,3 +23,6 @@ class DB_Manager(object):
         # you will have to import them first before calling init_db()
         from flask_app.db.models import Digital_Media
         self.Base.metadata.create_all(bind=self.engine)
+
+    def search(self, term):
+        return self.db_session.query(term).all()
