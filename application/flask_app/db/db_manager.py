@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from flask_app.db.config import db_conn
+from flask_app.db import models
 
 ############################################
 #             Database Manager             #
@@ -25,4 +26,6 @@ class DB_Manager(object):
         self.Base.metadata.create_all(bind=self.engine)
 
     def search(self, term):
-        return self.db_session.query(term).all()
+        search_value = "%{}%".format(term)
+        results = Digital_Media
+        return self.db_session.query_property(term)

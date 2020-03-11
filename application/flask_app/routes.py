@@ -34,8 +34,7 @@ def search_page():
     form = SearchForm()
     results = []
     if request.method == 'POST':
-        # results = ['test', 'test', 'test'] # for test obviously, jeez
-        results = db_manager.search(form.term.data)
+        results = db_manager.search(form['term'])
         redirect('/search', code=302)
         return render_template("search.html", form=form, data=results)
     return render_template("search.html", form=form, data=results)
@@ -43,6 +42,9 @@ def search_page():
 @app.route('/submit_media', methods=['GET', 'POST'])
 def submit_new_media():
     form = NewDigitalMedia()
+    if request.method == 'POST':
+        # new digital media method (db manager) goes here
+        pass
     return render_template("submit_new_media.html", form=form)
 
 ##################################################
