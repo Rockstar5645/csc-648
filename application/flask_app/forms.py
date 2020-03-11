@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -23,3 +23,8 @@ class SearchForm(Form):
     category = SelectField(u'Category', choices = categories, validators = [DataRequired()])
     submit = SubmitField("Search")
 
+class NewDigitalMedia(Form):
+    name = StringField('MediaName', validators=[DataRequired(), Length(min=2, max=20)])
+    description = StringField('MediaDescription', validators=[DataRequired(), Length(max=150)])
+    file = FileField('MediaFile')
+    submit = SubmitField("Submit")

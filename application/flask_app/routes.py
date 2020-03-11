@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect
-from flask_app.forms import RegistrationForm, LoginForm, SearchForm
+from flask_app.forms import RegistrationForm, LoginForm, SearchForm, NewDigitalMedia
 from flask_app import app, db_manager
 from flask_app.team_data import team
 
@@ -39,6 +39,11 @@ def search_page():
         redirect('/search', code=302)
         return render_template("search.html", form=form, data=results)
     return render_template("search.html", form=form, data=results)
+
+@app.route('/submit_media', methods=['GET', 'POST'])
+def submit_new_media():
+    form = NewDigitalMedia()
+    return render_template("submit_new_media.html", form=form)
 
 ##################################################
 #                TEAM MEMBER PAGES               #
