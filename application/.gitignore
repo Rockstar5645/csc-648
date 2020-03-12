@@ -5,7 +5,7 @@ __pycache__/
 *.pyc
 
 # ignore config file
-config.yaml
+config.py
 
 # ignore virtual environment
 venv
