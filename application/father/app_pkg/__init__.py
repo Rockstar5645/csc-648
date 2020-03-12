@@ -16,9 +16,11 @@ db = DB()
 def search():
     # assign form
     form = SearchForm()
-    # determin HTTP method
+    # if : user submits post request
     if request.method == 'POST':
         # query db
         results = db.search_like(request.form['category'], request.form['term'])
+        # return results -------------------------------------vvv
         return render_template('search.html', form=form, results=results)
+    # else get fresh html page
     return render_template('search.html', form=form)
