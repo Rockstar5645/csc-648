@@ -17,3 +17,6 @@ wsgi.py
 
 # ignore jetbrains IDE stuff
 .idea
+
+# ignore configuration files
+config.py
