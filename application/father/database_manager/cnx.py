@@ -1,5 +1,5 @@
 import mysql.connector
-from application.config import db_conn
+from father.config import db_conn
 
 class MyDB(object):
 
