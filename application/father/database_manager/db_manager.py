@@ -9,5 +9,6 @@ class DB:
         db_connection = cnx.MyDB()
 
     def search_like(self, category, term):
-        return([{'test1', 'test1'}, {'test2', 'test2'}])
+        # this is just a test, it will return the values sent from the form
+        return([category, term])
 
