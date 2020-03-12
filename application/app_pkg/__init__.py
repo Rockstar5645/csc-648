@@ -3,7 +3,6 @@ from flask import render_template
 from app_pkg.forms import SearchForm
 
 
-
 app = Flask(__name__)
 
 @app.route('/')
