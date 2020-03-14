@@ -15,7 +15,13 @@ class MyDB(object):
         else:
             print('executing without paramters')
             return self._db_cur.execute(query)
-        self._db_cur.commit()
+
+    def fetchall(self):
+        return self._db_cur.fetchall()
+    
+    def commit(self):
+        self._db_connection.commit()
+
 
     def __del__(self):
         self._db_cur.close()
