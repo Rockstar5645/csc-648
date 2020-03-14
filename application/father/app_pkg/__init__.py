@@ -14,7 +14,7 @@ db = DB()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    # assign form
+    # assign form and results list
     form = SearchForm()
     results = []
     # if : user submits POST request
