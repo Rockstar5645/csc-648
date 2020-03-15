@@ -22,6 +22,7 @@ def search():
         # query db
         results = db.search_like(request.form['category'], request.form['term'])
         # return results -------------------------------------vvv
+        print(results)
         return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
     return render_template('search.html', form=form)
