@@ -25,7 +25,8 @@
 
                 {% for item in results %}
                     <tr>
-                        <img src="{{ item[4] }}" alt="image" height="42" width="42">
+                        <p>{{ item[4] }}</p>
+                        <img src="/static/{{ item[4] }}" alt="image" height="256" width="256">
                         </br>
                     </tr>
                 {% endfor %}
