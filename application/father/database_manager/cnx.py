@@ -9,11 +9,14 @@ class MyDB(object):
             self._db_connection = mysql.connector.connect(user=db_conn['user'], password=db_conn['password'],
                                   host=db_conn['host'], database=db_conn['database'])
             self._db_cur = self._db_connection.cursor()
+            
         except mysql.connector.Error as err:
-            print("\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("\n\n")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print("!!!     UNABLE TO CONNECT TO DATABASE     !!!")
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n")
-            print("ERROR: {}".format(err))
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("\n\n")
+            print("ERROR: {}\n\n".format(err))
             sys.exit()
 
     def query(self, query, params=''):
@@ -29,7 +32,6 @@ class MyDB(object):
     
     def commit(self):
         self._db_connection.commit()
-
 
     def __del__(self):
         self._db_cur.close()
