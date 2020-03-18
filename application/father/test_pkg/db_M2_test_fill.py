@@ -2,6 +2,10 @@ from father.database_manager import cnx
 
 db = cnx.MyDB()
 
+# this is just to clear all current entries to prevent duplicates of sponge bob images in database while testing
+#db.query("DELETE FROM digital_media_test WHERE owner_name='username001'")
+#db.commit()
+
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`)"
 "VALUES ("
