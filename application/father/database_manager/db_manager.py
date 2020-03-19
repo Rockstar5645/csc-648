@@ -12,6 +12,7 @@ class DB:
             return self.get_category(category)
         else:
             return self.search_like(term, category)
+            
     '''
     def search_like(self, term, category):
         # query db using %like for owner_name, name, description, category, and price
