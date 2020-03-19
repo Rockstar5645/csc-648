@@ -80,3 +80,13 @@ db.query("INSERT INTO categories ("
 "'document'"
 ")")
 db.commit()
+
+###############################
+#      TEAM ABOUT TABLE       #
+###############################
+# TODO: finish team_about data table
+
+db.query("CREATE TABLE IF NOT EXISTS team_about ("
+         "team_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,"
+         "name VARCHAR(50),"
+         "PRIMARY KEY (cat_id))")

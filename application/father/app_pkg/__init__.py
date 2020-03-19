@@ -65,24 +65,24 @@ def about():
 
 @app.route("/avery")
 def avery():
-    return render_template("/about_team_member.html", team_member=team[0])
+    return render_template("/about_team_member.html", team_member=db.get_team("Avery"))
 
 @app.route("/akhil")
 def akhil():
-    return render_template("/about_team_member.html", team_member=team[1])
+    return render_template("/about_team_member.html", team_member=db.get_team("Akhil"))
 
 @app.route("/chris")
 def chris():
-    return render_template("/about_team_member.html", team_member=team[2])
+    return render_template("/about_team_member.html", team_member=db.get_team("Chris"))
 
 @app.route("/elliot")
 def elliot():
-    return render_template("/about_team_member.html", team_member=team[3])
+    return render_template("/about_team_member.html", team_member=db.get_team("Elliot"))
 
 @app.route("/thomas")
 def thomas():
-    return render_template("/about_team_member.html", team_member=team[4])
+    return render_template("/about_team_member.html", team_member=db.get_team("Thomas"))
 
 @app.route("/bakulia")
 def bakulia():
-    return render_template("/about_team_member.html", team_member=team[5])
+    return render_template("/about_team_member.html", team_member=db.get_team("Bakulia"))

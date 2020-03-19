@@ -56,3 +56,9 @@ class DB:
         self.db_connection.commit()
         cats = [(c[1], c[1]) for c in data]
         return cats
+
+    def get_team(self, name):
+        self.db_connection.query("Select * FROM team_about WHERE `name` %s", ("%"+name+"%",))
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
+        return data
