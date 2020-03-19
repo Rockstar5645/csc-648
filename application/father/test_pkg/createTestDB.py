@@ -32,7 +32,7 @@ db.query("CREATE TABLE digital_media_test ("
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`, `approval`)"
 "VALUES ("
-"'username001', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', 'picture' , 99.99, 0"
+"'username001', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', 'image' , 99.99, 0"
 ")")
 db.commit()
 
@@ -60,6 +60,6 @@ db.commit()
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`, `approval`)"
 "VALUES ("
-"'username001', 'sponge bob 5', 'this is the fifth test photo', '/M2_test_images/sb5.jpg', 'picture' , 59.99, 0"
+"'username001', 'sponge bob 5', 'this is the fifth test photo', '/M2_test_images/sb5.jpg', 'image' , 59.99, 0"
 ")")
 db.commit()

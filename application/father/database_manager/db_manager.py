@@ -8,31 +8,12 @@ class DB:
         self.db_connection = cnx.MyDB()
 
     def search(self, term, category):
+        print("term: " + term)
+        print("cat: " + category)
         if term =='':
             return self.get_category(category)
         else:
             return self.search_like(term, category)
-            
-    '''
-    def search_like(self, term, category):
-        # query db using %like for owner_name, name, description, category, and price
-        # this works for values that contain the search term
-        self.db_connection.query(
-            "SELECT media_id, owner_name, name, description, file_path, thumbnail, category, price "
-            "FROM digital_media_test "
-            "WHERE owner_name LIKE %s OR name LIKE %s OR description LIKE %s OR category LIKE %s OR price LIKE %s",
-            ("%" + term + "%","%" + term + "%","%" + term + "%","%" + term + "%", "%" + term + "%",))
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        # query all items in database if user enters 'all' in search box
-        if len(data) == 0 and term == 'all' and category == 'all':
-            self.db_connection.query("Select * FROM digital_media_test")
-            data = self.db_connection.fetchall()
-            self.db_connection.commit()
-        # fetch from cursor and commit
-        # ret
-        return data
-    '''
 
     def search_like(self, term, category):
         if category == 'all':
@@ -68,3 +49,10 @@ class DB:
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
+
+    def get_category_select_field(self):
+        self.db_connection.query("Select * FROM categories")
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
+        cats = [(c[1], c[1]) for c in data]
+        return cats
