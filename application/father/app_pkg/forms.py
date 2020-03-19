@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 class SearchForm(Form):
     term = StringField("Search", validators=[])
-    categories = [ ('all', 'all'), ('picture', 'picture'), ('video', 'video'), ('audio', 'audio'), ('documents', 'documents')]
+    categories = [ ('all', 'all'), ('picture', 'picture'), ('video', 'video'), ('audio', 'audio'), ('document', 'document')]
     category = SelectField(u'Category', choices = categories, validators=[])
     submit = SubmitField("Search")
 

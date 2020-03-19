@@ -16,21 +16,21 @@ db.commit()
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`)"
 "VALUES ("
-"'username001', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg', 'picture' , 89.99"
+"'username001', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg', 'video' , 89.99"
 ")")
 db.commit()
 
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`)"
 "VALUES ("
-"'username001', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg', 'picture' , 79.99"
+"'username001', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg', 'document' , 79.99"
 ")")
 db.commit()
 
 db.query("INSERT INTO digital_media_test ("
 "`owner_name`, `name`, `description`, `file_path`, `category`, `price`)"
 "VALUES ("
-"'username001', 'sponge bob 4', 'this is the fourth test photo', '/M2_test_images/sb4.jpg', 'picture' , 69.99"
+"'username001', 'sponge bob 4', 'this is the fourth test photo', '/M2_test_images/sb4.jpg', 'audio' , 69.99"
 ")")
 db.commit()
 
