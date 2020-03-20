@@ -8,8 +8,6 @@ class DB:
         self.db_connection = cnx.MyDB()
 
     def search(self, term, category):
-        print("term: " + term)
-        print("cat: " + category)
         if term =='':
             return self.get_category(category)
         else:

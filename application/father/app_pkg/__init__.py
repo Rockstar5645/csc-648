@@ -48,13 +48,13 @@ def search():
         # query db
         results = db.search(request.form['term'], request.form['category'])
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results)
+        return render_template('search_result.html', form=form, results=results)
     # else : GET fresh html page
     return render_template('search.html', form=form)
 
 @app.route("/about") 
 def about():
-    return render_template('about.html', team=team) # team list is getting passed to about page
+    return render_template('about.html', team=team)
 
 
 
