@@ -35,7 +35,7 @@ class DB:
         return data
 
     def get_category(self, category):
-        self.db_connection.query("Select * FROM digital_media_test WHERE category LIKE %s", ("%" + category + "%",))
+        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s", ("%" + category + "%",))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         if len(data) == 0:
@@ -43,20 +43,23 @@ class DB:
         return data
     
     def get_all_media(self):
-        self.db_connection.query("Select * FROM digital_media_test")
+        self.db_connection.query("SELECT * FROM digital_media_test")
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
 
     def get_category_select_field(self):
-        self.db_connection.query("Select * FROM categories")
+        self.db_connection.query("SELECT * FROM categories")
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         cats = [(c[1], c[1]) for c in data]
         return cats
 
-    def get_team(self, name):
-        self.db_connection.query("Select * FROM team_about WHERE `name` %s", ("%"+name+"%",))
+    def get_team(self, name=None):
+        if name == None:
+            self.db_connection.query("SELECT * FROM team_about")
+        else:
+            self.db_connection.query("SELECT * FROM team_about WHERE `name` %s", ("%"+name+"%",))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
