@@ -1,5 +1,10 @@
 from father.database_manager import cnx
 
+
+print("!!! THIS FILE WAS REPLACED BY 'fill_db.py' !!!")
+
+# THIS FILE WILL BE DELETED SOON
+'''
 ###############################################
 #
 # NOTE: This file replaces both previous
@@ -196,3 +201,4 @@ db.query("INSERT INTO team_about ("
         "'Bakulia Kurmant', '/bakulia', 'Team Lead', 'static/team_images/bakulia.jpg', 'In my spare time I like going outdoors, techno music, reading, traveling', '', '', 'https://www.instagram.com/bakuliak/?hl=en', 'https://www.linkedin.com/in/bakulia-kurmant/'"
         ")")
 db.commit()
+'''
