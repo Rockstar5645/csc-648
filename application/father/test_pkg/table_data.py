@@ -2,7 +2,7 @@
 #            DIGITAL MEDIA DATA               #
 ###############################################
 
-digital_media_name = "digital_media"
+digital_media_name = "digital_media_test"
 
 digital_media_column_creator = \
         "media_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT," \
