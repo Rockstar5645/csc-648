@@ -6,7 +6,7 @@ digital_media_name = "digital_media_test"
 
 digital_media_column_creator = \
         "media_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT," \
-        "owner_name VARCHAR(50)," \
+        "owner_id BIGINT UNSIGNED," \
         "name VARCHAR(50), " \
         "description VARCHAR(150)," \
         "file_path VARCHAR(200)," \
@@ -16,14 +16,14 @@ digital_media_column_creator = \
         "approval INT," \
         "PRIMARY KEY (media_id)"
 
-digital_media_columns = "`owner_name`, `name`, `description`, `file_path`, `category`, `price`, `approval`"
+digital_media_columns = "`owner_id`, `name`, `description`, `file_path`, `category`, `price`, `approval`"
 
 digital_media_entries = [
-    "'username001', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', 'image' , 99.99, 0",
-    "'username001', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg', 'video' , 89.99, 0",
-    "'username001', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg', 'document' , 79.99, 0",
-    "'username001', 'sponge bob 4', 'this is the fourth test photo', '/M2_test_images/sb4.jpg', 'audio' , 69.99, 0",
-    "'username001', 'sponge bob 5', 'this is the fifth test photo', '/M2_test_images/sb5.jpg', 'image' , 59.99, 0"
+    "'1', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', 'image' , 99.99, 0",
+    "'1', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg', 'video' , 89.99, 0",
+    "'1', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg', 'document' , 79.99, 0",
+    "'1', 'sponge bob 4', 'this is the fourth test photo', '/M2_test_images/sb4.jpg', 'audio' , 69.99, 0",
+    "'1', 'sponge bob 5', 'this is the fifth test photo', '/M2_test_images/sb5.jpg', 'image' , 59.99, 0"
 ]
 
 ###############################################
