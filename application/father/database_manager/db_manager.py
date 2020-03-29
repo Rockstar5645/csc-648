@@ -59,7 +59,7 @@ class DB:
         if name == None:
             self.db_connection.query("SELECT * FROM team_about")
         else:
-            self.db_connection.query("SELECT * FROM team_about WHERE `name` %s", ("%"+name+"%",))
+            self.db_connection.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%"+name+"%",))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data

@@ -4,43 +4,43 @@
   <div class="container text-center" style="margin-top: 2em;">
 
     {# TODO: Make the image responsive. Will likely need to edit the image files so they have a consistent aspect ratio. #}
-    <img src="{{ team_member.image }}" class="rounded-circle" width="465" height="470" alt="{{  team_member.name }}">
+    <img src="{{ team_member[4] }}" class="rounded-circle" width="465" height="470" alt="{{  team_member[1] }}">
     
     <h1 class="text-primary" style="margin-top: 0.5em;">
       <b>
         {% block title %}
-          {{ team_member.name }}
+          {{ team_member[1] }}
         {% endblock %}
       </b>
     </h1>
 
-    <h2 class="text-secondary">{{ team_member.position }}</h2>
+    <h2 class="text-secondary">{{ team_member[3] }}</h2>
 
-    <p class="lead">{{ team_member.description}}</p>
+    <p class="lead">{{ team_member[5]}}</p>
 
     {# TODO: Consider not hard-coding this. Possibly loop through a list of social-media links. #}
     {# TODO: Create an icon css class #}
     <span style="font-size: 48px;">
-      {% if team_member.facebook and 'www.facebook.com' in team_member.facebook %}
-        <a href="{{ team_member.facebook }}" style="text-decoration: none;">
+      {% if team_member[6] and 'www.facebook.com' in team_member[6] %}
+        <a href="{{ team_member[6] }}" style="text-decoration: none;">
           <i class="fab fa-facebook-square" style="color: #3b5998;"></i>
         </a>
       {% endif %}
 
-      {% if team_member.twitter and 'www.twitter.com' in team_member.twitter %}
-        <a href="{{ team_member.twitter }}" style="text-decoration: none;">
+      {% if team_member[7] and 'www.twitter.com' in team_member[7] %}
+        <a href="{{ team_member[7] }}" style="text-decoration: none;">
           <i class="fab fa-twitter-square" style="color: #1da1f2"></i>
         </a>
       {% endif %}
 
-      {% if team_member.instagram and 'www.instagram.com' in team_member.instagram %}
-        <a href="{{ team_member.instagram }}" style="text-decoration: none;">
+      {% if team_member[8] and 'www.instagram.com' in team_member[8]%}
+        <a href="{{ team_member[8] }}" style="text-decoration: none;">
           <i class="fab fa-instagram-square" style="color: #e1306c"></i>
         </a>
       {% endif %}
 
-      {% if team_member.linkedin and 'www.linkedin.com' in team_member.linkedin %}
-        <a href="{{ team_member.linkedin }}" style="text-decoration: none;">
+      {% if team_member[9] and 'www.linkedin.com' in team_member[9] %}
+        <a href="{{ team_member[9] }}" style="text-decoration: none;">
           <i class="fab fa-linkedin" style="color: #2867b2;"></i>
         </a>
       {% endif %}      

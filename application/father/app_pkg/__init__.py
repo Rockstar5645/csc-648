@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import render_template, request
-from father.app_pkg.team_data import team
 from father.database_manager.db_manager import DB
 from wtforms import Form
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField
@@ -54,6 +53,7 @@ def search():
 
 @app.route("/about") 
 def about():
+    team = db.get_team()
     return render_template('about.html', team=team)
 
 

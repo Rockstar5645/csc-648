@@ -18,8 +18,8 @@
   <div class="row">
     {% for teammate in team %}
     <div class="col-lg-4 col-sm-6 text-center">
-      <img class="rounded-circle" src="{{ teammate.image }}" alt="test image" width="150" height="150">
-      <p><a class="btn btn-outline-success" style="margin-top: 0.3em;" href="{{ teammate.link }}">{{ teammate.name }} </a></p>
+      <img class="rounded-circle" src="{{ teammate[4] }}" alt="test image" width="150" height="150">
+      <p><a class="btn btn-outline-success" style="margin-top: 0.3em;" href="{{ teammate[3] }}">{{ teammate[1] }} </a></p>
     </div>
     <!-- Features -->
     {% endfor %}
