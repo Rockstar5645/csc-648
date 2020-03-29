@@ -76,7 +76,6 @@ def akhil():
 @app.route("/chris")
 def chris():
     team_member = db.get_team("Chris")
-    print(team_member)
     return render_template("about_team_member.html", team_member=team_member)
 
 @app.route("/elliot")
