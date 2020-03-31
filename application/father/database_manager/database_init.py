@@ -12,6 +12,8 @@ db.query("CREATE TABLE IF NOT EXISTS user ("
          "last_name VARCHAR(30),"
          "email VARCHAR(20),"
          "phone_number VARCHAR(10),"
+         "username VARCHAR(20),"
+         "password BINARY(60),"
          "PRIMARY KEY (user_id))")
 
 ###############################
