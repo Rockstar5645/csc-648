@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>search</title>
+    </head>
+    <body>
+        <header>
+            <p> CSC 648.01, Spring 2020, Team 06 </p>
+        </header>
+            <form method="POST" action="">
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{ form.category() }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.term() }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit() }}
+                    </div>
+                </fieldset>
+            </form>
+        <div>
+            <p></p>
+            <center>
+                {% for item in results %}
+                    <tr>
+                        <p> OWNER ID: {{ item[1] }} </p>
+                        <p> IMAGE_NAME: {{ item[2] }} </p>
+                        <p> DESCRIPTION: {{ item[3] }} </p>
+                        <p> STATIC REFERENCE: {{ item[4] }} </p>
+                        <p> THUMBNAIL REFERENCE: {{ item[5] }}
+                        <p> CATEGORY: {{ item[6] }} </p>
+                        <p> PRICE: ${{ item[7] }} </p>
+                        <p>digital media: </p>
+                        <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
+                        <p>thumbnail: </p>
+                        <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
+                        <p>-----------------------------------------------</p>
+                        </br>
+                    </tr>
+                {% endfor %}
+            </center>
+        </div>
+    </body>
+</html>

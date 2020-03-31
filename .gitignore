@@ -4,6 +4,9 @@
 # ignore python virtual environments
 env
 
+# ignore config.py
+config.py
+
 # ignore python cache files
 __pycache__/
 

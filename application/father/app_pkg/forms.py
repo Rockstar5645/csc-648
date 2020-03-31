@@ -1,7 +1,18 @@
+from father.app_pkg.db_obj import db
 from wtforms import Form
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
+
+
+################################################
+#                    FORMS                     #
+################################################
+class SearchForm(Form):
+    term = StringField("Search", validators=[])
+    categories = db.get_category_select_field()
+    category = SelectField(u'Category', choices=categories, validators=[])
+    submit = SubmitField("Search")
 
 class RegistrationForm(Form):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
@@ -9,7 +20,6 @@ class RegistrationForm(Form):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
-
 
 class LoginForm(Form):
     email = StringField("Email", validators=[DataRequired(), Email()])
