@@ -3,6 +3,7 @@
 
 # ignore python virtual environments
 env
+venv
 
 # ignore config.py
 config.py
