@@ -1,7 +1,7 @@
 from father.app_pkg.forms import SearchForm
 from flask import render_template, request
 from father.app_pkg import app
-from father.app_pkg.db_obj import db
+from father.app_pkg import db
 
 
 ################################################

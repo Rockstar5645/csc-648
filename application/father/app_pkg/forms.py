@@ -1,8 +1,7 @@
-from father.app_pkg.db_obj import db
+from father.app_pkg import db
 from wtforms import Form
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-
 
 
 ################################################
