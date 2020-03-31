@@ -56,6 +56,10 @@ def about():
     team = db.get_team()
     return render_template('about.html', team=team)
 
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
 
 
 ##################################################
