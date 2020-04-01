@@ -2,10 +2,10 @@ import bcrypt
 import base64
 import hashlib
 import secrets
-import mysql.connector.Error
+import mysql.connector
 
 def register(username, password_plain, first_name, last_name, phone_number, email, db, r):
-    add_user = ("INSERT INTO employees "
+    add_user = ("INSERT INTO user "
                     "(first_name, last_name, email, phone_number, username, password) "
                     "VALUES (%s, %s, %s, %s, %s, %s)")
 
@@ -31,16 +31,17 @@ def register(username, password_plain, first_name, last_name, phone_number, emai
 
     # map the the secret token to a userid
 
-    secret_token = secrets.token_urlsafe(1000)
+    secret_token = secrets.token_urlsafe(100)
     r.set(secret_token, user_id)
     success_message = {
         'status': 'success',
         'token': secret_token
     }
+    print('Successfully created user {} with secret token {}'.format(user_id, secret_token))
     return success_message
 
 def login(username, password_plain, ip_address, db, r):
-    query = ("SELECT user_id, username, password FROM login WHERE username=%s")
+    query = ("SELECT user_id, username, password FROM user WHERE username=%s")
 
     try:
         db.query(query, (username,))
@@ -58,7 +59,7 @@ def login(username, password_plain, ip_address, db, r):
         password_entered = password_entered.encode('utf-8')
         if bcrypt.checkpw(base64.b64encode(hashlib.sha256(password_entered).digest()), password.encode('utf-8')):
             # password is a match
-            secret_token = secrets.token_urlsafe(1000)
+            secret_token = secrets.token_urlsafe(100)
             r.set(secret_token, user_id)
 
             success_message = {
@@ -66,12 +67,14 @@ def login(username, password_plain, ip_address, db, r):
                 'login': 'success',
                 'token': secret_token
             }
+            print('Successfully logged in user {} with secret token {}'.format(user_id, secret_token))
             return success_message
         else:
             success_message = {
                 'status': 'success',
                 'login': 'failed',
             }
+            print('Unsuccessful login attempt by user {}'.format(user_id))
             return success_message
 
 
