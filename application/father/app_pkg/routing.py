@@ -1,5 +1,5 @@
 from father.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from father.app_pkg import app
 from father.app_pkg import db
 
@@ -32,32 +32,34 @@ def about():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    # TODO: validators (forms)
+    result = {}
     if request.method == 'POST':
-        results = db.login(request.form['username'], request.form['password'], '0.0.0.0')
-        # if success
-            # redirect home page
-        # else
-            # redirect to login w/ error
-        pass
+        result = db.login(request.form['username'], request.form['password'], '0.0.0.0')
+        if result['status'] == 'success':
+            return search()
+        else:
+            return render_template('login.html', form=form)
     else:
-        pass
-        # render login page
+        return render_template('login.html', form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
      # TODO: validators (forms)
     if request.method == 'POST':
-        pass
-        # call register()
-        # if result is success
-            # redirect to homepage
-        # else
-            # redirect to register w/ error
+        # username, password, first_name, last_name, phone_number, email
+        result = db.register(request.form['username'], 
+                            request.form['password'], 
+                            request.form['first_name'],
+                            request.form['last_name'],
+                            request.form['phone_number'],
+                            request.form['email'])
+        if result['status'] == 'success':
+            return search()
+        else:
+            return render_template('registration.html', form=form)
     else:
-        pass
-        # render register
+        return render_template('registration.html', form=form)
 
 ##################################################
 #                TEAM MEMBER PAGES               #
