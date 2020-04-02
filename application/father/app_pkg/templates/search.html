@@ -26,13 +26,17 @@
 
                 {% for item in results %}
                     <tr>
-                        <p> OWNER: {{ item[1] }} </p>
+                        <p> OWNER ID: {{ item[1] }} </p>
                         <p> IMAGE_NAME: {{ item[2] }} </p>
                         <p> DESCRIPTION: {{ item[3] }} </p>
                         <p> STATIC REFERENCE: {{ item[4] }} </p>
+                        <p> THUMBNAIL REFERENCE: {{ item[5] }}
                         <p> CATEGORY: {{ item[6] }} </p>
                         <p> PRICE: ${{ item[7] }} </p>
-                        <img src="/static{{ item[4] }}" alt="image" height="256" width="256">
+                        <p>digital media: </p>
+                        <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
+                        <p>thumbnail: </p>
+                        <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
                         </br>
                     </tr>
                 {% endfor %}

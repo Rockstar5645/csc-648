@@ -25,9 +25,9 @@ def search():
         form.term.default = term
         form.process()
         # return results -------------------------------------vvv
-        return render_template('search_result.html', form=form, results=results)
+        return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
-    return render_template('search.html', form=form)
+    return render_template('search.html', form=form, results=results)
 
 @app.route("/about") 
 def about():
