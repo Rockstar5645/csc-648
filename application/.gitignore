@@ -9,3 +9,6 @@ config.py
 
 # ignore virtual environment
 venv
+
+# ignore egg 
+father.egg-info
