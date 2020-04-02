@@ -20,7 +20,12 @@ def search():
     # if : user submits POST request
     if request.method == 'POST':
         # query db
-        results = db.search(request.form['term'], request.form['category'])
+        term = request.form['term']
+        cat = request.form['category']
+        results = db.search(term, cat)
+        form.category.default = cat
+        form.term.default = term
+        form.process()
         # return results -------------------------------------vvv
         return render_template('search_result.html', form=form, results=results)
     # else : GET fresh html page

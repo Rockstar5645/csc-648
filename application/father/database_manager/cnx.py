@@ -6,9 +6,10 @@ class MyDB(object):
 
     def __init__(self):
         try: 
-            self._db_connection = mysql.connector.connect(user=db_conn['user'], password=db_conn['password'],
-                                  host=db_conn['host'], database=db_conn['database'])
-            self._db_cur = self._db_connection.cursor()
+            # self._db_connection = mysql.connector.connect(user=db_conn['user'], password=db_conn['password'],
+            #                      host=db_conn['host'], database=db_conn['database'])
+            self._db_connection = mysql.connector.connect(**db_conn)
+            self._db_cur = self._db_connection.cursor(buffered=True)
             
         except mysql.connector.Error as err:
             print("\n\n")
@@ -19,17 +20,28 @@ class MyDB(object):
             print("ERROR: {}\n\n".format(err))
             sys.exit()
 
+    def check_connection(self):
+        if self._db_connection.is_connected() is False:
+            print('We have lost connection to the database, attempting to reconnect')
+            self._db_cur.close()
+            self._db_connection.close()
+            self._db_connection = mysql.connector.connect(**db_conn)
+            self._db_cur = self._db_connection.cursor(buffered=True)
+
     def query(self, query, params=''):
+        self.check_connection()
+
         if params != '':
-            print('executing parameters')
+            # print('executing parameters')
             return self._db_cur.execute(query, params)
         else:
-            print('executing without paramters')
+            # print('executing without paramters')
             return self._db_cur.execute(query)
 
     def fetchall(self):
+        self.check_connection()
         return self._db_cur.fetchall()
-    
+
     def commit(self):
         self._db_connection.commit()
 

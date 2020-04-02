@@ -8,9 +8,10 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 #                    FORMS                     #
 ################################################
 class SearchForm(Form):
-    term = StringField("Search", validators=[])
+    term = StringField("Search", validators=[], default='')
     categories = db.get_category_select_field()
     category = SelectField('Category', choices=categories, validators=[])
+    category = SelectField('Category', choices=categories, validators=[], default='all')
     submit = SubmitField("Search")
 
 class RegistrationForm(Form):
