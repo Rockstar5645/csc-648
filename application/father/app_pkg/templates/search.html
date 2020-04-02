@@ -1,5 +1,5 @@
-<!--{% extends 'base.html' %}-->
-<!--      {% block header %}-->
+{% extends 'base.html' %}
+      {% block header %}
 
 <!--        <div>-->
 <!--            <form method="POST" action="">-->
@@ -21,21 +21,29 @@
 <!--            <p> CSC 648.01, Spring 2020, Team 06 </p>-->
 <!--            </header>-->
 
-<!--            <p></p>-->
-<!--            <center>-->
+    <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Snapster</h1>
+      <p class="lead text-muted">A web platform at SFSU where the students and faculty members buy, sell and share digital media with ease and transparency. </p>
 
-<!--                {% for item in results %}-->
-<!--                    <tr>-->
-<!--                        <p> OWNER: {{ item[1] }} </p>-->
-<!--                        <p> IMAGE_NAME: {{ item[2] }} </p>-->
-<!--                        <p> DESCRIPTION: {{ item[3] }} </p>-->
-<!--                        <p> STATIC REFERENCE: {{ item[4] }} </p>-->
-<!--                        <p> CATEGORY: {{ item[6] }} </p>-->
-<!--                        <p> PRICE: ${{ item[7] }} </p>-->
-<!--                        <img src="/static{{ item[4] }}" alt="image" height="256" width="256">-->
-<!--                        </br>-->
-<!--                    </tr>-->
-<!--                {% endfor %}-->
-<!--            </center>-->
-<!--        </div>-->
-<!-- {% endblock %}-->
+    </div>
+  </section>
+
+            <p></p>
+            <center>
+
+                {% for item in results %}
+                    <tr>
+                        <p> OWNER: {{ item[1] }} </p>
+                        <p> IMAGE_NAME: {{ item[2] }} </p>
+                        <p> DESCRIPTION: {{ item[3] }} </p>
+                        <p> STATIC REFERENCE: {{ item[4] }} </p>
+                        <p> CATEGORY: {{ item[6] }} </p>
+                        <p> PRICE: ${{ item[7] }} </p>
+                        <img src="/static{{ item[4] }}" alt="image" height="256" width="256">
+                        </br>
+                    </tr>
+                {% endfor %}
+            </center>
+        </div>
+ {% endblock %}
