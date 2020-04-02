@@ -18,11 +18,11 @@ def search():
     # if : user submits POST request
     if request.method == 'POST':
         # query db
-        results = db.search(term, cat)
+        results = db.search(request.form['term'], request.form['category'])
         # return results -------------------------------------vvv
-        return render_template('search_result.html', form=form, results=results)
+        return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
-    return render_template('search.html', form=form)
+    return render_template('search.html', form=form, results=results)
 
 @app.route("/about") 
 def about():
