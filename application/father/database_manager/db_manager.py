@@ -21,7 +21,7 @@ class DB:
         self.redis_connection = redis_cnx.get_redis_con()
 
     def register(self, username, password, first_name, last_name, phone_number, email):
-        return register_login.register(username, password, first_name, last_name, phone_number, email, self.db_connection, self.r_connection)
+        return register_login.register(username, password, first_name, last_name, phone_number, email, self.db_connection, self.redis_connection)
 
     def login(self, username,  password, ip_address):
         return register_login.login(username, password, ip_address, self.db_connection, self.redis_connection)

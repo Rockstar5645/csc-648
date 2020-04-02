@@ -45,17 +45,13 @@ def login():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-     # TODO: validators (forms)
     if request.method == 'POST':
-        # username, password, first_name, last_name, phone_number, email
-        result = db.register(request.form['username'], 
-                            request.form['password'], 
-                            request.form['first_name'],
-                            request.form['last_name'],
-                            request.form['phone_number'],
-                            request.form['email'])
+        result = {}
+        result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
+        print(result)
+
         if result['status'] == 'success':
-            return search()
+            return redirect(url_for('/search'))
         else:
             return render_template('registration.html', form=form)
     else:
