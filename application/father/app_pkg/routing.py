@@ -2,6 +2,8 @@ from father.app_pkg.forms import SearchForm
 from flask import render_template, request
 from father.app_pkg import app
 from father.app_pkg import db
+from father.app_pkg.forms import RegistrationForm
+
 
 
 ################################################
@@ -33,6 +35,35 @@ def search():
 def about():
     team = db.get_team()
     return render_template('about.html', team=team)
+
+
+##################################################
+#                REGISTER AND LOGIN             #
+##################################################
+
+#
+# class RegistrationForm(Form):
+#     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+#     email = StringField("Email", validators=[DataRequired(), Email()])
+#     password = PasswordField('Password', validators=[DataRequired()])
+#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+#     submit = SubmitField('Sign Up')
+#
+# @app.route("/register", methods=["GET", "POST"])
+# def register():
+#     try:
+#         form = RegistrationForm(request.form)
+#
+#         if request.method == "POST" and form.validate():
+#             username = forms.RegistrationForm.username.data
+#             email = forms.RegistrationForm.email.data
+#             password = forms.RegistrationForm.password.data
+#
+#         return render_template("registration.html", form=form)
+#
+#     except Exception as e:
+#         return str(e)
+
 
 
 ##################################################
@@ -69,3 +100,5 @@ def thomas():
 def bakulia():
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member)
+
+

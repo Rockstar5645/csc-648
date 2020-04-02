@@ -1,26 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>search</title>
-    </head>
-    <body>
-        <header>
-            <p> CSC 648.01, Spring 2020, Team 06 </p>
-        </header>
-        <div>
-            <form method="POST" action="">
-                <fieldset class="form-group">
-                    <div class="form-group">
-                        {{ form.category() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.term() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.submit() }}
-                    </div>
-                </fieldset>
-            </form>
+{% extends 'base.html' %}
+      {% block header %}
+
+<!--        <div>-->
+<!--            <form method="POST" action="">-->
+<!--                <fieldset class="form-group">-->
+<!--                    <div class="form-group">-->
+<!--                        {{ form.category() }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        {{ form.term() }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        {{ form.submit() }}-->
+<!--                    </div>-->
+<!--                </fieldset>-->
+<!--            </form>-->
+<!--            {% endblock %}-->
+<!--            {% block content %}-->
+<!--            <header>-->
+<!--            <p> CSC 648.01, Spring 2020, Team 06 </p>-->
+<!--            </header>-->
+
+    <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Snapster</h1>
+      <p class="lead text-muted">A web platform at SFSU where the students and faculty members buy, sell and share digital media with ease and transparency. </p>
+
+    </div>
+  </section>
+
             <p></p>
             <center>
 
@@ -42,5 +50,4 @@
                 {% endfor %}
             </center>
         </div>
-    </body>
-</html>
+ {% endblock %}
