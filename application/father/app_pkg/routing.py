@@ -32,11 +32,11 @@ def about():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    result = {}
     if request.method == 'POST':
-        result = db.login(request.form['username'], request.form['password'], '0.0.0.0')
+        result = {}
+        result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
         if result['status'] == 'success':
-            return search()
+            return redirect(url_for('search'))
         else:
             return render_template('login.html', form=form)
     else:
@@ -48,10 +48,8 @@ def register():
     if request.method == 'POST':
         result = {}
         result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
-        print(result)
-
         if result['status'] == 'success':
-            return redirect(url_for('/search'))
+            return redirect(url_for('search'))
         else:
             return render_template('registration.html', form=form)
     else:
