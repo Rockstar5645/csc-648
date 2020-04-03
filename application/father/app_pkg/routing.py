@@ -1,5 +1,5 @@
-from father.app_pkg.forms import SearchForm
-from flask import render_template, request
+from father.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
+from flask import render_template, request, redirect, url_for
 from father.app_pkg import app
 from father.app_pkg import db
 from father.app_pkg.forms import RegistrationForm
@@ -36,6 +36,31 @@ def about():
     team = db.get_team()
     return render_template('about.html', team=team)
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if request.method == 'POST':
+        result = {}
+        result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
+        if result['status'] == 'success':
+            return redirect(url_for('search'))
+        else:
+            return render_template('login.html', form=form)
+    else:
+        return render_template('login.html', form=form)
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if request.method == 'POST':
+        result = {}
+        result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
+        if result['status'] == 'success':
+            return redirect(url_for('search'))
+        else:
+            return render_template('registration.html', form=form)
+    else:
+        return render_template('registration.html', form=form)
 
 ##################################################
 #                REGISTER AND LOGIN             #
