@@ -31,6 +31,18 @@ TODO: add navigation
     <!-- https://fontawesome.com/license/free -->
     <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
     <title>
         {% block title %}{% endblock %}
     </title>
@@ -75,7 +87,7 @@ TODO: add navigation
         <!-- SUBMIT MEDIA LINK-->
 
         <li>
-            <a class="btn btn-warning btn-lg active mb-2 mr-sm-5" href="#" role="button">Submit Media</a>
+            <button class="btn btn-warning btn-lg active mb-2 mr-sm-5" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media</button>
         </li>
 
         <!-- LOGIN AND REGISTER LINKS-->
@@ -104,22 +116,122 @@ TODO: add navigation
 
 <h5>SFSU Software Engineering Project CSC 648-848, Spring 2020.  For Demonstration Only</h5>
 
-<h1>
-    {% block header %}{% endblock %}
-</h1>
+
+{% block header %}{% endblock %}
 
 {% block content %}{% endblock %}
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+
+
+{#
+  Modal screens for uploading and viewing media details
+  TODO: Not sure if these will stay here, I hope to move them into their own files at some point.
+  However, we will need them to be available from multiple screens. I am currently looking into 
+  ways to organize the front end code into smaller component modules that can be reused on multiple
+  pages. These are also just mock-ups atm. They do not interact with the database. Will need to talk
+  to back-end team to learn the api.
+
+  TODO: add input for media
+#}
+
+<!-- Modal Upload Form -->
+<!-- https://getbootstrap.com/docs/4.4/components/modal/ -->
+<div id="UploadForm" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadFormTitle">Upload Media</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container">
+          <form>
+            <div class="form-group">
+              <label for="uploadTitle">Title *</label>
+              <input type="text" class="form-control" id="uploadTitle">
+            </div>
+        
+            <div class="form-group">
+              <label for="uploadCategory">Category *</label>
+              <select id="uploadCategory" class="form-control">
+                <option value="">Select</option>
+              </select>
+            </div>
+        
+            <div class="form-group">
+              <label for="uploadMediaType">Media Type *</label>
+              <select id="uploadMediaType" class="form-control">
+                <option value="">Select</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-1">
+                  <label for="uploadPrice">License *</label>
+                </div>
+                <div class="col">
+                  <div class="form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="uploadFree">
+                    <label class="form-check-label" for="uploadFree">Free</label>  
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" id="uploadPrice" placeholder="$">
+                </div>
+              </div>  
+            </div>
+            
+            <div class="form-group">
+              <label for="uploadDescription">Description</label>
+              <textarea id="uploadDescription" class="form-control" rows="3"></textarea>
+            </div>
+        
+            <div class="form-group text-right">
+              <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+              &MediumSpace;
+              <button class="btn btn-primary">Submit</button>
+            </div>
+        
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ViewMedia" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="viewMediaTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewMediaTitle">View Media</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn-primary">Download</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 </body>
 </html>
