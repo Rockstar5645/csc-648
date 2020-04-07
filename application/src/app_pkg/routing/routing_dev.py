@@ -9,8 +9,6 @@ from src.app_pkg import db
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 
-
-
 ################################################
 #                GENERAL ROUTING               #
 ################################################
