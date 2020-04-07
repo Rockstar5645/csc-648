@@ -1,4 +1,7 @@
 from father.database_manager import cnx
+from father.database_manager import register_login
+from father.database_manager import redis_cnx
+from father.config import flags
 
 
 ##############################################
@@ -16,6 +19,14 @@ class DB:
 
     def __init__(self):
         self.db_connection = cnx.MyDB()
+        if '-p' in flags:
+            self.redis_connection = redis_cnx.get_redis_con()
+
+    def register(self, username, password, first_name, last_name, phone_number, email):
+        return register_login.register(username, password, first_name, last_name, phone_number, email, self.db_connection, self.redis_connection)
+
+    def login(self, username,  password, ip_address):
+        return register_login.login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def search(self, term, category):
         if term =='': # if search term was blank

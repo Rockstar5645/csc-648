@@ -12,3 +12,6 @@ venv
 
 # ignore egg 
 father.egg-info
+
+# ignore node_modules
+node_modules

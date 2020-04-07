@@ -51,21 +51,15 @@ TODO: add navigation
                     <div class="col-auto">
                         <div class="input-group mr-sm-5 input-group-lg">
                             <div class="input-group-prepend">
-                                <select id="category" name="category">
-                                    <option select="all">All</option>
-                                    <option value="image">Image</option>
-                                    <option value="video">Video</option>
-                                    <option value="audio">Audio</option>
-                                    <option value="document">Document</option>
-                                </select>
-                                <div class="input-group input-group-lg">
-                                    <input size="40" class="form-control " id="term" name="term" type="text"
-                                           placeholder="Search"
-                                           value>
+                                <div id="category" name="category">
+                                    {{ form.category() }}
                                 </div>
-                                <button type="submit" class="btn btn-info" id="submit" name="submit" value="Search">
-                                    Search
-                                </button>
+                                <div class="input-group input-group-lg">
+                                    {{ form.term() }}
+                                </div>
+                                <div type="submit" class="btn btn-info" id="submit" name="submit" value="Search">
+                                    {{ form.submit() }}
+                                </div>
                             </div>
                         </div>
                     </div>

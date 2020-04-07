@@ -47,3 +47,19 @@ for table in tables:
     for entry in table.get_entries():
         db.query(table.insert_row(entry))
         db.commit()
+
+############################
+#         USER TABLE       #
+############################
+
+db.query("DROP TABLE IF EXISTS user")
+
+db.query("CREATE TABLE IF NOT EXISTS user ("
+         "user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,"
+         "first_name VARCHAR(30),"
+         "last_name VARCHAR(30),"
+         "email VARCHAR(20),"
+         "phone_number VARCHAR(10),"
+         "username VARCHAR(20) UNIQUE,"
+         "password BINARY(60),"
+         "PRIMARY KEY (user_id))")

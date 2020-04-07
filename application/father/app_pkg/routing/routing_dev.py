@@ -1,6 +1,11 @@
+<<<<<<< HEAD:application/father/app_pkg/routing.py
 from tkinter import Image
 from father.app_pkg.forms import SearchForm
 from flask import render_template, request
+=======
+from father.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
+from flask import render_template, request, redirect, url_for
+>>>>>>> 6a0b8d84ee1ec6377b7c15ed2214616a2734bfd9:application/father/app_pkg/routing/routing_dev.py
 from father.app_pkg import app
 from father.app_pkg import db
 from father.app_pkg.forms import RegistrationForm
@@ -38,34 +43,15 @@ def about():
     team = db.get_team()
     return render_template('about.html', team=team)
 
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
-##################################################
-#                REGISTER AND LOGIN             #
-##################################################
-
-#
-# class RegistrationForm(Form):
-#     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-#     email = StringField("Email", validators=[DataRequired(), Email()])
-#     password = PasswordField('Password', validators=[DataRequired()])
-#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-#     submit = SubmitField('Sign Up')
-#
-# @app.route("/register", methods=["GET", "POST"])
-# def register():
-#     try:
-#         form = RegistrationForm(request.form)
-#
-#         if request.method == "POST" and form.validate():
-#             username = forms.RegistrationForm.username.data
-#             email = forms.RegistrationForm.email.data
-#             password = forms.RegistrationForm.password.data
-#
-#         return render_template("registration.html", form=form)
-#
-#     except Exception as e:
-#         return str(e)
-
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    return render_template('registration.html', form=form)
 
 ##################################################
 #                SUBMIT MEDIA                    #
