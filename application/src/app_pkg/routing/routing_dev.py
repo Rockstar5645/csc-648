@@ -1,11 +1,9 @@
-<<<<<<< HEAD:application/father/app_pkg/routing.py
 from tkinter import Image
 from src.app_pkg.forms import SearchForm
 from flask import render_template, request
-=======
+
 from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
 from flask import render_template, request, redirect, url_for
->>>>>>> 6a0b8d84ee1ec6377b7c15ed2214616a2734bfd9:application/father/app_pkg/routing/routing_dev.py
 from src.app_pkg import app
 from src.app_pkg import db
 from src.app_pkg.forms import RegistrationForm
