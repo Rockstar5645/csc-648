@@ -1,11 +1,13 @@
 # Application Folder
 
 1) Package Setup
+
     1.a) navigate to application folder
     1.b) run command 'pip install -e .' in terminal
     1.c) delete 'src_egg' directory that is created
 
 2) Configuring our Environment
+
     2.a) install and run mysql
     2.b) open workbench and create schema called 'snapster'
     2.c) create a file called 'config.py' inside of 'src' directory
@@ -26,8 +28,13 @@
 
     2.e) replace [YOUR PASSWORD HERE] with your password.
 
-3) run program
-    3.a) from inside application, run the command 'python3 run.py'
+3) Fill database with test data
+
+    - Within the test_pkg, run the fill_db script to initialize the database with sample test data
+
+4) run program
+
+    4.a) from inside application, run the command 'python3 run.py'
 
 
 Application

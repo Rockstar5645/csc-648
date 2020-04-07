@@ -4,12 +4,10 @@ from src.app_pkg import app
 from src.app_pkg import db
 from src.app_pkg.forms import RegistrationForm
 
-
-
 ################################################
 #                GENERAL ROUTING               #
 ################################################
-# Routing by accessable web pages, main routes 
+# Routing by accessible web pages, main routes
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
