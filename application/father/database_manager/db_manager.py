@@ -81,3 +81,10 @@ class DB:
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
+
+    def submit_media(self):
+        # TODO: implement submit_media, query, commit, and return, check params
+        data = self.db_connection.fetchall()
+        self.db_connection.query("SELECT * FROM digital_media_test...")
+        self.db_connection.commit()
+        return data

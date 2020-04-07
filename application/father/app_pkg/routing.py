@@ -1,8 +1,10 @@
+from tkinter import Image
 from father.app_pkg.forms import SearchForm
 from flask import render_template, request
 from father.app_pkg import app
 from father.app_pkg import db
 from father.app_pkg.forms import RegistrationForm
+from father.app_pkg.forms import SubmissionForm
 
 
 
@@ -64,6 +66,51 @@ def about():
 #     except Exception as e:
 #         return str(e)
 
+
+##################################################
+#                SUBMIT MEDIA                    #
+##################################################
+# work in progress
+@app.route("/submit", methods=["GET", "POST"])
+def submit():
+    try:
+        form = SubmissionForm(request.form)
+        # if "POST"
+        if request.method == "POST" and form.validate():
+
+            # query db params
+            filename = request.form['filename']
+            desc = request.form['description']
+            price = request.form['price']
+            cat = request.form['category']
+
+            # TODO: move example file into static/user_images
+
+            # TODO: make example thumbnail, will change paths and image files later
+            # added "from tkinter import Image" at the top
+            path = 'M2_test_images'
+            im1 = '/example.jpg'
+            f = Image.open(path + im1)
+            f.thumbnail((200, 200))
+            f.save('thumbnails/example_t.jpg')
+
+            # TODO: add db query params
+            results = db.submit_media()
+
+            form.filename.default = filename
+            form.description.default = desc
+            form.price.default = price
+            form.category.default = cat
+            form.process()
+
+            # TODO: fix render_templates and redirects, not sure what html pages to use
+            return render_template('search.html', form=form)
+
+        # else, (if "GET")
+        return render_template('', form=form)
+
+    except Exception as e:
+        return str(e)
 
 
 ##################################################

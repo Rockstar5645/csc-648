@@ -1,4 +1,5 @@
 from father.app_pkg import db
+from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
@@ -26,3 +27,13 @@ class LoginForm(Form):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField("Remember Me")
     submit = SubmitField('Login')
+
+class SubmissionForm(Form):
+    # added FileRequired and FileAllowed for more functionality when uploading files
+    # TODO: make validators more detailed, add any missing form data
+    filename = StringField('filename', validators=[DataRequired()])
+    file = FileField('file', validators=[FileRequired(), FileAllowed(['jpeg', 'png'])])
+    description = StringField('description', validators=[DataRequired()])
+    price = StringField('price', validators=[DataRequired()])
+    category = StringField('category', validators=[])
+    submit = SubmitField('Submit Media')
