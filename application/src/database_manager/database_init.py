@@ -1,4 +1,4 @@
-from father.database_manager import cnx
+from src.database_manager import cnx
 
 db = cnx.MyDB()
 

@@ -2,8 +2,8 @@
 
 1) package setup
     1.a) navigate to application folder
-    1.b) run command 'pip install -e' in terminal
-    1.c) delete 'father_egg' directory that is created
+    1.b) run command 'pip install -e .' in terminal
+    1.c) delete 'src_egg' directory that is created
 
 2) setup test
     2.a) install and run mysql

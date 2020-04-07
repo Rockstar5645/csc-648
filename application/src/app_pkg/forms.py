@@ -1,4 +1,4 @@
-from father.app_pkg import db
+from src.app_pkg import db
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField

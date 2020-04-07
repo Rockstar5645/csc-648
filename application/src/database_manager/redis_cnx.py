@@ -1,5 +1,5 @@
 import redis
-from father.config import redis_conn
+from src.config import redis_conn
 
 def get_redis_con():
     if redis_conn['mode'] == 'prod':
