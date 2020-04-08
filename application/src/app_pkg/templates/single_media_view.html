@@ -17,92 +17,132 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
 </head>
 
-    <head>
-        <title>Single Media View</title>
-    </head>
-    <h1>Single Media View Page</h1>
+<head>
+    <title>Single Media View</title>
+</head>
+<h1>Single Media View Page</h1>
 
 <!-- Click on Media for a single View -->
-    <button class="btn btn-warning btn-lg active mb-2 mr-sm-5" type="button" data-toggle="modal" data-target="#ViewSingleMedia">View Media</button>
-
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" type="button" data-toggle="modal"
+        data-target="#ViewSingleMedia">View Media
+</button>
 <!-- Returns a Single Media View Pop Up -->
-
 <body>
-    <div id="ViewSingleMedia" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-    <div class="modal-content">
-
-     <!-- Title of the Media -->
-      <div class="modal-header text-center">
-        <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="container">
-          <form>
-                          <!-- Image of the Media -->
-              <div class=media">
-                  <img src="/static/thumbnails/sb1_t.jpg"  class="img-thumbnail mx-auto d-block img-fluid" alt="image" height="300" width="300">
-                        <table class="table row justify-content-center mt-3 margin-auto">
-                            <tbody>
-                              <tr >
-                                <td class="font-weight-bold ">Category: </td>
-                                <td>BIO 417</td>
-                              </tr>
-                              <tr>
-                                <td class="font-weight-bold">Media type:</td>
-                                <td>Image</td>
-                              </tr>
-                              <tr>
-                                <td class="font-weight-bold">License:</td>
-                                <td>Free</td>
-                              </tr>
-                              <tr>
-                                <td class="font-weight-bold">Author:</td>
-                                <td>Username</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                  <div class="form-group mr-3">
-                      <label class="font-weight-bold">Description:</label>
-                      <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat. Duis aute irure dolor."
-                      </p>
-              </div>
-              </div>
-
-
-            <div class="form-group text-right">
-              <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-              &MediumSpace;
-              <button class="btn btn-warning">Download</button>
+<div id="ViewSingleMedia" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="DigitalMediaTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <!-- Title of the Media -->
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
-          </form>
+            <div class="modal-body">
+                <div class="container">
+                    <form>
+                        <!-- Image of the Media -->
+                        <div class=media">
+                            <img src="/static/thumbnails/sb1_t.jpg" class="img-thumbnail mx-auto d-block img-fluid"
+                                 alt="image" height="300" width="300">
+                            <!-- Media Info -->
+                            <table class="table row justify-content-center mt-3 margin-auto">
+                                <tbody>
+                                <tr>
+                                    <td class="font-weight-bold ">Category:</td>
+                                    <td>BIO 417</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">Media type:</td>
+                                    <td>Image</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">License:</td>
+                                    <td>Free</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">Author:</td>
+                                    <td>Username</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- Media Description -->
+                            <div class="form-group mr-3">
+                                <label class="font-weight-bold">Description:</label>
+                                <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor."
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Media Download or Cancel Buttons -->
+                        <div class="form-group text-right">
+                            <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            &MediumSpace;
+                            <button class="btn btn-warning">Download</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+</body>
+
+<!-- MESSAGE THE USERS -->
+<body>
+<!-- CONTACT SELLER BUTTON -->
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" type="button" data-toggle="modal" data-target="#SendMessage">
+    CONTACT SELLER
+</button>
+
+<div class="modal fade" id="SendMessage" tabindex="-1" role="dialog" aria-labelledby="SendMessageLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-
 </body>
+
 </html>
