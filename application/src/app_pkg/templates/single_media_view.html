@@ -41,6 +41,7 @@
 </button>
 <!-- Returns a Single Media View Pop Up -->
 <body>
+<<<<<<< HEAD
 <div id="ViewSingleMedia" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="DigitalMediaTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -51,6 +52,71 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+=======
+    <div id="ViewSingleMedia" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+
+     <!-- Title of the Media -->
+      <div class="modal-header text-center">
+        <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container">
+          <form>
+                          <!-- Image of the Media -->
+              <div class=media">
+                  <img src="/static/thumbnails/sb1_t.jpg"  class="img-thumbnail mx-auto d-block img-fluid" alt="image" height="300" width="300">
+                    
+                  <div class="row">
+                    <div class="col text-right">
+                      <label class="font-weight-bold">Category:</label>
+                    </div>
+                    <div class="col">
+                      <span>BIO 417</span>
+                    </div>
+                  </div>      
+                  
+                  <table class="table row justify-content-center mt-3 margin-auto">
+                            <tbody>
+                              <tr >
+                                <td class="font-weight-bold ">Category: </td>
+                                <td>BIO 417</td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">Media type:</td>
+                                <td>Image</td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">License:</td>
+                                <td>Free</td>
+                              </tr>
+                              <tr>
+                                <td class="font-weight-bold">Author:</td>
+                                <td>Username</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                  <div class="form-group mr-3">
+                      <label class="font-weight-bold">Description:</label>
+                      <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat. Duis aute irure dolor."
+                      </p>
+              </div>
+              </div>
+
+
+            <div class="form-group text-right">
+              <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+              &MediumSpace;
+              <button class="btn btn-warning">Download</button>
+>>>>>>> 4d9a0b1843a69743143a10b26e134a77f8001fa6
             </div>
 
             <div class="modal-body">
