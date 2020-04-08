@@ -40,3 +40,4 @@ class SubmissionForm(Form):
     price = StringField('price', validators=[DataRequired()])
     category = StringField('category', validators=[])
     submit = SubmitField('Submit Media')
+

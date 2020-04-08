@@ -8,7 +8,7 @@
 
 2) Configuring our Environment
 
-    2.a) install and run mysql
+    2.a) install and run mysql (Mac: brew services start mysql)
     2.b) open workbench and create schema called 'snapster'
     2.c) create a file called 'config.py' inside of 'src' directory
     2.d) copy and paste the following inside of 'config.py':

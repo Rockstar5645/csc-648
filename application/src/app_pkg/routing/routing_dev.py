@@ -2,7 +2,7 @@ from tkinter import Image
 from src.app_pkg.forms import SearchForm
 from flask import render_template, request
 
-from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
+from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm, SubmissionForm
 from flask import render_template, request, redirect, url_for
 from src.app_pkg import app
 from src.app_pkg import db
@@ -33,6 +33,15 @@ def search():
         return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
     return render_template('search.html', form=form, results=results)
+
+################################################
+#                SINGLE MEDIA VIEW             #
+################################################
+@app.route('/single_media_view', methods=['GET', 'POST'])
+def single_media_view():
+    media_view = SubmissionForm()
+    return render_template('single_media_view.html', media_view=media_view)
+
 
 @app.route("/about") 
 def about():
