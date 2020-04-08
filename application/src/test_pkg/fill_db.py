@@ -1,6 +1,6 @@
-from father.database_manager import cnx
-from father.database_manager.objects.table import DBTable
-from father.test_pkg.table_data import *
+from src.database_manager import cnx
+from src.database_manager.objects.table import DBTable
+from src.test_pkg.table_data import *
 
 ###############################################
 #

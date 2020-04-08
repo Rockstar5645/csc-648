@@ -1,10 +1,13 @@
-from father.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
+from tkinter import Image
+from src.app_pkg.forms import SearchForm
+from flask import render_template, request
+
+from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
 from flask import render_template, request, redirect, url_for
-from father.app_pkg import app
-from father.app_pkg import db
-from father.app_pkg.forms import RegistrationForm
-
-
+from src.app_pkg import app
+from src.app_pkg import db
+from src.app_pkg.forms import RegistrationForm
+from src.app_pkg.forms import SubmissionForm
 
 ################################################
 #                GENERAL ROUTING               #
@@ -39,28 +42,57 @@ def about():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if request.method == 'POST':
-        result = {}
-        result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
-        if result['status'] == 'success':
-            return redirect(url_for('search'))
-        else:
-            return render_template('login.html', form=form)
-    else:
-        return render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    if request.method == 'POST':
-        result = {}
-        result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
-        if result['status'] == 'success':
-            return redirect(url_for('search'))
-        else:
-            return render_template('registration.html', form=form)
-    else:
-        return render_template('registration.html', form=form)
+    return render_template('registration.html', form=form)
+
+##################################################
+#                SUBMIT MEDIA                    #
+##################################################
+# work in progress
+@app.route("/submit", methods=["GET", "POST"])
+def submit():
+    try:
+        form = SubmissionForm(request.form)
+        # if "POST"
+        if request.method == "POST" and form.validate():
+
+            # query db params
+            filename = request.form['filename']
+            desc = request.form['description']
+            price = request.form['price']
+            cat = request.form['category']
+
+            # TODO: move example file into static/user_images
+
+            # TODO: make example thumbnail, will change paths and image files later
+            # added "from tkinter import Image" at the top
+            path = 'M2_test_images'
+            im1 = '/example.jpg'
+            f = Image.open(path + im1)
+            f.thumbnail((200, 200))
+            f.save('thumbnails/example_t.jpg')
+
+            # TODO: add db query params
+            results = db.submit_media()
+
+            form.filename.default = filename
+            form.description.default = desc
+            form.price.default = price
+            form.category.default = cat
+            form.process()
+
+            # TODO: fix render_templates and redirects, not sure what html pages to use
+            return render_template('search.html', form=form)
+
+        # else, (if "GET")
+        return render_template('', form=form)
+
+    except Exception as e:
+        return str(e)
 
 
 ##################################################

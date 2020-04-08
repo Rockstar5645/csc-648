@@ -1,7 +1,7 @@
-from father.database_manager import cnx
-from father.database_manager import register_login
-from father.database_manager import redis_cnx
-from father.config import flags
+from src.database_manager import cnx
+from src.database_manager import register_login
+from src.database_manager import redis_cnx
+from src.config import flags
 
 
 ##############################################
@@ -90,5 +90,12 @@ class DB:
         else: # get team_member
             self.db_connection.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%"+name+"%",))
         data = self.db_connection.fetchall()
+        self.db_connection.commit()
+        return data
+
+    def submit_media(self):
+        # TODO: implement submit_media, query, commit, and return, check params
+        data = self.db_connection.fetchall()
+        self.db_connection.query("SELECT * FROM digital_media_test...")
         self.db_connection.commit()
         return data

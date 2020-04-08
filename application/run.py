@@ -1,6 +1,6 @@
-from father.app_pkg import app
+from src.app_pkg import app
 import sys
-from father.config import flags
+from src.config import flags
 
 
 if __name__ == "__main__":

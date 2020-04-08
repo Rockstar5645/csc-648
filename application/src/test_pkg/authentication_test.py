@@ -1,6 +1,6 @@
-from father.database_manager import cnx
-from father.database_manager import register_login
-from father.database_manager import redis_cnx
+from src.database_manager import cnx
+from src.database_manager import register_login
+from src.database_manager import redis_cnx
 
 db_connection = cnx.MyDB()
 redis_connection = redis_cnx.get_redis_con()
