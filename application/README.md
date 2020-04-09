@@ -23,7 +23,10 @@
     flags = ['-d']
 
     redis_conn = {
-        'mode': 'dev'
+        'mode': 'prod',
+        'host': 'redis.snapsster.com',
+        'password': 'vJB2KVAZs6+2x4i9eVBHp0PZeX1TjX/qPhdgomjNvczK0q0DCtfg5dHxKveLdNmFFZU1yw7z/E/ZcdmI',
+        'port': '6379'
     }
 
     2.e) replace [YOUR PASSWORD HERE] with your password.

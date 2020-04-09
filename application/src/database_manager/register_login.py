@@ -20,7 +20,7 @@ def register(username, password_plain, first_name, last_name, phone_number, emai
         db.query(add_user, vals)
         db.commit()
     except mysql.connector.Error as err:
-        print("Failed to create user: {}".format(err))
+        # print("Failed to create user: {}".format(err))
         error_message = {
             'status': 'error',
             'message': "Failed to create user: {}".format(err)
@@ -37,7 +37,7 @@ def register(username, password_plain, first_name, last_name, phone_number, emai
         'status': 'success',
         'token': secret_token
     }
-    print('Successfully created user {} with secret token {}'.format(user_id, secret_token))
+    # print('Successfully created user {} with secret token {}'.format(user_id, secret_token))
     return success_message
 
 def login(username, password_plain, ip_address, db, r):
@@ -46,7 +46,7 @@ def login(username, password_plain, ip_address, db, r):
     try:
         db.query(query, (username,))
     except mysql.connector.Error as err:
-        print("Internal server error with database: {}".format(err))
+        # print("Internal server error with database: {}".format(err))
         error_message = {
             'status': 'error',
             'message': 'internal-error'
@@ -67,14 +67,14 @@ def login(username, password_plain, ip_address, db, r):
                 'login': 'success',
                 'token': secret_token
             }
-            print('Successfully logged in user {} with secret token {}'.format(user_id, secret_token))
+            # print('Successfully logged in user {} with secret token {}'.format(user_id, secret_token))
             return success_message
         else:
             success_message = {
                 'status': 'success',
                 'login': 'failed',
             }
-            print('Unsuccessful login attempt by user {}'.format(user_id))
+            # print('Unsuccessful login attempt by user {}'.format(user_id))
             return success_message
 
 
