@@ -7,7 +7,6 @@ from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm, Submissio
 from flask import render_template, request, redirect, url_for
 from src.app_pkg import app
 from src.app_pkg import db
-from src.app_pkg import moment
 
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
@@ -105,9 +104,8 @@ def submit():
 ################################################
 @app.route('/single_media_view', methods=['GET', 'POST'])
 def single_media_view():
-    date = datetime.utcnow()
     media_view = SubmissionForm()
-    return render_template('single_media_view.html', media_view=media_view, date=date)
+    return render_template('single_media_view.html', media_view=media_view)
 
 ################################################
 #                USER PROFILE                  #
