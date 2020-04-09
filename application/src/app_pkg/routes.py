@@ -38,8 +38,8 @@ def about():
 def login():
     form = LoginForm()
     if request.method == 'POST':
+        result = {}
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
-        print(result)
         if result['status'] == 'success':
             return redirect(url_for('search'))
         else:
