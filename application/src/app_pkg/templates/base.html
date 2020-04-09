@@ -58,42 +58,30 @@ TODO: add navigation
         <li class="nav-item">
             <a class="nav-link mr-sm-auto" href="/">Snapster</a>
         </li>
-        <li>
+        <li class="nav-item">
             <!--    SEARCH AND FILTER FORM       -->
-            <form class="form-inline" method="POST" action="">
-                <div class="form-row mr-sm-5">
-                    <div class="col-auto">
-                        <div class="input-group mr-sm-5 input-group-lg">
-                            <div class="input-group-prepend">
-                                <div id="category" name="category">
-                                    {{ form.category() }}
-                                </div>
-                                <div class="input-group input-group-lg">
-                                    {{ form.term() }}
-                                </div>
-                                <div type="submit" class="btn btn-info" id="submit" name="submit" value="Search">
-                                    {{ form.submit() }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <form method="POST">
+              <div class="input-group mt-1 mb-1">
+                <div class="input-group-prepend">
+                  {{ form.category(class_="custom-select") }}
                 </div>
+                {{ form.term(class_="form-control") }}
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
             </form>
         </li>
-        <!-- SUBMIT MEDIA LINK-->
-
-        <li>
-            <button class="btn btn-warning btn-lg active mb-2 mr-sm-5" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media</button>
-        </li>
-
-        <!-- LOGIN AND REGISTER LINKS-->
-        <li>
-            <a class="btn btn-outline-light btn-lg mb-2 ml-sm-5" href="/login" role="button">Login</a>
-        </li>
-         <li>
-            <a class="btn btn-outline-light btn-lg mb-2 ml-sm-3 " href="/register" role="button">Register</a>
-        </li>
     </ul>
+
+    <div class="mt-1 mb-1">
+      <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media</button>
+      <span style="color: white;">|</span>
+      <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
+      <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+    </div>  
 
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
             aria-label="Toggle navigation">
