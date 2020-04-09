@@ -39,15 +39,6 @@ def search():
     # else : GET fresh html page
     return render_template('search.html', form=form, results=results)
 
-################################################
-#                SINGLE MEDIA VIEW             #
-################################################
-@app.route('/single_media_view', methods=['GET', 'POST'])
-def single_media_view():
-    date = datetime.utcnow()
-    media_view = SubmissionForm()
-    return render_template('single_media_view.html', media_view=media_view, date=date)
-
 
 @app.route("/about") 
 def about():
@@ -108,6 +99,24 @@ def submit():
 
     except Exception as e:
         return str(e)
+
+################################################
+#                SINGLE MEDIA VIEW             #
+################################################
+@app.route('/single_media_view', methods=['GET', 'POST'])
+def single_media_view():
+    date = datetime.utcnow()
+    media_view = SubmissionForm()
+    return render_template('single_media_view.html', media_view=media_view, date=date)
+
+################################################
+#                USER PROFILE                  #
+################################################
+
+@app.route('/user_profile')
+def user_profile():
+    return render_template('user_profile.html')
+
 
 
 ##################################################
