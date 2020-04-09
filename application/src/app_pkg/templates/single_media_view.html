@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+
+    <!-- Font Awesome Kit -->
+    <!-- https://fontawesome.com/license/free -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/2b0fe775bd.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script crossorigin="anonymous"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+    <script crossorigin="anonymous"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+    <script crossorigin="anonymous"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<head>
+    <!-- Get Current Date and Time -->
+    {{ moment.include_moment() }}
+
+    <title>Single Media View</title>
+</head>
+<h1>Single Media View Page</h1>
+
+<!-- Click on Media for a single View -->
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" data-target="#ViewSingleMedia" data-toggle="modal"
+        type="button">View Media
+</button>
+<!-- Returns a Single Media View Pop Up -->
+
+<body>
+<div aria-hidden="true" aria-labelledby="DigitalMediaTitle" class="modal fade" id="ViewSingleMedia" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <!-- Title of the Media -->
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <form>
+                        <!-- Image of the Media -->
+                        <div class=media">
+                            <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
+                                 height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
+                        </div>
+
+                        <!-- Digital media info -->
+                        <div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label class="font-weight-bold">Category:</label>
+                                </div>
+                                <div class="col">
+                                    <span>BIO 417</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label class="font-weight-bold">Media type:</label>
+                                </div>
+                                <div class="col">
+                                    <span>Image</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label class="font-weight-bold">License:</label>
+                                </div>
+                                <div class="col">
+                                    <span>Free</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-right">
+                                    <label class="font-weight-bold">Author:</label>
+                                </div>
+                                <div class="col">
+                                    <span>Username</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mr-3">
+                                <label class="font-weight-bold">Description:</label>
+                                <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Cancel or Download Media Buttons -->
+
+                        <div class="form-group text-right">
+                            <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                            &MediumSpace;
+                            <button class="btn btn-warning">Download</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- MESSAGE THE USERS -->
+<body>
+
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+<!-- CONTACT SELLER BUTTON -->
+
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" data-target="#SendMessage" data-toggle="modal" type="button">
+    CONTACT SELLER
+</button>
+
+
+<div class="modal fade" id="SendMessage" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label font-weight-light">Date: {{
+                            moment(date).format('LLL') }}</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="username@mail.sfsu.edu"
+                               readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Subject:</label>
+                        <input type="text" class="form-control" id="message-subject" placeholder="Digital Media Title"
+                               readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"> Message:</label>
+                        <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                  rows="10" required></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<body>
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+<!-- USER PROFILE -->
+
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" data-target="#UserProfile" data-toggle="modal" type="button">USER PROFILE</button>
+
+
+<div class="modal fade" id="UserProfile" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

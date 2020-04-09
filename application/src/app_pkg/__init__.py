@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # create DB object
 db = DB()
+#moment = Moment(app)
 
 from src.app_pkg import routes
 
