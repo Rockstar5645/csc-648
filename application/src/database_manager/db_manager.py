@@ -1,7 +1,6 @@
 from src.database_manager import cnx
 from src.database_manager import register_login
 from src.database_manager import redis_cnx
-from src.config import flags
 
 
 ##############################################
@@ -19,8 +18,11 @@ class DB:
 
     def __init__(self):
         self.db_connection = cnx.MyDB()
-        if '-p' in flags:
-            self.redis_connection = redis_cnx.get_redis_con()
+        self.redis_connection = redis_cnx.get_redis_con()
+        print('DB CONNECTION : ')
+        print(self.db_connection)
+        print('REDIS CONNECTION : ') 
+        print(self.redis_connection)
 
     def register(self, username, password, first_name, last_name, phone_number, email):
         return register_login.register(username, password, first_name, last_name, phone_number, email, self.db_connection, self.redis_connection)
