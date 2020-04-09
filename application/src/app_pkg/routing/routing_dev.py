@@ -1,3 +1,4 @@
+import os
 from tkinter import Image
 from src.app_pkg.forms import SearchForm
 from flask import render_template, request
@@ -12,7 +13,7 @@ from src.app_pkg.forms import SubmissionForm
 ################################################
 #                GENERAL ROUTING               #
 ################################################
-# Routing by accessable web pages, main routes 
+# Routing by accessable web pages, main routes
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
@@ -65,9 +66,22 @@ def register():
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
     try:
-        form = SubmissionForm(request.form)
+        form = SubmissionForm()
         # if "POST"
         if request.method == "POST" and form.validate():
+
+            # TODO: move example file into static/user_images, testing with upload routes below
+            f = request.files['file']
+            f.save(f.filename)
+            return render_template("", name=f.filename)
+
+            # make example thumbnail from user_images
+            path = 'user_images/'
+            path2 = 'thumbnails/'
+            new_user_image = f.filename
+            f = Image.open(path + new_user_image)
+            f.thumbnail((200, 200))
+            f.save(path2 + new_user_image)
 
             # query db params
             filename = request.form['filename']
@@ -75,18 +89,8 @@ def submit():
             price = request.form['price']
             cat = request.form['category']
 
-            # TODO: move example file into static/user_images
-
-            # TODO: make example thumbnail, will change paths and image files later
-            # added "from tkinter import Image" at the top
-            path = 'M2_test_images'
-            im1 = '/example.jpg'
-            f = Image.open(path + im1)
-            f.thumbnail((200, 200))
-            f.save('thumbnails/example_t.jpg')
-
-            # TODO: add db query params
-            results = db.submit_media()
+            # TODO: add more db query params, thumbnails? filepath?
+            results = db.submit_media(filename, desc, price, cat)
 
             form.filename.default = filename
             form.description.default = desc
@@ -94,7 +98,7 @@ def submit():
             form.category.default = cat
             form.process()
 
-            # TODO: fix render_templates and redirects, not sure what html pages to use
+            # TODO: fix render_templates and redirects, not sure which html pages to use
             return render_template('search.html', form=form)
 
         # else, (if "GET")
@@ -102,6 +106,24 @@ def submit():
 
     except Exception as e:
         return str(e)
+
+##################################################
+#                UPLOAD FILE TEST                #
+##################################################
+# testing for uploading images to user_images directory,
+# needs more security and better routing, not connected to db, forms, or main page yet
+# add /upload to url to access upload.html page for testing
+@app.route("/upload")
+def fileFrontPage():
+    return render_template('upload.html')
+
+@app.route("/handleUpload", methods=['POST'])
+def handleFileUpload():
+    if 'photo' in request.files:
+        photo = request.files['photo']
+        if photo.filename != '':
+            photo.save(os.path.join('/Users/averychen/PycharmProjects/CSC648/csc648-fa20-team06/application/src/app_pkg/static/user_images', photo.filename))
+    return redirect(url_for('fileFrontPage'))
 
 
 ##################################################
