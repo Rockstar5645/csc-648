@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -31,6 +33,7 @@
 </head>
 
 <head>
+    {{ moment.include_moment() }}
     <title>Single Media View</title>
 </head>
 <h1>Single Media View Page</h1>
@@ -129,10 +132,59 @@
 
 <!-- MESSAGE THE USERS -->
 <body>
+
 <!-- CONTACT SELLER BUTTON -->
 <button class="btn btn-warning btn-lg active mb-2 mr-sm-5" data-target="#SendMessage" data-toggle="modal" type="button">
     CONTACT SELLER
 </button>
+
+
+<div class="modal fade" id="SendMessage" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label font-weight-light">Date: {{ moment(date).format('LLL') }}</label>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" placeholder="username@mail.sfsu.edu" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Subject:</label>
+            <input type="text" class="form-control" id="message-subject" placeholder="Digital Media Title" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" > Message:</label>
+            <textarea class="form-control" id="message-text" placeholder="Type your message here..." rows="10" required></textarea>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 </body>
 
 </html>
