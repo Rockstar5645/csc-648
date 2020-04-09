@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for
 from src.app_pkg import app
 from src.app_pkg import db
 from src.app_pkg.forms import RegistrationForm
+from src.app_pkg.forms import SubmissionForm
 
 ################################################
 #                GENERAL ROUTING               #
@@ -61,7 +62,21 @@ def register():
     else:
         return render_template('registration.html', form=form)
 
+################################################
+#                SINGLE MEDIA VIEW             #
+################################################
+@app.route('/single_media_view', methods=['GET', 'POST'])
+def single_media_view():
+    media_view = SubmissionForm()
+    return render_template('single_media_view.html', media_view=media_view)
 
+################################################
+#                USER PROFILE                  #
+################################################
+
+@app.route('/user_profile')
+def user_profile():
+    return render_template('user_profile.html')
 
 
 
