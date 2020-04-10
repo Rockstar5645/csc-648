@@ -32,8 +32,9 @@ def search():
 
 @app.route("/about") 
 def about():
+    form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team)
+    return render_template('about.html', team=team, form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

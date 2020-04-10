@@ -20,8 +20,6 @@
         'database' : 'snapster'
     }
 
-    flags = ['-d']
-
     redis_conn = {
         'mode': 'prod',
         'host': 'redis.snapsster.com',
@@ -80,12 +78,3 @@ Test_pkg :
     - Fill_db: this creates the table objects, drops tables, create tables, and fills tables for digital_media, categories, and team data
     - test_pkg/Table_data:  is the utility script to the database initialization script which contains the initial data to insert into our tables for testing
     - Authentication_test is the script used to test our registration and login functionality
-
-
-
-
-
-
-
-
-
