@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>login</title>
-    </head>
-    <body>
-        <div>
-            <form method="POST" action="">
-                <fieldset class="form-group">
-                    <div class="form-group">
-                        {{ form.username.label }}
-                        {{ form.username() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label }}
-                        {{ form.password() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.submit() }}
-                    </div>
-                </fieldset>
-            </form>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome Kit -->
+    <!-- https://fontawesome.com/license/free -->
+    <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
+
+    <title>Login</title>
+</head>
+
+<body>
+
+    <!-- Navigation Bar Documentation -->
+    <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand">Snapster</span>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Login</a>
+                </li>
+            </ul>
         </div>
-    </body>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div>
+
+    </div>
+</body>
+
 </html>
