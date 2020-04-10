@@ -78,6 +78,15 @@ def single_media_view():
 def user_profile():
     return render_template('user_profile.html')
 
+################################################
+#                Admin PROFILE                 #
+################################################
+
+@app.route('/admin_page')
+def admin_page():
+    return render_template('admin_page.html')
+
+
 
 
 ##################################################
