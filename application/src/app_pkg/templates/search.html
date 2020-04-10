@@ -22,32 +22,66 @@
 <!--            </header>-->
 
     <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Snapster</h1>
-      <p class="lead text-muted">A web platform at SFSU where the students and faculty members buy, sell and share digital media with ease and transparency. </p>
+        <div class="container">
+            <h1>Snapster</h1>
+            <p class="lead text-muted">A web platform at SFSU where the students and faculty members buy, sell and share digital media with ease and transparency. </p>
 
-    </div>
-  </section>
-
-            <p></p>
-            <center>
-
-                {% for item in results %}
-                    <tr>
-                        <p> OWNER ID: {{ item[1] }} </p>
-                        <p> IMAGE_NAME: {{ item[2] }} </p>
-                        <p> DESCRIPTION: {{ item[3] }} </p>
-                        <p> STATIC REFERENCE: {{ item[4] }} </p>
-                        <p> THUMBNAIL REFERENCE: {{ item[5] }}
-                        <p> CATEGORY: {{ item[6] }} </p>
-                        <p> PRICE: ${{ item[7] }} </p>
-                        <p>digital media: </p>
-                        <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
-                        <p>thumbnail: </p>
-                        <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
-                        </br>
-                    </tr>
-                {% endfor %}
-            </center>
         </div>
+    </section>
+
+    <br />
+
+    <div class="container">
+        <div class="row">
+        {% for item in results %}
+            <div class="col-sm-12 col-md-4">
+                <div class="card text-white bg-secondary mb-3">
+                    <img src="/static{{ item[4] }}" class="card-img-top" width="250" height="250">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                {{ item[2] }}
+                            </div>
+                            <div class="col text-right">
+                                <i class="fas fa-download"></i>
+                            </div> 
+                        </div> 
+                    </div>
+                    <div class="row card-body">
+                        <div class="col card-text">
+                            {{ item[6] }}
+                        </div>
+                        <div class="col card-text text-right">
+                            ${{ item[7] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="text-center">
+        {% for item in results %}
+            <tr>
+                <p> OWNER ID: {{ item[1] }} </p>
+                <p> IMAGE_NAME: {{ item[2] }} </p>
+                <p> DESCRIPTION: {{ item[3] }} </p>
+                <p> STATIC REFERENCE: {{ item[4] }} </p>
+                <p> THUMBNAIL REFERENCE: {{ item[5] }}
+                <p> CATEGORY: {{ item[6] }} </p>
+                <p> PRICE: ${{ item[7] }} </p>
+                <p>digital media: </p>
+                <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
+                <p>thumbnail: </p>
+                <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
+                </br>
+            </tr>
+        {% endfor %}
+    </div>
+    
+
  {% endblock %}
