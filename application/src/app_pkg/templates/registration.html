@@ -1,45 +1,216 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>register</title>
-    </head>
-    <body>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Font Awesome Kit -->
+  <!-- https://fontawesome.com/license/free -->
+  <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
+
+  <title>Register</title>
+</head>
+
+<body>
+
+
+  <!-- Navigation Bar Documentation -->
+  <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand">Snapster</span>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <style>
+      .claim {
+        width: 1140px;
+        height: 40px;
+
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 29px;
+        text-align: center;
+
+      }
+
+      .intro-basic {
+        margin-left: 20%;
+        margin-top: 1%;
+        width: 475px;
+        height: 300px;
+
+        text-align: center;
+        color: #940CFF;
+      }
+
+      .intro-basic.p {
+        top: 350px;
+      }
+
+      .rigister-box-frame {
+        margin-left: 10%;
+        width: 475px;
+        height: 600px;
+        margin-top: 3%;
+      }
+
+      .inputbox {
+        width: 386px;
+        height: 43px;
+        left: 90%;
+        top: 61px;
+
+        background: #FFFBFB;
+
+        border-radius: 20px;
+      }
+
+      .inputbox-text {
+        width: 198px;
+        height: 35px;
+        left: 68px;
+        top: 147px;
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+
+        color: #000000;
+
+      }
+
+      .button {
+        width: 384px;
+        height: 59px;
+        left: 25px;
+        top: 415px;
+
+        background: #FFC700;
+        border-radius: 10px;
+      }
+
+      .button-text {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 50px;
+        text-align: center;
+
+        color: #FFFFFF;
+      }
+
+      .text {
+        font-weight: bold;
+      }
+
+      .text.alreadyhaveacc {
+        padding-left: 25%;
+      }
+      .text.intro{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+      }
+     .text.intro.title{
+       font-size: 48px;
+     }
+    </style>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Register</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top:30px">
+    <p class="claim"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
+      Demonstration Only</p>
+  </div>
+
+
+
+
+
+
+
+  <div class="row">
+    <div class="col-sm">
+      <div class="intro-basic">
+        <h2 class="text intro title">
+          Welcome to Snapster
+          <p>
+          <br>
+        </h2>
         <div>
-            <form method="POST" action="">
-                <fieldset class="form-group">
-                    <div class="form-group">
-                        {{ form.username.label }}
-                        {{ form.username() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.email.label }}
-                        {{ form.email() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.first_name.label }}
-                        {{ form.first_name() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.last_name.label }}
-                        {{ form.last_name() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.phone_number.label }}
-                        {{ form.phone_number() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password.label }}
-                        {{ form.password() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.confirm_password.label }}
-                        {{ form.confirm_password() }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.submit() }}
-                    </div>
-                </fieldset>
-            </form>
+          <h5 class="text intro">
+            <p>
+            A web platform
+            <p>
+            At San Francisco State University,
+            <p>
+            where the students and faculty
+            <p>
+            members
+            <p>
+            buy, sell and share digital media
+            <p>
+            with ease and transparency.
+          </h5>
         </div>
-    </body>
+      </div>
+      <hr class="d-sm-none">
+    </div>
+
+
+
+
+
+
+    <div class="col-sm">
+      <div class="rigister-box-frame">
+        <div class="inputbox-frame">
+          <label for="username" class="inputbox-text">Username: </label>
+          <input type="text" class="inputbox" id="username" name="username" required>
+
+          <label for="email" class="inputbox-text">SFSU Email: </label>
+          <input type="text" class="inputbox" id="email" name="email" required>
+
+          <label for="pw" class="inputbox-text">Password: </label>
+          <input type="password" class="inputbox" id="pw" name="pw" required>
+
+          <label for="cpw" class="inputbox-text">Confirm Password: </label>
+          <input type="password" class="inputbox" id="cpw" name="cpw" required>
+        </div>
+        <br>
+        <div>
+          <input type="checkbox" id="agreement" name="agreement">
+          <label for="agreement" class="text">I have read and agree to the <a href="/">Snapster Term of Use</a></label>
+        </div>
+        <div>
+          <button type="submit" class="button">
+            <p class="button-text">Sign up!</p>
+          </button>
+        </div>
+        <div>
+          <a href="/" class="text alreadyhaveacc">Alrady have an account?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>
