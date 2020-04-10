@@ -43,7 +43,7 @@
       }
 
       .intro-basic {
-        margin-left: 20%;
+        margin-left: 16%;
         margin-top: 1%;
         width: 475px;
         height: 300px;
@@ -116,14 +116,16 @@
       .text.alreadyhaveacc {
         padding-left: 25%;
       }
-      .text.intro{
+
+      .text.intro {
         font-style: normal;
         font-weight: normal;
         font-size: 36px;
       }
-     .text.intro.title{
-       font-size: 48px;
-     }
+
+      .text.intro.title {
+        font-size: 48px;
+      }
     </style>
 
     <div class="collapse navbar-collapse" id="menu">
@@ -144,71 +146,71 @@
 
 
 
+  <form action="">
 
-
-  <div class="row">
-    <div class="col-sm">
-      <div class="intro-basic">
-        <h2 class="text intro title">
-          Welcome to Snapster
-          <p>
-          <br>
-        </h2>
-        <div>
-          <h5 class="text intro">
+    <div class="row">
+      <div class="col-sm">
+        <div class="intro-basic">
+          <h2 class="text intro title">
+            Welcome to Snapster
             <p>
-            A web platform
-            <p>
-            At San Francisco State University,
-            <p>
-            where the students and faculty
-            <p>
-            members
-            <p>
-            buy, sell and share digital media
-            <p>
-            with ease and transparency.
-          </h5>
+              <br>
+          </h2>
+          <div>
+            <h5 class="text intro">
+              <p>
+                A web platform
+                <p>
+                  At San Francisco State University,
+                  <p>
+                    where the students and faculty
+                    <p>
+                      members
+                      <p>
+                        buy, sell and share digital media
+                        <p>
+                          with ease and transparency.
+            </h5>
+          </div>
         </div>
+        <hr class="d-sm-none">
       </div>
-      <hr class="d-sm-none">
-    </div>
 
 
 
 
+      <div class="col-sm">
+        <div class="rigister-box-frame">
+          <div class="inputbox-frame">
+            <label for="username" class="inputbox-text">Username: </label>
+            <input type="text" class="inputbox" id="username" name="username" placeholder="  Username" required>
 
+            <label for="email" class="inputbox-text">SFSU Email: </label>
+            <input type="email" class="inputbox" id="email" name="email" placeholder="  SFSU Email" required>
 
-    <div class="col-sm">
-      <div class="rigister-box-frame">
-        <div class="inputbox-frame">
-          <label for="username" class="inputbox-text">Username: </label>
-          <input type="text" class="inputbox" id="username" name="username" required>
+            <label for="pw" class="inputbox-text">Password: </label>
+            <input type="password" class="inputbox" id="pw" name="pw" placeholder="  Passwords" required>
 
-          <label for="email" class="inputbox-text">SFSU Email: </label>
-          <input type="text" class="inputbox" id="email" name="email" required>
+            <label for="cpw" class="inputbox-text">Confirm Password: </label>
+            <input type="password" class="inputbox" id="cpw" name="cpw" placeholder="  Confirm Passwords" required>
+          </div>
+  </form>
+  <br>
+  <div>
+    <input type="checkbox" id="agreement" name="agreement" required>
+    <label for="agreement" class="text">I have read and agree to the <a href="/">Snapster Term of Use</a></label>
+  </div>
 
-          <label for="pw" class="inputbox-text">Password: </label>
-          <input type="password" class="inputbox" id="pw" name="pw" required>
-
-          <label for="cpw" class="inputbox-text">Confirm Password: </label>
-          <input type="password" class="inputbox" id="cpw" name="cpw" required>
-        </div>
-        <br>
-        <div>
-          <input type="checkbox" id="agreement" name="agreement">
-          <label for="agreement" class="text">I have read and agree to the <a href="/">Snapster Term of Use</a></label>
-        </div>
-        <div>
-          <button type="submit" class="button">
-            <p class="button-text">Sign up!</p>
-          </button>
-        </div>
-        <div>
-          <a href="/" class="text alreadyhaveacc">Alrady have an account?</a>
-        </div>
-      </div>
-    </div>
+  <div>
+    <button type="submit" class="button">
+      <p class="button-text">Sign up!</p>
+    </button>
+  </div>
+  <div>
+    <a href="/login" class="text alreadyhaveacc">Alrady have an account?</a>
+  </div>
+  </div>
+  </div>
   </div>
 
 </body>
