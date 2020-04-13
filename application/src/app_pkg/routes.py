@@ -2,6 +2,7 @@ from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
 from flask import render_template, request, redirect, url_for, make_response
 from src.app_pkg import app
 from src.app_pkg import db
+from flask_login import login_required
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 
@@ -87,6 +88,7 @@ def user_profile():
 ################################################
 
 @app.route('/admin_page')
+@login_required
 def admin_page():
     return render_template('admin_page.html')
 
