@@ -1,5 +1,5 @@
 from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, make_response
 from src.app_pkg import app
 from src.app_pkg import db
 from src.app_pkg.forms import RegistrationForm
@@ -41,11 +41,14 @@ def login():
     form = LoginForm()
     if request.method == 'POST':
         result = {}
+        isloggedin = make_response("isloggedin")
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
         if result['status'] == 'success':
-            return redirect(url_for('search'))
+            isloggedin.set_cookie("isloggedin", True, maxAge=None)
+            return redirect(url_for('search'), isloggedin=isloggedin)
         else:
-            return render_template('login.html', form=form)
+            isloggedin.set_cookie("isloggedin", False, maxAge=None)
+            return render_template('login.html', form=form, isloggedin=isloggedin)
     else:
         return render_template('login.html', form=form)
 
