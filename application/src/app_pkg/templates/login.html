@@ -15,7 +15,7 @@
   <!-- https://fontawesome.com/license/free -->
   <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
 
-  <title>Register</title>
+  <title>Login</title>
 </head>
 <style>
   .claim {
@@ -124,7 +124,7 @@
   <!-- Navigation Bar Documentation -->
   <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand">Snapster</span>
+    <span class="navbar-brand"><a class="nav-link" href="/">Snapster</a></span>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
       aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
@@ -184,10 +184,7 @@
           </div>
   </form>
   <br>
-  <div>
-    <input type="checkbox" id="agreement" name="agreement" required>
-    <label for="agreement" class="text">I have read and agree to the <a href="/">Snapster Term of Use</a></label>
-  </div>
+
 
   <div>
     <button type="submit" class="button">
@@ -195,7 +192,9 @@
     </button>
   </div>
   <div>
-    <a href="/forgetPassword" class="text alreadyhaveacc">Forget Passwords?</a>
+    <a href="/forgetPassword" class="text alreadyhaveacc">Forgot Passwords?</a>
+  </div>
+  <div>
   </div>
   <div>
     <a href="/register" class="text alreadyhaveacc">Don't have an account?</a>
