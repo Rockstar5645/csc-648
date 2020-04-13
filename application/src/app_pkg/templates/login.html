@@ -1,57 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Font Awesome Kit -->
-    <!-- https://fontawesome.com/license/free -->
-    <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome Kit -->
+  <!-- https://fontawesome.com/license/free -->
+  <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
 
-    <title>Login</title>
+  <title>Login</title>
 </head>
+<style>
+  .claim {
+    width: 1140px;
+    height: 40px;
+
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 29px;
+    text-align: center;
+
+  }
+
+  .intro-basic {
+    margin-left: 16%;
+    margin-top: 1%;
+    width: 475px;
+    height: 300px;
+
+    text-align: center;
+    color: #940CFF;
+  }
+
+  .intro-basic.p {
+    top: 350px;
+  }
+
+  .rigister-box-frame {
+    margin-left: 10%;
+    width: 475px;
+    height: 600px;
+    margin-top: 3%;
+  }
+
+  .inputbox {
+    width: 386px;
+    height: 43px;
+    left: 90%;
+    top: 61px;
+
+    background: #FFFBFB;
+
+    border-radius: 20px;
+  }
+
+  .inputbox-text {
+    width: 198px;
+    height: 35px;
+    left: 68px;
+    top: 147px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #000000;
+
+  }
+
+  .button {
+    width: 384px;
+    height: 59px;
+    left: 25px;
+    top: 415px;
+
+    background: #FFC700;
+    border-radius: 10px;
+  }
+
+  .button-text {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+
+  .text {
+    font-weight: bold;
+  }
+
+  .text.alreadyhaveacc {
+    padding-left: 25%;
+  }
+
+  .text.intro {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+  }
+
+  .text.intro.title {
+    font-size: 48px;
+  }
+ .copyrightbox{
+    margin-left: 200px;
+  }
+</style>
 
 <body>
 
-    <!-- Navigation Bar Documentation -->
-    <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand">Snapster</span>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
 
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <!-- Navigation Bar Documentation -->
+  <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand"><a class="nav-link" href="/">Snapster</a></span>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
 
-
-
-
-
-
-
-
-
-
-
-
-    <div>
-
+    
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Login</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+
+  <div class="container" style="margin-top:30px">
+    <p class="claim"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
+      Demonstration Only</p>
+  </div>
+
+  <form action="">
+    <div class="row">
+      <div class="col-sm">
+        <div class="intro-basic">
+          <h2 class="text intro title">
+            Welcome to Snapster
+            <p>
+              <br>
+          </h2>
+          <div>
+            <h5 class="text intro">
+              <p>
+                A web platform
+                <p>
+                  At San Francisco State University,
+                  <p>
+                    where the students and faculty members
+                      <p>
+                        buy, sell and share digital media
+                        <p>
+                          with ease and transparency.
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="rigister-box-frame">
+          <div class="inputbox-frame">
+            <label for="username" class="inputbox-text">Email or Username: </label>
+            <input type="text" class="inputbox" id="username" name="username" placeholder="  Username" required>
+
+
+            <label for="pw" class="inputbox-text">Password: </label>
+            <input type="password" class="inputbox" id="pw" name="pw" placeholder="  Passwords" required>
+
+          </div>
+  </form>
+  <br>
+
+
+  <div>
+    <button type="submit" class="button">
+      <p class="button-text">Login</p>
+    </button>
+  </div>
+  <div>
+    <a href="/forgetPassword" class="text alreadyhaveacc">Forgot Passwords?</a>
+  </div>
+  <div>
+  </div>
+  <div>
+    <a href="/register" class="text alreadyhaveacc">Don't have an account?</a>
+  </div>
+  </div>
+  </div>
+  </div>
+<div class="copyrightbox">
+  <div class="row">
+    <div class="col-sm">
+      <a href="/about">About us</a>
+    </div>
+    <div class="col-sm">
+      <label>
+      © 2020 Snapster   
+      </label>              
+    </div>
+    <div class="col-sm">
+      <a href="/about_team_member">Contact us</a>
+    </div>
+</div>
+</div>
 </body>
 
 </html>
