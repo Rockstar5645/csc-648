@@ -102,32 +102,38 @@ def admin_page():
 
 @app.route("/avery")
 def avery():
+    form = SearchForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/akhil")
 def akhil():
+    form = SearchForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/chris")
 def chris():
+    form = SearchForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/elliot")
 def elliot():
+    form = SearchForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/thomas")
 def thomas():
+    form = SearchForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/bakulia")
 def bakulia():
+    form = SearchForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 
