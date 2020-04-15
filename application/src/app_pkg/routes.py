@@ -37,10 +37,20 @@ def search():
     # else : GET fresh html page
     return render_template('search.html', form=form, results=results)
 
-@app.route("/about") 
+@app.route("/about",methods=['GET', 'POST']) 
 def about():
     form = SearchForm()
     team = db.get_team()
+    if request.method == 'POST':
+        # query db
+        term = request.form['term']
+        cat = request.form['category']
+        results = db.search(term, cat)
+        form.category.default = cat
+        form.term.default = term
+        form.process()
+        # return results -------------------------------------vvv
+        return redirect(url_for('search', form=form, results=results))
     return render_template('about.html', team=team, form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -97,7 +107,8 @@ def user_profile():
 @app.route('/admin_page')
 @login_required
 def admin_page():
-    return render_template('admin_page.html')
+    form = SearchForm()
+    return render_template('admin_page.html', form=form)
 
 ##################################################
 #                SUBMIT MEDIA                    #
