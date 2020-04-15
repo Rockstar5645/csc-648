@@ -81,7 +81,8 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
-    return render_template('user_profile.html')
+    form = SearchForm()
+    return render_template('user_profile.html', form=form)
 
 ################################################
 #                Admin PROFILE                 #
