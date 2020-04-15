@@ -22,10 +22,10 @@ from src.config import UPLOAD_FOLDER
 def search():
     # assign form and results list
     form = SearchForm()
-    results = []
     # if : user submits POST request
     if request.method == 'POST':
         # query db
+        results = []
         term = request.form['term']
         cat = request.form['category']
         results = db.search(term, cat)
@@ -35,7 +35,7 @@ def search():
         # return results -------------------------------------vvv
         return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
-    return render_template('search.html', form=form, results=results)
+    return render_template('search.html', form=form)
 
 @app.route("/about",methods=['GET', 'POST']) 
 def about():
@@ -43,6 +43,7 @@ def about():
     team = db.get_team()
     if request.method == 'POST':
         # query db
+        results = []
         term = request.form['term']
         cat = request.form['category']
         results = db.search(term, cat)
@@ -214,5 +215,3 @@ def bakulia():
     form = SearchForm()
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member, form=form)
-
-
