@@ -17,7 +17,6 @@ from src.config import UPLOAD_FOLDER
 # Routing by accessible web pages, main routes
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -65,7 +64,7 @@ def register():
     form = RegistrationForm()
     if request.method == 'POST':
         result = {}
-        result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
+        result = db.register(request.form['username'], request.form['email'],  request.form['password'])
         print(result)
         if result['status'] == 'success':
             return redirect(url_for('search'))

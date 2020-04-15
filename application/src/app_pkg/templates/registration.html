@@ -145,7 +145,6 @@
 
  
 
-  <form action="">
       <div class="col">
         <div class="rows">
           <p class="claim"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
@@ -170,29 +169,31 @@
             </h5>
           </div>
       </div> 
-         
+           <form method="POST" action="">
             <div class="rigister-box-frame">
               <div class="inputbox-frame">
                 <label for="username" class="inputbox-text">Username: </label>
-                <input type="text" class="inputbox" id="username" name="username" placeholder="  Username" required>
+                {{ form.username(class="inputbox") }}
     
                 <label for="email" class="inputbox-text">SFSU Email: </label>
-                <input type="email" class="inputbox" id="email" name="email" placeholder="  SFSU Email" required>
-    
+                {{ form.email(class="inputbox") }}
+
+
                 <label for="pw" class="inputbox-text">Password: </label>
-                <input type="password" class="inputbox" id="pw" name="pw" placeholder="  Passwords" required>
-    
+                {{ form.password(class="inputbox") }}
+
+
                 <label for="cpw" class="inputbox-text">Confirm Password: </label>
-                <input type="password" class="inputbox" id="cpw" name="cpw" placeholder="  Confirm Passwords" required>
+                {{ form.confirm_password(class="inputbox") }}
+
               </div>
             </form>
+
             <br>
 
 
-            <div>
-              <button type="submit" class="button">
-                <p class="button-text">Sign up!</p>
-              </button>
+            <div class="button-text">
+              {{ form.submit() }}
             </div>
             <div>
               <a href="/forgetPassword" class="text alreadyhaveacc">Forgot Passwords?</a>
