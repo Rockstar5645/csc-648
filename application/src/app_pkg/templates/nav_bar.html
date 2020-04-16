@@ -59,7 +59,7 @@
         </li>
         <li class="nav-item">
             <!--    SEARCH AND FILTER FORM       -->
-            <form method="POST">
+            <form action="{{ url_for('search') }}" method="POST">
                 <div class="input-group mt-1 mb-1 ml-2">
                     <div class="input-group-prepend">
                         {{ form.category(class_="btn custom-select") }}
@@ -87,6 +87,7 @@
             aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
     </button>
+
 </nav>
 
 <h5>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</h5>
