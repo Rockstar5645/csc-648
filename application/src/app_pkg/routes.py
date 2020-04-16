@@ -95,7 +95,7 @@ def user_profile():
 ################################################
 
 @app.route('/admin_page')
-@login_required
+#@login_required
 def admin_page():
     form = SearchForm()
     return render_template('admin_page.html', form=form)
