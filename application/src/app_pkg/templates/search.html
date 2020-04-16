@@ -435,11 +435,11 @@
     {% for item in results %}
         <div class="col-sm-12 col-md-4">
             <div class="card text-white bg-secondary mb-3">
-                <img src="/static{{ item[4] }}" class="card-img-top" width="250" height="250">
+                <img id='{{item[0]}}' src="/static{{ item[4] }}" class="card-img-top img-button" width="250" height="250">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
-                            {{ item[2] }}
+                            <p id="name_{{item[0]}}">{{ item[2] }}</p>
                         </div>
                         <div class="col text-right">
                             <i class="fas fa-download"></i>
@@ -448,17 +448,72 @@
                 </div>
                 <div class="row card-body">
                     <div class="col card-text">
-                        {{ item[6] }}
+                        <p id="category_{{item[0]}}">{{ item[6] }}</p>
+                        
                     </div>
                     <div class="col card-text text-right">
-                        ${{ item[7] }}
+                        <p id="price_{{item[0]}}">${{ item[7] }}</p>
                     </div>
                 </div>
+                <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">
             </div>
         </div>
     {% endfor %}
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $(".img-button").click(function(){
+            let id = $(this).attr("id")
+            let name = $("#name_" + id).text()
+            let category = $("#category_" + id).text()
+            let price = $("#price_" + id).text()
+            let description = $("#description_" + id).val()
+            console.log(name)
+            console.log(category)
+            console.log(price)
+            console.log(description)
+        });
+    });  
+</script>
+    
+    <!--
+    <div class="container">
+        {% for item in results %}
+        <h2>Sample</h2>
+    
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModal" >DESCRIPTION: {{ item[3] }}</button>
+    
+        <div class="modal fade" id="newModal" role="dialog">
+            <div class="modal-dialog">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-content" id="item">
+                    <h4 class="modal-header">OWNER ID: {{ item[1] }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="downloadContent">
+                        <p> OWNER ID: {{ item[1] }} </p>
+                        <p> IMAGE_NAME: {{ item[2] }} </p>
+                        <p> DESCRIPTION: {{ item[3] }} </p>
+                        <p> STATIC REFERENCE: {{ item[4] }} </p>
+                        <p> THUMBNAIL REFERENCE: {{ item[5] }}
+                        <p> CATEGORY: {{ item[6] }} </p>
+                        <p> PRICE: ${{ item[7] }} </p>
+                        <p>digital media: </p>
+                        <img class="img-responsive img-center" src="/static{{ item[4] }}" alt="">
+                        <div class="modal-header">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
 <br />
 <br />
@@ -481,6 +536,17 @@
         </tr>
     {% endfor %}
 </div>
+
+
+<script>
+    $(document).ready(function(){
+     $("#newModal").click(function(){
+         $("#item").modal('show');
+        });
+    });  
+</script>
+
+-->
 
 
 {% endif %}

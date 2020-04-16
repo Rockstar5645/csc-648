@@ -51,6 +51,57 @@ TODO: add navigation
 </head>
 <body>
 
+<<<<<<< HEAD
+=======
+<!-- Navigation Bar Documentation -->
+<!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link mr-sm-auto" href="/">Snapster</a>
+        </li>
+        <li class="nav-item">
+            <!--    SEARCH AND FILTER FORM       -->
+            <form action="{{ url_for('search') }}" method="POST">
+                <div class="input-group mt-1 mb-1 ml-2">
+                    <div class="input-group-prepend">
+                        {{ form.category(class_="btn custom-select") }}
+                    </div>
+                    {{ form.term(class_="form-control") }}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </li>
+    </ul>
+
+    <div class="mt-1 mb-1">
+        <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
+        </button>
+        <span style="color: white;">|</span>
+        <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
+        <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+    </div>
+
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!--    <div class="collapse navbar-collapse" id="menu">-->
+    <!--        <ul class="navbar-nav mr-auto">-->
+    <!--        </ul>-->
+    <!--    </div>-->
+
+    <!--  Search Bar Forms -->
+
+
+</nav>
+
+>>>>>>> dev
 <h5>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</h5>
 
 {% block content %}{% endblock %}

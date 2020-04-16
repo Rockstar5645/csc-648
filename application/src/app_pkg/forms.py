@@ -16,8 +16,8 @@ class SearchForm(Form):
     submit = SubmitField("Search")
 
 class RegistrationForm(Form):
-    first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=20)])
-    last_name = StringField("Last Name", validators=[DataRequired(), Length(min=2, max=20)])
+    first_name = StringField("First Name", validators=[ Length(min=2, max=20)])
+    last_name = StringField("Last Name", validators=[ Length(min=2, max=20)])
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField("Email", validators=[DataRequired(), Email()])
     phone_number = StringField("Phone Number", validators=[])

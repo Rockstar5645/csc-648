@@ -17,16 +17,15 @@ from src.config import UPLOAD_FOLDER
 # Routing by accessible web pages, main routes
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     # assign form and results list
     form = SearchForm()
-    results = []
     # if : user submits POST request
     if request.method == 'POST':
         # query db
+        results = []
         term = request.form['term']
         cat = request.form['category']
         results = db.search(term, cat)
@@ -36,9 +35,9 @@ def search():
         # return results -------------------------------------vvv
         return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
-    return render_template('search.html', form=form, results=results)
+    return render_template('search.html', form=form)
 
-@app.route("/about") 
+@app.route("/about",methods=['GET', 'POST']) 
 def about():
     form = SearchForm()
     team = db.get_team()
@@ -65,7 +64,7 @@ def register():
     form = RegistrationForm()
     if request.method == 'POST':
         result = {}
-        result = db.register(request.form['username'], request.form['password'], request.form['first_name'], request.form['last_name'], request.form['phone_number'], request.form['email'])
+        result = db.register(request.form['username'], request.form['email'],  request.form['password'])
         print(result)
         if result['status'] == 'success':
             return redirect(url_for('search'))
@@ -88,7 +87,8 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
-    return render_template('user_profile.html')
+    form = SearchForm()
+    return render_template('user_profile.html', form=form)
 
 ################################################
 #                Admin PROFILE                 #
@@ -97,7 +97,8 @@ def user_profile():
 @app.route('/admin_page')
 @login_required
 def admin_page():
-    return render_template('admin_page.html')
+    form = SearchForm()
+    return render_template('admin_page.html', form=form)
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -203,5 +204,3 @@ def bakulia():
     form = SearchForm()
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member, form=form)
-
-
