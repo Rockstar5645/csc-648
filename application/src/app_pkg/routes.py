@@ -41,17 +41,6 @@ def search():
 def about():
     form = SearchForm()
     team = db.get_team()
-    if request.method == 'POST':
-        # query db
-        results = []
-        term = request.form['term']
-        cat = request.form['category']
-        results = db.search(term, cat)
-        form.category.default = cat
-        form.term.default = term
-        form.process()
-        # return results -------------------------------------vvv
-        return redirect(url_for('search', form=form, results=results))
     return render_template('about.html', team=team, form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
