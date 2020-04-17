@@ -48,14 +48,14 @@ def login():
     form = LoginForm()
     if request.method == 'POST':
         result = {}
-        isloggedin = make_response("isloggedin")
+        #isloggedin = make_response("isloggedin")
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
         if result['status'] == 'success':
-            isloggedin.set_cookie("isloggedin", True, maxAge=None)
-            return redirect(url_for('search', isloggedin=isloggedin))
+            #isloggedin.set_cookie("isloggedin", True)
+            return redirect(url_for('search'))
         else:
-            isloggedin.set_cookie("isloggedin", False, maxAge=None)
-            return render_template('login.html', form=form, isloggedin=isloggedin)
+            #isloggedin.set_cookie("isloggedin", False)
+            return render_template('login.html', form=form)
     else:
         return render_template('login.html', form=form)
 

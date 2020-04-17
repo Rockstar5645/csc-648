@@ -5,7 +5,7 @@
 
 3. Navigate to test_pkg
 	from project directory:
-	cd application/father/test_pkg
+	cd application/src/test_pkg
 
 4. create test db table
 	python3 db_create_test_table.py

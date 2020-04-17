@@ -1,6 +1,19 @@
-{% extends 'base.html' %}
-{% block content %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- Bootstrap CSS -->
+  <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Font Awesome Kit -->
+  <!-- https://fontawesome.com/license/free -->
+  <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
+
+  <title>Register</title>
+</head>
 <style>
   .claim {
     width: 1140px;
@@ -14,27 +27,14 @@
   }
 
   .intro-basic {
-    margin-left: 16%;
-    margin-right: 50%;
-    margin-top: 1%;
-    
-    width: 475px;
-    height: 300px;
-
+    margin-left: 10%;
+    margin-right: 10%;
     text-align: center;
     color: #940CFF;
   }
 
   .intro-basic.p {
     top: 350px;
-  }
-
-  .rigister-box-frame {
-    margin-left: 60%;
-    margin-top: -9%;
-    margin-right: 50%;
-    width: 475px;
-    height: 600px;
   }
 
   .inputbox {
@@ -49,7 +49,7 @@
   }
 
   .inputbox-text {
-    width: 198px;
+    width: 300px;
     height: 35px;
     left: 68px;
     top: 147px;
@@ -88,7 +88,7 @@
   }
 
   .text.alreadyhaveacc {
-    padding-left: 25%;
+    padding-left: 40%;
   }
 
   .text.intro {
@@ -99,8 +99,8 @@
 
   .text.intro.title {
     font-size: 48px;
+    font-weight: bold
   }
-
 </style>
 
 
@@ -113,7 +113,7 @@
       <i class="fas fa-bars"></i>
     </button>
 
-    
+
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -123,57 +123,239 @@
     </div>
   </nav>
 
-  <div class="container" style="margin-top:30px">
-   
+
+  <!-- COPYRIGHT CLAIM -->
+  <!-- COPYRIGHT CLAIM -->
+  <!-- COPYRIGHT CLAIM -->
+
+  <p class=".container-sm"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
+    Demonstration Only</p>
+
+  <form method="POST" action="">
+    <div class="container-fluid">
+      <div class="row mx-auto">
+
+        <!-- DIVIDE BOX1 -->
+        <!-- DIVIDE BOX1 -->
+        <!-- DIVIDE BOX1 -->
+        <div class="col-sm-3">
+        </div>
+
+
+        <!--MAIN DIVIDE BOX -->
+        <!--MAIN DIVIDE BOX -->
+        <!--MAIN DIVIDE BOX -->
+        <div class="col-sm-6">
+          <!-- WEBSITE INTRO -->
+          <!-- WEBSITE INTRO -->
+          <!-- WEBSITE INTRO -->
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="intro-basic">
+                <h2 class="text intro title">
+                  Welcome to Snapster
+                  <br>
+                </h2>
+                <div>
+                  <h5 class="text intro">
+                    <div class="col-sm">
+                      A web platform
+                      <br>
+                    </div>
+
+                    <div class="col-sm">
+                      At San Francisco State University,
+                      <br>
+                    </div>
+
+                    <div class="col-sm">
+                      where the students and faculty members
+                      <br>
+                    </div>
+
+                    <div class="col-sm">
+                      buy, sell and share digital media
+                      <br>
+                    </div>
+
+                    <div class="col-sm">
+                      with ease and transparency.
+                      <br>
+                    </div>
+                  </h5>
+                </div>
+              </div>
+            </div>
+
+<<<<<<< HEAD
+{% endblock %}
+=======
+
+
+
+
+            <!-- REGISTER BOX -->
+            <!-- REGISTER BOX -->
+            <!-- REGISTER BOX -->
+            <div class="col-sm-6">
+              <div class="row">
+                <!-- INPUTBOX DIVIDE BOX -->
+                <div class="row mx-auto">
+                  <div class="col-sm">
+                    <div class="row mx-auto">
+                      <div class="col-xl">
+                        <div class="row">
+                          <div class="col">
+                            <label for="username" class="inputbox-text">Username or SFSU Email: </label>
+                          </div>
+                        </div>
+                        {{ form.username(class="inputbox") }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END OF INPUTBOX DIVIDE BOX -->
+
+                <!-- INPUTBOX DIVIDE BOX 2 -->
+                <div class="row mx-auto">
+                  <div class="col-sm">
+                    <div class="row mx-auto">
+                      <div class="col-xl">
+                        <div class="row">
+                          <div class="col">
+                            <label for="pw" class="inputbox-text">Password: </label>
+                          </div>
+                        </div>
+                        {{ form.password(class="inputbox") }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END OF INPUTBOX DIVIDE BOX 2 -->
+
+              </div>
+
+              <!-- SUBMIT BUTTON -->
+              <!-- SUBMIT BUTTON -->
+              <!-- SUBMIT BUTTON -->
+              <br>
+              <div class="button-text mx-auto">
+                {{ form.submit(class="button mx-auto") }}
+              </div>
+              <div>
+                <a href="/forgetpassword" class="text alreadyhaveacc">Forgot Password?</a>
+              </div>
+              <div>
+                <a href="/register" class="text alreadyhaveacc">Don't have an account?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- DIVIDE BOX2 -->
+        <!-- DIVIDE BOX2 -->
+        <!-- DIVIDE BOX2 -->
+        <div class="col-sm-3">
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+  <!-- WEB PAGE FOOTER -->
+  <!-- WEB PAGE FOOTER -->
+  <!-- WEB PAGE FOOTER -->
+  <!-- WEB PAGE FOOTER -->
+
+
+  <div class="container">
+    <hr>
+    <footer class="my-0 pt-0 text-center">
+      <ul class="list-inline">
+        <li class="list-inline-item"><a class="btn btn-light" href="/about"><i class="fas fa-book-reader"></i> About</a>
+        </li>
+        <li class="list-inline-item"><a class="btn btn-light" data-target="#ContactUs" data-toggle="modal"><i
+              class="far fa-envelope"></i> Contact us</a></li>
+      </ul>
+      <small class="mb-1 text-muted">© 2020 SNAPSTER</small>
+    </footer>
   </div>
 
-  <form action="">
-      <div class="col">
-        <div class="rows">
-          <p class="claim"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
-            Demonstration Only</p>
-        <div class="intro-basic">
-          <h2 class="text intro title">
-            Welcome to Snapster
-              <br/>
-          </h2>
-          <div>
-            <h5 class="text intro">
-              <p>
-                A web platform
-                <p>
-                  At San Francisco State University,
-                  <p>
-                    where the students and faculty members
-                      <p>
-                        buy, sell and share digital media
-                        <p>
-                          with ease and transparency.
-            </h5>
+
+  <!-- CONTACT US BUTTON -->
+  <!-- CONTACT US BUTTON -->
+  <!-- CONTACT US BUTTON -->
+
+
+
+  <div class="modal fade" id="ContactUs" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input type="text" class="form-control" id="recipient-name" placeholder="admin@snapster.com" readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Subject:</label>
+              <input type="text" class="form-control" id="message-subject" placeholder="Support" readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="message-text" class="col-form-label"> Message:</label>
+              <textarea class="form-control" id="message-text" placeholder="Type your message here..." rows="10"
+                required></textarea>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+          <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+            class="btn btn-success">Send</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--YOUR MESSAGE IS SENT MODAL -->
+  <!--YOUR MESSAGE IS SENT MODAL -->
+  <!--YOUR MESSAGE IS SENT MODAL -->
+
+  <div class="modal fade in" id="MessageSent" aria-hidden="true">
+    <div class="modal-dialog modal-confirm modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-body">
+            <p class="text-center">Thank you for your message!</p>
+            <p class="text-center">We will get back to you soon!</p>
           </div>
-      </div> 
-         
-            <div class="rigister-box-frame">
-                <div class="inputbox-frame">
-                  <label for="username" class="inputbox-text">Email or Username: </label>
-                  {{ form.username(class="inputbox") }}
-      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
-                  <label for="pw" class="inputbox-text">Password: </label>
-                  {{ form.password(class="inputbox") }}
-                </div>
-            </form>
-            <br>
-              
-            <div class="button-text">
-            {{ form.submit(class="button") }}
-            </div>
-            <div>
-              <a href="/forgetPassword" class="text alreadyhaveacc">Forgot Passwords?</a>
-            </div>
-            <div>
-              <a href="/register" class="text alreadyhaveacc">Don't have an account?</a>
-            </div>
-            </div>
-
-{% endblock %}
+</html>
+>>>>>>> dev

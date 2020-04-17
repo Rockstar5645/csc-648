@@ -12,6 +12,8 @@
     2.b) open workbench and create schema called 'snapster'
     2.c) create a file called 'config.py' inside of 'src' directory
     2.d) copy and paste the following inside of 'config.py':
+    2.e) replace [YOUR PASSWORD HERE] with your password.
+    2.f) update the UPLOAD_FOLDER path
     db_conn = {
         'user': 'root',
         'password' : '[YOUR PASSWORD HERE]',
@@ -21,13 +23,16 @@
     }
 
     redis_conn = {
-        'mode': 'prod',
         'host': 'redis.snapsster.com',
         'password': 'vJB2KVAZs6+2x4i9eVBHp0PZeX1TjX/qPhdgomjNvczK0q0DCtfg5dHxKveLdNmFFZU1yw7z/E/ZcdmI',
-        'port': '6379'
+        'port': '6379',
+        'socket_timeout': 3
     }
 
-    2.e) replace [YOUR PASSWORD HERE] with your password.
+    session_duration = 3600
+
+    UPLOAD_FOLDER = [PATH TO csc648-fa20-team06/application/src/app_pkg/static/user_images]
+
 
 3) Fill database with test data
 

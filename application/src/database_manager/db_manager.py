@@ -1,6 +1,9 @@
-from src.database_manager import cnx
-from src.database_manager import register_login
-from src.database_manager import redis_cnx
+from src.database_manager import database_connection
+from src.database_manager.register import register
+from src.database_manager.login import login
+from src.config import redis_conn
+import redis
+import sys
 
 
 ##############################################
@@ -17,18 +20,24 @@ from src.database_manager import redis_cnx
 class DB:
 
     def __init__(self):
-        self.db_connection = cnx.MyDB()
-        self.redis_connection = redis_cnx.get_redis_con()
-        print('DB CONNECTION : ')
-        print(self.db_connection)
-        print('REDIS CONNECTION : ') 
-        print(self.redis_connection)
+        self.db_connection = database_connection.MyDB()
 
-    def register(self, username, password, first_name, last_name, phone_number, email):
-        return register_login.register(username, password, first_name, last_name, phone_number, email, self.db_connection, self.redis_connection)
+        try:
+            self.redis_connection = redis.Redis(**redis_conn)
+        except redis.ConnectionError as err:
+            print("\n\n")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("!!!     UNABLE TO CONNECT TO REDIS     !!!")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("\n\n")
+            print("ERROR: {}\n\n".format(err))
+            sys.exit()
+
+    def register(self, username, email, password):
+        return register(username, email, password, self.db_connection, self.redis_connection)
 
     def login(self, username,  password, ip_address):
-        return register_login.login(username, password, ip_address, self.db_connection, self.redis_connection)
+        return login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def search(self, term, category):
         if term =='': # if search term was blank
