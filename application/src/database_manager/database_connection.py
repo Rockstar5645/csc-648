@@ -8,8 +8,8 @@ class MyDB(object):
         try: 
             # self._db_connection = mysql.connector.connect(user=db_conn['user'], password=db_conn['password'],
             #                      host=db_conn['host'], database=db_conn['database'])
-            self._db_connection = mysql.connector.connect(**db_conn)
-            self._db_cur = self._db_connection.cursor(buffered=True)
+            self.database_connection = mysql.connector.connect(**db_conn)
+            self.connection_cursor = self.database_connection.cursor(buffered=True)
             
         except mysql.connector.Error as err:
             print("\n\n")
@@ -21,33 +21,33 @@ class MyDB(object):
             sys.exit()
 
     def get_last_row_id(self):
-        return self._db_cur.lastrowid
+        return self.connection_cursor.lastrowid
 
     def check_connection(self):
-        if self._db_connection.is_connected() is False:
+        if self.database_connection.is_connected() is False:
             print('We have lost connection to the database, attempting to reconnect')
-            self._db_cur.close()
-            self._db_connection.close()
-            self._db_connection = mysql.connector.connect(**db_conn)
-            self._db_cur = self._db_connection.cursor(buffered=True)
+            self.connection_cursor.close()
+            self.database_connection.close()
+            self.database_connection = mysql.connector.connect(**db_conn)
+            self.connection_cursor = self.database_connection.cursor(buffered=True)
 
     def query(self, query, params=''):
         self.check_connection()
 
         if params != '':
             # print('executing parameters')
-            return self._db_cur.execute(query, params)
+            return self.connection_cursor.execute(query, params)
         else:
             # print('executing without paramters')
-            return self._db_cur.execute(query)
+            return self.connection_cursor.execute(query)
 
     def fetchall(self):
         self.check_connection()
-        return self._db_cur.fetchall()
+        return self.connection_cursor.fetchall()
 
     def commit(self):
-        self._db_connection.commit()
+        self.database_connection.commit()
 
     def __del__(self):
-        self._db_cur.close()
-        self._db_connection.close()
+        self.connection_cursor.close()
+        self.database_connection.close()

@@ -37,7 +37,7 @@ class DB:
         return register(username, email, password, self.db_connection, self.redis_connection)
 
     def login(self, username,  password, ip_address):
-        return register_login.login(username, password, ip_address, self.db_connection, self.redis_connection)
+        return login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def search(self, term, category):
         if term =='': # if search term was blank

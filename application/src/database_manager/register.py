@@ -1,10 +1,8 @@
 import bcrypt
 import base64
 import hashlib
-import secrets
 import mysql.connector
-import redis
-from src.config import session_duration
+from src.database_manager.generate_session import  generate_session
 
 def register(username, email, password, db, r):
 
@@ -28,9 +26,12 @@ def register(username, email, password, db, r):
     try:
         db.query(add_user_query, values_to_be_inserted)
         db.commit()
+        # now we establish the user's session
+        user_id = db.get_last_row_id()  # grab the userid of the user just created
     except mysql.connector.Error as err:
-        # TODO: log this potentially fatal error
-        # TODO: distinguish between database connection error, and username already exists error
+        # FIXME: log this potentially fatal error
+        # FIXME: distinguish between database connection error, and username already exists error
+        # TODO: what other errors could occur with the database connection object?
         # print("Failed to create user: {}".format(err))
         error_message = {
             'status': 'database_error',
@@ -38,31 +39,4 @@ def register(username, email, password, db, r):
         }
         return error_message
 
-    # now we establish the user's session
-    user_id = db.get_last_row_id() # grab the userid of the user just created
-    # generate a secret token
-    secret_token = secrets.token_urlsafe(100)
-
-    # map the secret token to a userid, in our redis database, and set the duration of the session (amount of time
-    # before the session token expires) atomically
-    try:
-        if r.setex(secret_token, session_duration, user_id) is True:
-            success_message = {
-                'status': 'success',
-                'token': secret_token
-            }
-            # print('Successfully created user {} with secret token {}'.format(user_id, secret_token))
-            return success_message
-        else:
-            error_message = {
-                'status': 'redis_error',
-                'message': 'Failed to set the session token in the redis server, redirect users to login'
-            }
-            return error_message
-    except redis.exceptions.TimeoutError as err:
-        # FIXME: We need to deal with potential connection termination errors
-        print('Redis connection error: {}'.format(err))
-        error_message = {
-            'status': 'redis_error',
-            'message': 'Failed to set the session token in the redis server, redis connection timed out'
-        }
+    return generate_session(user_id, r)

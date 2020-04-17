@@ -2,7 +2,7 @@ from src.database_manager.db_manager import DB
 
 db = DB()
 
-status = db.register('rockstar23', 'akhilhello@gmail.com', 'some_pass')
+status = db.register('rockstar24', 'akhilhello@gmail.com', 'some_pass')
 
 if status['status'] == 'success':
     print('User registration was successful, and redis, database connection is healthy')
