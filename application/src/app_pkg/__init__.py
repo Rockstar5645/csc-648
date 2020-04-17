@@ -1,6 +1,8 @@
 from flask import Flask
 from src.database_manager.db_manager import DB
-from flask_login import (LoginManager)
+from flask_login import (LoginManager, login_user, 
+                         current_user, logout_user)
+from itsdangerous import URLSafeTimedSerializer
 
 # init flask application
 app = Flask(__name__)

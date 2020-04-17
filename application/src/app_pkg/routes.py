@@ -9,7 +9,7 @@ from flask_login import login_required
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
-from src.config import UPLOAD_FOLDER
+# from src.config import UPLOAD_FOLDER
 
 ################################################
 #                GENERAL ROUTING               #
@@ -107,7 +107,7 @@ def admin_page():
 
 # path for UPLOAD_FOLDER is in config.py
 # UPLOAD_FOLDER = /Users.../user_images
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
