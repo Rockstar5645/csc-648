@@ -48,9 +48,10 @@ def search():
 
 @app.route("/about",methods=['GET', 'POST']) 
 def about():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team, form=form)
+    return render_template('about.html', team=team, form=form, isloggedin=isloggedin)
 
 ################################################
 #                     LOGIN                    #
@@ -79,6 +80,7 @@ def login():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    isloggedin = request.cookies.get('isloggedin')
     form = RegistrationForm()
     if request.method == 'POST':
         result = {}
@@ -87,9 +89,9 @@ def register():
         if result['status'] == 'success':
             return redirect(url_for('login'))
         else:
-            return render_template('registration.html', form=form)
+            return render_template('registration.html', form=form, isloggedin=isloggedin)
     else:
-        return render_template('registration.html', form=form)
+        return render_template('registration.html', form=form, isloggedin=isloggedin)
 
 ################################################
 #                SINGLE MEDIA VIEW             #
@@ -105,8 +107,9 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
-    return render_template('user_profile.html', form=form)
+    return render_template('user_profile.html', form=form, isloggedin=isloggedin)
 
 ################################################
 #                Admin PROFILE                 #
@@ -115,8 +118,9 @@ def user_profile():
 @app.route('/admin_page')
 @login_required
 def admin_page():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
-    return render_template('admin_page.html', form=form)
+    return render_template('admin_page.html', form=form, isloggedin=isloggedin)
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -189,36 +193,42 @@ def uploaded_file(filename):
 
 @app.route("/avery")
 def avery():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/akhil")
 def akhil():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/chris")
 def chris():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/elliot")
 def elliot():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/thomas")
 def thomas():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/bakulia")
 def bakulia():
+    isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
