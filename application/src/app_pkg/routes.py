@@ -16,10 +16,15 @@ from src.config import UPLOAD_FOLDER
 ################################################
 # Routing by accessible web pages, main routes
 
+################################################
+#                SEARCH / HOME                 #
+################################################
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    isloggedin = request.cookies.get('isloggedin')
     # assign form and results list
     form = SearchForm()
     # if : user submits POST request
@@ -33,9 +38,13 @@ def search():
         form.term.default = term
         form.process()
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results)
+        return render_template('search.html', form=form, results=results, isloggedin=isloggedin)
     # else : GET fresh html page
-    return render_template('search.html', form=form)
+    return render_template('search.html', form=form, isloggedin=isloggedin)
+
+################################################
+#                   ABOUT                      #
+################################################
 
 @app.route("/about",methods=['GET', 'POST']) 
 def about():
@@ -43,21 +52,30 @@ def about():
     team = db.get_team()
     return render_template('about.html', team=team, form=form)
 
+################################################
+#                     LOGIN                    #
+################################################
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST':
         result = {}
-        #isloggedin = make_response("isloggedin")
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
         if result['status'] == 'success':
-            #isloggedin.set_cookie("isloggedin", True)
-            return redirect(url_for('search'))
+            resp = make_response(redirect(url_for('search')))
+            resp.set_cookie("isloggedin", 'true')
+            return resp
         else:
-            #isloggedin.set_cookie("isloggedin", False)
-            return render_template('login.html', form=form)
+            resp = make_response(url_for('login'))
+            resp.set_cookie("isloggedin", 'false')
+            return resp
     else:
         return render_template('login.html', form=form)
+
+################################################
+#                REGISTER                      #
+################################################
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -67,7 +85,7 @@ def register():
         result = db.register(request.form['username'], request.form['email'],  request.form['password'])
         print(result)
         if result['status'] == 'success':
-            return redirect(url_for('search'))
+            return redirect(url_for('login'))
         else:
             return render_template('registration.html', form=form)
     else:
