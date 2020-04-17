@@ -25,7 +25,8 @@
     redis_conn = {
         'host': 'redis.snapsster.com',
         'password': 'vJB2KVAZs6+2x4i9eVBHp0PZeX1TjX/qPhdgomjNvczK0q0DCtfg5dHxKveLdNmFFZU1yw7z/E/ZcdmI',
-        'port': '6379'
+        'port': '6379',
+        'socket_timeout': 3
     }
 
     session_duration = 3600
