@@ -1,6 +1,6 @@
-from src.database_manager import cnx
+from src.database_manager import database_connection
 from src.database_manager.objects.table import DBTable
-from src.test_pkg.table_data import *
+from src.test_pkg.test_table_data import *
 
 ###############################################
 #
@@ -16,7 +16,7 @@ from src.test_pkg.table_data import *
 #
 ###############################################
 
-db = cnx.MyDB()
+db = database_connection.MyDB()
 
 ###############################################
 #            CREATE TABLE OBJECTS             #
@@ -54,6 +54,8 @@ for table in tables:
 
 db.query("DROP TABLE IF EXISTS user")
 
+# user_id (auto incremenent), first_name, last_name, email, phone_number, username, password
+
 db.query("CREATE TABLE IF NOT EXISTS user ("
          "user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,"
          "first_name VARCHAR(30),"
@@ -63,3 +65,5 @@ db.query("CREATE TABLE IF NOT EXISTS user ("
          "username VARCHAR(20) UNIQUE,"
          "password BINARY(60),"
          "PRIMARY KEY (user_id))")
+
+db.commit()

@@ -1,6 +1,6 @@
-from src.database_manager import cnx
+from src.database_manager import database_connection
 
-db = cnx.MyDB()
+db = database_connection.MyDB()
 
 ############################
 #         USER TABLE       #
