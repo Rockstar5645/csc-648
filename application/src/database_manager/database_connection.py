@@ -20,6 +20,9 @@ class MyDB(object):
             print("ERROR: {}\n\n".format(err))
             sys.exit()
 
+    def get_last_row_id(self):
+        return self._db_cur.lastrowid
+
     def check_connection(self):
         if self._db_connection.is_connected() is False:
             print('We have lost connection to the database, attempting to reconnect')
