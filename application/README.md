@@ -31,7 +31,7 @@
 
     session_duration = 3600
 
-    UPLOAD_FOLDER = [PATH TO csc648-fa20-team06/application/src/app_pkg/static/user_images]
+    UPLOAD_FOLDER = [ABSOLUTE PATH TO csc648-fa20-team06/application/src/app_pkg/static/user_images on your machine]
 
 
 3) Fill database with test data

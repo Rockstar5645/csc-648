@@ -1,6 +1,6 @@
 from src.database_manager import database_connection
-from src.database_manager.objects.table import DBTable
-from src.test_pkg.test_table_data import *
+from src.initializer.objects.table import DBTable
+from src.initializer.test_table_data import *
 
 ###############################################
 #
