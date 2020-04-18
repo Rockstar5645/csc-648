@@ -1,6 +1,6 @@
 import os
 from tkinter import Image
-
+from PIL import Image
 from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
 from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
 from src.app_pkg import app
@@ -9,7 +9,8 @@ from flask_login import login_required
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
-# from src.config import UPLOAD_FOLDER
+from src.config import UPLOAD_FOLDER, STATIC_PATH
+
 
 ################################################
 #                GENERAL ROUTING               #
@@ -128,7 +129,7 @@ def admin_page():
 
 # path for UPLOAD_FOLDER is in config.py
 # UPLOAD_FOLDER = /Users.../user_images
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
@@ -151,6 +152,16 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py
+            # commented out for now to avoid confusion, Image.open() won't take the relative path for some reason
+            # print(filename)
+
+            # f = Image.open(STATIC_PATH + 'user_images/' + filename)
+            # f.thumbnail((200, 200))
+            # f.save(STATIC_PATH + 'thumbnails/t_' + filename)
+            # print("thumbnail saved")
+
+            # TODO: change redirect to some other page
             return redirect(url_for('uploaded_file',
                                     filename=filename))
 
@@ -160,15 +171,8 @@ def upload_file():
         price = request.form['price']
         cat = request.form['category']
 
-        # make example thumbnail
-        path = 'user_images'
-        im1 = file
-        f = Image.open(path + im1)
-        f.thumbnail((200, 200))
-        f.save('thumbnails/' + f)
-
         # TODO: add db query params, not tested yet
-        results = db.submit_media(filename, desc, im1, f, price, cat)
+        results = db.submit_media(filename, desc, file, price, cat)
 
         form.filename.default = filename
         form.description.default = desc
