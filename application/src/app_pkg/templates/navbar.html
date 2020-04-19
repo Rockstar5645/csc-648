@@ -142,18 +142,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Category *</label>
-                            <div class="input-group-prepend">
-                                {{ form.category(class_="btn custom-select") }}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uploadMediaType">Media Type *</label>
-                            <select id="uploadMediaType" class="form-control" required>
+                            <label for="uploadCategory">Category *</label>
+                            <select id="uploadCategory" class="form-control" required>
                                 <option value="">Select</option>
                                 <option value="1">Spongebob</option>
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Media Type *</label>
+                            <div class="input-group-prepend">
+                                {{ form.category(class_="btn custom-select") }}
+                            </div>
                         </div>
 
                         <div class="form-group">
