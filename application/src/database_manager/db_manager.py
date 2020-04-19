@@ -1,6 +1,7 @@
 from src.database_manager import database_connection
 from src.database_manager.register import register
 from src.database_manager.login import login
+from src.database_manager.upload import upload
 from src.config import redis_conn
 import redis
 import sys
@@ -38,6 +39,10 @@ class DB:
 
     def login(self, username,  password, ip_address):
         return login(username, password, ip_address, self.db_connection, self.redis_connection)
+
+    # added upload to test db query for uploads
+    def upload(self, filename, description, price, category):
+        return upload(filename, description, price, category, self.db_connection, self.redis_connection)
 
     def search(self, term, category):
         if term =='': # if search term was blank
@@ -101,12 +106,5 @@ class DB:
         else: # get team_member
             self.db_connection.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%"+name+"%",))
         data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        return data
-
-    def submit_media(self):
-        # TODO: implement submit_media, query, commit, and return, check params
-        data = self.db_connection.fetchall()
-        self.db_connection.query("SELECT * FROM digital_media_test...")
         self.db_connection.commit()
         return data
