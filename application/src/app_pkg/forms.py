@@ -32,14 +32,11 @@ class LoginForm(Form):
     submit = SubmitField('Login')
 
 class SubmissionForm(Form):
-    # added FileRequired and FileAllowed for more functionality when uploading files
-    # TODO: make validators more detailed, add any missing form data
     filename = StringField('File Name', validators=[DataRequired()])
-    #file = FileField('File', validators=[FileRequired(), FileAllowed(['jpeg', 'png'])])
     description = StringField('Description', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     categories = db.get_category_select_field()
-    # category = SelectField('Category', choices=categories, validators=[])
+    category = SelectField('Category', choices=categories, validators=[])
     category = SelectField('Category', choices=categories, validators=[], default='all')
     submit = SubmitField('Submit Media')
 
