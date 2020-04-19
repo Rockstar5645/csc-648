@@ -435,7 +435,7 @@
 
             <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
                 <img id='{{item[0]}}' src="/static{{ item[4] }}" class="card-img-top img-button" width="auto"
-                     height="250">
+                     height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
@@ -456,7 +456,6 @@
                     </div>
                 </div>
                 <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">
-                <button class="btn btn-light" data-toggle="modal" data-target="#mname_{{item[0]}}">Quick View</button>
 
             </div>
 
@@ -517,7 +516,8 @@
                                         <span>${{ item[7] }}</span>
                                     </div>
                                 </div>
-
+                                
+                                <!-- 
                                 <div class="row">
                                     <div class="col text-right">
                                         <label class="font-weight-bold">Author:</label>
@@ -526,10 +526,11 @@
                                         <span>{{ item[1] }}</span>
                                     </div>
                                 </div>
-
+                                -->
+                                
                                 <div class="form-group mr-3">
                                     <label class="font-weight-bold">Description:</label>
-                                    <p class="card-text">"{{ item[3] }}
+                                    <p class="card-text">{{ item[3] }}
                                     </p>
                                 </div>
 
