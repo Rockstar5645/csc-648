@@ -153,7 +153,6 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(STATIC_PATH + 'user_images/', filename))
 
-            # commented out for now to avoid confusion, Image.open() won't take the relative path for some reason
             f = Image.open(STATIC_PATH + 'user_images/' + filename)
             f.thumbnail((200, 200))
             f.save(STATIC_PATH + 'thumbnails/t_' + filename)
@@ -164,7 +163,6 @@ def upload_file():
             price = request.form['price']
             print(name, " ", desc, " ", price)
 
-            # TODO: change redirect to some other page
             return redirect(url_for('search'))
 
         # query db params, approval variable and session token not implemented yet
