@@ -1,7 +1,11 @@
 from src.database_manager import database_connection
 from src.database_manager.register import register
 from src.database_manager.login import login
+
 from src.database_manager.upload import upload
+
+from src.database_manager.validate_session import validate_session
+
 from src.config import redis_conn
 import redis
 import sys
@@ -43,6 +47,10 @@ class DB:
     # added upload to test db query for uploads
     def upload(self, filename, description, price, category):
         return upload(filename, description, price, category, self.db_connection, self.redis_connection)
+
+    def validate_session(self, session_token):
+        return validate_session(session_token, self.redis_connection)
+
 
     def search(self, term, category):
         if term =='': # if search term was blank

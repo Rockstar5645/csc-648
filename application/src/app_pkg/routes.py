@@ -117,7 +117,7 @@ def user_profile():
 ################################################
 
 @app.route('/admin_page')
-@login_required
+#@login_required
 def admin_page():
     isloggedin = request.cookies.get('isloggedin')
     form = SearchForm()
