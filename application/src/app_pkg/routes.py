@@ -43,7 +43,7 @@ def search():
         # return results -------------------------------------vvv
         return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
-    return render_template('search.html', form=form, session_token=session_token)
+    return render_template('search.html', form=form)
 
 ################################################
 #                   ABOUT                      #
@@ -207,21 +207,18 @@ def chris():
 
 @app.route("/elliot")
 def elliot():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Elliot")
     return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/thomas")
 def thomas():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Thomas")
     return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/bakulia")
 def bakulia():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member, form=form)
