@@ -42,9 +42,8 @@ class DB:
     def validate_session(self, session_token):
         return validate_session(session_token, self.redis_connection)
 
-    # added upload to test db query for uploads
-    def upload(self, filename, description, price, category):
-        return upload(filename, description, price, category, self.db_api, self.redis_connection)
+    def upload(self, filename, description, file_path, thumb_path, category, price):
+        return upload(filename, description, file_path, thumb_path, category, price, self.db_api)
 
 
     def search(self, term, category):
