@@ -77,3 +77,18 @@ def test_wrong_port(db_connection_params):
     assert err.errno == -1
     assert err.sqlstate is None
     assert "TCP/IP port number should be an integer" in err.msg
+
+
+def test_wrong_database(db_connection_params):
+    """Pass the wrong database identifier to the database connection object"""
+    db_connection_params['database'] = 'wrong_database'
+    with pytest.raises(mysql.connector.Error) as exception_info:
+        db = database_connection.MyDB(datbase_connection_paramaters=db_connection_params)
+
+    err = exception_info.value
+    print("\n\n" + err._full_msg)
+
+    assert "1049 (42000): Unknown database 'wrong_database'" in err._full_msg
+    assert err.errno == 1049
+    assert "42000" in err.sqlstate
+    assert "Unknown database 'wrong_database'" in err.msg

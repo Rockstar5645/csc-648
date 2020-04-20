@@ -1,53 +1,72 @@
 import mysql.connector
+from mysql.connector import errorcode
 from src.config import db_conn
-import sys
+import functools
 
 class MyDB(object):
 
-    def __init__(self):
-        try: 
-            # self._db_connection = mysql.connector.connect(user=db_conn['user'], password=db_conn['password'],
-            #                      host=db_conn['host'], database=db_conn['database'])
-            self.database_connection = mysql.connector.connect(**db_conn)
-            self.connection_cursor = self.database_connection.cursor(buffered=True)
-            
+    def __init__(self, datbase_connection_paramaters=db_conn):
+        try:
+            self.db_conn_params = datbase_connection_paramaters
+            self.database_connection = mysql.connector.connect(**datbase_connection_paramaters)
+            self.cursor = self.database_connection.cursor(buffered=True)
         except mysql.connector.Error as err:
-            print("\n\n")
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            print("!!!     UNABLE TO CONNECT TO DATABASE     !!!")
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            print("\n\n")
-            print("ERROR: {}\n\n".format(err))
-            sys.exit()
-
-    def get_last_row_id(self):
-        return self.connection_cursor.lastrowid
-
-    def check_connection(self):
-        if self.database_connection.is_connected() is False:
-            print('We have lost connection to the database, attempting to reconnect')
-            self.connection_cursor.close()
-            self.database_connection.close()
-            self.database_connection = mysql.connector.connect(**db_conn)
-            self.connection_cursor = self.database_connection.cursor(buffered=True)
+            print("Unable to connect to database, ERROR: {}\n\n".format(err))
+            raise
 
     def query(self, query, params=''):
-        self.check_connection()
-
-        if params != '':
-            # print('executing parameters')
-            return self.connection_cursor.execute(query, params)
-        else:
-            # print('executing without paramters')
-            return self.connection_cursor.execute(query)
-
-    def fetchall(self):
-        self.check_connection()
-        return self.connection_cursor.fetchall()
+        try:
+            if params != '':
+                # print('executing parameters')
+                return self.cursor.execute(query, params)
+            else:
+                # print('executing without paramters')
+                return self.cursor.execute(query)
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.CR_SERVER_GONE_ERROR or err.errno == errorcode.CR_SERVER_LOST or \
+                    err.errno == errorcode.CR_SERVER_LOST_EXTENDED:
+                # TODO: Log this loss of connection to database
+                """The database connection was lost, attempt to reconnect and redo the query"""
+                print('The client has lost connection to the mysql server, errno: {}'.format(err.errno))
+                self.database_connection.reconnect()
+                query(query, params)
+            else:
+                # Some other error occurred during execution of command, reraising error, this is usually a
+                # programming problem
+                raise
 
     def commit(self):
-        self.database_connection.commit()
+        try:
+            self.database_connection.commit()
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.CR_SERVER_GONE_ERROR or err.errno == errorcode.CR_SERVER_LOST or \
+                    err.errno == errorcode.CR_SERVER_LOST_EXTENDED:
+                # TODO: Log this loss of connection to database
+                """The database connection was lost, attempt to reconnect and redo the query"""
+                print('The client has lost connection to the mysql server, errno: {}'.format(err.errno))
+                self.database_connection.reconnect()
+                self.database_connection.commit()
+            else:
+                # Some other error occurred during the commit, reraising error, this is usually a
+                # programming problem
+                raise
+
+
+    def get_last_row_id(self):
+        # This method does not issue a request to the database
+        return self.cursor.lastrowid
+
+
+    def fetchall(self):
+        # This method does not issue a request to the database
+        return self.cursor.fetchall()
+
 
     def __del__(self):
-        self.connection_cursor.close()
-        self.database_connection.close()
+        try:
+            # sometimes the connections may have closed unexpectedly, and will generate an error if we try to destroy
+            # them again
+            self.cursor.close()
+            self.database_connection.close()
+        except Exception as err:
+            print(err)
