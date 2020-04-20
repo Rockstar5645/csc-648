@@ -1,5 +1,5 @@
-from src.database_manager.add_user import  add_user
-from src.database_manager.generate_session import  generate_session
+from src.database_manager.add_user import add_user
+from src.database_manager.generate_session import generate_session
 
 def register(username, email, password, db, r):
 
