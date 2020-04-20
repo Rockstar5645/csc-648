@@ -20,7 +20,11 @@ def authenticate_user(username, password_plain, db):
         return error_message
 
     # examine the returned record to validate the user entered credentials
+<<<<<<< HEAD
     for (user_id, username, password) in db.cursor:
+=======
+    for (user_id, username, password) in db.fetchall():
+>>>>>>> dc32789dc8379dfb4be66ca1664c794c633793f7
 
         password_entered = password_plain.encode('utf-8')  # encode the plain text password entered by the user
 
