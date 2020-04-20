@@ -2,7 +2,7 @@ import os
 from tkinter import Image
 from PIL import Image
 from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
-from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
+from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory, jsonify
 from src.app_pkg import app
 from src.app_pkg import db
 from flask_login import login_required
@@ -41,9 +41,9 @@ def search():
         form.term.default = term
         form.process()
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results)
+        return render_template('search.html', form=form, results=results, user=user)
     # else : GET fresh html page
-    return render_template('search.html', form=form)
+    return render_template('search.html', form=form, user=user)
 
 ################################################
 #                   ABOUT                      #
@@ -53,7 +53,7 @@ def search():
 def about():
     form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team, form=form)
+    return render_template('about.html', team=team, form=form, user=user)
 
 ################################################
 #                     LOGIN                    #
@@ -64,15 +64,14 @@ def login():
     form = LoginForm()
     if request.method == 'POST':
         result = {}
-        result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
-        print(result)
+        result = db.login(request.form['username'], request.form['password'], request.remote_addr)
         if result['status'] == 'success':
-            
-            return redirect(url_for('search'))
+            user.login(0, result['token'], request.remote_addr)
+            return redirect(url_for('search', user=user))
         else:
             return render_template('login.html', form=form)
     else:
-        return render_template('login.html', form=form)
+        return render_template('login.html', form=form, user=user)
 
 ################################################
 #                REGISTER                      #
@@ -85,11 +84,12 @@ def register():
         result = {}
         result = db.register(request.form['username'], request.form['email'],  request.form['password'])
         if result['status'] == 'success':
-            return redirect(url_for('login'))
+            user.login(0, result['token'], request.remote_addr)
+            return redirect(url_for('login', user=user))
         else:
-            return render_template('registration.html', form=form)
+            return render_template('registration.html', form=form, user=user)
     else:
-        return render_template('registration.html', form=form)
+        return render_template('registration.html', form=form, user=user)
 
 ################################################
 #                SINGLE MEDIA VIEW             #
@@ -97,7 +97,7 @@ def register():
 @app.route('/single_media_view', methods=['GET', 'POST'])
 def single_media_view():
     media_view = SubmissionForm()
-    return render_template('single_media_view.html', media_view=media_view)
+    return render_template('single_media_view.html', media_view=media_view, user=user)
 
 ################################################
 #                USER PROFILE                  #
@@ -106,7 +106,7 @@ def single_media_view():
 @app.route('/user_profile')
 def user_profile():
     form = SearchForm()
-    return render_template('user_profile.html', form=form)
+    return render_template('user_profile.html', form=form, user=user)
 
 ################################################
 #                Admin PROFILE                 #
@@ -116,7 +116,7 @@ def user_profile():
 #@login_required
 def admin_page():
     form = SearchForm()
-    return render_template('admin_page.html', form=form,)
+    return render_template('admin_page.html', form=form, user=user)
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -191,34 +191,34 @@ def uploaded_file(filename):
 def avery():
     form = SearchForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/akhil")
 def akhil():
     form = SearchForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/chris")
 def chris():
     form = SearchForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/elliot")
 def elliot():
     form = SearchForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/thomas")
 def thomas():
     form = SearchForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/bakulia")
 def bakulia():
     form = SearchForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member, form=form)
+    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
