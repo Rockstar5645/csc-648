@@ -1,7 +1,9 @@
-{% extends 'base.html' %}
-{% block header %}
+{% extends 'navbar.html' %}
+{% block content %}
 
-<!--        <div>-->
+
+{#
+    <!--        <div>-->
 <!--            <form method="POST" action="">-->
 <!--                <fieldset class="form-group">-->
 <!--                    <div class="form-group">-->
@@ -20,408 +22,410 @@
 <!--            <header>-->
 <!--            <p> CSC 648.01, Spring 2020, Team 06 </p>-->
 <!--            </header>-->
+#}
+
 
 {% if not results %}
 
-<!--    <div class="container">-->
-<!--        <br />-->
-<!--        <div class="row">-->
-<!--            <div class="font-weight-bold">-->
-<!--                <h1>-->
-<!--                    {% block title %}Snapster{% endblock %}-->
-<!--                </h1>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        -->
-<!--        <div class="row">-->
-<!--            <div>-->
-<!--                <h2 class="text-secondary">-->
-<!--                    exclusive media for sfsu students-->
-<!--                </h2>-->
-<!--            </div>-->
-<!--        </div>-->
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="font-weight-bold">
+                <h1>
+                    {% block title %}Snapster{% endblock %}
+                </h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div>
+                <h2 class="text-secondary">
+                    exclusive media for sfsu students
+                </h2>
+            </div>
+        </div>
 
-<!--        <br />-->
+        <br />
 
-<!--        <div class="row">-->
-<!--            <div>-->
-<!--                <h4 class="text-secondary">-->
-<!--                    Trending Now-->
-<!--                </h4>-->
-<!--            </div>-->
-<!--        </div>    -->
-<!--        <div id="carouselTrendingNow" class="carousel slide" data-ride="carousel">-->
-<!--            <div class="carousel-inner">-->
-<!--                <div class="carousel-item active">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 1-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+        <div class="row">
+            <div>
+                <h4 class="text-secondary">
+                    Trending Now
+                </h4>
+            </div>
+        </div>    
+        <div id="carouselTrendingNow" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 1
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb2_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 2-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb2_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 2
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb3_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 3-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb3_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 3
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!--                <div class="carousel-item">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb4_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 4-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb4_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 4
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb5_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 5-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb5_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 5
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 1-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 1
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!--            <div class="carousel-control-prev" href="#carouselTrendingNow" role="button" data-slide="prev">-->
-<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--            </div>-->
+            <div class="carousel-control-prev" href="#carouselTrendingNow" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </div>
 
-<!--            <div class="carousel-control-next" href="#carouselTrendingNow" role="button" data-slide="next">-->
-<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--            </div>-->
+            <div class="carousel-control-next" href="#carouselTrendingNow" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </div>
 
-<!--        </div>-->
+        </div>
 
-<!--        <br />-->
+        <br />
 
-<!--        <div class="row">-->
-<!--            <div>-->
-<!--                <h4 class="text-secondary">-->
-<!--                    Recently Added-->
-<!--                </h4>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        -->
-<!--        <div id="carouselRecentlyAdded" class="carousel slide" data-ride="carousel">-->
-<!--            <div class="carousel-inner">-->
-<!--                <div class="carousel-item active">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 1-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+        <div class="row">
+            <div>
+                <h4 class="text-secondary">
+                    Recently Added
+                </h4>
+            </div>
+        </div>
+        
+        <div id="carouselRecentlyAdded" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 1
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb2_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 2-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb2_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 2
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb3_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 3-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb3_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 3
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!--                <div class="carousel-item">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb4_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 4-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb4_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 4
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb5_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 5-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb5_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 5
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<!--                        <div class="col">-->
-<!--                            <div class="card text-white bg-secondary mb-3">-->
-<!--                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">-->
-<!--                                <div class="card-header">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col">-->
-<!--                                            spongebob 1-->
-<!--                                        </div>-->
-<!--                                        <div class="col text-right">-->
-<!--                                            <i class="fas fa-download"></i>-->
-<!--                                        </div> -->
-<!--                                    </div> -->
-<!--                                </div>-->
-<!--                                <div class="row card-body">-->
-<!--                                    <div class="col card-text">-->
-<!--                                        image-->
-<!--                                    </div>-->
-<!--                                    <div class="col card-text text-right">-->
-<!--                                        $69.99-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                -->
+                        <div class="col">
+                            <div class="card text-white bg-secondary mb-3">
+                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            spongebob 1
+                                        </div>
+                                        <div class="col text-right">
+                                            <i class="fas fa-download"></i>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row card-body">
+                                    <div class="col card-text">
+                                        image
+                                    </div>
+                                    <div class="col card-text text-right">
+                                        $69.99
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
 
-<!--            <div class="carousel-control-prev" href="#carouselRecentlyAdded" role="button" data-slide="prev">-->
-<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--            </div>-->
+            <div class="carousel-control-prev" href="#carouselRecentlyAdded" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </div>
 
-<!--            <div class="carousel-control-next" href="#carouselRecentlyAdded" role="button" data-slide="next">-->
-<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--            </div>-->
+            <div class="carousel-control-next" href="#carouselRecentlyAdded" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </div>
 
-<!--        </div>-->
+        </div>
 
 
-<!--    </div>-->
+    </div>
 
-<!--{% else %}-->
+{% else %}
 
-<!--<br />-->
-<!--    -->
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col">-->
-<!--            <h3 class="text-muted">Showing Results 1 - 5 of 5</h3>-->
-<!--            <nav>-->
-<!--                <ul class="pagination">-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link" aria-disabled="true">Previous</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link">1</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link">2</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link">3</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item">-->
-<!--                        <a class="page-link">Next</a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<br />
+    
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-muted">Showing Results 1 - 5 of 5</h3>
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 
 
 <div class="container">
@@ -431,7 +435,7 @@
 
             <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
                 <img id='{{item[0]}}' src="/static{{ item[4] }}" class="card-img-top img-button" width="auto"
-                     height="250">
+                     height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
@@ -452,13 +456,11 @@
                     </div>
                 </div>
                 <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">
-                <button class="btn btn-light" data-toggle="modal" data-target="#mname_{{item[0]}}">Quick View</button>
 
             </div>
 
         </div>
 
-        <!--    MODAL VIEW-->
         <!--    MODAL VIEW-->
         <!--    MODAL VIEW-->
         <!--    MODAL VIEW-->
@@ -514,7 +516,8 @@
                                         <span>${{ item[7] }}</span>
                                     </div>
                                 </div>
-
+                                
+                                <!-- 
                                 <div class="row">
                                     <div class="col text-right">
                                         <label class="font-weight-bold">Author:</label>
@@ -523,10 +526,11 @@
                                         <span>{{ item[1] }}</span>
                                     </div>
                                 </div>
-
+                                -->
+                                
                                 <div class="form-group mr-3">
                                     <label class="font-weight-bold">Description:</label>
-                                    <p class="card-text">"{{ item[3] }}
+                                    <p class="card-text">{{ item[3] }}
                                     </p>
                                 </div>
 
@@ -571,6 +575,7 @@
 
 </script>
 
+<!--
 <div class="text-center">
     {% for item in results %}
     <tr>
@@ -589,6 +594,7 @@
     </tr>
     {% endfor %}
 </div>
+-->
 
 
 {% endif %}
