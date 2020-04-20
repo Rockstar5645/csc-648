@@ -69,12 +69,12 @@
             </li>
             <li class="nav-item">
                 <!--    SEARCH AND FILTER FORM       -->
-                <form action="{{ url_for('search') }}" method="POST">
+                <form class="form-inline" action="{{ url_for('search') }}" method="POST">
                     <div class="input-group mt-1 mb-1 ml-lg-2">
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
                         </div>
-                        {{ form.term(class_="form-control") }}
+                        {{ form.term(class_="form-control", style="width: 350px") }}
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search"></i>
@@ -140,12 +140,12 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="uploadTitle">Title *</label>
+                            <label for="uploadTitle">Title*</label>
                             <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="uploadCategory">Category *</label>
+                            <label for="uploadCategory">Category*</label>
                             <select id="uploadCategory" class="form-control" required>
                                 <option value="">Select</option>
                                 <option value="1">Spongebob</option>
@@ -153,16 +153,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Media Type *</label>
-                            <div class="input-group-prepend">
-                                {{ form.category(class_="btn custom-select") }}
-                            </div>
+                            <label>Media Type*</label>
+                            <select id="uploadCategory" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="1">image</option>
+                                <option value="2">video</option>
+                                <option value="3">audio</option>
+                                <option value="4">document</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-1">
-                                    <label for="uploadPrice">License *</label>
+                                <div class="col-lg-1">
+                                    <label for="uploadPrice">License*</label>
                                 </div>
                                 <div class="col">
                                     <div class="form-check-inline">
