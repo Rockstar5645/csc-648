@@ -10,15 +10,11 @@ from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
 from src.config import STATIC_PATH
-from src.app_pkg.objects.user import User
-
 
 ################################################
 #                GENERAL ROUTING               #
 ################################################
 # Routing by accessible web pages, main routes
-
-user = User()
 
 ################################################
 #                SEARCH / HOME                 #
@@ -28,6 +24,7 @@ user = User()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    user = request.cookies.get('valid')
     # assign form and results list
     form = SearchForm()
     # if : user submits POST request
@@ -46,16 +43,6 @@ def search():
     return render_template('search.html', form=form, user=user)
 
 ################################################
-#                   ABOUT                      #
-################################################
-
-@app.route("/about",methods=['GET', 'POST']) 
-def about():
-    form = SearchForm()
-    team = db.get_team()
-    return render_template('about.html', team=team, form=form, user=user)
-
-################################################
 #                     LOGIN                    #
 ################################################
 
@@ -66,12 +53,17 @@ def login():
         result = {}
         result = db.login(request.form['username'], request.form['password'], request.remote_addr)
         if result['status'] == 'success':
-            user.login(0, result['token'], request.remote_addr)
-            return redirect(url_for('search', user=user))
+            res = make_response(redirect(url_for('search')))
+            res.set_cookie('token', result['token'], max_age=None)
+            res.set_cookie('valid', 'valid', max_age=None)
+            return res
         else:
-            return render_template('login.html', form=form)
+            res = make_response(redirect(url_for('login')))
+            res.set_cookie('token', 'none', max_age=None)
+            res.set_cookie('valid', 'not valid', max_age=None)
+            return res
     else:
-        return render_template('login.html', form=form, user=user)
+        return render_template('login.html', form=form)
 
 ################################################
 #                REGISTER                      #
@@ -84,18 +76,38 @@ def register():
         result = {}
         result = db.register(request.form['username'], request.form['email'],  request.form['password'])
         if result['status'] == 'success':
-            user.login(0, result['token'], request.remote_addr)
-            return redirect(url_for('login', user=user))
+            if result['status'] == 'success':
+                res = make_response(redirect(url_for('search')))
+                res.set_cookie('token', result['token'], max_age=None)
+                res.set_cookie('valid', 'valid', max_age=None)
+                return res
+            else:
+                res = make_response(redirect(url_for('login')))
+                res.set_cookie('token', 'none', max_age=None)
+                res.set_cookie('valid', 'not valid', max_age=None)
+                return res
         else:
-            return render_template('registration.html', form=form, user=user)
+            return render_template('registration.html', form=form)
     else:
-        return render_template('registration.html', form=form, user=user)
+        return render_template('registration.html', form=form)
+
+################################################
+#                   ABOUT                      #
+################################################
+
+@app.route("/about",methods=['GET', 'POST']) 
+def about():
+    user = request.cookies.get('valid')
+    form = SearchForm()
+    team = db.get_team()
+    return render_template('about.html', team=team, form=form, user=user)
 
 ################################################
 #                SINGLE MEDIA VIEW             #
 ################################################
 @app.route('/single_media_view', methods=['GET', 'POST'])
 def single_media_view():
+    user = request.cookies.get('valid')
     media_view = SubmissionForm()
     return render_template('single_media_view.html', media_view=media_view, user=user)
 
@@ -105,6 +117,7 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
+    user = request.cookies.get('valid')
     form = SearchForm()
     return render_template('user_profile.html', form=form, user=user)
 
@@ -115,6 +128,7 @@ def user_profile():
 @app.route('/admin_page')
 #@login_required
 def admin_page():
+    user = request.cookies.get('valid')
     form = SearchForm()
     return render_template('admin_page.html', form=form, user=user)
 
@@ -192,36 +206,42 @@ def uploaded_file(filename):
 
 @app.route("/avery")
 def avery():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Avery")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/akhil")
 def akhil():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Akhil")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/chris")
 def chris():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Chris")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/elliot")
 def elliot():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Elliot")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/thomas")
 def thomas():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Thomas")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
 
 @app.route("/bakulia")
 def bakulia():
+    user = request.cookies.get('valid')
     form = SearchForm()
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
