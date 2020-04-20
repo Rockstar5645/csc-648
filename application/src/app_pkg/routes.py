@@ -160,20 +160,23 @@ def upload_file():
             cat = request.form['category']
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
+            owner_id = 1
 
             print(name, " ", desc, " ", price, " ", cat, " ", filepath, " ", thumbpath)
 
+            # query db params, approval variable and session token not implemented yet
+            results = []
+            results = db.upload(name, desc, filepath, thumbpath, cat, price)
+            print(results)
+
+            form.filename.default = filename
+            form.description.default = desc
+            form.price.default = price
+            form.category.default = cat
+            form.process()
+            # TODO: fix render_templates and redirects for submit media button in base.html
             return redirect(url_for('search'))
 
-        # query db params, approval variable and session token not implemented yet
-        # TODO: add db query params
-        # form.filename.default = filename
-        # form.description.default = desc
-        # form.price.default = price
-        # form.category.default = cat
-        # form.process()
-
-    # TODO: fix render_templates and redirects for submit media button in base.html
     # else, (if "GET")
     return render_template('upload.html', form=form)
 
