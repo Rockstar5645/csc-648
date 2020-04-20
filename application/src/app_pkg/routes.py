@@ -10,7 +10,7 @@ from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
 from src.config import STATIC_PATH
-from src.app_pkg.objects import User
+from src.app_pkg.objects.user import User
 
 
 ################################################
