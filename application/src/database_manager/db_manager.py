@@ -46,7 +46,6 @@ class DB:
     def upload(self, filename, description, price, category):
         return upload(filename, description, price, category, self.db_api, self.redis_connection)
 
-
     def search(self, term, category):
         if term =='': # if search term was blank
             return self.get_category(category)

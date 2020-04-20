@@ -39,9 +39,9 @@ def search():
         form.term.default = term
         form.process()
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results, isloggedin=isloggedin)
+        return render_template('search.html', form=form, results=results, session_token=session_token)
     # else : GET fresh html page
-    return render_template('search.html', form=form, isloggedin=isloggedin)
+    return render_template('search.html', form=form, session_token=session_token)
 
 ################################################
 #                   ABOUT                      #
@@ -52,7 +52,7 @@ def about():
     session_token = request.cookies.get('session_token')
     form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team, form=form, isloggedin=isloggedin)
+    return render_template('about.html', team=team, form=form, session_token=session_token)
 
 ################################################
 #                     LOGIN                    #
@@ -64,6 +64,7 @@ def login():
     if request.method == 'POST':
         result = {}
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
+        print(result)
         if result['status'] == 'success':
             resp = make_response(redirect(url_for('search')))
             resp.set_cookie('session_token', result)
