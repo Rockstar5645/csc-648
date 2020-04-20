@@ -1,0 +1,293 @@
+<!-- Bootstrap Starter Template -->
+<!-- https://getbootstrap.com/docs/4.4/getting-started/introduction/ -->
+
+<!-- Base Template Example -->
+<!-- https://flask.palletsprojects.com/en/1.1.x/tutorial/templates/ -->
+
+<!-- Font Awesome Documentation -->
+<!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+
+{#
+    Base html page that contains the Bootstrap references and basic page structure.
+    This is the nav_bar version which also contains the search navigation bar.
+    Most html pages in the application will extend this page. Pages extending this page
+    will need to implement the title and content blocks.
+#}
+    
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Font Awesome Kit -->
+    <!-- https://fontawesome.com/license/free -->
+    <script src="https://kit.fontawesome.com/2b0fe775bd.js" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <!-- MATERIAL ICONS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+
+<!-- Navigation Bar Documentation -->
+<!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link mr-sm-auto" href="/">Snapster</a>
+            </li>
+            <li class="nav-item">
+                <!--    SEARCH AND FILTER FORM       -->
+                <form action="{{ url_for('search') }}" method="POST">
+                    <div class="input-group mt-1 mb-1 ml-lg-2">
+                        <div class="input-group-prepend">
+                            {{ form.category(class_="btn custom-select") }}
+                        </div>
+                        {{ form.term(class_="form-control") }}
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+
+        <div class="mt-1 mb-1">
+            <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
+            </button>
+            <span style="color: white;">|</span>
+            <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
+            <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+        </div>
+
+    </div>
+
+</nav>
+
+<h5>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</h5>
+
+{% block content %}{% endblock %}
+
+
+
+{#
+    Modal screens for uploading and viewing media details
+    TODO: Not sure if these will stay here, I hope to move them into their own files at some point.
+    However, we will need them to be available from multiple screens. I am currently looking into
+    ways to organize the front end code into smaller component modules that can be reused on multiple
+    pages. These are also just mock-ups atm. They do not interact with the database. Will need to talk
+    to back-end team to learn the api.
+    
+#}
+
+<!-- Modal Upload Form -->
+<!-- https://getbootstrap.com/docs/4.4/components/modal/ -->
+<div id="UploadForm" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 class="modal-title" id="uploadFormTitle">Upload Media</h2>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="{{ url_for('search') }}">
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="form-control custom-file-input" id="uploadFile" required>
+                                <label class="custom-file-label" for="uploadFile">Select a file to upload</label>
+                            </div>  
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadTitle">Title *</label>
+                            <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="uploadCategory">Category *</label>
+                            <select id="uploadCategory" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="1">Spongebob</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Media Type *</label>
+                            <div class="input-group-prepend">
+                                {{ form.category(class_="btn custom-select") }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-1">
+                                    <label for="uploadPrice">License *</label>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="uploadFree">
+                                        <label class="form-check-label" for="uploadFree">Free</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="uploadDescription">Description</label>
+                            <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}"></textarea>
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            &MediumSpace;
+                            <button class="btn btn-warning" type="submit">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- WEB PAGE FOOTER -->
+<!-- WEB PAGE FOOTER -->
+<!-- WEB PAGE FOOTER -->
+<!-- WEB PAGE FOOTER -->
+
+
+<div class="container">
+    <hr>
+    <footer class="my-0 pt-0 text-center">
+        <ul class="list-inline">
+            <li class="list-inline-item"><a class="btn btn-light" href="/about"><i class="fas fa-book-reader"></i> About</a></li>
+            <li class="list-inline-item"><a class="btn btn-light" data-target="#ContactUs" data-toggle="modal"><i class="far fa-envelope"></i> Contact us</a></li>
+        </ul>
+        <small class="mb-1 text-muted">© 2020 SNAPSTER</small>
+    </footer>
+</div>
+
+
+<!-- CONTACT US BUTTON -->
+<!-- CONTACT US BUTTON -->
+<!-- CONTACT US BUTTON -->
+
+
+
+<div class="modal fade" id="ContactUs" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="admin@snapster.com"
+                               readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Subject:</label>
+                        <input type="text" class="form-control" id="message-subject" placeholder="Support"
+                               readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"> Message:</label>
+                        <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                  rows="10" required></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                        class="btn btn-success">Send</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+
+<div class="modal fade in" id="MessageSent" aria-hidden="true">
+    <div class="modal-dialog modal-confirm modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-body">
+                    <p class="text-center">Thank you for your message!</p>
+                     <p class="text-center">We will get back to you soon!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+

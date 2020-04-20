@@ -1,7 +1,14 @@
 <!doctype html>
 <title>Upload new File</title>
 <h1>Upload new File</h1>
+<a class="nav-link mr-sm-auto" href="/">Snapster</a>
 <form method=post enctype=multipart/form-data>
    <input type=file name=file>
+   <input type=text name=filename value="{{request.form.filename}}">
+   <input type=text name=description value="{{request.form.description}}">
+   <input type=number name=price value="{{request.form.price}}">
    <input type=submit value=Upload>
+   <div class="input-group-prepend">
+      {{ form.category(class_="btn custom-select") }}
+   </div>
 </form>

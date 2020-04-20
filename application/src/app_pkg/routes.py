@@ -9,7 +9,7 @@ from flask_login import login_required
 from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
-from src.config import UPLOAD_FOLDER, STATIC_PATH
+from src.config import STATIC_PATH
 
 
 ################################################
@@ -116,7 +116,7 @@ def user_profile():
 ################################################
 
 @app.route('/admin_page')
-@login_required
+#@login_required
 def admin_page():
     session_token = request.cookies.get('session_token')
     form = SearchForm()
@@ -126,10 +126,9 @@ def admin_page():
 #                SUBMIT MEDIA                    #
 ##################################################
 # work in progress
-
-# path for UPLOAD_FOLDER is in config.py
-# UPLOAD_FOLDER = /Users.../user_images
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py to test
+# replace ... with your path in your local setup
+app.config['STATIC_PATH'] = STATIC_PATH
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
@@ -151,34 +150,27 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py
-            # commented out for now to avoid confusion, Image.open() won't take the relative path for some reason
-            # print(filename)
+            file.save(os.path.join(STATIC_PATH + 'user_images/', filename))
 
-            # f = Image.open(STATIC_PATH + 'user_images/' + filename)
-            # f.thumbnail((200, 200))
-            # f.save(STATIC_PATH + 'thumbnails/t_' + filename)
-            # print("thumbnail saved")
+            f = Image.open(STATIC_PATH + 'user_images/' + filename)
+            f.thumbnail((200, 200))
+            f.save(STATIC_PATH + 'thumbnails/t_' + filename)
+            print("thumbnail saved")
 
-            # TODO: change redirect to some other page
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            name = request.form['filename']
+            desc = request.form['description']
+            price = request.form['price']
+            print(name, " ", desc, " ", price)
+
+            return redirect(url_for('search'))
 
         # query db params, approval variable and session token not implemented yet
-        filename = request.form['filename']
-        desc = request.form['description']
-        price = request.form['price']
-        cat = request.form['category']
-
-        # TODO: add db query params, not tested yet
-        results = db.submit_media(filename, desc, file, price, cat)
-
-        form.filename.default = filename
-        form.description.default = desc
-        form.price.default = price
-        form.category.default = cat
-        form.process()
+        # TODO: add db query params
+        # form.filename.default = filename
+        # form.description.default = desc
+        # form.price.default = price
+        # form.category.default = cat
+        # form.process()
 
     # TODO: fix render_templates and redirects for submit media button in base.html
     # else, (if "GET")
@@ -186,7 +178,7 @@ def upload_file():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    return send_from_directory(app.config['STATIC_PATH'] + 'user_images/', filename)
 
 
 ##################################################
