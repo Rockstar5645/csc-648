@@ -1,48 +1,22 @@
-import bcrypt
-import base64
-import hashlib
 from src.database_manager.generate_session import generate_session
-import mysql.connector
+from src.database_manager.authenticate_user import authenticate_user
 
 def login(username, password_plain, ip_address, db, r):
-    user_authentication_query = ("SELECT user_id, username, password FROM user WHERE username=%s")
+    status_msg = authenticate_user(username, password_plain, db)
 
-    # query the database for the record of the user
-    try:
-        db.query(user_authentication_query, (username,))
-    except mysql.connector.Error as err:
-        # print("Internal server error with database: {}".format(err))
-        # FIXME: log this potentially fatal error
-        # TODO: what other errors could occur with the connection object?
-        error_message = {
-            'status': 'database_error',
-            'message': 'Internal database error: {}'.format(err)
-        }
-        return error_message
-
-    # examine the returned record to validate the user entered credentials
-    for (user_id, username, password) in db.connection_cursor:
-
-        password_entered = password_plain.encode('utf-8')   # encode the plain text password entered by the user
-
-        # apply bcrypt on entered password and compare with value in database
-        if bcrypt.checkpw(base64.b64encode(hashlib.sha256(password_entered).digest()), password.encode('utf-8')):
-            # password is a match, now generate session token
-            success_message = generate_session(user_id, r)
+    if status_msg['status'] == 'database_error':
+        return status_msg       # the authentication attempt failed because of a database server error
+    elif status_msg['status'] == 'success':     # the authentication procedure ran sucessfully
+        if status_msg['login'] == 'success':    # the user entered valid credentials
+            # attempt to generate a session for the user
+            success_message = generate_session(status_msg['user_id'], r)
             if success_message['status'] == 'success':
+                # a valid session was generate for the user, the login procedure was sucessful
                 success_message['login'] = 'success'
                 return success_message
             else:
+                # there was an error generating the session for the user
                 return success_message
-        else:
-            # the user entered the incorrect password
-            success_message = {
-                'status': 'success',
-                'login': 'failed',
-            }
-            # print('Unsuccessful login attempt by user {}'.format(user_id))
-            return success_message
-
-
-
-
+        elif status_msg['login'] == 'failed':
+            # the user entered the incorrect login credentials 
+            return status_msg
