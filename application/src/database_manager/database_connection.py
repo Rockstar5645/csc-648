@@ -1,7 +1,6 @@
 import mysql.connector
 from mysql.connector import errorcode
 from src.config import db_conn
-import functools
 
 class MyDB(object):
 
