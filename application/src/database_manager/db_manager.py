@@ -110,4 +110,4 @@ class DB:
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
-        
+

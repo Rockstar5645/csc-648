@@ -65,13 +65,9 @@ def login():
         result = {}
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
         if result['status'] == 'success':
-            resp = make_response(redirect(url_for('search')))
-            resp.set_cookie('session_token', result)
-            return resp
+            return redirect(url_for('search'))
         else:
-            resp = make_response(url_for('login'))
-            resp.set_cookie(result)
-            return resp
+            return render_template('login.html', form=form)
     else:
         return render_template('login.html', form=form)
 
@@ -81,7 +77,6 @@ def login():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    session_token = request.cookies.get('session_token')
     form = RegistrationForm()
     if request.method == 'POST':
         result = {}
@@ -89,9 +84,9 @@ def register():
         if result['status'] == 'success':
             return redirect(url_for('login'))
         else:
-            return render_template('registration.html', form=form, session_token=session_token)
+            return render_template('registration.html', form=form)
     else:
-        return render_template('registration.html', form=form, session_token=session_token)
+        return render_template('registration.html', form=form)
 
 ################################################
 #                SINGLE MEDIA VIEW             #
@@ -107,9 +102,8 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
-    return render_template('user_profile.html', form=form, session_token=session_token)
+    return render_template('user_profile.html', form=form)
 
 ################################################
 #                Admin PROFILE                 #
@@ -118,9 +112,8 @@ def user_profile():
 @app.route('/admin_page')
 #@login_required
 def admin_page():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
-    return render_template('admin_page.html', form=form, session_token=session_token)
+    return render_template('admin_page.html', form=form,)
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -193,42 +186,39 @@ def uploaded_file(filename):
 
 @app.route("/avery")
 def avery():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/akhil")
 def akhil():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/chris")
 def chris():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/elliot")
 def elliot():
     session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/thomas")
 def thomas():
     session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
 
 @app.route("/bakulia")
 def bakulia():
     session_token = request.cookies.get('session_token')
     form = SearchForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member, form=form, session_token=session_token)
+    return render_template("about_team_member.html", team_member=team_member, form=form)
