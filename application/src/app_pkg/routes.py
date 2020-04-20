@@ -10,12 +10,15 @@ from src.app_pkg.forms import RegistrationForm
 from src.app_pkg.forms import SubmissionForm
 from werkzeug.utils import secure_filename
 from src.config import STATIC_PATH
+from src.app_pkg.objects import User
 
 
 ################################################
 #                GENERAL ROUTING               #
 ################################################
 # Routing by accessible web pages, main routes
+
+user = User()
 
 ################################################
 #                SEARCH / HOME                 #
@@ -25,7 +28,6 @@ from src.config import STATIC_PATH
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    session_token = request.cookies.get('session_token')
     # assign form and results list
     form = SearchForm()
     # if : user submits POST request
@@ -39,7 +41,7 @@ def search():
         form.term.default = term
         form.process()
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results, session_token=session_token)
+        return render_template('search.html', form=form, results=results)
     # else : GET fresh html page
     return render_template('search.html', form=form, session_token=session_token)
 
@@ -49,10 +51,9 @@ def search():
 
 @app.route("/about",methods=['GET', 'POST']) 
 def about():
-    session_token = request.cookies.get('session_token')
     form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team, form=form, session_token=session_token)
+    return render_template('about.html', team=team, form=form)
 
 ################################################
 #                     LOGIN                    #
@@ -64,7 +65,9 @@ def login():
     if request.method == 'POST':
         result = {}
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
+        print(result)
         if result['status'] == 'success':
+            
             return redirect(url_for('search'))
         else:
             return render_template('login.html', form=form)
