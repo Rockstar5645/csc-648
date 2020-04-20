@@ -1,0 +1,39 @@
+LOGIN METHOD:
+
+Parameters (username : string, password : string, ip_address : string)
+
+Return value:
+
+status_message : dict
+
+status_message['status']
+    a) 'success': indicates a successful login and session generation,
+        token can be retrieved from status_message['token']
+        redirect user to application page
+
+    b) 'invalid': indicates the user entered invalid credentials, redirect them to login page and tell them to try again
+
+    c)  'fail': the login procedure failed for one of several reasons, redirect user to login page and tell them
+        to try again
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+REGISTER METHOD:
+
+Parameters(username: string, email : string, password : string)
+
+Return value:
+
+status_message : dict
+
+status_message['status']
+    a) 'success': indicates successful user registration, and session generation,
+        token can be retrieved from status_message['token'],
+        redirect user to application page
+
+    b) 'user-added': indicates successful user registration but unsuccessful session generation
+        redirect user to login page
+
+    c) 'fail': the registration procedure failed for one of several reasons, redirect user to registration page and tell
+        them to try again
