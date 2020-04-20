@@ -64,7 +64,6 @@ def login():
     if request.method == 'POST':
         result = {}
         result = db.login(request.form['username'], request.form['password'], '127.0.0.1')
-        print(result)
         if result['status'] == 'success':
             resp = make_response(redirect(url_for('search')))
             resp.set_cookie('session_token', result)
