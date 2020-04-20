@@ -4,11 +4,15 @@
 <a class="nav-link mr-sm-auto" href="/">Snapster</a>
 <form method=post enctype=multipart/form-data>
    <input type=file name=file>
+   <h1>File name</h1>
    <input type=text name=filename value="{{request.form.filename}}">
+   <h1>description</h1>
    <input type=text name=description value="{{request.form.description}}">
+   <h1>price</h1>
    <input type=number name=price value="{{request.form.price}}">
-   <input type=submit value=Upload>
+   <h1>media type</h1>
    <div class="input-group-prepend">
       {{ form.category(class_="btn custom-select") }}
    </div>
+   <input type=submit value=Upload>
 </form>

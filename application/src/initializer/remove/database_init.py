@@ -1,6 +1,6 @@
-from src.database_manager import database_connection
+from src.database_manager.database_connection import MyDB
 
-db = database_connection.MyDB()
+db = MyDB()
 
 ############################
 #         USER TABLE       #
@@ -15,6 +15,7 @@ db.query("CREATE TABLE IF NOT EXISTS user ("
          "username VARCHAR(20),"
          "password BINARY(60),"
          "PRIMARY KEY (user_id))")
+db.commit()
 
 ###############################
 #      DIGITAL MEDIA TABLE    #

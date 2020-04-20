@@ -5,18 +5,24 @@ from src.config import session_duration
 # this method is called to check if the user is in a valid session
 def validate_session(session_token, r):
     try:
-        # pipelines ensure there is only one round trip to the server for multiple redis commands
-        # pipelines are also used to implement transactions
-        with r.pipeline() as pipe:  # open a redis pipeline with the resource manager
-            pipe.multi()    # indicates the start of a multi part transaction issued to the redis server
-            pipe.get(session_token) # retrieve session token entry if exists
-            pipe.expire(session_token, session_duration)    # reset session token expiration if session token exists
-            gotten_val = pipe.execute()     # execute pipeline
+        return_val = r.expire(session_token, session_duration)    # reset session token expiration if session token
+        # exists
 
-        if (gotten_val[1]):
-            print('value of {} was successfully retreived'.format(gotten_val[0].decode('utf-8')))
+        if return_val is True:
+            print('The user is still in a valid session')
+            success_msg = {
+                'status': 'success'
+            }
+            return success_msg
         else:
-            print('we were not able to update the value successfully')
+            # perhaps the session is inactive, or the user tampered with the cookie value
+            # TODO: maybe the user tampered with the cookie value
+            print('we were not able to reset the session duration successfully')
+            success_msg = {
+                'status': 'invalid_token',
+                'msg': 'the users session is inactive or the user tampered with the cookie value'
+            }
+            return success_msg
 
     except redis.exceptions.TimeoutError as err:
         print('Redis connection error: {}'.format(err))
