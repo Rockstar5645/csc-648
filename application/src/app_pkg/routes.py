@@ -2,7 +2,7 @@ import os
 from tkinter import Image
 from PIL import Image
 from src.app_pkg.forms import SearchForm, LoginForm, RegistrationForm
-from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory, jsonify
+from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
 from src.app_pkg import app
 from src.app_pkg import db
 from flask_login import login_required
@@ -21,19 +21,24 @@ from src.config import STATIC_PATH
 ################################################
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/search', methods=['GET', 'POST'])
-def search():
+@app.route('/', methods=['GET', 'POST'], defaults={'page':1})
+@app.route('/search', defaults={'page':0}, methods=['GET', 'POST'])
+@app.route('/search/page/<int:page>')
+def search(page):
     user = request.cookies.get('valid')
     # assign form and results list
     form = SearchForm()
+    perpage = 12
+    startat=page*perpage
     # if : user submits POST request
     if request.method == 'POST':
-        # query db
+        # get form data
         results = []
         term = request.form['term']
         cat = request.form['category']
-        results = db.search(term, cat)
+        # query db, handle results and pagination
+        results = db.search(term, cat, startat, perpage)
+        # set form persistance
         form.category.default = cat
         form.term.default = term
         form.process()

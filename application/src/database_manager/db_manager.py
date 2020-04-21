@@ -45,49 +45,51 @@ class DB:
     def upload(self, filename, description, file_path, thumb_path, category, price):
         return upload(filename, description, file_path, thumb_path, category, price, self.db_connection)
 
-    def search(self, term, category):
+    def search(self, term, category, startstat, perpage):
         if term =='': # if search term was blank
-            return self.get_category(category)
+            return self.get_category(category, startstat, perpage)
         else: # search like for term
-            return self.search_like(term, category)
+            return self.search_like(term, category, startstat, perpage)
 
-    def search_like(self, term, category):
+    def search_like(self, term, category, startstat, perpage):
         if category == 'all':
             # check all categories for search term
             self.db_connection.query(
                 "SELECT * "
                 "FROM digital_media_test "
-                "WHERE `name` LIKE %s OR `description` LIKE %s",
-                ("%" + term + "%","%" + term + "%",)
+                "WHERE `name` LIKE %s OR `description` LIKE %s LIMIT %s, %s",
+                ("%" + term + "%","%" + term + "%", startstat, perpage)
             )
         else:
             # check only for matches in certain category
             self.db_connection.query(
                 "SELECT * "
                 "FROM digital_media_test "
-                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s",
-                ("%" + term + "%","%" + term + "%", "%" + category,)
+                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s LIMIT %s, %s",
+                ("%" + term + "%","%" + term + "%", "%" + category, startstat, perpage)
             )
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         # if result is empty, get all objects in category
         if len(data) == 0:
-            data = self.get_category(category)
+            print('no term match, getting category')
+            data = self.get_category(category, startstat, perpage)
         return data
 
-    def get_category(self, category):
+    def get_category(self, category, startstat, perpage):
         # get all rows of a certain category
-        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s", ("%" + category + "%",))
+        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s LIMIT %s, %s", ("%" + category + "%", startstat, perpage))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         # if category is empty, return all rows in table
         if len(data) == 0:
-            data = self.get_all_media()
+            print('no category, getting all media')
+            data = self.get_all_media(startstat, perpage)
         return data
     
-    def get_all_media(self):
+    def get_all_media(self, startstat, perpage):
         # return all rows in table
-        self.db_connection.query("SELECT * FROM digital_media_test")
+        self.db_connection.query("SELECT * FROM digital_media_test LIMIT %s, %s", (startstat, perpage))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data
