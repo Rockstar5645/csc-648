@@ -4,6 +4,8 @@
 <small class=".container-sm"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
     Demonstration Only</small>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,7 +29,6 @@
 <!-- COPYRIGHT CLAIM -->
 <!-- COPYRIGHT CLAIM -->
 <!-- COPYRIGHT CLAIM -->
-
 
 
 <!--  <form method="POST" action="">-->
@@ -188,128 +189,139 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container register">
-	<div class="row">
-		<div class="col-md-5">
-			<div class="Snapster-description text-center">
-				<h2 style="color:White;font-family:Book Antiqua; "> Welcome to Snapster</h2>
-              <br><br><br><br>
-				<h4 style="color:White;font-family:Book Antiqua;">A web platform
-                At San Francisco State University
-                where the students and faculty members
-                buy, sell and share digital media
-                with ease and transparency. </h4>
-			</div>
-		</div>
-		<div class="col-md-7">
-                  <h2 class="mb-4">Register Form</h2>
-				<div class="form-group">
-				   <div class="register-form">
-                <form class="needs-validation" METHOD="POST" novalidate>
-
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="validationUsername">Username</label>
-                            <input type="text" class="form-control" id="validationCustom01"
-                                   placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Please choose username.
-                            </div>
-                          <small id="usernameHelpBlock" class="form-text text-muted">
-                                Must be 6-20 characters long, contain only letters and numbers
-                            </small>
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="validationEmail">Email</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email" value="" required>
-                                <div class="invalid-feedback">
-                                    Please enter your SFSU email.
-                                </div>
-
-                                <div class="input-group-append">
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>@mail.sfsu.edu</option>
-                                        <option value="1">@sfsu.edu</option>
-                                    </select>
-                                </div>
-                            </div>
-                          <small id="emailHelpBlock" class="form-text text-muted">
-                                Must be your SFSU email
-                            </small>
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="validationPassword">Password</label>
-                            <input type="password" class="form-control" id="validationCustom03" required>
-                            <div class="invalid-feedback">
-                                Please choose password.
-                            </div>
-                          <small id="passwordHelpBlock" class="form-text text-muted">
-                                Must be 8-20 characters long
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="validationPasswordConfirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="validationCustom05" required>
-
-                            <div class="invalid-feedback">
-                                Please confirm your password.
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                            <label class="form-check-label" for="invalidCheck">
-                                <small>I have read and agree to terms and conditions  <a href="#">Snapster Team of Use</a></small>
-
-                            </label>
-                            <div class="invalid-feedback">
-                                You must agree before submitting.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RECAPTCHA -->
-
-                    <div class="form-group text-center">
-                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                             data-callback="verifyRecaptchaCallback"
-                             data-expired-callback="expiredRecaptchaCallback"></div>
-                        <input class="form-control d-none" data-recaptcha="true" required
-                               data-error="Please complete the Captcha">
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-
-                    <button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button><br>
-                  <a href="/login"><p style="text-align:center">Already have an account?</p></a>
-                </form>
-
+    <div class="row">
+        <div class="col-md-5">
+            <div class="Snapster-description text-center">
+                <h2 style="color:White;font-family:Book Antiqua; "> Welcome to Snapster</h2>
+                <br><br><br><br>
+                <h4 style="color:White;font-family:Book Antiqua;">A web platform
+                    At San Francisco State University
+                    where the students and faculty members
+                    buy, sell and share digital media
+                    with ease and transparency. </h4>
             </div>
-			</div>
-		</div>
-	</div>
+        </div>
+        <div class="col-md-7">
+            <h2 class="mb-4">Register Form</h2>
+            <div class="form-group">
+                <div class="register-form">
+                    <form class="needs-validation" METHOD="POST" novalidate data->
+
+                        <div class="form-row">
+                            <div class="col mb-3">
+                                <label for="validationUsername">Username</label>
+                                <input type="text" class="form-control" id="validationUsername"
+                                       placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Please choose username.
+                                </div>
+                                <small id="usernameHelpBlock" class="form-text text-muted">
+                                    Must be 6-20 characters long, contain only letters and numbers
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col mb-3">
+                                <label for="validationEmail">Email</label>
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Your Email" value="" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your SFSU email.
+                                    </div>
+
+                                    <div class="input-group-append">
+                                        <select class="custom-select" id="validationEmail">
+                                            <option selected>@mail.sfsu.edu</option>
+                                            <option value="1">@sfsu.edu</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <small id="emailHelpBlock" class="form-text text-muted">
+                                    Must be your SFSU email
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col mb-3">
+                                <label for="password" data-error="wrong" data-success="right">Password</label>
+                                <input type="password" name="password" class="form-control validate" id="password"
+                                       required>
+                                <div class="col-md-4">
+
+                                    <div class="alert alert-warning password-alert" role="alert">
+                                        <small class="requirements leng"><i class="fas fa-check green-text"></i><i
+                                                class="fas fa-times red-text"></i> Your password must have at least 8
+                                            chars.
+                                        </small>
+                                    </div>
+                                </div>
+                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                    Must be 8-20 characters long
+                                </small>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mb-3">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword"
+                                       required>
+
+                                <div class="invalid-feedback">
+                                    Your password do not match.
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                <label class="form-check-label" for="invalidCheck">
+                                    <small>I have read and agree to terms and conditions <a href="#">Snapster Team of
+                                        Use</a></small>
+
+                                </label>
+                                <div class="invalid-feedback">
+                                    You must agree before submitting.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RECAPTCHA -->
+
+                        <div class="form-group text-center">
+                            <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                 data-callback="verifyRecaptchaCallback"
+                                 data-expired-callback="expiredRecaptchaCallback"></div>
+                            <input class="form-control d-none" data-recaptcha="true" required
+                                   data-error="Please complete the Captcha">
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+
+                        <button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+                        <br>
+                        <a href="/login"><p style="text-align:center">Already have an account?</p></a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+// Disabling form submissions if there are invalid fields
 (function() {
   'use strict';
   window.addEventListener('load', function() {
@@ -332,6 +344,74 @@
 </script>
 
 
+<!-- SCRIPT FOR PASSWORD LENTGH VALIDATION and PASSWORD MATCHING-->
+<script>
+  $(function () {
+    var $password = $(".form-control[id='password']");
+    var $passwordAlert = $(".password-alert");
+    var $requirements = $(".requirements");
+    var leng;
+    var $leng = $(".leng");
+
+    $requirements.addClass("wrong");
+    $password.on("focus", function(){$passwordAlert.show();});
+
+    $password.on("input blur", function (e) {
+        var el = $(this);
+        var val = el.val();
+        $passwordAlert.show();
+
+        if (val.length < 8) {
+            leng = false;
+        }
+        else if (val.length > 7) {
+            leng=true;
+        }
+
+        console.log(leng);
+
+        if(leng==true){
+            $(this).addClass("valid").removeClass("invalid");
+            $requirements.removeClass("wrong").addClass("good");
+            $passwordAlert.removeClass("alert-warning").addClass("alert-success").hide();
+        }
+        else
+        {
+            $(this).addClass("invalid").removeClass("valid");
+            $passwordAlert.removeClass("alert-success").addClass("alert-warning");
+
+            if(leng==false){$leng.addClass("wrong").removeClass("good");}
+            else{$leng.addClass("good").removeClass("wrong");}
+        }
+
+
+        if(e.type == "blur"){
+                $passwordAlert.hide();
+            }
+    });
+
+//    CHECK FOR PASSWORD MATCHING
+
+        var password = document.getElementById("password")
+        confirmPassword = document.getElementById("confirmPassword");
+
+        function validatePassword(){
+            if(password.value != confirmPassword.value) {
+                confirmPassword.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirmPassword.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirmPassword.onkeyup = validatePassword;
+});
+
+
+
+
+</script>
+
 
 <style>
 body{
@@ -353,6 +433,24 @@ body{
 		border-top-right-radius: 0.5rem;
 		border-bottom-right-radius: 0.5rem;
 	}
+
+    .alert{
+        display: none;
+    }
+
+    .requirements{
+        list-style-type: none;
+    }
+
+    .wrong .fa-check{
+        display: none;
+    }
+
+    .good .fa-times{
+        display: none;
+    }
+
+
 
 </style>
 

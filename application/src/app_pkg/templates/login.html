@@ -2,93 +2,11 @@
 
 {% block content %}
 
-  <style>
-    .claim {
-      width: 1140px;
-      height: 40px;
-
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 29px;
-      text-align: center;
-
-    }
-
-    .intro-basic {
-      
-      text-align: center;
-      color: #940CFF;
-    }
-
-    .intro-basic.p {
-      top: 350px;
-    }
-
-    .inputbox {
-      width: 386px;
-      height: 43px;
-      left: 90%;
-      top: 61px;
-
-      background: #FFFBFB;
-
-      border-radius: 20px;
-    }
-
-    .inputbox-text {
-      width: 300px;
-      height: 35px;
-      left: 68px;
-      top: 147px;
-
-      font-style: normal;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 22px;
-
-      color: #000000;
-
-    }
-
-    .button {
-      width: 384px;
-      height: 59px;
-      left: 25px;
-      top: 415px;
-
-      background: #FFC700;
-      border-radius: 10px;
-    }
-
-    .button-text {
-      font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 50px;
-      text-align: center;
-
-      color: #FFFFFF;
-    }
-
-    .text {
-      font-weight: bold;
-    }
-
-    .text.alreadyhaveacc {
-      padding-left: 40%;
-    }
-
-    .text.intro {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 36px;
-    }
-
-    .text.intro.title {
-      font-size: 48px;
-      font-weight: bold
-    }
-  </style>
+  <!-- COPYRIGHT CLAIM -->
+  <!-- COPYRIGHT CLAIM -->
+  <!-- COPYRIGHT CLAIM -->
+<small class=".container-sm"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
+    Demonstration Only</small>
 
 
   <!-- Navigation Bar Documentation -->
@@ -99,151 +17,129 @@
       aria-label="Toggle navigation">
       <i class="fas fa-bars"></i>
     </button>
-
-
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">{% block title %}Login{% endblock %}</a>
-        </li>
-      </ul>
-    </div>
   </nav>
 
 
-  <!-- COPYRIGHT CLAIM -->
-  <!-- COPYRIGHT CLAIM -->
-  <!-- COPYRIGHT CLAIM -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!------ Include the above in your HEAD tag ---------->
 
-  <h5 class=".container-sm"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
-    Demonstration Only</h5>
+<div class="container register">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="Snapster-description text-center">
+				<h2 style="color:White;font-family:Book Antiqua;"> Welcome to Snapster</h2>
+              <br><br><br><br>
+				<h4 style="color:White;font-family:Book Antiqua;">A web platform
+                At San Francisco State University
+                where the students and faculty members
+                buy, sell and share digital media
+                with ease and transparency. </h4>
+			</div>
+		</div>
+		<div class="col-md-7">
+				<div class="form-group">
+				   <div class="register-form">
+                <form class="needs-validation" METHOD="POST" novalidate>
 
-  <form method="POST" action="">
-    <div class="container-fluid">
-      <div class="row mx-auto">
-
-        <!-- DIVIDE BOX1 -->
-        <!-- DIVIDE BOX1 -->
-        <!-- DIVIDE BOX1 -->
-        <div class="col-sm-3">
-        </div>
-
-
-        <!--MAIN DIVIDE BOX -->
-        <!--MAIN DIVIDE BOX -->
-        <!--MAIN DIVIDE BOX -->
-        <div class="col-sm-6">
-          <!-- WEBSITE INTRO -->
-          <!-- WEBSITE INTRO -->
-          <!-- WEBSITE INTRO -->
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="intro-basic">
-                <h2 class="text intro title">
-                  Welcome to Snapster
-                  <br>
-                </h2>
-                <div>
-                  <h5 class="text intro">
-                    <div class="col-sm">
-                      A web platform
-                      <br>
-                    </div>
-
-                    <div class="col-sm">
-                      At San Francisco State University,
-                      <br>
-                    </div>
-
-                    <div class="col-sm">
-                      where the students and faculty members
-                      <br>
-                    </div>
-
-                    <div class="col-sm">
-                      buy, sell and share digital media
-                      <br>
-                    </div>
-
-                    <div class="col-sm">
-                      with ease and transparency.
-                      <br>
-                    </div>
-                  </h5>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-            <!-- REGISTER BOX -->
-            <!-- REGISTER BOX -->
-            <!-- REGISTER BOX -->
-            <div class="col-sm-6">
-              <div class="row">
-                <!-- INPUTBOX DIVIDE BOX -->
-                <div class="row mx-auto">
-                  <div class="col-sm">
-                    <div class="row mx-auto">
-                      <div class="col-xl">
-                        <div class="row">
-                          <div class="col">
-                            <label for="username" class="inputbox-text">Username or SFSU Email: </label>
-                          </div>
+                    <div class="form-row">
+                        <div class="col mb-3">
+                            <label for="validationUsername">Username or Email</label>
+                            <input type="text" class="form-control" id="validationCustom01"
+                                   placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Please enter your username or SFSU email.
+                            </div>
                         </div>
-                        {{ form.username(class="inputbox") }}
-                      </div>
                     </div>
-                  </div>
-                </div>
-                <!-- END OF INPUTBOX DIVIDE BOX -->
 
-                <!-- INPUTBOX DIVIDE BOX 2 -->
-                <div class="row mx-auto">
-                  <div class="col-sm">
-                    <div class="row mx-auto">
-                      <div class="col-xl">
-                        <div class="row">
-                          <div class="col">
-                            <label for="pw" class="inputbox-text">Password: </label>
-                          </div>
+
+                    <div class="form-row">
+                        <div class="col mb-3">
+                            <label for="validationPassword">Password</label>
+                            <input type="password" class="form-control" id="validationCustom03" required>
+                            <div class="invalid-feedback">
+                                Please enter your password.
+                            </div>
                         </div>
-                        {{ form.password(class="inputbox") }}
-                      </div>
                     </div>
-                  </div>
-                </div>
-                <!-- END OF INPUTBOX DIVIDE BOX 2 -->
 
-              </div>
 
-              <!-- SUBMIT BUTTON -->
-              <!-- SUBMIT BUTTON -->
-              <!-- SUBMIT BUTTON -->
-              <br>
-              <div class="button-text mx-auto">
-                {{ form.submit(class="button mx-auto") }}
-              </div>
-              <div>
-                <a href="/forgetpassword" class="text alreadyhaveacc">Forgot Password?</a>
-              </div>
-              <div>
-                <a href="/register" class="text alreadyhaveacc">Don't have an account?</a>
-              </div>
+                    <!-- RECAPTCHA -->
+
+                    <div class="form-group text-center">
+                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                             data-callback="verifyRecaptchaCallback"
+                             data-expired-callback="expiredRecaptchaCallback"></div>
+                        <input class="form-control d-none" data-recaptcha="true" required
+                               data-error="Please complete the Captcha">
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Login</button><br>
+                  <a href="/register"><p style="text-align:center">Don't have an account?</p></a>
+                </form>
+
             </div>
-          </div>
-        </div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-        <!-- DIVIDE BOX2 -->
-        <!-- DIVIDE BOX2 -->
-        <!-- DIVIDE BOX2 -->
-        <div class="col-sm-3">
-        </div>
-      </div>
-    </div>
-  </form>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+
+</script>
+
+
+
+<style>
+body{
+		background-color: #E9E9E9;
+	}
+	.register{
+		padding: 4%;
+	}
+	.col-md-5{
+		background: linear-gradient(to bottom, #9966ff 4%, #ff9966 100%);
+		padding: 4%;
+		border-top-left-radius: .5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+
+	.col-md-7{
+		background: #fff;
+		padding: 3%;
+		border-top-right-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+
+</style>
+
+
+
+
+
+
 
 {% endblock %}
