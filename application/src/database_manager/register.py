@@ -18,6 +18,12 @@ def register(username, email, password, db, r):
                 'status': 'user-added'
             }
             return err_msg
+
+    elif status_msg['status'] == 'username_exists':
+        err_msg = {
+            'status': 'user-exists'
+        }
+        return err_msg
     elif status_msg['status'] == 'database_error':
         err_msg = {
             'status': 'fail'
