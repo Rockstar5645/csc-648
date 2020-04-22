@@ -7,12 +7,13 @@ from src.config import redis_conn
 def redis_connection_params():
     return dict(redis_conn)
 
-def test_redis_reconnect(redis_connection_params):
+@pytest.fixture()
+def redis_connection_collapse(redis_connection_params):
     red_cnx = redis_connection_params
     r = redis.Redis(**red_cnx)
-    r.ping()    # establish primary connection to redis server
+    r.ping()  # establish primary connection to redis server
     r2 = redis.Redis(**red_cnx)
-    r2.ping()   # establish secondary connection to redis server
+    r2.ping()  # establish secondary connection to redis server
     clients = r2.execute_command('client list')
 
     pp = pprint.PrettyPrinter(indent=4)
@@ -26,10 +27,13 @@ def test_redis_reconnect(redis_connection_params):
         print('killed client 0')
         r2.execute_command('client kill id {}'.format(clients[0]['id']))
 
+    yield r
+
+
+def test_redis_reconnect(redis_connection_collapse):
+
+    r = redis_connection_collapse
     assert r.ping() is True
-
-
-
 
 
 def test_wrong_host(redis_connection_params):

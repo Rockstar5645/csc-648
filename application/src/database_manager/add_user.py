@@ -2,6 +2,8 @@ import bcrypt
 import base64
 import hashlib
 import mysql.connector
+from mysql.connector import errorcode
+
 
 def add_user(username, email, password, db):
     # user_id (auto increment), first_name, last_name, email, phone_number, username, password
@@ -32,12 +34,19 @@ def add_user(username, email, password, db):
         }
         return success_message
     except mysql.connector.Error as err:
-        # FIXME: log this potentially fatal error
-        # FIXME: distinguish between database connection error, and username already exists error
-        # TODO: what other errors could occur with the database connection object?
-        # print("Failed to create user: {}".format(err))
-        error_message = {
-            'status': 'database_error',
-            'message': "Failed to create user: {}".format(err)
-        }
-        return error_message
+        if err.errno == errorcode.ER_DUP_ENTRY:
+            # The user picked a username that already exists
+            error_message = {
+                'status': 'username_exists'
+            }
+            return error_message
+        else:
+            # FIXME: log this potentially fatal error
+            # FIXME: distinguish between database connection error, and username already exists error
+            # TODO: what other errors could occur with the database connection object?
+            # print("Failed to create user: {}".format(err))
+            error_message = {
+                'status': 'database_error',
+                'message': "Failed to create user: {}".format(err)
+            }
+            return error_message
