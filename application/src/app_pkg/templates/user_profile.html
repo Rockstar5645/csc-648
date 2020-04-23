@@ -2,6 +2,20 @@
 
 {% block content %}
 
+<style>
+
+.custom #tabs li {
+   background: #efefef;
+}
+
+.nav-tabs > li > a.active {
+  background-color: orange !important;
+  border-style: none;
+  border-radius: 0;
+}
+
+</style>
+
 <!-- USER LOG OUT DROPDOWN -->
 <div class="container">
 
@@ -19,12 +33,16 @@
 <!-- MY ITEMS AND MESSAGES TAB -->
 <div class="container">
     <nav class="mt-5">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab"
-               aria-controls="nav-items" aria-selected="true"><i class="fas fa-photo-video"></i> My Items</a>
-            <a class="nav-item nav-link" id="nav-messages-tab" data-toggle="tab" href="#nav-messages" role="tab"
+        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:160%">
+            <li class="nav-item">
+                <a class="nav-link active" style="color:purple;" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab"
+               aria-controls="nav-items"  aria-selected="true"><i class="fas fa-photo-video"></i> My Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:purple;" id="nav-messages-tab" data-toggle="tab" href="#nav-messages" role="tab"
                aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> My Messages</a>
-        </div>
+            </li>
+        </ul>
     </nav>
 
     <div class="tab-content" id="nav-tabContent">
