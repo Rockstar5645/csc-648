@@ -2,8 +2,72 @@
 
 {% block content %}
 
+
+<style>
+
+
+.custom #tabs li {
+   background: #efefef;
+}
+
+.nav-tabs > li > a.active {
+  background-color: orange !important;
+  border-style: none;
+  border-radius: 0;
+}
+
+.greenText{ background-color:green; }
+
+select {
+
+  /* styling */
+  background-color: #dbc3e3;
+  border: none;
+  border-radius: none;
+  display: inline-block;
+  font: Times New Roman;
+  line-height: 1.0em;
+  padding: 0.5em 2.0em 0.5em 0.5em;
+  align: right;
+
+  /* reset */
+
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+
+select.minimal {
+  background-image:
+    linear-gradient(45deg, transparent 50%, purple 50%),
+    linear-gradient(135deg, purple 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 1px),
+    calc(100% - 15px) calc(1em + 1px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <!-- USER LOG OUT DROPDOWN -->
-<div class="container">
+<div class="container mt-5">
+
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
         <li class="mr-5">Welcome <strong>{% block title %}Admin{% endblock %}</strong></li>
@@ -15,20 +79,33 @@
 
 
 <!-- MY ITEMS AND MESSAGES TAB -->
-<div class="container">
+<div class="container mt-5">
+     <caption>Admin Dashboard</caption>
     <nav class="mt-5">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-            <a class="nav-pending nav-link active" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab"
-               aria-controls="nav-pending" aria-selected="true"><i class="fas fa-info-circle"></i> Pending</a>
-
-            <a class="nav-posts nav-link" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab"
+        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:160%">
+            <li class="nav-item">
+                 <a class="nav-link active" style="color:purple;" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab"
+               aria-controls="nav-pending" aria-selected="true"><i class="fas fa-info-circle"></i> Pending
+                 <span class="w3-badge w3-right w3-small w3-orange">8</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:purple;" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab"
                aria-controls="nav-posts" aria-selected="false"><i class="far fa-image"></i> Posts</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link"  style="color:purple;" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab"
+               aria-controls="nav-users" aria-selected="false"><i class="fas fa-user-graduate"></i> Users
+                    <span class="w3-badge w3-right w3-orange w3-small">7</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:purple;" id="nav-messages-tab" data-toggle="tab" href="#nav-messages"
+                   role="tab"
+                   aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> Messages
+                    <span class="w3-badge w3-right w3-orange w3-small">4</span></a>
 
-            <a class="nav-users nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab"
-               aria-controls="nav-users" aria-selected="false"><i class="fas fa-user-graduate"></i> Users</a>
-
-        </div>
+            </li>
+        </ul>
     </nav>
 
     <div class="tab-content" id="nav-tabContent">
@@ -175,7 +252,12 @@
                     <thead style="background:#dbc3e3;">
                     <tr>
                         <th>Digital Media</th>
-                        <th>Status</th>
+                        <th>
+                            <select class="minimal" id="posts">
+                                <option  selected value="allPosts">Posts</option>
+                                <option value="approve">Approved</option>
+                                <option value="rejected" style="color:red;">Rejected</option>
+                            </select></th>
                         <th>Date Reviewed</th>
                     </tr>
                     </thead>
@@ -542,12 +624,118 @@
                     </tr>
                     </tbody>
 
-
-
-
-
                 </table>
             </div>
+        </div>
+
+        <!--        MY MESSAGES TAD-->
+        <!--        MY MESSAGES TAD-->
+        <!--        MY MESSAGES TAD-->
+        <!--        MY MESSAGES TAD-->
+        <!--        MY MESSAGES TAD-->
+
+                <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
+            <table class="table">
+                <thead style="background:#dbc3e3;">
+                <tr>
+                    <th>Subject Tittle</th>
+                    <th>Date</th>
+                    <th>Sender</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Subject</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
@@ -641,6 +829,61 @@
         </div>
     </div>
 </div>
+
+     <div class="modal fade" id="ReadMessage" tabindex="-1" role="dialog" aria-labelledby="ReadMessageLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">View message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form>
+
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Sender:</label>
+                                <input type="text" class="form-control" id="recipient-name"
+                                       placeholder="username@mail.sfsu.edu"
+                                       readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Subject:</label>
+                                <input type="text" class="form-control" id="message-subject"
+                                       placeholder="Digital Media Title"
+                                       readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label"> Message:</label>
+                                <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure dolor."
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                                class="btn btn-success">Reply
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
 
 
 <!--PAGINATION -->
