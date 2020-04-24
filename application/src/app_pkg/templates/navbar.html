@@ -176,7 +176,7 @@
                         </div>
                         
                             
-                        <div class="form-row justify-content-md-center">
+                        <div id="priceDiv" class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadPrice">Price</label><span style="color:red;">*</span>
                                 <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
@@ -207,6 +207,23 @@
                             &ThickSpace;
                             <button class="btn btn-warning" type="submit">Submit</button>
                         </div>
+
+                        <script text="javascript">
+                            $(document).ready(function(){
+                                $("#priceDiv").hide()
+                                
+                                $("#uploadLicense").change(function(){
+                                    let val = $("#uploadLicense option:selected").text()
+                                    if(val === "Paid") {
+                                        console.log(val)
+                                        $("#priceDiv").show()
+                                    }
+                                    else {
+                                        $("#priceDiv").hide()
+                                    }
+                                });
+                            });
+                        </script>
 
                     </form>
                 </div>
