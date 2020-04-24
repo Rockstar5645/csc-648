@@ -118,7 +118,7 @@
 <!-- https://getbootstrap.com/docs/4.4/components/modal/ -->
 <div id="UploadForm" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle"
      aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -130,65 +130,73 @@
 
             <div class="modal-body">
                 <div class="container">
-                    <h4 class="modal-title text-secondary">Complete the form to upload your content to Snapster</h4>
+                    <h4 class="modal-title text-secondary">Complete the following form to upload your content to Snapster</h4>
                     <br />
                     <form method="POST" action="{{ url_for('search') }}">
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadTitle">Title</label><span style="color:red;">*</span>
+                                <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required
+                                    placeholder="" style="max-width: 350px;">
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadCategory">Category</label><span style="color:red;">*</span>
+                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">Spongebob</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadCategory">Media Type</label><span style="color:red;">*</span>
+                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">image</option>
+                                    <option value="2">video</option>
+                                    <option value="3">audio</option>
+                                    <option value="4">document</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadLicense">License</label><span style="color:red;">*</span>
+                                <select id="uploadLicense" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">Free</option>
+                                    <option value="2">Paid</option>
+                                </select>
+                            </div>
+                        </div>
                         
-                            <div class="row justify-content-md-center">
-                                <div class="col">
-                                    <label for="uploadTitle">Title</label><span style="color:red;">*</span>
-                                </div>
+                            
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadPrice">Price</label><span style="color:red;">*</span>
+                                <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
                             </div>
-                            <div class="row justify-content-md-center">
-                                <div class="col">
-                                    <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required
-                                    placeholder="" style="max-width: 300px;">
-                                </div>
+                        </div>
+                        
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadDescription">Description</label>
+                                <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"></textarea>
                             </div>
-
-                        <div class="form-group">
-                            <label for="uploadCategory">Category</label><span style="color:red;">*</span>
-                            <select id="uploadCategory" class="form-control" required style="max-width: 200px;">
-                                <option value="">Select</option>
-                                <option value="1">Spongebob</option>
-                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="uploadCategory">Media Type</label><span style="color:red;">*</span>
-                            <select id="uploadCategory" class="form-control" required style="max-width: 200px;">
-                                <option value="">Select</option>
-                                <option value="1">image</option>
-                                <option value="2">video</option>
-                                <option value="3">audio</option>
-                                <option value="4">document</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uploadLicense">License</label><span style="color:red;">*</span>
-                            <select id="uploadLicense" class="form-control" required style="max-width: 200px;">
-                                <option value="">Select</option>
-                                <option value="1">Free</option>
-                                <option value="2">Paid</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uploadPrice">Price</label><span style="color:red;">*</span>
-                            <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uploadDescription">Description</label>
-                            <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="custom-file">
-                                <input type="file" class="form-control custom-file-input" id="uploadFile" required>
-                                <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>
-                            </div>  
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control custom-file-input" id="uploadFile" required>
+                                    <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>
+                                </div>  
+                            </div>
                         </div>
                         
                         <br />
