@@ -21,3 +21,6 @@ wsgi.py
 
 # ignore jetbrains IDE stuff
 .idea
+
+# ignore visual studio stuff
+.vs
