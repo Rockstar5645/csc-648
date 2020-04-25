@@ -24,3 +24,4 @@ wsgi.py
 
 # ignore visual studio stuff
 .vs
+csc648-fa20-team06.pyproj
