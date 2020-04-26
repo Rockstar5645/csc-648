@@ -1,9 +1,72 @@
 {% extends 'navbar.html' %}
 
+
+
+
 {% block content %}
 
+
+<style>
+
+
+.custom #tabs li {
+   background: #efefef;
+}
+
+.nav-tabs > li > a.active {
+  background-color: orange !important;
+  border-style: none;
+  border-radius: 0;
+}
+
+select {
+
+  /* styling */
+  background-color: #dbc3e3;
+  border: none;
+  border-radius: none;
+  display: inline-block;
+  font: Times New Roman;
+  line-height: 1.0em;
+  padding: 0.5em 2.5em 0.5em 0.5em;
+  align: right;
+
+  /* reset */
+
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+
+select.minimal {
+  background-image:
+    linear-gradient(45deg, transparent 50%, purple 50%),
+    linear-gradient(135deg, purple 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 1px),
+    calc(100% - 15px) calc(1em + 1px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!-- USER LOG OUT DROPDOWN -->
-<div class="container">
+<div class="container position-right">
 
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -17,14 +80,24 @@
 
 
 <!-- MY ITEMS AND MESSAGES TAB -->
-<div class="container">
+<div class="container mt-5">
+    <caption>My Dashboard</caption>
     <nav class="mt-5">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab"
-               aria-controls="nav-items" aria-selected="true"><i class="fas fa-photo-video"></i> My Items</a>
-            <a class="nav-item nav-link" id="nav-messages-tab" data-toggle="tab" href="#nav-messages" role="tab"
-               aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> My Messages</a>
-        </div>
+        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:160%">
+            <li class="nav-item">
+                <a class="nav-link active" style="color:purple;" id="nav-items-tab" data-toggle="tab" href="#nav-items"
+                   role="tab"
+                   aria-controls="nav-items" aria-selected="true"><i class="fas fa-photo-video"></i> My Items
+                    <span class="w3-badge w3-right w3-small w3-orange">8</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color:purple;" id="nav-messages-tab" data-toggle="tab" href="#nav-messages"
+                   role="tab"
+                   aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> My Messages
+                    <span class="w3-badge w3-right w3-orange w3-small">12</span></a>
+
+            </li>
+        </ul>
     </nav>
 
     <div class="tab-content" id="nav-tabContent">
@@ -36,12 +109,42 @@
         <div class="tab-pane fade show active" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
             <div>
                 <table class="table">
-                    <thead>
+                    <thead  style="background:#dbc3e3;" >
                     <tr>
-                        <th>Item Tittle</th>
-                        <th>Date</th>
-                        <th>Price</th>
-                        <th>Status</th>
+                        <th >
+                            Media Title
+                        </th>
+                        <th>
+                            <select class="minimal" id="sortMediaType">
+                                <option  selected value="allMedia"  style="background:orange;">Media type</option>
+                                <option value="image">Image</option>
+                                <option value="video">Video</option>
+                                <option value="audio">Audio</option>
+                                <option value="document">Document</option>
+                            </select>
+                        </th>
+
+                        <th>
+                            <select class="minimal" id="sortDate">
+                                <option selected value="lastDate">Date</option>
+                                <option value="firstDate">First Date</option>
+
+                            </select>
+                        </th>
+                        <th>
+                            <select class="minimal" id="sortPrice">
+                                <option selected value="allPrice">Price</option>
+                                <option value="minPrice">Low</option>
+                                <option value="maxPrice">High</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select class="minimal" id="sortStatus">
+                                <option selected value="allStatus">Status</option>
+                                <option value="soldStatus">Sold</option>
+                                <option value="purchasedStatus">Purchased</option>
+                                 <option value="rejectedStatus">Rejected</option>
+                            </select></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -49,10 +152,11 @@
                     <tr>
 
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
-
+                        <td>Image</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
@@ -65,9 +169,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Video</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
@@ -80,9 +186,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Audio</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
@@ -95,9 +203,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Document</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
@@ -110,9 +220,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Image</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
@@ -125,9 +237,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Document</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
@@ -140,9 +254,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Image</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
@@ -155,9 +271,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Video</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
@@ -170,9 +288,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Audio</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>rejected</td>
@@ -185,9 +305,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#" data-toggle="modal"
+                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                               data-toggle="modal"
                                type="button">item_title</a>
                         </td>
+                        <td>Image</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
@@ -200,6 +322,95 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+
+
+            <!-- SINGLE MEDIA VIEW -->
+            <!-- SINGLE MEDIA VIEW -->
+
+
+            <div aria-hidden="true" aria-labelledby="viewMedia" class="modal fade" id="viewMedia" role="dialog"
+                 tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content">
+                        <!-- Title of the Media -->
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container">
+                                <form>
+                                    <!-- Image of the Media -->
+                                    <div class=media">
+                                        <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
+                                             height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
+                                    </div>
+
+                                    <!-- Digital media info -->
+                                    <div>
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Category:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>BIO 417</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Media type:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>Image</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">License:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>Free</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Author:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>Username</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mr-3">
+                                            <label class="font-weight-bold">Description:</label>
+                                            <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                                ut aliquip
+                                                ex ea commodo consequat. Duis aute irure dolor."
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cancel or Download Media Buttons -->
+
+                                    <div class="form-group text-right">
+                                        <button class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -262,9 +473,10 @@
         <!-- MY MESSAGES TAB -->
         <!-- MY MESSAGES TAB -->
         <!-- MY MESSAGES TAB -->
+
         <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
             <table class="table">
-                <thead>
+                <thead >
                 <tr>
                     <th>Subject Tittle</th>
                     <th>Date</th>
@@ -500,7 +712,8 @@
 
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label"> Message:</label>
-                                 <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit,
                                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                                     ex ea commodo consequat. Duis aute irure dolor."
@@ -512,7 +725,9 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-success">Reply</button>
+                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                                class="btn btn-success">Reply
+                        </button>
                     </div>
                 </div>
             </div>
@@ -535,11 +750,11 @@
             <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" style="color:purple;" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" style="color:purple;" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" style="color:purple;" href="#">3</a></li>
             <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+                <a class="page-link" style="color:purple;" href="#">Next</a>
             </li>
         </ul>
     </nav>

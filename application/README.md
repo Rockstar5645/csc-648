@@ -13,7 +13,7 @@
     2.c) create a file called 'config.py' inside of 'src' directory
     2.d) copy and paste the following inside of 'config.py':
     2.e) replace [YOUR PASSWORD HERE] with your password.
-    2.f) update the UPLOAD_FOLDER path
+    2.f) update the STATIC_PATH
     db_conn = {
         'user': 'root',
         'password' : '[YOUR PASSWORD HERE]',

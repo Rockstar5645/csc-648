@@ -35,5 +35,7 @@ status_message['status']
     b) 'user-added': indicates successful user registration but unsuccessful session generation
         redirect user to login page
 
+    c) 'user-exists': the username entered by the user already exists
+
     c) 'fail': the registration procedure failed for one of several reasons, redirect user to registration page and tell
         them to try again

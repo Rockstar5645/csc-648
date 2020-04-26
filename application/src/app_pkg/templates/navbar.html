@@ -53,7 +53,7 @@
     </title>
 </head>
 <body>
-
+<small>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</small>
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -74,7 +74,7 @@
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
                         </div>
-                        {{ form.term(class_="form-control", style="width: 350px", maxlength="32") }}
+                        {{ form.term(class_="form-control", style="width: 325px", maxlength="32") }}
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search"></i>
@@ -86,19 +86,39 @@
         </ul>
 
         <div class="mt-1 mb-1">
-             <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
-            </button>
-            <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
-            <span style="color: white;">|</span>
-            <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
-            <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+            <div class="row">
+                <div class="col-auto pr-0">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" id="aboutDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                          About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+                          <a class="dropdown-item" href="/about">Team</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
+                    </button>
+                    <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <span style="color: white;">|</span>
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
+                </div>
+                <div class="col-auto pl-1">
+                    <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+                </div>
+            </div>
         </div>
 
     </div>
 
 </nav>
 
-<h5>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</h5>
+
 
 {% block content %}{% endblock %}
 
@@ -118,81 +138,114 @@
 <!-- https://getbootstrap.com/docs/4.4/components/modal/ -->
 <div id="UploadForm" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="uploadFormTitle"
      aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h2 class="modal-title" id="uploadFormTitle">Upload Media</h2>
-
+                <h2 class="modal-title" id="uploadFormTitle">Submit Media</h2> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
             </div>
 
             <div class="modal-body">
                 <div class="container">
+                    <h4 class="modal-title text-secondary">Complete the following form to upload your content to Snapster</h4>
+                    <br />
                     <form method="POST" action="{{ url_for('search') }}">
-                        <div class="form-group">
-                            <div class="custom-file">
-                                <input type="file" class="form-control custom-file-input" id="uploadFile" required>
-                                <label class="custom-file-label" for="uploadFile">Select a file to upload</label>
-                            </div>  
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadTitle">Title</label><span style="color:red;">*</span>
+                                <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required
+                                    placeholder="The searchable name of your media." style="max-width: 350px;">
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadCategory">Category</label><span style="color:red;">*</span>
+                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">Spongebob</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadCategory">Media Type</label><span style="color:red;">*</span>
+                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">image</option>
+                                    <option value="2">video</option>
+                                    <option value="3">audio</option>
+                                    <option value="4">document</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadLicense">License</label><span style="color:red;">*</span>
+                                <select id="uploadLicense" class="form-control" required style="max-width: 250px;">
+                                    <option value="">Select</option>
+                                    <option value="1">Free</option>
+                                    <option value="2">Paid</option>
+                                </select>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="uploadTitle">Title*</label>
-                            <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uploadCategory">Category*</label>
-                            <select id="uploadCategory" class="form-control" required>
-                                <option value="">Select</option>
-                                <option value="1">Spongebob</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Media Type*</label>
-                            <select id="uploadCategory" class="form-control" required>
-                                <option value="">Select</option>
-                                <option value="1">image</option>
-                                <option value="2">video</option>
-                                <option value="3">audio</option>
-                                <option value="4">document</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-lg-1">
-                                    <label for="uploadPrice">License*</label>
-                                </div>
-                                <div class="col">
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="uploadFree">
-                                        <label class="form-check-label" for="uploadFree">Free</label>
-                                    </div>
-                                </div>
+                            
+                        <div id="priceDiv" class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadPrice">Price</label><span style="color:red;">*</span>
+                                <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
                             </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}">
-                                </div>
+                        </div>
+                        
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <label for="uploadDescription">Description</label>
+                                <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"
+                                placeholder="Briefly describe your content (optional)."></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="uploadDescription">Description</label>
-                            <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}"></textarea>
+                        <div class="form-row justify-content-md-center">
+                            <div class="form-group col-lg-6 col-md-8">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control custom-file-input" id="uploadFile" required>
+                                    <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>
+                                </div>  
+                            </div>
                         </div>
+                        
+                        <br />
+                        <p class="text-muted">Note: it may take up to 24 hours for your submitted content to be approved and visible on the site.</p>
+                        <hr />
 
                         <div class="form-group text-right">
                             <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            &MediumSpace;
+                            &ThickSpace;
                             <button class="btn btn-warning" type="submit">Submit</button>
                         </div>
+
+                        <script text="javascript">
+                            $(document).ready(function(){
+                                $("#priceDiv").hide()
+                                
+                                $("#uploadLicense").change(function(){
+                                    let val = $("#uploadLicense option:selected").text()
+                                    if(val === "Paid") {
+                                        console.log(val)
+                                        $("#priceDiv").show()
+                                    }
+                                    else {
+                                        $("#priceDiv").hide()
+                                    }
+                                });
+                            });
+                        </script>
 
                     </form>
                 </div>
