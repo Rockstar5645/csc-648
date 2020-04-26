@@ -24,7 +24,7 @@ from src.config import STATIC_PATH
 @app.route('/search', defaults={'page':0}, methods=['GET', 'POST'])
 @app.route('/search/page/<int:page>', methods=['GET','POST'])
 def search(page):
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     # assign form and results list
     form = SearchForm()
     perpage = 12
@@ -52,9 +52,9 @@ def search(page):
         else:
             prev_url = prev_url-1
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results, user=user, next_url=next_url, prev_url=prev_url, page=page)
+        return render_template('search.html', form=form, results=results, isloggedin=isloggedin, next_url=next_url, prev_url=prev_url, page=page)
     # else : GET fresh html page
-    return render_template('search.html', form=form, user=user, page=0)
+    return render_template('search.html', form=form, isloggedin=isloggedin, page=0)
 
 ################################################
 #                     LOGIN                    #
@@ -62,15 +62,18 @@ def search(page):
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = LoginForm()
     if request.method == 'POST':
         result = {}
         result = db.login(request.form['username'], request.form['password'], request.remote_addr)
         if result['status'] == 'success':
+            print('login success')
             res = make_response(redirect(url_for('search')))
             res.set_cookie('token', result['token'])
             return res
         else:
+            print('login fail')
             res = make_response(redirect(url_for('login')))
             res.set_cookie('token', 'none')
             return res
@@ -83,6 +86,7 @@ def login():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = RegistrationForm()
     if request.method == 'POST':
         result = {}
@@ -91,12 +95,10 @@ def register():
             if result['status'] == 'success':
                 res = make_response(redirect(url_for('search')))
                 res.set_cookie('token', result['token'], max_age=None)
-                res.set_cookie('valid', 'valid', max_age=None)
                 return res
             else:
                 res = make_response(redirect(url_for('login')))
                 res.set_cookie('token', 'none', max_age=None)
-                res.set_cookie('valid', 'not valid', max_age=None)
                 return res
         else:
             return render_template('registration.html', form=form)
@@ -109,19 +111,19 @@ def register():
 
 @app.route("/about",methods=['GET', 'POST']) 
 def about():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team = db.get_team()
-    return render_template('about.html', team=team, form=form, user=user)
+    return render_template('about.html', team=team, form=form, isloggedin=isloggedin)
 
 ################################################
 #                SINGLE MEDIA VIEW             #
 ################################################
 @app.route('/single_media_view', methods=['GET', 'POST'])
 def single_media_view():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     media_view = SubmissionForm()
-    return render_template('single_media_view.html', media_view=media_view, user=user)
+    return render_template('single_media_view.html', media_view=media_view, isloggedin=isloggedin)
 
 ################################################
 #                USER PROFILE                  #
@@ -129,9 +131,9 @@ def single_media_view():
 
 @app.route('/user_profile')
 def user_profile():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
-    return render_template('user_profile.html', form=form, user=user)
+    return render_template('user_profile.html', form=form, isloggedin=isloggedin)
 
 ################################################
 #                Admin PROFILE                 #
@@ -140,9 +142,9 @@ def user_profile():
 @app.route('/admin_page')
 #@login_required
 def admin_page():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
-    return render_template('admin_page.html', form=form, user=user)
+    return render_template('admin_page.html', form=form, isloggedin=isloggedin)
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -218,45 +220,45 @@ def uploaded_file(filename):
 
 @app.route("/avery")
 def avery():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/akhil")
 def akhil():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/chris")
 def chris():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/elliot")
 def elliot():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/thomas")
 def thomas():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 @app.route("/bakulia")
 def bakulia():
-    user = request.cookies.get('valid')
+    isloggedin = validate_helper(request.cookies.get('token'))
     form = SearchForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+    return render_template("about_team_member.html", team_member=team_member, form=form, isloggedin=isloggedin)
 
 ##################################################
 #             HELPER FUNCTIONS                   #
@@ -266,3 +268,10 @@ def clear_cookies():
         res = make_response(redirect(url_for('home')))
         res.set_cookie('token', 'invalid')
         return res
+
+def validate_helper(token):
+    v_message = db.validate_session(token)
+    if (v_message['status'] == 'success'):
+        return True
+    else:
+        return False
