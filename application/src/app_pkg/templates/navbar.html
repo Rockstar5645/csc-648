@@ -74,7 +74,7 @@
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
                         </div>
-                        {{ form.term(class_="form-control", style="width: 350px", maxlength="32") }}
+                        {{ form.term(class_="form-control", style="width: 325px", maxlength="32") }}
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search"></i>
@@ -86,12 +86,32 @@
         </ul>
 
         <div class="mt-1 mb-1">
-             <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
-            </button>
-            <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
-            <span style="color: white;">|</span>
-            <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
-            <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+            <div class="row">
+                <div class="col-auto pr-0">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" id="aboutDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                          About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+                          <a class="dropdown-item" href="/about">Team</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
+                    </button>
+                    <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <span style="color: white;">|</span>
+                </div>
+                <div class="col-auto pl-1 pr-0">
+                    <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
+                </div>
+                <div class="col-auto pl-1">
+                    <a class="btn btn-outline-light" href="/register" role="button">Register</a>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -137,7 +157,7 @@
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadTitle">Title</label><span style="color:red;">*</span>
                                 <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required
-                                    placeholder="" style="max-width: 350px;">
+                                    placeholder="The searchable name of your media." style="max-width: 350px;">
                             </div>
                         </div>
 
@@ -186,7 +206,8 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadDescription">Description</label>
-                                <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"></textarea>
+                                <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"
+                                placeholder="Briefly describe your content (optional)."></textarea>
                             </div>
                         </div>
 
@@ -200,6 +221,7 @@
                         </div>
                         
                         <br />
+                        <p class="text-muted">Note: it may take up to 24 hours for your submitted content to be approved and visible on the site.</p>
                         <hr />
 
                         <div class="form-group text-right">
