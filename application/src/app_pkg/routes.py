@@ -20,15 +20,15 @@ from src.config import STATIC_PATH
 #                SEARCH / HOME                 #
 ################################################
 
-
 @app.route('/', methods=['GET', 'POST'], defaults={'page':1})
 @app.route('/search', defaults={'page':0}, methods=['GET', 'POST'])
-@app.route('/search/page/<int:page>')
+@app.route('/search/page/<int:page>', methods=['GET','POST'])
 def search(page):
     user = request.cookies.get('valid')
     # assign form and results list
     form = SearchForm()
     perpage = 12
+    print(request.args.get('page'))
     startat=page*perpage
     # if : user submits POST request
     if request.method == 'POST':
@@ -42,10 +42,19 @@ def search(page):
         form.category.default = cat
         form.term.default = term
         form.process()
+        # set pagination navigation
+        if page == 3:
+            next_url = 0
+        else:
+            next_url = page+1
+        if page == 0:
+            prev_url = 3
+        else:
+            prev_url = prev_url-1
         # return results -------------------------------------vvv
-        return render_template('search.html', form=form, results=results, user=user)
+        return render_template('search.html', form=form, results=results, user=user, next_url=next_url, prev_url=prev_url, page=page)
     # else : GET fresh html page
-    return render_template('search.html', form=form, user=user)
+    return render_template('search.html', form=form, user=user, page=0)
 
 ################################################
 #                     LOGIN                    #
@@ -59,13 +68,11 @@ def login():
         result = db.login(request.form['username'], request.form['password'], request.remote_addr)
         if result['status'] == 'success':
             res = make_response(redirect(url_for('search')))
-            res.set_cookie('token', result['token'], max_age=None)
-            res.set_cookie('valid', 'valid', max_age=None)
+            res.set_cookie('token', result['token'])
             return res
         else:
             res = make_response(redirect(url_for('login')))
-            res.set_cookie('token', 'none', max_age=None)
-            res.set_cookie('valid', 'not valid', max_age=None)
+            res.set_cookie('token', 'none')
             return res
     else:
         return render_template('login.html', form=form)
@@ -250,3 +257,12 @@ def bakulia():
     form = SearchForm()
     team_member = db.get_team("Bakulia")
     return render_template("about_team_member.html", team_member=team_member, form=form, user=user)
+
+##################################################
+#             HELPER FUNCTIONS                   #
+##################################################
+
+def clear_cookies():
+        res = make_response(redirect(url_for('home')))
+        res.set_cookie('token', 'invalid')
+        return res
