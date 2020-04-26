@@ -25,7 +25,7 @@ import sys
 class DB:
 
     def __init__(self):
-        self.db_api = database_connection.MyDB()
+        self.db_connection = database_connection.MyDB()
 
         try:
             self.redis_connection = redis.Redis(**redis_conn)
@@ -34,80 +34,81 @@ class DB:
             raise
 
     def register(self, username, email, password):
-        return register(username, email, password, self.db_api, self.redis_connection)
+        return register(username, email, password, self.db_connection, self.redis_connection)
 
     def login(self, username,  password, ip_address):
-        return login(username, password, ip_address, self.db_api, self.redis_connection)
+        return login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def validate_session(self, session_token):
         return validate_session(session_token, self.redis_connection)
 
-    # added upload to test db query for uploads
-    def upload(self, filename, description, price, category):
-        return upload(filename, description, price, category, self.db_api, self.redis_connection)
+    def upload(self, filename, description, file_path, thumb_path, category, price):
+        return upload(filename, description, file_path, thumb_path, category, price, self.db_connection)
 
-
-    def search(self, term, category):
+    def search(self, term, category, startstat, perpage):
         if term =='': # if search term was blank
-            return self.get_category(category)
+            return self.get_category(category, startstat, perpage)
         else: # search like for term
-            return self.search_like(term, category)
+            return self.search_like(term, category, startstat, perpage)
 
-    def search_like(self, term, category):
+    def search_like(self, term, category, startstat, perpage):
         if category == 'all':
             # check all categories for search term
-            self.db_api.query(
+            self.db_connection.query(
                 "SELECT * "
                 "FROM digital_media_test "
-                "WHERE `name` LIKE %s OR `description` LIKE %s",
-                ("%" + term + "%","%" + term + "%",)
+                "WHERE `name` LIKE %s OR `description` LIKE %s LIMIT %s, %s",
+                ("%" + term + "%","%" + term + "%", startstat, perpage)
             )
         else:
             # check only for matches in certain category
-            self.db_api.query(
+            self.db_connection.query(
                 "SELECT * "
                 "FROM digital_media_test "
-                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s",
-                ("%" + term + "%","%" + term + "%", "%" + category,)
+                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s LIMIT %s, %s",
+                ("%" + term + "%","%" + term + "%", "%" + category, startstat, perpage)
             )
-        data = self.db_api.fetchall()
-        self.db_api.commit()
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
         # if result is empty, get all objects in category
         if len(data) == 0:
-            data = self.get_category(category)
+            print('no term match, getting category')
+            data = self.get_category(category, startstat, perpage)
         return data
 
-    def get_category(self, category):
+    def get_category(self, category, startstat, perpage):
         # get all rows of a certain category
-        self.db_api.query("SELECT * FROM digital_media_test WHERE category LIKE %s", ("%" + category + "%",))
-        data = self.db_api.fetchall()
-        self.db_api.commit()
+        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s LIMIT %s, %s", ("%" + category + "%", startstat, perpage))
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
         # if category is empty, return all rows in table
         if len(data) == 0:
-            data = self.get_all_media()
+            print('no category, getting all media')
+            data = self.get_all_media(startstat, perpage)
         return data
     
-    def get_all_media(self):
+    def get_all_media(self, startstat, perpage):
         # return all rows in table
-        self.db_api.query("SELECT * FROM digital_media_test")
-        data = self.db_api.fetchall()
-        self.db_api.commit()
+        self.db_connection.query("SELECT * FROM digital_media_test LIMIT %s, %s", (startstat, perpage))
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
         return data
 
     def get_category_select_field(self):
         # this returns the categories for a select field in a form
-        self.db_api.query("SELECT * FROM categories")
-        data = self.db_api.fetchall()
-        self.db_api.commit()
+        self.db_connection.query("SELECT * FROM categories")
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
         # make a usable list of tuples for select field
         cats = [(c[1], c[1]) for c in data]
         return cats
 
     def get_team(self, name=None):
         if name == None: # if no param : return whole team table
-            self.db_api.query("SELECT * FROM team_about")
+            self.db_connection.query("SELECT * FROM team_about")
         else: # get team_member
-            self.db_api.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%" + name + "%",))
-        data = self.db_api.fetchall()
-        self.db_api.commit()
+            self.db_connection.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%" + name + "%",))
+        data = self.db_connection.fetchall()
+        self.db_connection.commit()
         return data
+

@@ -14,9 +14,19 @@ def register(username, email, password, db, r):
             return session_msg
         elif session_msg['status'] == 'redis_error':
             # the user was added to the database, but we weren't able to generate a valid session token
-            session_msg['status'] == 'added_user'
-            return session_msg
+            err_msg = {
+                'status': 'user-added'
+            }
+            return err_msg
+
+    elif status_msg['status'] == 'username_exists':
+        err_msg = {
+            'status': 'user-exists'
+        }
+        return err_msg
     elif status_msg['status'] == 'database_error':
-        status_msg['status'] = 'error'
-        return status_msg
+        err_msg = {
+            'status': 'fail'
+        }
+        return err_msg
 
