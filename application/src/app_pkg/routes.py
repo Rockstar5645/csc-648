@@ -275,3 +275,7 @@ def validate_helper(token):
         return True
     else:
         return False
+
+def delete_file(path):
+    os.remove(path)
+    print('FILE DELETED : {}'.format(path))
