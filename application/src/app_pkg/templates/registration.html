@@ -209,9 +209,9 @@
 
                         <div class="form-row">
                             <div class="col mb-3">
-                                <label for="validationUsername">Username</label>
+                                <label class="username" for="validationUsername">Username</label>
                                 <input type="text" class="form-control" id="validationUsername"
-                                       placeholder="" value="" required>
+                                       maxlength="20" minlength="6" value="" required>
                                 <div class="invalid-feedback">
                                     Please choose username.
                                 </div>
@@ -343,6 +343,15 @@
 
 
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#username').bootstrapValidator();
+});
+</script>
+
+
+
 
 
 <!-- SCRIPT FOR PASSWORD LENTGH VALIDATION and PASSWORD MATCHING-->
