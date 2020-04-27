@@ -23,7 +23,7 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container register">
+<div class="container login">
 	<div class="row">
 		<div class="col-md-5">
 			<div class="Snapster-description text-center">
@@ -70,7 +70,7 @@
                         <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                              data-callback="verifyRecaptchaCallback"
                              data-expired-callback="expiredRecaptchaCallback"></div>
-                        <input class="form-control d-none" data-recaptcha="true" required
+                        <input class="form-control d-none" data-recaptcha="false" required
                                data-error="Please complete the Captcha">
                         <div class="help-block with-errors"></div>
                     </div>
@@ -94,10 +94,8 @@
 (function() {
   'use strict';
   window.addEventListener('load', function() {
-
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
-
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
@@ -113,7 +111,6 @@
 
 
 </script>
-
 
 
 
