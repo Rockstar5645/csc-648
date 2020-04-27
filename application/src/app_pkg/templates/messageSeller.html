@@ -1,0 +1,98 @@
+
+<button class="btn btn-warning btn-lg active mb-2 mr-sm-5" data-target="#SendMessage" data-toggle="modal" type="button">
+    CONTACT SELLER
+</button>
+
+
+<div class="modal fade" id="SendMessage" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <label for="recipient-name" class="col-form-label">Recipient</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-at"></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="Author"
+                               readonly>
+                    </div>
+
+                    <label for="recipient-name" class="col-form-label">Subject</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="far fa-envelope "></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="message-subject" placeholder="Digital Media Title"
+                               readonly>
+                    </div>
+
+                    <label for="datepicker" class="col-form-label">Date</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
+                        </div>
+                        <input type="text" class="form-control datepicker" id="datepicker"
+                               readonly>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"> Message</label>
+                        <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                  rows="10" required></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                        class="btn btn-warning">Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function()
+    {
+        var now = new Date();
+        $('#datepicker').val(now.toLocaleString());
+    });
+</script>
+
+
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+
+<div class="modal fade in" id="MessageSent" aria-hidden="true">
+    <div class="modal-dialog modal-confirm modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-body">
+                    <p class="text-center">Your message is sent</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
