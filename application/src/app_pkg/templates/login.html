@@ -39,13 +39,14 @@
 		<div class="col-md-7">
 				<div class="form-group">
 				   <div class="register-form">
-                <form class="needs-validation" METHOD="POST" novalidate>
+                <form action="{{ url_for('login') }}" method="POST">
 
                     <div class="form-row">
                         <div class="col mb-3">
                             <label for="usernameEmail">Username or Email</label>
-                            <input type="text" class="form-control" id="usernameEmail"
-                                   placeholder="" value="" required>
+                            <!--<input type="text" class="form-control" id="usernameEmail"
+                                   placeholder="" value="" required>-->
+                            {{ form.username(class="form-control") }}
                             <div class="invalid-feedback">
                                 Please enter your username or SFSU email.
                             </div>
@@ -56,7 +57,8 @@
                     <div class="form-row">
                         <div class="col mb-3">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            {{ form.password(class="form-control") }}
+                            <!--<input type="password" class="form-control" id="password" required>-->
                             <div class="invalid-feedback">
                                 Please enter your password.
                             </div>
@@ -65,7 +67,7 @@
 
 
                     <!-- RECAPTCHA -->
-
+                    
                     <div class="form-group text-center">
                         <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                              data-callback="verifyRecaptchaCallback"
@@ -74,9 +76,11 @@
                                data-error="Please complete the Captcha">
                         <div class="help-block with-errors"></div>
                     </div>
+                    
 
-
-                    <button class="btn btn-success btn-lg btn-block" type="submit" onclick="javascript:validate()">Login</button><br>
+                    <button name= "submit" class="btn btn-success btn-lg btn-block" type="submit">Login</button><br>
+                    <!--{{ form.submit(class="btn btn-success btn-lg btn-block") }}-->
+                    <br>
                   <a href="/register"><p style="text-align:center">Don't have an account?</p></a>
                   <a href="/forgotPassword"><p style="text-align:center">Forgot Password?</p></a>
                 </form>
@@ -88,7 +92,7 @@
 </div>
 
 
-
+<!--
 <script type="text/javascript">
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
@@ -124,7 +128,7 @@ function validate()
 }
 </script>
 
-
+-->
 
 <style>
 body{

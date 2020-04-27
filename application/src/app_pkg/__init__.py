@@ -1,3 +1,7 @@
+########################################
+#   Flask Applciation
+######################################
+
 from flask import Flask
 from src.database_manager.db_manager import DB
 
