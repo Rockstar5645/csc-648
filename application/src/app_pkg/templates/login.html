@@ -38,8 +38,10 @@
 		</div>
 		<div class="col-md-7">
 				<div class="form-group">
+        
+
 				   <div class="register-form">
-                <form action="{{ url_for('login') }}" method="POST">
+                <form class="needs-validation" action="{{ url_for('login') }}" method="POST">
 
                     <div class="form-row">
                         <div class="col mb-3">
@@ -67,12 +69,12 @@
 
 
                     <!-- RECAPTCHA -->
-                    
+
                     <div class="form-group text-center">
                         <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                              data-callback="verifyRecaptchaCallback"
                              data-expired-callback="expiredRecaptchaCallback"></div>
-                        <input class="form-control d-none" data-recaptcha="true" required
+                        <input class="form-control d-none" data-recaptcha="true"
                                data-error="Please complete the Captcha">
                         <div class="help-block with-errors"></div>
                     </div>
@@ -98,8 +100,10 @@
 (function() {
   'use strict';
   window.addEventListener('load', function() {
+
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
+
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
@@ -116,17 +120,6 @@
 
 </script>
 
-<script type="text/javascript">
-function validate()
-{
-    if(   document.getElementById("usernameEmail").value == ""
-       && document.getElementById("password").value == "" )
-    {
-        location.href="#";
-    }
-
-}
-</script>
 
 -->
 

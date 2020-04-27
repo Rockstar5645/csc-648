@@ -65,23 +65,28 @@ select.minimal {
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<!-- USER LOG OUT DROPDOWN -->
-<div class="container position-right">
-
-    <!-- Top Menu Items -->
-    <ul class="nav navbar-right top-nav">
-        <li class="mr-5">Welcome <strong>{% block title %}User{% endblock %}</strong></li>
-        <li><a href="/search"> Logout</a></li>
-    </ul>
-
-</div>
-
 <body>
 
 
 <!-- MY ITEMS AND MESSAGES TAB -->
 <div class="container mt-5">
-    <caption>My Dashboard</caption>
+    <ul class="nav navbar-right top-nav">
+        <li class="mr-5">
+            <div class="dropdown">
+                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Dashboard</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/search">Logout</a>
+                    </div>
+            </div>
+        </li>
+        <li><div class="col-auto pl-1 pr-0">
+                    <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
+                    </button>
+                    <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
+                </div></li>
+
+    </ul>
+
     <nav class="mt-5">
         <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:160%">
             <li class="nav-item">
@@ -111,7 +116,7 @@ select.minimal {
                 <table class="table">
                     <thead  style="background:#dbc3e3;" >
                     <tr>
-                        <th >
+                        <th class="minimal">
                             Media Title
                         </th>
                         <th>
@@ -476,7 +481,7 @@ select.minimal {
 
         <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
             <table class="table">
-                <thead >
+                <thead style="background:#dbc3e3;">
                 <tr>
                     <th>Subject Tittle</th>
                     <th>Date</th>
@@ -683,7 +688,7 @@ select.minimal {
 
         <div class="modal fade" id="ReadMessage" tabindex="-1" role="dialog" aria-labelledby="ReadMessageLabel"
              aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -698,21 +703,21 @@ select.minimal {
 
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Sender:</label>
-                                <input type="text" class="form-control" id="recipient-name"
+                                <input type="text" class="form-control" id="recipientName"
                                        placeholder="username@mail.sfsu.edu"
                                        readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Subject:</label>
-                                <input type="text" class="form-control" id="message-subject"
+                                <input type="text" class="form-control" id="messageSubject"
                                        placeholder="Digital Media Title"
                                        readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label"> Message:</label>
-                                <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur
+                                <p class="card-text" id="messageContent">"Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit,
                                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -725,7 +730,7 @@ select.minimal {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                        <button data-target="#SendMessage"  data-toggle="modal" data-dismiss="modal" type="button"
                                 class="btn btn-success">Reply
                         </button>
                     </div>
@@ -736,6 +741,102 @@ select.minimal {
 
 
     </div>
+
+
+
+    <div class="modal fade" id="SendMessage" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" >New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <label for="recipient-name" class="col-form-label col-">Recipient: </label>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fa fa-at"></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="recipient-name" placeholder="Author"
+                               readonly>
+                    </div>
+
+                    <label for="recipient-name" class="col-form-label">Subject</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="far fa-envelope "></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="message-subject" placeholder="Digital Media Title"
+                               readonly>
+                    </div>
+
+                    <label for="datepicker" class="col-form-label">Date</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
+                        </div>
+                        <input type="text" class="form-control datepicker" id="datepicker"
+                               readonly>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"> Message</label>
+                        <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                  rows="10" required></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                        class="btn btn-warning">Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function()
+    {
+        var now = new Date();
+        $('#datepicker').val(now.toLocaleString());
+    });
+</script>
+
+
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+<!--YOUR MESSAGE IS SENT MODAL -->
+
+<div class="modal fade in" id="MessageSent" aria-hidden="true">
+    <div class="modal-dialog modal-confirm modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-body">
+                    <p class="text-center">Your message is sent</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
     <!--PAGINATION -->
