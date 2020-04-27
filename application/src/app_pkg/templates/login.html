@@ -46,8 +46,6 @@
                     <div class="form-row">
                         <div class="col mb-3">
                             <label for="usernameEmail">Username or Email</label>
-                            <!--<input type="text" class="form-control" id="usernameEmail"
-                                   placeholder="" value="" required>-->
                             {{ form.username(class="form-control") }}
                             <div class="invalid-feedback">
                                 Please enter your username or SFSU email.
@@ -60,7 +58,6 @@
                         <div class="col mb-3">
                             <label for="password">Password</label>
                             {{ form.password(class="form-control") }}
-                            <!--<input type="password" class="form-control" id="password" required>-->
                             <div class="invalid-feedback">
                                 Please enter your password.
                             </div>
@@ -69,19 +66,10 @@
 
 
                     <!-- RECAPTCHA -->
+                    {{ form.recaptcha(class="g-recaptcha") }}
 
-                    <div class="form-group text-center">
-                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                             data-callback="verifyRecaptchaCallback"
-                             data-expired-callback="expiredRecaptchaCallback"></div>
-                        <input class="form-control d-none" data-recaptcha="true"
-                               data-error="Please complete the Captcha">
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    
-
-                    <button name= "submit" class="btn btn-success btn-lg btn-block" type="submit">Login</button><br>
-                    <!--{{ form.submit(class="btn btn-success btn-lg btn-block") }}-->
+                    <!-- SUBMIT FORM -->
+                    {{ form.submit(class="btn btn-success btn-lg btn-block") }}
                     <br>
                   <a href="/register"><p style="text-align:center">Don't have an account?</p></a>
                   <a href="/forgotPassword"><p style="text-align:center">Forgot Password?</p></a>

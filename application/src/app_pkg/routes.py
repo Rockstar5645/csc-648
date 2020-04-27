@@ -71,9 +71,8 @@ def search(page):
 def login():
     isloggedin = validate_helper(request.cookies)
     form = LoginForm()
-    print('in login')
+
     if request.method == 'POST':
-        print("post method in login")
         result = {}
         result = db.login(request.form['username'], request.form['password'], request.remote_addr)
         if result['status'] == 'success':
@@ -87,7 +86,6 @@ def login():
             res.set_cookie('token', 'none')
             return res
     else:
-        print('get in login')
         return render_template('login.html', form=form)
 
 ################################################

@@ -6,15 +6,12 @@
 ###############################################
 
 from src.app_pkg import db
+from flask_wtf import RecaptchaField
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, RecaptchaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
-
-SECRET_KEY = '78w0o5tuuGex5Ktk8VvVDF9Pw3jv1MVE'
-RECAPTCHA_PUBLIC_KEY = RC_SITE_KEY
-RECAPTCHA_PRIVATE_KEY = RC_SECRET_KEY
 
 ################################################
 #                    FORMS                     #
@@ -39,7 +36,7 @@ class RegistrationForm(Form):
 class LoginForm(Form):
     username = StringField("Username", validators=[])
     password = PasswordField('Password', validators=[])
-    remember = BooleanField("Remember Me")
+    recaptcha = RecaptchaField()
     submit = SubmitField('Login')
 
 class SubmissionForm(Form):
