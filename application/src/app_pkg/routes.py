@@ -1,3 +1,10 @@
+###############################################
+#   Flask Routing
+#
+#   This file contains all of the flask routes
+#
+###############################################
+
 import os
 from tkinter import Image
 from PIL import Image
@@ -64,6 +71,7 @@ def search(page):
 def login():
     isloggedin = validate_helper(request.cookies)
     form = LoginForm()
+
     if request.method == 'POST':
         result = {}
         result = db.login(request.form['username'], request.form['password'], request.remote_addr)
@@ -88,9 +96,11 @@ def login():
 def register():
     isloggedin = validate_helper(request.cookies)
     form = RegistrationForm()
+
     if request.method == 'POST':
         result = {}
-        result = db.register(request.form['username'], request.form['email'],  request.form['password'])
+        email = request.form['email_prefix'] + request.form['email_suffix']
+        result = db.register(request.form['username'], email,  request.form['password'])
         if result['status'] == 'success':
             if result['status'] == 'success':
                 res = make_response(redirect(url_for('search')))
