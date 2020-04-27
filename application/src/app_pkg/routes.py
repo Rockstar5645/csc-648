@@ -28,7 +28,7 @@ def search(page):
     # assign form and results list
     form = SearchForm()
     perpage = 12
-    print('page: '.format(request.args.get('page')))
+    print(request.args.get('page'))
     startat=page*perpage
     # if : user submits POST request
     if request.method == 'POST':
@@ -109,7 +109,7 @@ def register():
 #                   ABOUT                      #
 ################################################
 
-@app.route("/about",methods=['GET', 'POST']) 
+@app.route("/about",methods=['GET', 'POST'])
 def about():
     isloggedin = validate_helper(request.cookies)
     form = SearchForm()
