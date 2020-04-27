@@ -182,6 +182,8 @@ def upload_file():
             f.save(STATIC_PATH + 'thumbnails/t_' + filename)
             print("thumbnail saved")
 
+            # query db params, add approval variable
+            session_token = request.cookies.get('token')
             name = request.form['filename']
             desc = request.form['description']
             price = request.form['price']
@@ -190,18 +192,17 @@ def upload_file():
             thumbpath = 'thumbnails/t_' + filename
             owner_id = 1
 
-            print(name, " ", desc, " ", price, " ", cat, " ", filepath, " ", thumbpath)
+            print(name, " ", desc, " ", price, " ", cat, " ", filepath, " ", thumbpath, " ", session_token)
 
-            # query db params, approval variable and session token not implemented yet
             results = []
-            results = db.upload(name, desc, filepath, thumbpath, cat, price)
-            print(results)
+            results = db.upload(name, desc, filepath, thumbpath, cat, price, session_token)
 
             form.filename.default = filename
             form.description.default = desc
             form.price.default = price
             form.category.default = cat
             form.process()
+
             # TODO: fix render_templates and redirects for submit media button in base.html
             return redirect(url_for('search'))
 

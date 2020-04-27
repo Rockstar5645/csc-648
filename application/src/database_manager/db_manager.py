@@ -42,8 +42,8 @@ class DB:
     def validate_session(self, session_token):
         return validate_session(session_token, self.redis_connection)
 
-    def upload(self, filename, description, file_path, thumb_path, category, price):
-        return upload(filename, description, file_path, thumb_path, category, price, self.db_connection)
+    def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
+        return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)
 
     def search(self, term, category, startstat, perpage):
         if term =='': # if search term was blank
