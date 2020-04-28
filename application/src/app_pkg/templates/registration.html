@@ -8,22 +8,16 @@
 
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand"><a class="nav-link" href="/">Snapster</a></span>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
+    <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
+    <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
+    Snapster
+    </a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
     </button>
-
-
-    <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">{% block title %}{% endblock %}</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+  </nav>
 
 
 
