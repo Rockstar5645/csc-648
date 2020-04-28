@@ -23,7 +23,7 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container register">
+<div class="container login">
 	<div class="row">
 		<div class="col-md-5">
 			<div class="Snapster-description text-center">
@@ -68,6 +68,17 @@
                     <!-- RECAPTCHA -->
                     {{ form.recaptcha(class="g-recaptcha") }}
 
+<!--                    <div class="form-group text-center">-->
+<!--                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"-->
+<!--                             data-callback="verifyRecaptchaCallback"-->
+<!--                             data-expired-callback="expiredRecaptchaCallback"></div>-->
+<!--                        <input class="form-control d-none" data-recaptcha="false" required-->
+<!--                               data-error="Please complete the Captcha">-->
+<!--                        <div class="help-block with-errors"></div>-->
+<!--                    </div>-->
+
+
+<!--                    <button class="btn btn-success btn-lg btn-block" type="submit" onclick="">Login</button><br>-->
                     <!-- SUBMIT FORM -->
                     {{ form.submit(class="btn btn-success btn-lg btn-block") }}
                     <br>
@@ -81,35 +92,6 @@
 	</div>
 </div>
 
-
-<!--
-<script type="text/javascript">
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-
-
-</script>
-
-
--->
 
 <style>
 body{
