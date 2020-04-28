@@ -487,13 +487,13 @@ select.minimal {
         <!-- MY MESSAGES TAB -->
 
         <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-            <table class="table">
+            <table class="table" style="text-align:center">
                 <thead style="background:#dbc3e3;">
                 <tr>
                     <th>View messages</th>
                     <th>Date</th>
                     <th>Sender</th>
-                    <th></th>
+                    <th>Delete message</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -505,9 +505,29 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                         </button>
                     </td>
                 </tr>
@@ -519,10 +539,7 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
@@ -533,10 +550,17 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
@@ -547,10 +571,7 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
@@ -561,23 +582,7 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Message</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
@@ -588,10 +593,7 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
@@ -602,39 +604,7 @@ select.minimal {
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Message</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Message</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 </tbody>
