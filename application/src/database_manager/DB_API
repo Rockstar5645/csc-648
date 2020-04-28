@@ -44,7 +44,7 @@ status_message['status']
 
 VALIDATE SESSION: 
 
-Parameters(session toekn: string)
+Parameters(session token: string)
 
 Return Value:
 
@@ -56,4 +56,19 @@ status_message['status']
     c) 'fail': The session validation procedure failed due to an unknown reason, possible connection loss from 
         redis instance, redirect to login page
 
+-----------------------------------------------------------------------------------------------------------------------
 
+LOGOUT:
+
+Parameters(session token: string)
+
+Return value:
+
+status_message['status']
+
+    a) 'success': The user was in a valid session, and now their session token has been revoked, logout was successful, 
+        redirect to the login or home page
+    b) 'unauthorized': The user was not in a valid session, redirect them to the home or login page
+    c) 'unknown': some unknown logic error, an invalid number of keys were deleted, user is now in unauthenticated state, 
+        redirect to the home/login page
+    d) 'fail': Redis connection error, user is still in authenticated state, inform them the logout was unsuccessful
