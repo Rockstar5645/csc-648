@@ -28,7 +28,7 @@ def validate_session(session_token, r):
         print('Redis connection error: {}'.format(err))
         # FIXME: Implement logic to deal with this potentially fatal issue
         error_message = {
-            'status': 'error',
+            'status': 'fail',
             'message': 'Redis connection error: {}'.format(err)
         }
         return error_message

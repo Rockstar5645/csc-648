@@ -2,7 +2,7 @@ LOGIN METHOD:
 
 Parameters (username : string, password : string, ip_address : string)
 
-Return value:
+Return Value:
 
 status_message : dict
 
@@ -23,7 +23,7 @@ REGISTER METHOD:
 
 Parameters(username: string, email : string, password : string)
 
-Return value:
+Return Value:
 
 status_message : dict
 
@@ -39,3 +39,21 @@ status_message['status']
 
     c) 'fail': the registration procedure failed for one of several reasons, redirect user to registration page and tell
         them to try again
+
+-----------------------------------------------------------------------------------------------------------------------
+
+VALIDATE SESSION: 
+
+Parameters(session toekn: string)
+
+Return Value:
+
+status_message['status']
+    
+    a) 'success': The user is still in a valid session, proceed with route logic
+    b) 'invalid_token': The user's session_token is invalid, it may have expired, or the user tampered with it, 
+        redirect to login page 
+    c) 'fail': The session validation procedure failed due to an unknown reason, possible connection loss from 
+        redis instance, redirect to login page
+
+
