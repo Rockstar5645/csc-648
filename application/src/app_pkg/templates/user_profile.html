@@ -1,12 +1,27 @@
 {% extends 'navbar.html' %}
 
-
+<!-- USER DASHBAORD INCLUDES:
+     Digital media items that has and can be sorted by type, date, price and status.
+     Messages: date, view messages and delete messages.-->
 
 
 {% block content %}
 
 
 <style>
+
+
+    <style>
+    .bs-example{
+    	margin: 50px;
+    }
+    .bs-example a{
+        font-size: 22px;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+
 
 
 .custom #tabs li {
@@ -26,10 +41,10 @@ select {
   border: none;
   border-radius: none;
   display: inline-block;
-  font: Times New Roman;
+  font: Helvetica;
   line-height: 1.0em;
-  padding: 0.5em 2.5em 0.5em 0.5em;
-  align: right;
+  padding: 0.5em 2.0em 0.0em 2.5em;
+
 
   /* reset */
 
@@ -93,13 +108,13 @@ select.minimal {
                 <a class="nav-link active" style="color:purple;" id="nav-items-tab" data-toggle="tab" href="#nav-items"
                    role="tab"
                    aria-controls="nav-items" aria-selected="true"><i class="fas fa-photo-video"></i> My Items
-                    <span class="w3-badge w3-right w3-small w3-orange">8</span></a>
+                    </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color:purple;" id="nav-messages-tab" data-toggle="tab" href="#nav-messages"
                    role="tab"
                    aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> My Messages
-                    <span class="w3-badge w3-right w3-orange w3-small">12</span></a>
+                   </a>
 
             </li>
         </ul>
@@ -113,19 +128,28 @@ select.minimal {
         <!-- MY DIGITAL MEDIA TAB -->
         <div class="tab-pane fade show active" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
             <div>
-                <table class="table">
-                    <thead  style="background:#dbc3e3;" >
-                    <tr>
-                        <th class="minimal">
-                            Media Title
+                <table class="table" style="text-align:center">
+                    <thead  style="background:#dbc3e3; text-align:center" >
+                    <tr style="text-align:center"  >
+                        <th>
+                            View Media
                         </th>
                         <th>
                             <select class="minimal" id="sortMediaType">
-                                <option  selected value="allMedia"  style="background:orange;">Media type</option>
+                                <option  selected value="allMedia">Media type</option>
                                 <option value="image">Image</option>
                                 <option value="video">Video</option>
                                 <option value="audio">Audio</option>
                                 <option value="document">Document</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select class="minimal" id="sortCategory">
+                                <option  selected value="allMedia"  style="background:orange;">Category</option>
+                                <option value="">One</option>
+                                <option value="">Two</option>
+                                <option value="">Three</option>
+                                <option value="">Four</option>
                             </select>
                         </th>
 
@@ -144,185 +168,168 @@ select.minimal {
                             </select>
                         </th>
                         <th>
-                            <select class="minimal" id="sortStatus">
-                                <option selected value="allStatus">Status</option>
+                            <select class="minimal" id="sortStatus" >
+                                <option selected value="allStatus" style="text-align:center">Status</option>
                                 <option value="soldStatus">Sold</option>
                                 <option value="purchasedStatus">Purchased</option>
                                  <option value="rejectedStatus">Rejected</option>
-                            </select></th>
-                        <th></th>
+                            </select>
+                        </th>
+                        <th>
+                         Delete media
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr style="text-align:center">
 
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Image</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Video</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Audio</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Document</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Image</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                           <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Document</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Image</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>sold</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Video</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Audio</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>rejected</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="text-align:center">
                         <td>
-                            <a class="btn btn-outline-warning btn-sm btn-sm " data-target="#viewMedia"
+                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
                                data-toggle="modal"
-                               type="button">item_title</a>
+                               type="button">sponge bob 1</a>
                         </td>
                         <td>Image</td>
+                        <td>category</td>
                         <td>datetime</td>
                         <td>$</td>
                         <td>purchased</td>
                         <td>
-                            <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteItem" data-toggle="modal"
-                                    type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </button>
+                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
                         </td>
                     </tr>
                     </tbody>
@@ -340,7 +347,7 @@ select.minimal {
                     <div class="modal-content">
                         <!-- Title of the Media -->
                         <div class="modal-header text-center">
-                            <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+                            <h5 class="modal-title w-100" id="MediaViewTitle">sponge bob 1</h5>
                             <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                                 <span aria-hidden="true"></span>
                             </button>
@@ -480,153 +487,124 @@ select.minimal {
         <!-- MY MESSAGES TAB -->
 
         <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-            <table class="table">
+            <table class="table" style="text-align:center">
                 <thead style="background:#dbc3e3;">
                 <tr>
-                    <th>Subject Tittle</th>
+                    <th>View messages</th>
                     <th>Date</th>
                     <th>Sender</th>
-                    <th></th>
+                    <th>Delete message</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                    </td>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+                    <td>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
                     <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm btn-sm " data-target="#DeleteMessage" data-toggle="modal"
-                                type="button">
-                            <i class="material-icons">delete_forever</i>
-                        </button>
+                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
                     </td>
                 </tr>
                 </tbody>
@@ -701,7 +679,7 @@ select.minimal {
                     <div class="modal-body">
                         <form>
 
-                            <label for="recipient" class="col-form-label col-">Recipient: </label>
+                            <label for="recipient" class="col-form-label col-">Recipient</label>
                     <br>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -825,6 +803,14 @@ select.minimal {
 
 </div>
 
+    <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({
+        placement : 'left'
+    });
+});
+</script>
+
 <script type="text/javascript">
 $( document ).ready(function()
     {
@@ -834,6 +820,8 @@ $( document ).ready(function()
 
     });
 </script>
+
+
 
 
 <!--YOUR MESSAGE IS SENT MODAL -->
