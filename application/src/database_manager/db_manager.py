@@ -56,7 +56,7 @@ class DB:
             # check all categories for search term
             self.db_connection.query(
                 "SELECT * "
-                "FROM digital_media_test "
+                "FROM digital_media "
                 "WHERE `name` LIKE %s OR `description` LIKE %s LIMIT %s, %s",
                 ("%" + term + "%","%" + term + "%", startstat, perpage)
             )
@@ -64,7 +64,7 @@ class DB:
             # check only for matches in certain category
             self.db_connection.query(
                 "SELECT * "
-                "FROM digital_media_test "
+                "FROM digital_media "
                 "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s LIMIT %s, %s",
                 ("%" + term + "%","%" + term + "%", "%" + category, startstat, perpage)
             )
@@ -78,7 +78,7 @@ class DB:
 
     def get_category(self, category, startstat, perpage):
         # get all rows of a certain category
-        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s LIMIT %s, %s", ("%" + category + "%", startstat, perpage))
+        self.db_connection.query("SELECT * FROM digital_media WHERE category LIKE %s LIMIT %s, %s", ("%" + category + "%", startstat, perpage))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         # if category is empty, return all rows in table
@@ -89,7 +89,7 @@ class DB:
     
     def get_all_media(self, startstat, perpage):
         # return all rows in table
-        self.db_connection.query("SELECT * FROM digital_media_test LIMIT %s, %s", (startstat, perpage))
+        self.db_connection.query("SELECT * FROM digital_media LIMIT %s, %s", (startstat, perpage))
         data = self.db_connection.fetchall()
         self.db_connection.commit()
         return data

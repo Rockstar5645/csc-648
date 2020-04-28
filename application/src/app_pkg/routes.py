@@ -184,7 +184,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(STATIC_PATH + 'user_images/', filename))
+            file.save(os.path.join(STATIC_PATH + 'static/user_images/', filename))
 
             # makes thumbnail and saves it to thumbnails folder
             f = Image.open(STATIC_PATH + 'user_images/' + filename)
