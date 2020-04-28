@@ -1,6 +1,7 @@
 from src.database_manager import database_connection
 from src.database_manager.register import register
 from src.database_manager.login import login
+from src.database_manager.logout import logout
 
 from src.database_manager.upload import upload
 
@@ -36,11 +37,14 @@ class DB:
     def register(self, username, email, password):
         return register(username, email, password, self.db_connection, self.redis_connection)
 
-    def login(self, username,  password, ip_address):
+    def login(self, username,  password, ip_address='127.0.0.1'):
         return login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def validate_session(self, session_token):
         return validate_session(session_token, self.redis_connection)
+
+    def logout(self, session_token):
+        return logout(session_token, self.redis_connection)
 
     def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
         return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)
