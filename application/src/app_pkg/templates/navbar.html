@@ -65,12 +65,12 @@
     <div class="collapse navbar-collapse" id="menu">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link mr-sm-auto" href="/">Snapster</a>
+                <a class="nav-link mr-sm-auto" href="/" style="font-size: large;">Snapster</a>
             </li>
             <li class="nav-item">
                 <!--    SEARCH AND FILTER FORM       -->
                 <form class="form-inline" action="{{ url_for('search') }}" method="POST">
-                    <div class="input-group mt-1 mb-1 ml-lg-2">
+                    <div class="input-group mt-1 mb-1 ml-lg-4">
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
                         </div>
