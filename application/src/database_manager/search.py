@@ -2,10 +2,12 @@
 
 
 def search(conn, term, category, media_type, startsat, perpage):
+
     q = Q_Container(conn, term, category, media_type, startsat, perpage)
 
     if term == '':
         result = no_term_search(q)
+        
     else:
         result = term_search(q)
 
@@ -83,7 +85,12 @@ def get_all_category(q):
 def check(q, result):
     if len(result) == 0:
         print('SEARCH: no matches, getting whole table')
-        return get_all_table(q)
+        if q.category is not 'all':
+            result = get_all_category(q)
+        elif q.media_type is not 'all':
+            result = get_all_media_type(q)
+        else:
+            result = get_all_table(q)
     return result
 
 class Q_Container(object):
