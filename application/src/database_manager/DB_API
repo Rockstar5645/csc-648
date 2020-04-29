@@ -75,8 +75,7 @@ status_message['status']
         redirect to the home/login page
     d) 'fail': Redis connection error, user is still in authenticated state, inform them the logout was unsuccessful
 
-<<<<<<< HEAD
-=======
+
 -----------------------------------------------------------------------------------------------------------------------
 
 SEND MESSAGE:
@@ -93,6 +92,4 @@ status_message['status']
         suggest they try again 
     d) 'no_media': The media item to which this message corresponds does not exist, could indicate the user
         tampered with the media_id or other logic errors, inform the user the message was not sent and tell them 
-        to try again 
-
->>>>>>> 860e9c30980413de5141b398a9c2fbb7edc3c993
+        to try again

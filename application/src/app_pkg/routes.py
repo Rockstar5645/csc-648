@@ -42,8 +42,9 @@ def search(page):
         results = []
         term = request.form['term']
         cat = request.form['category']
+        media_t = request.form['media_type']
         # query db, handle results and pagination
-        results = db.search(term, cat, startat, perpage)
+        results = db.search(term, cat, media_t, startat, perpage)
         # set form persistance
         form.category.default = cat
         form.term.default = term
