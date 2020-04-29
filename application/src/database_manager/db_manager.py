@@ -2,6 +2,7 @@ from src.database_manager import database_connection
 from src.database_manager.register import register
 from src.database_manager.login import login
 from src.database_manager.logout import logout
+from src.database_manager.get_session_id import get_session_id
 
 from src.database_manager.upload import upload
 
@@ -45,6 +46,13 @@ class DB:
 
     def logout(self, session_token):
         return logout(session_token, self.redis_connection)
+
+    def send_message(self, session_token, media_id, subject, message_body): 
+        abc = get_session_id(session_token, self.redis_connection)
+        if abc['status'] != 'success':
+            return abc
+        else:
+            return send_message(abc['user_id'], media_id, subject, message_body, self.db_connection)
 
     def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
         return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)

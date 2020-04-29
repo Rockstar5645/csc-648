@@ -55,6 +55,8 @@ class MyDB(object):
         # This method does not issue a request to the database
         return self.cursor.lastrowid
 
+    def get_row_count(self):
+        return self.cursor.rowcount
 
     def fetchall(self):
         # This method does not issue a request to the database

@@ -56,17 +56,6 @@ def fill_media_types(db):
 
 
 def fill_digital_media(db):
-    # create an initial root user, for the digital media entries to reference
-    print('Creating root user to serve as placeholder owner of digital media entries')
-    db.query("INSERT INTO user (first_name) VALUES (%s)", ('dev_root',))
-    db.commit()
-    print('root user created')
-
-    # create an initial default category, for the digital media entries to reference
-    print('Creating default category for digital media entries to reference')
-    db.query("INSERT INTO categories (category) VALUES (%s)", ('art',))
-    db.commit()
-    print('default category created')
 
     print('Inserting data test entries into digital media table')
 
