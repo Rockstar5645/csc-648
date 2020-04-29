@@ -28,13 +28,16 @@ def no_term_search(q):
         return get_all_category(q)
 
 def term_query(q):
-    return q.conn.query(
+    q.conn.query(
                 "SELECT * "
                 "FROM digital_media "
                 "WHERE `name` LIKE %s OR `description` LIKE %s "
                 "LIMIT %s, %s",
                 ("%" + q.term + "%","%" + q.term + "%",  q.startsat, q.perpage)
             )
+    data = q.conn.fetchall()
+    q.conn.commit()
+    return data
 
 def term_media_query(q):
     q.conn.query(
