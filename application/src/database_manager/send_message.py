@@ -28,7 +28,7 @@ def send_message(sender_id, media_id, subject, message_body, db):
     for recipient_id in db.fetchall()[0]:
 
         add_message = ("INSERT INTO messages "
-                      "(time_stamp, sender, recipient, message_content, media_id, seen, subject) "
+                      "(time_stamp, sender, recipient, message_body, media_id, seen, subject) "
                       "VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
         time_stamp = datetime.now()

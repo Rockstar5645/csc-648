@@ -112,7 +112,7 @@ def initialize_database_skeleton(db):
              "time_stamp DATETIME NOT NULL,"
              "sender INT UNSIGNED NOT NULL,"
              "recipient INT UNSIGNED NOT NULL,"
-             "message_content TEXT NOT NULL,"   # 64KB Limit
+             "message_body TEXT NOT NULL,"      # 64KB Limit
              "media_id INT UNSIGNED NOT NULL,"
              "seen BOOLEAN,"
              "subject TINYTEXT NOT NULL,"        # 255 Byte Limit
