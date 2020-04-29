@@ -74,4 +74,4 @@ status_message['status']
     c) 'unknown': some unknown logic error, an invalid number of keys were deleted, user is now in unauthenticated state, 
         redirect to the home/login page
     d) 'fail': Redis connection error, user is still in authenticated state, inform them the logout was unsuccessful
->>>>>>> 1190ce95a45ec29364c0eeccddb2867dcea6baa5
+
