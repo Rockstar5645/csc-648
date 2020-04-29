@@ -35,7 +35,6 @@ def search(page):
     # assign form and results list
     form = SearchForm()
     perpage = 12
-    print(request.args.get('page'))
     startat=page*perpage
     # if : user submits POST request
     if request.method == 'POST':
@@ -43,8 +42,9 @@ def search(page):
         results = []
         term = request.form['term']
         cat = request.form['category']
+        media_t = request.form['media_type']
         # query db, handle results and pagination
-        results = db.search(term, cat, startat, perpage)
+        results = db.search(term, cat, media_t, startat, perpage)
         # set form persistance
         form.category.default = cat
         form.term.default = term
@@ -174,7 +174,7 @@ def upload_file():
     # if "POST"
     if request.method == 'POST':
         # check if the post request has the file part
-        if 'file' not in request.files:
+        if 'file_input' not in request.files:
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
@@ -194,17 +194,19 @@ def upload_file():
 
             # query db params, add approval variable
             session_token = request.cookies.get('token')
-            name = request.form['filename']
+            name = request.form['name']
             desc = request.form['description']
-            price = request.form['price']
+            license = request.form['license']
+            if license == 'paid':
+                price = request.form['price']
+            else:
+                price == 0.00
             cat = request.form['category']
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
-            owner_id = 1
 
             print(name, " ", desc, " ", price, " ", cat, " ", filepath, " ", thumbpath, " ", session_token)
 
-            results = []
             results = db.upload(name, desc, filepath, thumbpath, cat, price, session_token)
 
             form.filename.default = filename
@@ -217,7 +219,7 @@ def upload_file():
             return redirect(url_for('search'))
 
     # else, (if "GET")
-    return render_template('upload.html', form=form)
+    return render_template('search.html', form=form)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

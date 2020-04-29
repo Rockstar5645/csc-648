@@ -73,6 +73,7 @@
                     <div class="input-group mt-1 mb-1 ml-lg-2">
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
+                            {{ form.media_type(class_="btn custom-select") }}
                         </div>
                         {{ form.term(class_="form-control", style="width: 325px", maxlength="32") }}
                         <div class="input-group-append">
@@ -152,11 +153,11 @@
                 <div class="container">
                     <h4 class="modal-title text-secondary">Complete the following form to upload your content to Snapster</h4>
                     <br />
-                    <form method="POST" action="{{ url_for('search') }}">
+                    <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadTitle">Title</label><span style="color:red;">*</span>
-                                <input type="text" class="form-control" id="uploadTitle" maxlength="32" name=filename value="{{request.form.filename}}" required
+                                <input name="name" type="text" class="form-control" id="uploadTitle" maxlength="32" required
                                     placeholder="The searchable name of your media." style="max-width: 350px;">
                             </div>
                         </div>
@@ -164,7 +165,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadCategory">Category</label><span style="color:red;">*</span>
-                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                <select name="select_category" id="uploadCategory" class="form-control" required style="max-width: 250px;">
                                     <option value="">Select</option>
                                     <option value="1">Spongebob</option>
                                 </select>
@@ -174,7 +175,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadCategory">Media Type</label><span style="color:red;">*</span>
-                                <select id="uploadCategory" class="form-control" required style="max-width: 250px;">
+                                <select name="select_media_type" id="uploadCategory" class="form-control" required style="max-width: 250px;">
                                     <option value="">Select</option>
                                     <option value="1">image</option>
                                     <option value="2">video</option>
@@ -187,7 +188,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadLicense">License</label><span style="color:red;">*</span>
-                                <select id="uploadLicense" class="form-control" required style="max-width: 250px;">
+                                <select name="select_license" id="uploadLicense" class="form-control" required style="max-width: 250px;">
                                     <option value="">Select</option>
                                     <option value="1">Free</option>
                                     <option value="2">Paid</option>
@@ -199,14 +200,14 @@
                         <div id="priceDiv" class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadPrice">Price</label><span style="color:red;">*</span>
-                                <input type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
+                                <input name="price" type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
                             </div>
                         </div>
                         
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadDescription">Description</label>
-                                <textarea id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"
+                                <textarea name="description"id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"
                                 placeholder="Briefly describe your content (optional)."></textarea>
                             </div>
                         </div>
@@ -214,7 +215,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control custom-file-input" id="uploadFile" required>
+                                    <input name="file_input" type="file" class="form-control custom-file-input" id="uploadFile" required>
                                     <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>
                                 </div>  
                             </div>

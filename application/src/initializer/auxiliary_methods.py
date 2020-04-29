@@ -56,6 +56,9 @@ def fill_media_types(db):
 
 
 def fill_digital_media(db):
+    ############################
+    #      FILL CATEGORIES     #
+    ############################
 
     print('Inserting data test entries into digital media table')
 

@@ -44,6 +44,7 @@ status_message['status']
 
 VALIDATE SESSION: 
 
+
 Parameters(session token: string)
 
 Return Value:
@@ -55,6 +56,7 @@ status_message['status']
         redirect to login page 
     c) 'fail': The session validation procedure failed due to an unknown reason, possible connection loss from 
         redis instance, redirect to login page
+
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -73,6 +75,7 @@ status_message['status']
         redirect to the home/login page
     d) 'fail': Redis connection error, user is still in authenticated state, inform them the logout was unsuccessful
 
+
 -----------------------------------------------------------------------------------------------------------------------
 
 SEND MESSAGE:
@@ -89,5 +92,4 @@ status_message['status']
         suggest they try again 
     d) 'no_media': The media item to which this message corresponds does not exist, could indicate the user
         tampered with the media_id or other logic errors, inform the user the message was not sent and tell them 
-        to try again 
-
+        to try again
