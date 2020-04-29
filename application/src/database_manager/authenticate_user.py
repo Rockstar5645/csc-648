@@ -19,6 +19,16 @@ def authenticate_user(username, password_plain, db):
         }
         return error_message
 
+    if db.get_row_count() == 0:
+        # the user entered the incorrect username
+        success_message = {
+            'status': 'success',
+            'login': 'failed',
+        }
+        # print('Unsuccessful login attempt by user {}'.format(user_id))
+        return success_message
+
+
     # examine the returned record to validate the user entered credentials
 
     for (user_id, username, password) in db.fetchall():

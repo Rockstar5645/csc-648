@@ -64,7 +64,7 @@ LOGOUT:
 
 Parameters(session token: string)
 
-Return value:
+Return Value:
 
 status_message['status']
 
@@ -75,3 +75,24 @@ status_message['status']
         redirect to the home/login page
     d) 'fail': Redis connection error, user is still in authenticated state, inform them the logout was unsuccessful
 
+<<<<<<< HEAD
+=======
+-----------------------------------------------------------------------------------------------------------------------
+
+SEND MESSAGE:
+
+Parameters(session_token: string, media_id: integer, subject: string, message_body: string)
+
+Return Value:
+
+status_message['status']
+
+    a) 'success': The message was successfully 'sent', inform the user
+    b) 'invalid_token': see 'VALIDATE SESSION'
+    c) 'fail': could be one of several reasons, database/redis errors, inform the user their message was not sent and 
+        suggest they try again 
+    d) 'no_media': The media item to which this message corresponds does not exist, could indicate the user
+        tampered with the media_id or other logic errors, inform the user the message was not sent and tell them 
+        to try again 
+
+>>>>>>> 860e9c30980413de5141b398a9c2fbb7edc3c993
