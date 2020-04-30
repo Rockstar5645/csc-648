@@ -76,8 +76,8 @@ class DB:
         else:
             return get_message_by_id(message_id, session_status['user_id'], self.db_connection)
 
-    def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
-        return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)
+    def upload(self, filename, description, file_path, thumb_path, category, media_type, price, session_token):
+        return upload(filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
 
     def search(self, term, category, media_type, startsat, perpage):
         return search(self.db_connection, term, category, media_type, startsat, perpage)

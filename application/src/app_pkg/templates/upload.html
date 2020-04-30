@@ -10,9 +10,13 @@
    <input type=text name=description value="{{request.form.description}}">
    <h1>price</h1>
    <input type=number name=price value="{{request.form.price}}">
-   <h1>media type</h1>
+   <h1>category</h1>
    <div class="input-group-prepend">
       {{ form.category(class_="btn custom-select") }}
+   </div>
+   <h1>media_type</h1>
+   <div class="input-group-prepend">
+      {{ form.media_type(class_="btn custom-select") }}
    </div>
    <input type=submit value=Upload>
 </form>

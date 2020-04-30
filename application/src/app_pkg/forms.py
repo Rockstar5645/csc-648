@@ -45,8 +45,9 @@ class SubmissionForm(Form):
     description = StringField('Description', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     categories = db.get_category_select_field()
-    category = SelectField('Category', choices=categories, validators=[])
+    media_types = db.get_media_type_select_field()
     category = SelectField('Category', choices=categories, validators=[], default='all')
+    media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
     submit = SubmitField('Submit')
 
 class MessageForm(Form):

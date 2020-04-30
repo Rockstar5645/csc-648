@@ -1,4 +1,6 @@
-from PIL import Image
+import os
+
+from PIL import Image as PILImage
 from tkinter import Image
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
@@ -25,7 +27,7 @@ def upload_file():
     # if "POST"
     if request.method == 'POST':
         # check if the post request has the file part
-        if 'file_input' not in request.files:
+        if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
@@ -35,42 +37,49 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(STATIC_PATH + 'static/user_images/', filename))
+            # took out 'static/' to test upload.html
+            file.save(os.path.join(STATIC_PATH + 'user_images/', filename))
 
             # makes thumbnail and saves it to thumbnails folder
-            f = Image.open(STATIC_PATH + 'user_images/' + filename)
+            f = PILImage.open(STATIC_PATH + 'user_images/' + filename)
             f.thumbnail((200, 200))
             f.save(STATIC_PATH + 'thumbnails/t_' + filename)
             print("thumbnail saved")
 
             # query db params, add approval variable
             session_token = request.cookies.get('token')
-            name = request.form['name']
+            name = request.form['filename']
             desc = request.form['description']
+            # commented out for now, need to add license in submission forms
+            """
             license = request.form['license']
             if license == 'paid':
                 price = request.form['price']
             else:
                 price == 0.00
+                """
+            price = request.form['price']
             cat = request.form['category']
+            media = request.form['media_type']
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
-            print(name, " ", desc, " ", price, " ", cat, " ", filepath, " ", thumbpath, " ", session_token)
+            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)
 
-            results = db.upload(name, desc, filepath, thumbpath, cat, price, session_token)
+            results = db.upload(name, desc, filepath, thumbpath, cat, media, price, session_token)
 
             form.filename.default = filename
             form.description.default = desc
             form.price.default = price
             form.category.default = cat
+            form.media_type.default = media
             form.process()
 
             # TODO: fix render_templates and redirects for submit media button in base.html
             return redirect(url_for('search'))
 
     # else, (if "GET")
-    return render_template('search.html', form=form)
+    return render_template('upload.html', form=form)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
