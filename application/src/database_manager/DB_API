@@ -1,12 +1,9 @@
-LOGIN METHOD:
+LOGIN METHOD: login
 
 Parameters (username : string, password : string, ip_address : string)
 
-Return Value:
+return_value -> status_message['status']
 
-status_message : dict
-
-status_message['status']
     a) 'success': indicates a successful login and session generation,
         token can be retrieved from status_message['token']
         redirect user to application page
@@ -19,15 +16,12 @@ status_message['status']
 
 -----------------------------------------------------------------------------------------------------------------------
 
-REGISTER METHOD:
+REGISTER METHOD: register
 
 Parameters(username: string, email : string, password : string)
 
-Return Value:
+return_value -> status_message['status']
 
-status_message : dict
-
-status_message['status']
     a) 'success': indicates successful user registration, and session generation,
         token can be retrieved from status_message['token'],
         redirect user to application page
@@ -42,14 +36,11 @@ status_message['status']
 
 -----------------------------------------------------------------------------------------------------------------------
 
-VALIDATE SESSION: 
-
+VALIDATE SESSION: validate_session
 
 Parameters(session token: string)
 
-Return Value:
-
-status_message['status']
+return_value -> status_message['status']
     
     a) 'success': The user is still in a valid session, proceed with route logic
     b) 'invalid_token': The user's session_token is invalid, it may have expired, or the user tampered with it, 
@@ -60,13 +51,11 @@ status_message['status']
 
 -----------------------------------------------------------------------------------------------------------------------
 
-LOGOUT:
+LOGOUT: logout
 
 Parameters(session token: string)
 
-Return Value:
-
-status_message['status']
+return_value -> status_message['status']
 
     a) 'success': The user was in a valid session, and now their session token has been revoked, logout was successful, 
         redirect to the login or home page
@@ -78,13 +67,11 @@ status_message['status']
 
 -----------------------------------------------------------------------------------------------------------------------
 
-SEND MESSAGE:
+SEND MESSAGE: send_message
 
 Parameters(session_token: string, media_id: integer, subject: string, message_body: string)
 
-Return Value:
-
-status_message['status']
+return_value -> status_message['status']
 
     a) 'success': The message was successfully 'sent', inform the user
     b) 'invalid_token': see 'VALIDATE SESSION'
@@ -93,3 +80,54 @@ status_message['status']
     d) 'no_media': The media item to which this message corresponds does not exist, could indicate the user
         tampered with the media_id or other logic errors, inform the user the message was not sent and tell them 
         to try again
+
+-----------------------------------------------------------------------------------------------------------------------
+
+GET ALL MESSAGES: get_all_messages
+
+Parameters(session_token: string)
+
+return_value -> status_message['status']
+
+    a) 'success': All of the user's messages were successfully retrieved
+        i) check status_message['message-list'] for a python list of the messages, the messages are ordered
+            with the latest messages in the beginning, each message is a python dictionary of the form
+            {
+                'message-id': <the message identifier>,
+                'subject': <message subject>
+                'time_stamp': python datetime object of the time and date the message was sent
+                'sender': the username of the sender of the message
+                'seen': a boolean (True or False) indicating whether this message was viewed by the
+                        recipient yet
+            }
+    b) 'invalid_token': see 'VALIDATE SESSION'
+
+    c) 'fail': could be one of several reasons, database/redis errors, inform the user that we were not able
+        to retrieve their messages and ask them to try again
+
+-----------------------------------------------------------------------------------------------------------------------
+
+GET SPECIFIC MESSAGE BY ID: get_message_by_id
+
+Parameters(session_token: string, message_id: integer)
+
+return_value -> status_message['status']
+
+    a) 'success': The message referenced by the provided message_id was successfully retrieved, check the
+        rest of the following keys in the status_message dictionary to assemble message object
+        i)      'subject': <messages subject>
+        ii)     'time_stamp': python datetime object of the time and date the message was sent
+        iii)    'sender': the username of the sender of the message
+        iv)     'message_body': the body of the message
+        v)      'media_id': the specific media_id of the media item this message pertains to
+
+    b) 'unauthorized': The message was not intended for the person requesting to view it, could indicate
+        possible tampering with the message_id field, tell the user the message could not be retrieved
+
+    c) 'fail': could be one of several reasons, database/redis errors, inform the user that we were not
+        able to retrieve this particular message and ask them to try again
+
+    d) 'invalid-message-id': There doesn't exist a message with this particular message_id, could
+        indicate tampering with the message_id field, tell the user the message could not be retrieved
+
+    e) 'invalid_token': see 'VALIDATE SESSION'

@@ -4,6 +4,8 @@ from src.database_manager.login import login
 from src.database_manager.logout import logout
 from src.database_manager.get_session_id import get_session_id
 from src.database_manager.send_message import send_message
+from src.database_manager.get_all_messages import get_all_messages
+from src.database_manager.get_message_by_id import get_message_by_id
 
 from src.database_manager.upload import upload
 
@@ -67,6 +69,12 @@ class DB:
         else:
             return get_all_messages(session_status['user_id'], self.db_connection)
 
+    def get_message_by_id(self, session_token, message_id):
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] != 'success':
+            return session_status
+        else:
+            return get_message_by_id(message_id, session_status['user_id'], self.db_connection)
 
     def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
         return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)
