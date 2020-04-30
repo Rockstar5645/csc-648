@@ -19,6 +19,6 @@ app.config['RECAPTCHA_OPTIONS'] = {'theme':'white'}
 db = DB()
 
 # import routes
-from src.app_pkg import routes
+from src.app_pkg.routes import search, about, admin, login, registration, single_media_view, user_profile, submit_media
 
 
