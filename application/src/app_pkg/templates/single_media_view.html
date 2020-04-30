@@ -60,7 +60,7 @@
                 <div class="container">
                     <form>
                         <!-- Image of the Media -->
-                        <div class=media">
+                        <div class="media">
                             <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
                                  height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
                         </div>
@@ -176,8 +176,13 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="far fa-envelope "></i></div>
                         </div>
+                        <!--------------    subject     ------------------>
+
+                        <!--
                         <input type="text" class="form-control" id="message-subject" placeholder="Digital Media Title"
                                readonly>
+                        -->
+                        {{ form.subject(class="form-control") }}
                     </div>
 
                     <label for="datepicker" class="col-form-label">Date</label>
@@ -189,12 +194,16 @@
                                readonly>
                     </div>
 
-
+                    <!----------------    messages/body    --------------->
+                    <!--
                     <div class="form-group">
                         <label for="message-text" class="col-form-label"> Message</label>
                         <textarea class="form-control" id="message-text" placeholder="Type your message here..."
                                   rows="10" required></textarea>
                     </div>
+                    -->
+
+                    {{ form.message(class="form-control") }}
 
                 </form>
             </div>
@@ -203,9 +212,14 @@
                 <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
                     Cancel
                 </button>
+
+                <!---------------    SUBMIT BUTTON     ----------------->
+                <!--
                 <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
                         class="btn btn-warning">Send Message
                 </button>
+                -->
+                {{ form.sumbit(class="btn btn-outline-secondary") }}
             </div>
         </div>
     </div>
