@@ -35,7 +35,6 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            # took out 'static/' to test upload.html
             cwd = os.getcwd()
             newPath = cwd.replace(os.sep, '/')
             fullPath = os.path.join(newPath + '/', 'src/app_pkg/static/user_images/', filename)
@@ -66,10 +65,9 @@ def upload_file():
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
-            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)
+            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
-            results = db.upload(name, desc, filepath, thumbpath, cat, media, price, session_token)
-
+            results = db.upload_file(name, desc, filepath, thumbpath, cat, media, price, session_token)
             form.filename.default = filename
             form.description.default = desc
             form.price.default = price

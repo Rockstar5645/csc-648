@@ -6,15 +6,13 @@ from src.database_manager.get_session_id import get_session_id
 from src.database_manager.send_message import send_message
 from src.database_manager.get_all_messages import get_all_messages
 from src.database_manager.get_message_by_id import get_message_by_id
-
-from src.database_manager.upload import upload
-
+from src.database_manager.upload_file import upload_file
+from src.database_manager.delete_file import delete_file
 from src.database_manager.validate_session import validate_session
 from src.database_manager.search import search
 from src.database_manager.select_fields import get_media_type_select_field, get_category_select_field
 from src.database_manager.team import get_team
 from src.database_manager.helpers import get_media_type, get_category_type
-
 
 from src.config import redis_conn
 import redis
@@ -76,8 +74,11 @@ class DB:
         else:
             return get_message_by_id(message_id, session_status['user_id'], self.db_connection)
 
-    def upload(self, filename, description, file_path, thumb_path, category, media_type, price, session_token):
-        return upload(filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
+    def upload_file(self, filename, description, file_path, thumb_path, category, media_type, price, session_token):
+        return upload_file(filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
+
+    def delete_file(self):
+        return delete_file()
 
     def search(self, term, category, media_type, startsat, perpage):
         return search(self.db_connection, term, category, media_type, startsat, perpage)
