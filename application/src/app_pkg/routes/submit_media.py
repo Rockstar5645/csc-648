@@ -38,12 +38,16 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             # took out 'static/' to test upload.html
-            file.save(os.path.join(STATIC_PATH + 'user_images/', filename))
+            cwd = os.getcwd()
+            newPath = cwd.replace(os.sep, '/')
+            fullPath = os.path.join(newPath + '/', 'src/app_pkg/static/user_images/', filename)
+            file.save(fullPath)
+            user_images = os.path.join(newPath + '/', 'src/app_pkg/static/')
 
-            # makes thumbnail and saves it to thumbnails folder
-            f = PILImage.open(STATIC_PATH + 'user_images/' + filename)
+            #makes thumbnail and saves it to thumbnails folder
+            f = PILImage.open(fullPath)
             f.thumbnail((200, 200))
-            f.save(STATIC_PATH + 'thumbnails/t_' + filename)
+            f.save(user_images + 'thumbnails/t_' + filename)
             print("thumbnail saved")
 
             # query db params, add approval variable

@@ -8,7 +8,7 @@ def get_message_by_id(message_id, requester_id, db):
         get_message_by_id_query = (
             "SELECT m.subject, m.time_stamp, m.message_body, m.recipient, m.media_id,"
             " u.username AS sender"
-            " FROM messages m"
+            " FROM messagxes m"
             " JOIN user u ON m.sender=u.user_id"
             " WHERE m.message_id=%s"
         )
