@@ -1,5 +1,4 @@
 import os
-
 from PIL import Image as PILImage
 from tkinter import Image
 from src.app_pkg import app, db
@@ -14,6 +13,7 @@ from werkzeug.utils import secure_filename
 # work in progress
 # thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py to test
 # replace ... with your path in your local setup
+
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
