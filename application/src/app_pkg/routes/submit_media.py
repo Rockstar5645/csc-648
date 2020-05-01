@@ -4,7 +4,6 @@ from PIL import Image as PILImage
 from tkinter import Image
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
-from src.config import STATIC_PATH
 from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
 from werkzeug.utils import secure_filename
@@ -15,7 +14,6 @@ from werkzeug.utils import secure_filename
 # work in progress
 # thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py to test
 # replace ... with your path in your local setup
-app.config['STATIC_PATH'] = STATIC_PATH
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):

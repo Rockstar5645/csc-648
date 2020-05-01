@@ -4,7 +4,6 @@
 
 from flask import Flask
 from src.database_manager.db_manager import DB
-from src.config import STATIC_PATH
 import pathlib
 
 # init flask application
