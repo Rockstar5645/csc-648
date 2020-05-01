@@ -12,6 +12,7 @@ from src.app_pkg.routes.common import validate_helper
 @app.route('/search', defaults={'page':0}, methods=['GET', 'POST'])
 @app.route('/search/page/<int:page>', methods=['GET','POST'])
 def search(page):
+    print(STATIC_PATH)
     isloggedin = validate_helper(request.cookies)
     # assign form and results list
     form = SearchForm()
