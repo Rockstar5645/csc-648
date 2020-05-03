@@ -8,22 +8,16 @@
 
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand"><a class="nav-link" href="/">Snapster</a></span>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
+    <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
+    <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
+    Snapster
+    </a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
     </button>
-
-
-    <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">{% block title %}{% endblock %}</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+  </nav>
 
 
 
@@ -45,8 +39,8 @@
             </div>
         </div>
         <div class="col-md-7">
-            <h2 class="mb-4">Register Form</h2>
             <div class="form-group">
+                <h2 class="mb-4">Registration Form</h2>
                 <div class="register-form">
                     <form class="needs-validation" action="{{ url_for('register') }}" method="POST" data->
 
@@ -141,8 +135,8 @@
                         </div>
 
                     <!-- RECAPTCHA -->
-                    {{ form.recaptcha(class="g-recaptcha") }}
-
+                    <center>{{ form.recaptcha(class="g-recaptcha") }}</center>
+                    <br>
                     <!-- SUBMIT FORM -->
                     {{ form.submit(class="btn btn-success btn-lg btn-block") }}
                     <br>
@@ -275,7 +269,7 @@ body{
 
 	.col-md-7{
 		background: #fff;
-		padding: 3%;
+		padding: 2%;
 		border-top-right-radius: 0.5rem;
 		border-bottom-right-radius: 0.5rem;
 	}

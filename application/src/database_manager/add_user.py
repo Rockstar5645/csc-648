@@ -5,7 +5,7 @@ import mysql.connector
 from mysql.connector import errorcode
 
 
-def add_user(username, email, password, db):
+def add_user(username, email, password, db, bcrypt_rotate=14):
     # user_id (auto increment), first_name, last_name, email, phone_number, username, password
     add_user_query = ("INSERT INTO user "
                       "(username, email, password) "
@@ -16,7 +16,7 @@ def add_user(username, email, password, db):
     # bcrypt only accepts passwords that have a length upto 80 characters, so limit the size of the password we pass
     # to the bcrypt function, we get the sha256 hash and base64 encode that
     # then generate the bcrypt hash of our password and salt, using 14 rounds (approximately 1.5 seconds)
-    hashed = bcrypt.hashpw(base64.b64encode(hashlib.sha256(password).digest()), bcrypt.gensalt(14))
+    hashed = bcrypt.hashpw(base64.b64encode(hashlib.sha256(password).digest()), bcrypt.gensalt(bcrypt_rotate))
 
     # this is the other way to do it, but it will break if user enters password greater than 80 characters
     # hashed = bcrypt.hashpw(password, bcrypt.gensalt(14))

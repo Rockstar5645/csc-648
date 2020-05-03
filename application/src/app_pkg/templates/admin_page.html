@@ -27,7 +27,7 @@ select {
   display: inline-block;
   font: Times New Roman;
   line-height: 1.0em;
-  padding: 0.5em 2.0em 0.5em 0.5em;
+  padding: 0.5em 2.0em 0.0em 2.5em;
   align: right;
 
   /* reset */
@@ -60,50 +60,52 @@ select.minimal {
 
 
 
+
 </style>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
-<!-- USER LOG OUT DROPDOWN -->
-<div class="container mt-5">
-
-    <!-- Top Menu Items -->
-    <ul class="nav navbar-right top-nav">
-        <li class="mr-5">Welcome <strong>{% block title %}Admin{% endblock %}</strong></li>
-        <li><a href="/search"> Logout</a></li>
-    </ul>
-</div>
-
 <body>
 
 
-<!-- MY ITEMS AND MESSAGES TAB -->
+<!-- USER LOG OUT DROPDOWN -->
 <div class="container mt-5">
-     <caption>Admin Dashboard</caption>
+    <ul class="nav navbar-right top-nav">
+        <li class="mr-5">
+            <div class="dropdown">
+                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Dashboard</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/search">Logout</a>
+                    </div>
+            </div>
+        </li>
+    </ul>
+
+
+
+<!-- MY ITEMS AND MESSAGES TAB -->
     <nav class="mt-5">
 
         <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="font-size:160%">
             <li class="nav-item">
-                 <a class="nav-link active" style="color:purple;" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab"
-               aria-controls="nav-pending" aria-selected="true"><i class="fas fa-info-circle"></i> Pending
-                 <span class="w3-badge w3-right w3-small w3-orange">8</span></a>
+                <a class="nav-link active" style="color:purple;" id="nav-pending-tab" data-toggle="tab"
+                   href="#nav-pending" role="tab"
+                   aria-controls="nav-pending" aria-selected="true"><i class="fas fa-info-circle"></i> Pending</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color:purple;" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab"
-               aria-controls="nav-posts" aria-selected="false"><i class="far fa-image"></i> Posts</a>
+                <a class="nav-link" style="color:purple;" id="nav-posts-tab" data-toggle="tab" href="#nav-posts"
+                   role="tab"
+                   aria-controls="nav-posts" aria-selected="false"><i class="far fa-image"></i> Posts </a>
             </li>
             <li class="nav-item">
-                  <a class="nav-link"  style="color:purple;" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab"
-               aria-controls="nav-users" aria-selected="false"><i class="fas fa-user-graduate"></i> Users
-                    <span class="w3-badge w3-right w3-orange w3-small">7</span></a>
+                <a class="nav-link" style="color:purple;" id="nav-users-tab" data-toggle="tab" href="#nav-users"
+                   role="tab"
+                   aria-controls="nav-users" aria-selected="false"><i class="fas fa-user-graduate"></i> Users </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color:purple;" id="nav-messages-tab" data-toggle="tab" href="#nav-messages"
                    role="tab"
-                   aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> Messages
-                    <span class="w3-badge w3-right w3-orange w3-small">4</span></a>
-
+                   aria-controls="nav-messages" aria-selected="false"><i class="far fa-envelope"></i> Messages </a>
             </li>
         </ul>
     </nav>
@@ -119,10 +121,10 @@ select.minimal {
 
         <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
             <div>
-                <table class="table">
+                <table class="table" style="text-align:center">
                     <thead style="background:#dbc3e3;">
                     <tr>
-                        <th>Digital Media</th>
+                        <th>Pending for review</th>
                         <th>Date Requested</th>
                     </tr>
                     </thead>
@@ -130,7 +132,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -141,7 +143,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -152,7 +154,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -163,7 +165,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -174,7 +176,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -185,7 +187,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -195,18 +197,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
-                        <td>datetime</td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
-                               data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -217,7 +208,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -228,7 +219,18 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
+                        <td>datetime</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr>
+                        <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#ApprovePost"
+                               data-toggle="modal"
+                               type="button">View Media</a></td>
                         <td>datetime</td>
                         <td>
 
@@ -248,13 +250,13 @@ select.minimal {
 
         <div class="tab-pane fade" id="nav-posts" role="tabpanel" aria-labelledby="nav-posts-tab">
             <div>
-                <table class="table">
+                <table class="table" style="text-align:center">
                     <thead style="background:#dbc3e3;">
                     <tr>
                         <th>Digital Media</th>
                         <th>
                             <select class="minimal" id="posts">
-                                <option  selected value="allPosts">Posts</option>
+                                <option selected value="allPosts">Posts</option>
                                 <option value="approve">Approved</option>
                                 <option value="rejected" style="color:red;">Rejected</option>
                             </select></th>
@@ -265,7 +267,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -277,7 +279,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -289,7 +291,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -301,7 +303,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-danger">Rejected</td>
                         <td>datetime</td>
                         <td>
@@ -313,7 +315,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -325,7 +327,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -337,7 +339,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-danger">Rejected</td>
                         <td>datetime</td>
                         <td>
@@ -349,7 +351,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -361,7 +363,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -373,7 +375,7 @@ select.minimal {
                     <tr>
                         <td><a class="btn btn-outline-info btn-sm btn-sm " data-target="#"
                                data-toggle="modal"
-                               type="button">item_title</a></td>
+                               type="button">View Media</a></td>
                         <td class="text-success">Approved</td>
                         <td>datetime</td>
                         <td>
@@ -396,7 +398,7 @@ select.minimal {
 
         <div class="tab-pane fade" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
             <div>
-                <table class="table">
+                <table class="table" style="text-align:center">
                     <thead style="background:#dbc3e3;">
                     <tr>
                         <th>Username/Email</th>
@@ -414,13 +416,8 @@ select.minimal {
                         <!-- ACTION REPORT OR BLOCK USER -->
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -432,13 +429,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -450,13 +442,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -468,13 +455,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -486,13 +468,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -504,13 +481,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -522,13 +494,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                               <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -540,13 +507,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                               <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -558,13 +520,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -576,13 +533,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                               <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -594,13 +546,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -612,13 +559,8 @@ select.minimal {
                         <td>datetime</td>
 
                         <td>
-                            <a class="btn btn-warning btn-sm mr-2" href="#">
-                                <i class="material-icons" style="font-size:24px;color:white">warning</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm btn-sm" href="#">
-                                <i class="fas fa-ban" style="font-size:24px;color:white"></i>
-                            </a>
+                            <a class="fa fa-warning mr-4" data-toggle="modal" data-target="#reportUser"></a>
+                            <a class="fas fa-ban" data-toggle="modal" data-target="#blockUser"></a>
                         </td>
 
                     </tr>
@@ -634,11 +576,11 @@ select.minimal {
         <!--        MY MESSAGES TAD-->
         <!--        MY MESSAGES TAD-->
 
-                <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-            <table class="table">
+        <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
+            <table class="table" style="text-align:center">
                 <thead style="background:#dbc3e3;">
                 <tr>
-                    <th>Subject Tittle</th>
+                    <th>Messages</th>
                     <th>Date</th>
                     <th>Sender</th>
                     <th></th>
@@ -648,7 +590,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -657,7 +599,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -666,7 +608,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -675,7 +617,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -684,7 +626,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -692,16 +634,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -710,7 +643,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -719,7 +652,7 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -728,7 +661,16 @@ select.minimal {
                 <tr>
                     <td>
                         <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Subject</a>
+                           type="button">View Message</a>
+                    </td>
+                    <td>datetime</td>
+                    <td>username</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                           type="button">View Message</a>
                     </td>
                     <td>datetime</td>
                     <td>username</td>
@@ -741,172 +683,172 @@ select.minimal {
     </div>
 
 
+    <!-- SINGLE MEDIA VIEW TO BE APPROVED BY ADMIN -->
+    <!-- SINGLE MEDIA VIEW TO BE APPROVED BY ADMIN -->
 
-<!-- SINGLE MEDIA VIEW TO BE APPROVED BY ADMIN -->
-<!-- SINGLE MEDIA VIEW TO BE APPROVED BY ADMIN -->
 
-
-<div aria-hidden="true" aria-labelledby="ApprovePost" class="modal fade" id="ApprovePost" role="dialog"
-     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-        <div class="modal-content">
-            <!-- Title of the Media -->
-            <div class="modal-header text-center">
-                <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="container">
-                    <form>
-                        <!-- Image of the Media -->
-                        <div class=media">
-                            <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
-                                 height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
-                        </div>
-
-                        <!-- Digital media info -->
-                        <div>
-                            <div class="row">
-                                <div class="col text-right">
-                                    <label class="font-weight-bold">Category:</label>
-                                </div>
-                                <div class="col">
-                                    <span>BIO 417</span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-right">
-                                    <label class="font-weight-bold">Media type:</label>
-                                </div>
-                                <div class="col">
-                                    <span>Image</span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-right">
-                                    <label class="font-weight-bold">License:</label>
-                                </div>
-                                <div class="col">
-                                    <span>Free</span>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-right">
-                                    <label class="font-weight-bold">Author:</label>
-                                </div>
-                                <div class="col">
-                                    <span>Username</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group mr-3">
-                                <label class="font-weight-bold">Description:</label>
-                                <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Cancel or Download Media Buttons -->
-
-                        <div class="form-group text-right">
-                            <button class="btn btn-danger" data-dismiss="modal">Reject</button>
-                            &MediumSpace;
-                            <button class="btn btn-success" data-dismiss="modal">Approve</button>
-                        </div>
-
-                    </form>
+    <div aria-hidden="true" aria-labelledby="ApprovePost" class="modal fade" id="ApprovePost" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <!-- Title of the Media -->
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100" id="MediaViewTitle">Digital Media Information</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-     <div class="modal fade" id="ReadMessage" tabindex="-1" role="dialog" aria-labelledby="ReadMessageLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">View message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <div class="container">
                         <form>
-
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Sender:</label>
-                                <input type="text" class="form-control" id="recipient-name"
-                                       placeholder="username@mail.sfsu.edu"
-                                       readonly>
+                            <!-- Image of the Media -->
+                            <div class=media">
+                                <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
+                                     height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
                             </div>
 
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Subject:</label>
-                                <input type="text" class="form-control" id="message-subject"
-                                       placeholder="Digital Media Title"
-                                       readonly>
+                            <!-- Digital media info -->
+                            <div>
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <label class="font-weight-bold">Category:</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>BIO 417</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <label class="font-weight-bold">Media type:</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>Image</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <label class="font-weight-bold">License:</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>Free</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <label class="font-weight-bold">Author:</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>Username</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mr-3">
+                                    <label class="font-weight-bold">Description:</label>
+                                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                        aliquip
+                                        ex ea commodo consequat. Duis aute irure dolor."
+                                    </p>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label"> Message:</label>
-                                <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor."
-                                </p>
+                            <!-- Cancel or Download Media Buttons -->
+
+                            <div class="form-group text-right">
+                                <button class="btn btn-danger" data-dismiss="modal">Reject</button>
+                                &MediumSpace;
+                                <button class="btn btn-success" data-dismiss="modal">Approve</button>
                             </div>
 
                         </form>
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
-                                class="btn btn-success">Reply
-                        </button>
-                    </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+
+<!--    MESSAGE VIEW MODAL -->
+    <div class="modal fade" id="ReadMessage" tabindex="-1" role="dialog" aria-labelledby="ReadMessageLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Sender:</label>
+                            <input type="text" class="form-control" id="recipient-name"
+                                   placeholder="username@mail.sfsu.edu"
+                                   readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Subject:</label>
+                            <input type="text" class="form-control" id="message-subject"
+                                   placeholder="Digital Media Title"
+                                   readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label"> Message:</label>
+                            <p class="card-text" id="message-text">"Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                ex ea commodo consequat. Duis aute irure dolor."
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                            class="btn btn-success">Reply
+                    </button>
+                </div>
+            </div>
         </div>
 
+    </div>
 
 
+    <!--PAGINATION -->
+    <!--PAGINATION -->
+    <!--PAGINATION -->
+    <!--PAGINATION -->
+    <!--PAGINATION -->
+    <!--PAGINATION -->
 
-<!--PAGINATION -->
-<!--PAGINATION -->
-<!--PAGINATION -->
-<!--PAGINATION -->
-<!--PAGINATION -->
-<!--PAGINATION -->
 
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
+    <nav aria-label="Page navigation example" >
+        <ul class="pagination justify-content-center" >
+            <li class="page-item" style="color:purple;">
+                <a class="page-link"  href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 
 </div>
 

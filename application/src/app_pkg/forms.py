@@ -19,7 +19,9 @@ from wtforms.validators import DataRequired, Length, EqualTo
 class SearchForm(Form):
     term = StringField("Search", validators=[], default='')
     categories = db.get_category_select_field()
+    media_types = db.get_media_type_select_field()
     category = SelectField('Category', choices=categories, validators=[], default='all')
+    media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
     submit = SubmitField("Search")
 
 class RegistrationForm(Form):
@@ -43,7 +45,14 @@ class SubmissionForm(Form):
     description = StringField('Description', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     categories = db.get_category_select_field()
-    category = SelectField('Category', choices=categories, validators=[])
+    media_types = db.get_media_type_select_field()
     category = SelectField('Category', choices=categories, validators=[], default='all')
-    submit = SubmitField('Submit Media')
+    media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
+    submit = SubmitField('Submit')
+
+class MessageForm(Form):
+    subject = StringField('subject line', validators=[DataRequired])
+    message = StringField('message', validators=[DataRequired])
+    submit = SubmitField('Submit')
+
 

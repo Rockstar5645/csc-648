@@ -1,10 +1,18 @@
 from src.database_manager import database_connection
 from src.database_manager.register import register
 from src.database_manager.login import login
-
-from src.database_manager.upload import upload
-
+from src.database_manager.logout import logout
+from src.database_manager.get_session_id import get_session_id
+from src.database_manager.send_message import send_message
+from src.database_manager.get_all_messages import get_all_messages
+from src.database_manager.get_message_by_id import get_message_by_id
+from src.database_manager.upload_file import upload_file
+from src.database_manager.delete_file import delete_file
 from src.database_manager.validate_session import validate_session
+from src.database_manager.search import search
+from src.database_manager.select_fields import get_media_type_select_field, get_category_select_field
+from src.database_manager.team import get_team
+from src.database_manager.helpers import get_media_type, get_category_type
 
 from src.config import redis_conn
 import redis
@@ -36,79 +44,57 @@ class DB:
     def register(self, username, email, password):
         return register(username, email, password, self.db_connection, self.redis_connection)
 
-    def login(self, username,  password, ip_address):
+    def login(self, username,  password, ip_address='127.0.0.1'):
         return login(username, password, ip_address, self.db_connection, self.redis_connection)
 
     def validate_session(self, session_token):
         return validate_session(session_token, self.redis_connection)
 
-    def upload(self, filename, description, file_path, thumb_path, category, price, session_token):
-        return upload(filename, description, file_path, thumb_path, category, price, session_token, self.db_connection)
+    def logout(self, session_token):
+        return logout(session_token, self.redis_connection)
 
-    def search(self, term, category, startstat, perpage):
-        if term =='': # if search term was blank
-            return self.get_category(category, startstat, perpage)
-        else: # search like for term
-            return self.search_like(term, category, startstat, perpage)
-
-    def search_like(self, term, category, startstat, perpage):
-        if category == 'all':
-            # check all categories for search term
-            self.db_connection.query(
-                "SELECT * "
-                "FROM digital_media_test "
-                "WHERE `name` LIKE %s OR `description` LIKE %s LIMIT %s, %s",
-                ("%" + term + "%","%" + term + "%", startstat, perpage)
-            )
+    def send_message(self, session_token, media_id, subject, message_body): 
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] != 'success':
+            return session_status
         else:
-            # check only for matches in certain category
-            self.db_connection.query(
-                "SELECT * "
-                "FROM digital_media_test "
-                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category LIKE %s LIMIT %s, %s",
-                ("%" + term + "%","%" + term + "%", "%" + category, startstat, perpage)
-            )
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        # if result is empty, get all objects in category
-        if len(data) == 0:
-            print('no term match, getting category')
-            data = self.get_category(category, startstat, perpage)
-        return data
+            return send_message(session_status['user_id'], media_id, subject, message_body, self.db_connection)
 
-    def get_category(self, category, startstat, perpage):
-        # get all rows of a certain category
-        self.db_connection.query("SELECT * FROM digital_media_test WHERE category LIKE %s LIMIT %s, %s", ("%" + category + "%", startstat, perpage))
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        # if category is empty, return all rows in table
-        if len(data) == 0:
-            print('no category, getting all media')
-            data = self.get_all_media(startstat, perpage)
-        return data
+    def get_all_messages(self, session_token):
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] != 'success':
+            return session_status
+        else:
+            return get_all_messages(session_status['user_id'], self.db_connection)
+
+    def get_message_by_id(self, session_token, message_id):
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] != 'success':
+            return session_status
+        else:
+            return get_message_by_id(message_id, session_status['user_id'], self.db_connection)
+
+    def upload_file(self, filename, description, file_path, thumb_path, category, media_type, price, session_token):
+        return upload_file(filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
+
+    def delete_file(self):
+        return delete_file()
+
+    def search(self, term, category, media_type, startsat, perpage):
+        return search(self.db_connection, term, category, media_type, startsat, perpage)
     
-    def get_all_media(self, startstat, perpage):
-        # return all rows in table
-        self.db_connection.query("SELECT * FROM digital_media_test LIMIT %s, %s", (startstat, perpage))
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        return data
+    def get_media_type_select_field(self):
+        return get_media_type_select_field(self.db_connection)
 
     def get_category_select_field(self):
-        # this returns the categories for a select field in a form
-        self.db_connection.query("SELECT * FROM categories")
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        # make a usable list of tuples for select field
-        cats = [(c[1], c[1]) for c in data]
-        return cats
+        return get_category_select_field(self.db_connection)
 
     def get_team(self, name=None):
-        if name == None: # if no param : return whole team table
-            self.db_connection.query("SELECT * FROM team_about")
-        else: # get team_member
-            self.db_connection.query("SELECT * FROM team_about WHERE `name` LIKE %s", ("%" + name + "%",))
-        data = self.db_connection.fetchall()
-        self.db_connection.commit()
-        return data
+        return get_team(self.db_connection, name)
+
+    def get_media_type(self, id):
+        return get_media_type(self.db_connection, id)
+    
+    def get_category_type(self, id):
+        return get_category_type(self.db_connection, id)
 

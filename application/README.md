@@ -33,7 +33,7 @@
     session_duration = 3600
 
 
-    STATIC_PATH = '[PATH TO] csc648-fa20-team06/application/src/app_pkg/static/'
+    STATIC_PATH = ''
    
 
 
