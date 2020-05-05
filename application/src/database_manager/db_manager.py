@@ -80,8 +80,8 @@ class DB:
     def delete_file(self):
         return delete_file()
 
-    def search(self, term, category, media_type, startsat, perpage):
-        return search(self.db_connection, term, category, media_type, startsat, perpage)
+    def search(self, params):
+        return search(self.db_connection, params)
     
     def get_media_type_select_field(self):
         return get_media_type_select_field(self.db_connection)

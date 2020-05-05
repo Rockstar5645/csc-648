@@ -73,7 +73,6 @@
                     <div class="input-group mt-1 mb-1 ml-lg-4">
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
-                            {{ form.media_type(class_="btn custom-select") }}
                         </div>
                         {{ form.term(class_="form-control", style="width: 325px", maxlength="32") }}
                         <div class="input-group-append">
@@ -85,12 +84,26 @@
 
                     <div class="row">
                         <div class="col">
-                            {% for value, label in form.media_type.choices %}
-                                <div class="form-check form-check-inline ml-lg-4">
-                                    <input class="form-check-input" type="checkbox" value="{{ value }}">
-                                    <label class="form-check-label" style="color: white">{{label}}</label>
-                                </div>
-                            {% endfor %}
+                            <div class="form-check form-check-inline ml-lg-4">
+                                    {{ form.image_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ form.image_check.label.text }}</label>
+
+                                    {{ form.video_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ form.video_check.label.text }}</label>
+
+                                    {{ form.audio_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ form.audio_check.label.text }}</label>
+
+                                    {{ form.document_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ form.document_check.label.text }}</label>
+
+                                    <div class="col-auto pl-1 pr-0">
+                                        <span style="color: white;">|</span>
+                                    </div>
+                                
+                                    {{ form.free_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ form.free_check.label.text }}</label>
+                            </div>
                         </div>
                     </div>
                 </form>

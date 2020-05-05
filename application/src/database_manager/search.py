@@ -1,77 +1,106 @@
 
+'''
+digital media index:
+    0 - digital media id
+    1 - owner_id
+    2 - name
+    3 - description
+    4 - file_path
+    5 - thumbnail_path
+    6 - category_id
+    7 - media_type_id
+    8 - price
+    9 - approved
+'''
+##############################################
+#                Search logic                #
+##############################################
 
-
-def search(conn, term, category, media_type, startsat, perpage):
-
-    q = Q_Container(conn, term, category, media_type, startsat, perpage)
-
-    if term == '':
-        result = no_term_search(q)
-        
+def search(conn, params):
+    q = Q_Container(conn, params)
+    if q.term != '':
+        results = term_search(q)
     else:
-        result = term_search(q)
-
-    return check(q, result)
+        results = no_term_search(q)
+    return final_check(q, results)
 
 def term_search(q):
-    if q.category == 'all' and q.media_type == 'all':
-        return term_query(q)
-    elif q.category == 'all' and q.media_type is not 'all':
-        return term_media_query(q)
-    else:
-        return term_category_query(q)
+    results = term_query(q)
+    results = filter_by_category(q, results)
+    results = filter_by_type(q, results)
+    results = filter_by_approved(results)
+    results = filter_by_free(q, results)
+    return results
 
 def no_term_search(q):
-    if q.category == 'all' and q.media_type == 'all':
-        return get_all_table(q)
-    elif q.category == 'all' and q.media_type is not 'all':
-        return get_all_media_type(q)
+    if q.category == '1':
+        results = get_all_table(q)
     else:
-        return get_all_category(q)
+        results = get_all_category(q)
+    results = filter_by_type(q, results)
+    results = filter_by_free(q, results)
+    return results
+
+def filter_by_category(q, results):
+    if q.category == '1':
+        return results
+    for result in results:
+        if result[6] != q.category:
+            results.remove(result)
+    return results
+
+def filter_by_type(q, results):
+    if len(q.media_types) == 0:
+        return results
+    for result in results:
+        if result[7] not in q.media_types:
+            results.remove(result)
+    return results
+
+def filter_by_approved(results):
+    for result in results:
+        if result[9] == 0:
+            results.remove(result)
+    return results
+
+def filter_by_free(q, results):
+    if not q.free:
+        return results
+    else:
+        for result in results:
+            if result[8] > 0:
+                results.remove(result)
+    return results
+
+def final_check(q, results):
+    if len(results) > 0:
+        return results
+    else:
+        if q.term == '' and q.category == '1' and len(q.media_types) == 0:
+            results = get_all_table(q)
+        elif q.term != '':
+            results = term_query(q)
+        elif q.category != '1':
+            results = get_all_category(q)
+            results = filter_by_category(q, results)
+        elif len(q.media_types) > 0:
+            results = get_all_table(q)
+            results = filter_by_type(q, results)
+        if len(results) == 0:
+            return get_all_table(q)
+        return results
+
+##############################################
+#       functions that access the db         #
+##############################################
 
 def term_query(q):
     q.conn.query(
                 "SELECT * "
                 "FROM digital_media "
-                "WHERE `name` LIKE %s OR `description` LIKE %s "
-                "LIMIT %s, %s",
-                ("%" + q.term + "%","%" + q.term + "%",  q.startsat, q.perpage)
+                "WHERE `name` LIKE %s OR `description` LIKE %s ",
+                ("%" + q.term + "%","%" + q.term + "%")
             )
-    data = q.conn.fetchall()
-    q.conn.commit()
-    return data
-
-def term_media_query(q):
-    q.conn.query(
-                "SELECT * "
-                "FROM digital_media "
-                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND media_type LIKE %s LIMIT %s, %s",
-                ("%" + q.term + "%","%" + q.term + "%", "%" + q.media_type, q.startsat, q.perpage)
-            )
-    data = q.conn.fetchall()
-    q.conn.commit()
-    return data
-
-def term_category_query(q):
-    q.conn.query(
-                "SELECT * "
-                "FROM digital_media "
-                "WHERE (`name` LIKE %s OR `description` LIKE %s) AND category_id LIKE %s LIMIT %s, %s",
-                ("%" + q.term + "%","%" + q.term + "%", "%" + q.category, q.startsat, q.perpage)
-        )
-    data = q.conn.fetchall()
-    q.conn.commit()
-    return data
-        
-
-def get_all_table(q):
-    q.conn.query("SELECT * FROM digital_media LIMIT %s, %s", (q.startsat, q.perpage))
-    data = q.conn.fetchall()
-    q.conn.commit()
-    return data
-
-def get_all_media_type(q):
-    q.conn.query("SELECT * FROM digital_media WHERE media_type_id LIKE %s LIMIT %s, %s", ("%" + q.media_type + "%", q.startsat, q.perpage))
     data = q.conn.fetchall()
     q.conn.commit()
     return data
@@ -81,24 +110,33 @@ def get_all_category(q):
     data = q.conn.fetchall()
     q.conn.commit()
     return data
+        
 
-def check(q, result):
-    if len(result) == 0:
-        print('SEARCH: no matches, getting whole table')
-        if q.category is not 'all':
-            result = get_all_category(q)
-        elif q.media_type is not 'all':
-            result = get_all_media_type(q)
-        else:
-            result = get_all_table(q)
-    return result
+def get_all_table(q):
+    q.conn.query("SELECT * FROM digital_media")
+    data = q.conn.fetchall()
+    q.conn.commit()
+    return data
+
+#################################################
+#       Query parameter container object        #
+#################################################
 
 class Q_Container(object):
 
-    def __init__(self, conn, term='', category='all', media_type='all', startsat=0, perpage=12):
-        self.conn=conn
-        self.term = term
-        self.category = category
-        self.media_type = media_type
-        self.startsat = startsat
-        self.perpage = perpage
+    def __init__(self, conn, params):
+        self.conn = conn
+        self.term = params['term']
+        self.category = params['category']
+        self.free = False
+        self.media_types = []
+        if 'image_check' in params:
+            self.media_types.append(1)
+        if 'video_check' in params:
+            self.media_types.append(2)
+        if 'audio_check' in params:
+            self.media_types.append(3)
+        if 'document_check' in params:
+            self.media_types.append(4)
+        if 'free_check' in params:
+            self.free = True
