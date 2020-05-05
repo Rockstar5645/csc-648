@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item">
                 <!--    SEARCH AND FILTER FORM       -->
-                <form class="form-inline" action="{{ url_for('search') }}" method="POST">
+                <form class="form" action="{{ url_for('search') }}" method="POST">
                     <div class="input-group mt-1 mb-1 ml-lg-4">
                         <div class="input-group-prepend">
                             {{ form.category(class_="btn custom-select") }}
@@ -82,11 +82,22 @@
                             </button>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col">
+                            {% for value, label in form.media_type.choices %}
+                                <div class="form-check form-check-inline ml-lg-4">
+                                    <input class="form-check-input" type="checkbox" value="{{ value }}">
+                                    <label class="form-check-label" style="color: white">{{label}}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </form>
             </li>
         </ul>
-
-        <div class="mt-1 mb-1">
+        
+        <div class="mb-lg-4">
             <div class="row">
                 <div class="col-auto pr-0">
                     <div class="dropdown">
@@ -114,6 +125,7 @@
                 </div>
             </div>
         </div>
+        
 
     </div>
 
