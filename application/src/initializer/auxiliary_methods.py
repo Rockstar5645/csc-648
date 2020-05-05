@@ -69,7 +69,7 @@ def fill_digital_media(db):
     digital_media_entries = [
         ('1', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', '/thumbnails/sb1_t.jpg',
             1, 2, 99.99, 0),
-        ('2', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,\
+        ('2', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,
             1, 3 , 89.99, 0),
         ('3', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg','/thumbnails/sb3_t.jpg' ,
             1, 5 , 79.99, 0),
@@ -79,7 +79,7 @@ def fill_digital_media(db):
             1, 2 , 59.99, 0),
         ('1', 'sponge bob 6', 'this is the sixth test photo', '/M2_test_images/sb1.jpg', '/thumbnails/sb1_t.jpg',
             1, 2, 99.99, 0),
-        ('2', 'sponge bob 7', 'this is the seventh test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,\
+        ('2', 'sponge bob 7', 'this is the seventh test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,
             1, 3 , 89.99, 0),
         ('3', 'sponge bob 8', 'this is the eight test photo', '/M2_test_images/sb3.jpg','/thumbnails/sb3_t.jpg' ,
             1, 5 , 79.99, 0),
@@ -89,7 +89,7 @@ def fill_digital_media(db):
             1, 2 , 59.99, 0),
         ('1', 'sponge bob 11', 'this is the eleventh test photo', '/M2_test_images/sb1.jpg', '/thumbnails/sb1_t.jpg',
             1, 2, 99.99, 0),
-        ('2', 'sponge bob 12', 'this is the twelfth test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,\
+        ('2', 'sponge bob 12', 'this is the twelfth test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,
             1, 3 , 89.99, 0),
         ('3', 'sponge bob 13', 'this is the thirteenth test photo', '/M2_test_images/sb3.jpg','/thumbnails/sb3_t.jpg' ,
             1, 5 , 79.99, 0),
