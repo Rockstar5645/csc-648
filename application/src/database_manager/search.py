@@ -22,7 +22,8 @@ def search(conn, params):
         results = term_search(q)
     else:
         results = no_term_search(q)
-    return final_check(q, results)
+    results = final_check(q, results)
+    return len(results), results
 
 def term_search(q):
     results = term_query(q)
@@ -88,6 +89,7 @@ def final_check(q, results):
             results = filter_by_type(q, results)
         if len(results) == 0:
             return get_all_table(q)
+
         return results
 
 ##############################################
