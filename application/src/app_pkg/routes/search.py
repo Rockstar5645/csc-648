@@ -30,6 +30,7 @@ def search():
 def set_form_defaults(form, params):
     form.category.default = params['category']
     form.term.default = params['term']
+    form.license.default = params['license']
     if 'image_check' in params:
         form.image_check.default = params['image_check']
     if 'video_check' in params:
@@ -38,8 +39,6 @@ def set_form_defaults(form, params):
         form.audio_check.default = params['audio_check']
     if 'document_check' in params:
         form.document_check.default = params['document_check']
-    if 'free_check' in params:
-        form.free_check.default = params['free_check']
     form.process()
 
 def call_db(params):
