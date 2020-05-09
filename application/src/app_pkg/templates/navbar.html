@@ -183,22 +183,21 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadTitle">Title</label><span style="color:red;">*</span>
-                                <input name="filename" type="text" value="{{submission_form.filename}}" class="form-control" id="uploadTitle" maxlength="32" required
-                                    placeholder="The searchable name of your media." style="max-width: 350px;">
+                                {{ submission_form.filename(class="form-control", maxlength="40", style="max-width: 350px;", placeholder="The searchable name of your media.") }}
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadCategory">Category</label><span style="color:red;">*</span>
-                                {{ submission_form.category(class_="form-control", style="max-width: 250px;") }}
+                                {{ submission_form.category(class="form-control", style="max-width: 250px;") }}
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadMediaType">Media Type</label><span style="color:red;">*</span>
-                                {{ submission_form.media_type(class_="form-control", style="max-width: 250px;") }}
+                                {{ submission_form.media_type(class="form-control", style="max-width: 250px;") }}
                             </div>
                         </div>
 
@@ -217,15 +216,14 @@
                         <div id="priceDiv" class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadPrice">Price</label><span style="color:red;">*</span>
-                                <input name="price" type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name="price" value="{{submission_form.price}}"> style="max-width: 200px;">
+                                {{ submission_form.price(class="form-control", style="max-width: 200px;", maxlength="10") }}
                             </div>
                         </div>
                         
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadDescription">Description</label>
-                                <textarea name="description"id="uploadDescription" class="form-control" rows="3" maxlength="128"  name="description" value="{{submission_form.description}}" style="max-width: 350px;"></textarea>
-                                placeholder="Briefly describe your content (optional)."></textarea>
+                                {{ submission_form.description(class="form-control", maxlength="128", rows="3", style="max-width: 350px;", placeholder="Briefly describe your content (optional).") }}
                             </div>
                         </div>
 

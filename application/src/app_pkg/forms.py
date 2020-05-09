@@ -9,7 +9,7 @@ from src.app_pkg import db
 from flask_wtf import RecaptchaField
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, SelectMultipleField, widgets
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, SelectMultipleField, widgets, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 ################################################
@@ -45,7 +45,7 @@ class LoginForm(Form):
 
 class SubmissionForm(Form):
     filename = StringField('File Name', validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     categories = db.get_category_select_field()
     media_types = db.get_media_type_select_field()
