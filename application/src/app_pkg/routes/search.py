@@ -21,30 +21,26 @@ def search():
     result_size = 0
     if request.method == 'POST':
         params = request.form
-        print("search parameters: {}".format(str(params)))
-        print('calling db...')
-        result_size, results = db.search(params)
-        print('search result size: {}'.format(str(result_size)))
-        print('search result: {}'.format(str(results)))
+        result_size, results = call_db(params)
         set_form_defaults(form, params)
         return render_template('search.html', form=form, results=results, isloggedin=isloggedin, result_size=result_size)
     return render_template('search.html', form=form, isloggedin=isloggedin, result_size=result_size)
 
 
 def set_form_defaults(form, params):
-        form.category.default = params['category']
-        form.term.default = params['term']
-        if 'image_check' in params:
-            form.image_check.default = params['image_check']
-        if 'video_check' in params:
-            form.video_check.default = params['video_check']
-        if 'audio_check' in params:
-            form.audio_check.default = params['audio_check']
-        if 'document_check' in params:
-            form.document_check.default = params['document_check']
-        if 'free_check' in params:
-            form.free_check.default = params['free_check']
-        form.process()
+    form.category.default = params['category']
+    form.term.default = params['term']
+    if 'image_check' in params:
+        form.image_check.default = params['image_check']
+    if 'video_check' in params:
+        form.video_check.default = params['video_check']
+    if 'audio_check' in params:
+        form.audio_check.default = params['audio_check']
+    if 'document_check' in params:
+        form.document_check.default = params['document_check']
+    if 'free_check' in params:
+        form.free_check.default = params['free_check']
+    form.process()
 
 def call_db(params):
     print("search parameters: {}".format(str(params)))
