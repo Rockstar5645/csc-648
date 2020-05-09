@@ -1,4 +1,5 @@
 from src.app_pkg.forms import SearchForm
+from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
@@ -16,7 +17,9 @@ from src.app_pkg.routes.common import validate_helper
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     isloggedin = validate_helper(request.cookies)
-    form = SearchForm()
+    search_form = SearchForm()
+    submission_form = SubmissionForm()
+
     results = []
     result_size = 0
     if request.method == 'POST':
@@ -26,9 +29,9 @@ def search():
         result_size, results = db.search(params)
         print('search result size: {}'.format(str(result_size)))
         print('search result: {}'.format(str(results)))
-        set_form_defaults(form, params)
-        return render_template('search.html', form=form, results=results, isloggedin=isloggedin, result_size=result_size)
-    return render_template('search.html', form=form, isloggedin=isloggedin, result_size=result_size)
+        set_form_defaults(search_form, params)
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, results=results, isloggedin=isloggedin, result_size=result_size)
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin, result_size=result_size)
 
 
 def set_form_defaults(form, params):
