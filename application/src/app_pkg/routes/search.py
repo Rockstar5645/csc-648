@@ -3,6 +3,7 @@ from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
 from flask_paginate import Pagination, get_page_args
+import math
 
 ################################################
 #                SEARCH / HOME                 #
@@ -21,26 +22,27 @@ class Results(object):
     def set_results(self, results):
         self.results = results
 
-    def get_page(self, page=0):
+    def get_page(self, page=1):
         if len(self.results) == 0:
             print('TODO : fill empty list in results object, /routes/search.py')
-        return self.results[page : page+12]
+        offset = (page-1)*12
+        return self.results[offset : offset+12]
 
     def get_number_of_pages(self):
-        return int(len(self.results)/12)
+        return math.ceil(len(self.results)/12)
 
 r = Results()
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
-def search(page=0):
+def search(page=1):
     isloggedin = validate_helper(request.cookies)
     form = SearchForm()
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
         set_form_defaults(form, params)
-        return render_template('search.html', form=form, page=page, results=r.get_page(0), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
+        return render_template('search.html', form=form, page=page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
     return render_template('search.html', form=form, isloggedin=isloggedin, results=r.get_page(page), total_pages=r.get_number_of_pages(), page=page)
 
 def set_form_defaults(form, params):

@@ -239,7 +239,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h3 class="text-muted">Showing Results 1 - 5 of 5</h3>
+            <h3 class="text-muted">Showing Results {{ page }} of {{ total_pages }}</h3>
             <nav>
                 <ul class="pagination">
                     <li class="page-item">
@@ -247,11 +247,11 @@
                     </li>
                     {% for i in range(total_pages) %}
                         <li class="page-item">
-                            <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=i) }}">{{ i }}</a>
+                            <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=i) }}">{{ i+1 }}</a>
                         </li>
                     {% endfor %}
                     <li class="page-item">
-                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=page+1) }}">Previous</a>
+                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=page+1) }}">Next</a>
                     </li>
                 </ul>
             </nav>
