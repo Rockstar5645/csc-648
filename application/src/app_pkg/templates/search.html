@@ -243,19 +243,15 @@
             <nav>
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" aria-disabled="true" href="#">Previous</a>
+                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=page-1) }}">Previous</a>
                     </li>
+                    {% for i in range(total_pages) %}
+                        <li class="page-item">
+                            <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=i) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
                     <li class="page-item">
-                        <a class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=page+1) }}">Previous</a>
                     </li>
                 </ul>
             </nav>
@@ -263,15 +259,14 @@
     </div>
 </div>
 
-
 <div class="container">
     <div class="row">
         {% for item in results %}
         <div class="col-sm-12 col-md-4">
 
             <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
-                <img id='{{item[0]}}' src="/static/{{ item[4] }}" class="card-img-top img-button" width="auto"
-                     height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
+                <img id='{{item[0]}}' src="/static/{{ item[5] }}" class="card-img-top img-button" width="auto"
+                     height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[2]}}">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
@@ -288,7 +283,7 @@
 
                     </div>
                     <div class="col card-text text-right">
-                        <p id="price_{{item[0]}}">${{ item[7] }}</p>
+                        <p id="price_{{item[0]}}">${{ item[8] }}</p>
                     </div>
                 </div>
                 <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">

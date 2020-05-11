@@ -2,6 +2,7 @@ from src.app_pkg.forms import SearchForm
 from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
+from flask_paginate import Pagination, get_page_args
 
 ################################################
 #                SEARCH / HOME                 #
@@ -12,20 +13,35 @@ from src.app_pkg.routes.common import validate_helper
 # Once the Database manager API returns a result (as a list), it passes that resulting list
 # to the HTML page to be rendered.
 
+class Results(object):
+    
+    def __init__(self):
+        self.results = []
+
+    def set_results(self, results):
+        self.results = results
+
+    def get_page(self, page=0):
+        if len(self.results) == 0:
+            print('TODO : fill empty list in results object, /routes/search.py')
+        return self.results[page : page+12]
+
+    def get_number_of_pages(self):
+        return int(len(self.results)/12)
+
+r = Results()
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
-def search():
+def search(page=0):
     isloggedin = validate_helper(request.cookies)
     form = SearchForm()
-    results = []
-    result_size = 0
     if request.method == 'POST':
         params = request.form
-        result_size, results = call_db(params)
+        r.set_results( db.search(params) )
         set_form_defaults(form, params)
-        return render_template('search.html', form=form, results=results, isloggedin=isloggedin, result_size=result_size)
-    return render_template('search.html', form=form, isloggedin=isloggedin, result_size=result_size)
-
+        return render_template('search.html', form=form, page=page, results=r.get_page(0), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
+    return render_template('search.html', form=form, isloggedin=isloggedin, results=r.get_page(page), total_pages=r.get_number_of_pages(), page=page)
 
 def set_form_defaults(form, params):
     form.category.default = params['category']
@@ -40,11 +56,3 @@ def set_form_defaults(form, params):
     if 'document_check' in params:
         form.document_check.default = params['document_check']
     form.process()
-
-def call_db(params):
-    print("search parameters: {}".format(str(params)))
-    print('calling db...')
-    result_size, result_list = db.search(params)
-    print('search result size: {}'.format(str(result_size)))
-    print('search result: {}'.format(str(result_list)))
-    return result_size, result_list
