@@ -24,7 +24,7 @@ class SearchForm(Form):
     video_check = BooleanField("video", validators=[], default=False)
     audio_check = BooleanField("audio", validators=[], default=False)
     document_check = BooleanField("document", validators=[], default=False)
-    free_check = BooleanField("free", validators=[], default=False)
+    license = SelectField('license', choices=[('all', 'all'), ('free', 'free'), ('paid', 'paid')], validators=[], default='all')
     submit = SubmitField("Search")
 
 class RegistrationForm(Form):

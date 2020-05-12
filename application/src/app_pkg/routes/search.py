@@ -3,6 +3,8 @@ from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
+from flask_paginate import Pagination, get_page_args
+import math
 
 ################################################
 #                SEARCH / HOME                 #
@@ -13,46 +15,61 @@ from src.app_pkg.routes.common import validate_helper
 # Once the Database manager API returns a result (as a list), it passes that resulting list
 # to the HTML page to be rendered.
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/search', methods=['GET', 'POST'])
-def search():
+class Results(object):
+    
+    def __init__(self):
+        self.results = []
+        self.page = 1
+
+    def set_results(self, results):
+        self.results = results
+
+    def get_page(self, page):
+        if len(self.results) == 0:
+            print('TODO : fill empty list in results object, /routes/search.py')
+        offset = (page-1)*12
+        print("offset: " + str(offset))
+        return self.results[offset : offset+12]
+
+    def get_number_of_pages(self):
+        return math.ceil(len(self.results)/12)
+
+    def set_page(self, page):
+        if page >= 1 and page <= self.get_number_of_pages():
+            self.page = page
+
+
+r = Results()
+
+@app.route('/', methods=['GET', 'POST'], defaults={'page': 1})
+@app.route('/search', methods=['GET', 'POST'], defaults={'page': 1})
+@app.route('/search/<int:page>', methods=['GET', 'POST'])
+def search(page):
+    print("route page: " + str(page))
     isloggedin = validate_helper(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
 
-    results = []
-    result_size = 0
+    r.set_page(page)
+    print("page: " + str(r.page))
     if request.method == 'POST':
         params = request.form
-        print("search parameters: {}".format(str(params)))
-        print('calling db...')
-        result_size, results = db.search(params)
-        print('search result size: {}'.format(str(result_size)))
-        print('search result: {}'.format(str(results)))
+        r.set_results( db.search(params) )
         set_form_defaults(search_form, params)
-        return render_template('search.html', search_form=search_form, submission_form=submission_form, results=results, isloggedin=isloggedin, result_size=result_size)
-    return render_template('search.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin, result_size=result_size)
-
+        print
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
 
 def set_form_defaults(form, params):
-        form.category.default = params['category']
-        form.term.default = params['term']
-        if 'image_check' in params:
-            form.image_check.default = params['image_check']
-        if 'video_check' in params:
-            form.video_check.default = params['video_check']
-        if 'audio_check' in params:
-            form.audio_check.default = params['audio_check']
-        if 'document_check' in params:
-            form.document_check.default = params['document_check']
-        if 'free_check' in params:
-            form.free_check.default = params['free_check']
-        form.process()
-
-def call_db(params):
-    print("search parameters: {}".format(str(params)))
-    print('calling db...')
-    result_size, result_list = db.search(params)
-    print('search result size: {}'.format(str(result_size)))
-    print('search result: {}'.format(str(result_list)))
-    return result_size, result_list
+    form.category.default = params['category']
+    form.term.default = params['term']
+    form.license.default = params['license']
+    if 'image_check' in params:
+        form.image_check.default = params['image_check']
+    if 'video_check' in params:
+        form.video_check.default = params['video_check']
+    if 'audio_check' in params:
+        form.audio_check.default = params['audio_check']
+    if 'document_check' in params:
+        form.document_check.default = params['document_check']
+    form.process()

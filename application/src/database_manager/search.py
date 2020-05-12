@@ -12,6 +12,7 @@ digital media index:
     8 - price
     9 - approved
 '''
+
 ##############################################
 #                Search logic                #
 ##############################################
@@ -23,14 +24,14 @@ def search(conn, params):
     else:
         results = no_term_search(q)
     results = final_check(q, results)
-    return len(results), results
+    return results
 
 def term_search(q):
     results = term_query(q)
     results = filter_by_category(q, results)
     results = filter_by_type(q, results)
     results = filter_by_approved(results)
-    results = filter_by_free(q, results)
+    results = filter_by_license(q, results)
     return results
 
 def no_term_search(q):
@@ -39,7 +40,7 @@ def no_term_search(q):
     else:
         results = get_all_category(q)
     results = filter_by_type(q, results)
-    results = filter_by_free(q, results)
+    results = filter_by_license(q, results)
     return results
 
 def filter_by_category(q, results):
@@ -64,12 +65,16 @@ def filter_by_approved(results):
             results.remove(result)
     return results
 
-def filter_by_free(q, results):
-    if not q.free:
+def filter_by_license(q, results):
+    if q.license == 'all':
         return results
-    else:
+    elif q.license == 'free':
         for result in results:
             if result[8] > 0:
+                results.remove(result)
+    elif q.license == 'paid':
+        for result in results:
+            if result[8] == 0:
                 results.remove(result)
     return results
 
@@ -98,17 +103,13 @@ def final_check(q, results):
 
 def term_query(q):
     q.conn.query(
-                "SELECT * "
-                "FROM digital_media "
-                "WHERE `name` LIKE %s OR `description` LIKE %s ",
-                ("%" + q.term + "%","%" + q.term + "%")
-            )
+                "SELECT * FROM digital_media WHERE `name` LIKE %s OR `description` LIKE %s", ("%" + q.term + "%","%" + q.term + "%"))
     data = q.conn.fetchall()
     q.conn.commit()
     return data
 
 def get_all_category(q):
-    q.conn.query("SELECT * FROM digital_media WHERE category_id LIKE %s LIMIT %s, %s", ("%" + q.category + "%", q.startsat, q.perpage))
+    q.conn.query("SELECT * FROM digital_media WHERE category_id LIKE %s", ("%" + q.category + "%"))
     data = q.conn.fetchall()
     q.conn.commit()
     return data
@@ -130,7 +131,7 @@ class Q_Container(object):
         self.conn = conn
         self.term = params['term']
         self.category = params['category']
-        self.free = False
+        self.license = params['license']
         self.media_types = []
         if 'image_check' in params:
             self.media_types.append(1)
@@ -140,5 +141,3 @@ class Q_Container(object):
             self.media_types.append(3)
         if 'document_check' in params:
             self.media_types.append(4)
-        if 'free_check' in params:
-            self.free = True

@@ -57,7 +57,7 @@ def fill_media_types(db):
 
 def fill_digital_media(db):
     ############################
-    #      FILL CATEGORIES     #
+    #    FILL DIGITAL MEDIA    #
     ############################
 
     print('Inserting data test entries into digital media table')
@@ -68,15 +68,15 @@ def fill_digital_media(db):
 
     digital_media_entries = [
         ('1', 'sponge bob 1', 'this is the first test photo', '/M2_test_images/sb1.jpg', '/thumbnails/sb1_t.jpg',
-            1, 2, 99.99, 1),
+            1, 2, 00.00, 1),
         ('2', 'sponge bob 2', 'this is the second test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,
             1, 3 , 89.99, 1),
         ('3', 'sponge bob 3', 'this is the third test photo', '/M2_test_images/sb3.jpg','/thumbnails/sb3_t.jpg' ,
-            1, 5 , 79.99, 1),
+            1, 5 , 00.00, 1),
         ('4', 'sponge bob 4', 'this is the fourth test photo', '/M2_test_images/sb4.jpg','/thumbnails/sb4_t.jpg' ,
             1, 4 , 69.99, 1),
         ('5', 'sponge bob 5', 'this is the fifth test photo', '/M2_test_images/sb5.jpg','/thumbnails/sb5_t.jpg' ,
-            1, 2 , 59.99, 1),
+            1, 2 , 00.00, 1),
         ('1', 'sponge bob 6', 'this is the sixth test photo', '/M2_test_images/sb1.jpg', '/thumbnails/sb1_t.jpg',
             1, 2, 99.99, 1),
         ('2', 'sponge bob 7', 'this is the seventh test photo', '/M2_test_images/sb2.jpg','/thumbnails/sb2_t.jpg' ,
