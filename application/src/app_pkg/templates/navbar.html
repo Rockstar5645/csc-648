@@ -295,11 +295,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadLicense">License</label><span style="color:red;">*</span>
-                                <select name="select_license" id="uploadLicense" class="form-control" required style="max-width: 250px;">
-                                    <option value="">Select</option>
-                                    <option value="1">Free</option>
-                                    <option value="2">Paid</option>
-                                </select>
+                                {{ submission_form.license_field(class="form-control", style="max-width: 250px;", id="uploadLicense") }}
                             </div>
                         </div>
                         

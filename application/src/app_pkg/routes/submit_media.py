@@ -54,15 +54,14 @@ def upload_file():
             session_token = request.cookies.get('token')
             name = request.form['filename']
             desc = request.form['description']
-            # commented out for now, need to add license in submission forms
-            """
-            license = request.form['license']
-            if license == 'paid':
-                price = request.form['price']
-            else:
-                price == 0.00
-                """
-            price = request.form['price']
+
+
+            license_val = request.form['license_field']
+            print("Value", license_val)            
+            price = request.form['price'] if license_val == 2 else 0.00          
+
+    
+            #price = request.form['price']
             cat = request.form['category']
             media = request.form['media_type']
             filepath = 'user_images/' + filename
