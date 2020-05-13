@@ -58,7 +58,7 @@ def upload_file():
 
             license_val = request.form['license_field']
             print("Value", license_val)            
-            price = request.form['price'] if license_val == 2 else 0.00          
+            price = request.form['price'] if license_val == "2" else 0.00          
 
     
             #price = request.form['price']
