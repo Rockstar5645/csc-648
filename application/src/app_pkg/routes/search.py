@@ -45,7 +45,7 @@ r = Results()
 @app.route('/search', methods=['GET', 'POST'], defaults={'page': 1})
 @app.route('/search/<int:page>', methods=['GET', 'POST'])
 def search(page):
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     r.set_page(page)

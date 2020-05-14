@@ -12,7 +12,7 @@ from src.app_pkg.objects.user import User
 
 @app.route("/about",methods=['GET', 'POST'])
 def about():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team = db.get_team()
@@ -26,7 +26,7 @@ def about():
 
 @app.route("/avery")
 def avery():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Avery")
@@ -34,7 +34,7 @@ def avery():
 
 @app.route("/akhil")
 def akhil():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Akhil")
@@ -42,7 +42,7 @@ def akhil():
 
 @app.route("/chris")
 def chris():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Chris")
@@ -50,7 +50,7 @@ def chris():
 
 @app.route("/elliot")
 def elliot():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Elliot")
@@ -58,7 +58,7 @@ def elliot():
 
 @app.route("/thomas")
 def thomas():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Thomas")
@@ -66,7 +66,7 @@ def thomas():
 
 @app.route("/bakulia")
 def bakulia():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Bakulia")

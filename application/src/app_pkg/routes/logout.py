@@ -5,8 +5,10 @@ from src.app_pkg.objects.user import User
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     if user.isloggedin:
         db.logout(request.cookies['token'])
+        return redirect(url_for('search'))
+    else:
         return redirect(url_for('search'))
     

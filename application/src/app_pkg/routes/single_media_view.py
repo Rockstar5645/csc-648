@@ -11,6 +11,6 @@ from src.app_pkg.objects.user import User
 ################################################
 @app.route('/single_media_view', methods=['GET', 'POST'])
 def single_media_view():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     media_view = SubmissionForm()
     return render_template('single_media_view.html', media_view=media_view, user=user)
