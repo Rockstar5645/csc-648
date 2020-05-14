@@ -1,30 +1,6 @@
 {% extends 'navbar.html' %}
 {% block content %}
 
-
-{#
-    <!--        <div>-->
-<!--            <form method="POST" action="">-->
-<!--                <fieldset class="form-group">-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.category() }}-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.term() }}-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.submit() }}-->
-<!--                    </div>-->
-<!--                </fieldset>-->
-<!--            </form>-->
-<!--            {% endblock %}-->
-<!--            {% block content %}-->
-<!--            <header>-->
-<!--            <p> CSC 648.01, Spring 2020, Team 06 </p>-->
-<!--            </header>-->
-#}
-
-
 {% if not results %}
 
     <div class="container">
@@ -391,7 +367,15 @@
                                 <div class="form-group text-right">
                                     <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     &MediumSpace;
-                                    <a class="btn btn-warning" href="/login">Download</a>
+                                    {% if item[8] == 0 %}
+                                        <a class="btn btn-warning" href="/login">Download</a>
+
+                                    {% else %}
+                                        <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#SendMessage_{{item[0]}}">Contact Seller</button>
+
+                                    {% endif %}
+                                    
+                                    
                                 </div>
 
                             </form>
@@ -401,53 +385,102 @@
             </div>
         </div>
 
+        {% if item[8] != 0 %}
+        <!--Message Modal-->
+        <div class="modal fade" id="SendMessage_{{item[0]}}" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+        
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+        
+                    <div class="modal-body">
+                        <form>
+                            <label for="recipient-name" class="col-form-label">Recipient</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-at"></i></div>
+                                </div>
+                                
+                                <input type="text" class="form-control" id="recipient-name" value="{{ item[1] }}" readonly>
+                            </div>
+        
+                            <label for="recipient-name" class="col-form-label">Subject</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                </div>
+                                <input type="text" class="form-control" id="message-subject" value="{{ item[2] }}" readonly>
+                            </div>
+        
+                            <label for="datepicker" class="col-form-label">Date</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
+                                </div>
+                                <input type="text" class="form-control datepicker" id="datepicker"
+                                        readonly>
+                            </div>
+        
+        
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label"> Message</label>
+                                <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                            rows="10" required></textarea>
+                            </div>
+        
+                        </form>
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                                class="btn btn-warning">Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script type="text/javascript">
+        $( document ).ready(function()
+            {
+                var now = new Date();
+                $('#datepicker').val(now.toLocaleString());
+            });
+        </script>
+        
+        
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        
+        <div class="modal fade in" id="MessageSent" aria-hidden="true">
+            <div class="modal-dialog modal-confirm modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-body">
+                            <p class="text-center">Your message has been sent</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
         {% endfor %}
     </div>
 
-
 </div>
-
-
-
-<script>
-    $(document).ready(function(){
-        $(".img-button").click(function(){
-            let id = $(this).attr("id")
-            let name = $("#name_" + id).text()
-            let category = $("#category_" + id).text()
-            let price = $("#price_" + id).text()
-            let description = $("#description_" + id).val()
-            console.log(name)
-            console.log(category)
-            console.log(price)
-            console.log(description)
-        });
-    });
-
-
-</script>
-
-<!--
-<div class="text-center">
-    {% for item in results %}
-    <tr>
-        <p> OWNER ID: {{ item[1] }} </p>
-        <p> IMAGE_NAME: {{ item[2] }} </p>
-        <p> DESCRIPTION: {{ item[3] }} </p>
-        <p> STATIC REFERENCE: {{ item[4] }} </p>
-        <p> THUMBNAIL REFERENCE: {{ item[5] }}
-        <p> CATEGORY: {{ item[6] }} </p>
-        <p> PRICE: ${{ item[7] }} </p>
-        <p>digital media: </p>
-        <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
-        <p>thumbnail: </p>
-        <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
-        </br>
-    </tr>
-    {% endfor %}
-</div>
--->
-
 
 {% endif %}
 
