@@ -98,3 +98,8 @@ class DB:
     def get_category_type(self, id):
         return get_category_type(self.db_connection, id)
 
+    def get_user_id(self, session_token):
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] != 'success':
+            return session_status
+

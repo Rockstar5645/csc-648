@@ -27,7 +27,6 @@ class Results(object):
         if len(self.results) == 0:
             print('TODO : fill empty list in results object, /routes/search.py')
         offset = (page-1)*12
-        print("offset: " + str(offset))
         return self.results[offset : offset+12]
 
     def get_number_of_pages(self):
@@ -43,16 +42,14 @@ r = Results()
 @app.route('/', methods=['GET', 'POST'], defaults={'page': 1})
 @app.route('/search/<int:page>', methods=['GET', 'POST'])
 def search(page):
-    print("route page: " + str(page))
+    print(db.get_user_id(request.cookies['token']))
     isloggedin = validate_helper(request.cookies)
     form = SearchForm()
     r.set_page(page)
-    print("page: " + str(r.page))
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
         set_form_defaults(form, params)
-        print
         return render_template('search.html', form=form, page=r.page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
     return render_template('search.html', form=form, isloggedin=isloggedin, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
 

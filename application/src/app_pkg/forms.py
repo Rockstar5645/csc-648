@@ -54,8 +54,8 @@ class SubmissionForm(Form):
     submit = SubmitField('Submit')
 
 class MessageForm(Form):
-    subject = StringField('subject line', validators=[DataRequired])
-    message = StringField('message', validators=[DataRequired])
+    subject = StringField('subject line', validators=[DataRequired()])
+    message = StringField('message', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
