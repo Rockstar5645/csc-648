@@ -12,6 +12,6 @@ from src.app_pkg.objects.user import User
 @app.route('/admin_page')
 #@login_required
 def admin_page():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     form = SearchForm()
     return render_template('admin_page.html', form=form, user=user)

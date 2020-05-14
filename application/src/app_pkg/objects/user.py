@@ -13,7 +13,9 @@ class User(object):
     email = ''
     isloggedin = False
 
-    def __init__(self, session_token):
+    def __init__(self, cookies):
+        if 'token' in cookies:
+            session_token = cookies['token']
         if validate_helper(session_token) == True:
             self.isloggedin = True
             self.user_id = db.get_user_id(session_token)

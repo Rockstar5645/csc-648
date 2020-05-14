@@ -6,7 +6,7 @@ from src.app_pkg.objects.user import User
 
 @app.route('/send_message', method=['GET', 'POST'])
 def message():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     form = MessageForm()
     if request.method == 'POST':
         pass

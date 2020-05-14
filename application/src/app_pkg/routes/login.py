@@ -10,7 +10,7 @@ from src.app_pkg.objects.user import User
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    user = User(request.cookies['token'])
+    user = User(request.cookies)
     form = LoginForm()
 
     if request.method == 'POST':
