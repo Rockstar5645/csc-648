@@ -11,8 +11,6 @@ from src.app_pkg.forms import SubmissionForm
 @app.route('/user_profile')
 def user_profile():
     isloggedin = validate_helper(request.cookies)
-    # form = SearchForm()
-    return render_template('user_profile.html',  isloggedin=isloggedin)
     search_form = SearchForm()
     submission_form = SubmissionForm()
     return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
