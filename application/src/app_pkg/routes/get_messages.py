@@ -31,4 +31,4 @@
 #     return render_template('user_profile.html', isloggedin=isloggedin, msg_result_size=msg_result_size,
 #                            msg_results=msg_results)
 #
-
+#
