@@ -14,6 +14,7 @@ class User(object):
     isloggedin = False
 
     def __init__(self, cookies):
+        session_token = 'None'
         if 'token' in cookies:
             session_token = cookies['token']
         if validate_helper(session_token) == True:
