@@ -267,28 +267,39 @@
         <div class="col-sm-12 col-md-4">
 
             <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
-                <img id='{{item[0]}}' src="/static/{{ item[5] }}" class="card-img-top img-button" width="auto"
+                <img src="/static/{{ item[5] }}" class="card-img-top img-button" width="auto"
                      height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col">
-                            <p id="name_{{item[0]}}">{{ item[2] }}</p>
+                        <div class="col-10">
+                            <p>{{ item[2] }}</p>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right">
                             <i class="fas fa-download"></i>
                         </div>
                     </div>
                 </div>
                 <div class="row card-body">
                     <div class="col card-text">
-                        <p id="category_{{item[0]}}">{{ item[6] }}</p>
+                        <p>{{ item[6] }}</p>
+
+                    </div>
+                    <div class="col card-text">
+                        <p>{{ item[7] }}</p>
 
                     </div>
                     <div class="col card-text text-right">
-                        <p id="price_{{item[0]}}">${{ item[8] }}</p>
+                        <p>
+                            {% if item[8] == 0 %}
+                                Free
+
+                            {% else %}
+                                ${{ item[8] }}
+
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
-                <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">
 
             </div>
 
@@ -316,9 +327,9 @@
                         <div class="container">
                             <form>
                                 <!-- Image of the Media -->
-                                <div class=media">
+                                <div class="media">
                                     <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
-                                         height="300" src="/static/{{ item[4] }}" width="300">
+                                         height="300" src="/static/{{ item[5] }}" width="300">
                                 </div>
 
                                 <!-- Digital media info -->
@@ -337,20 +348,28 @@
                                         <label class="font-weight-bold">Media type:</label>
                                     </div>
                                     <div class="col">
-                                        <span>Image</span>
+                                        <span>{{ item[7] }}</span>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col text-right">
-                                        <label class="font-weight-bold">License:</label>
+                                        <label class="font-weight-bold">Price:</label>
                                     </div>
                                     <div class="col">
-                                        <span>${{ item[7] }}</span>
+                                        <span>
+                                            {% if item[8] == 0 %}
+                                                Free
+
+                                            {% else %}
+                                                ${{ item[8] }}
+
+                                            {% endif %}
+                                        </span>
                                     </div>
                                 </div>
                                 
-                                <!-- 
+                                {#
                                 <div class="row">
                                     <div class="col text-right">
                                         <label class="font-weight-bold">Author:</label>
@@ -359,7 +378,7 @@
                                         <span>{{ item[1] }}</span>
                                     </div>
                                 </div>
-                                -->
+                                #}
                                 
                                 <div class="form-group mr-3">
                                     <label class="font-weight-bold">Description:</label>
