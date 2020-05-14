@@ -1,4 +1,5 @@
 from src.app_pkg.forms import SearchForm
+from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
@@ -40,18 +41,23 @@ class Results(object):
 r = Results()
 
 @app.route('/', methods=['GET', 'POST'], defaults={'page': 1})
+@app.route('/search', methods=['GET', 'POST'], defaults={'page': 1})
 @app.route('/search/<int:page>', methods=['GET', 'POST'])
 def search(page):
     print(db.get_user_id(request.cookies['token']))
     isloggedin = validate_helper(request.cookies)
-    form = SearchForm()
+    search_form = SearchForm()
+    submission_form = SubmissionForm()
+
     r.set_page(page)
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
-        set_form_defaults(form, params)
-        return render_template('search.html', form=form, page=r.page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
-    return render_template('search.html', form=form, isloggedin=isloggedin, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
+
+        set_form_defaults(search_form, params)
+        print
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
 
 def set_form_defaults(form, params):
     form.category.default = params['category']

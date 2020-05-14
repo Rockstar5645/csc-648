@@ -9,7 +9,7 @@ from src.app_pkg import db
 from flask_wtf import RecaptchaField
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, SelectMultipleField, widgets
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, SelectMultipleField, widgets, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 ################################################
@@ -45,14 +45,16 @@ class LoginForm(Form):
 
 class SubmissionForm(Form):
     filename = StringField('File Name', validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired()])
-    price = IntegerField('Price', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    price = IntegerField('Price')
     categories = db.get_category_select_field()
     media_types = db.get_media_type_select_field()
+    licenses = [("1", "Free"), ("2", "Paid")]
     category = SelectField('Category', choices=categories, validators=[], default='all')
     media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
+    license_field = SelectField('License', choices=licenses, validators=[])
     submit = SubmitField('Submit')
-
+#
 class MessageForm(Form):
     subject = StringField('subject line', validators=[DataRequired()])
     message = StringField('message', validators=[DataRequired()])

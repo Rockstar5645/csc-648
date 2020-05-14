@@ -4,6 +4,7 @@ from tkinter import Image
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
 from src.app_pkg.forms import SubmissionForm
+from src.app_pkg.forms import SearchForm
 from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -21,7 +22,9 @@ def allowed_file(filename):
 
 @app.route('/submit', methods=['GET', 'POST'])
 def upload_file():
-    form = SubmissionForm()
+    search_form = SearchForm()
+    submission_form = SubmissionForm()
+
     # if "POST"
     if request.method == 'POST':
         # check if the post request has the file part
@@ -51,15 +54,14 @@ def upload_file():
             session_token = request.cookies.get('token')
             name = request.form['filename']
             desc = request.form['description']
-            # commented out for now, need to add license in submission forms
-            """
-            license = request.form['license']
-            if license == 'paid':
-                price = request.form['price']
-            else:
-                price == 0.00
-                """
-            price = request.form['price']
+
+
+            license_val = request.form['license_field']
+            print("Value", license_val)            
+            price = request.form['price'] if license_val == "2" else 0.00          
+
+    
+            #price = request.form['price']
             cat = request.form['category']
             media = request.form['media_type']
             filepath = 'user_images/' + filename
@@ -68,18 +70,18 @@ def upload_file():
             print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
             results = db.upload_file(name, desc, filepath, thumbpath, cat, media, price, session_token)
-            form.filename.default = filename
-            form.description.default = desc
-            form.price.default = price
-            form.category.default = cat
-            form.media_type.default = media
-            form.process()
+            submission_form.filename.default = filename
+            submission_form.description.default = desc
+            submission_form.price.default = price
+            submission_form.category.default = cat
+            submission_form.media_type.default = media
+            submission_form.process()
 
             # TODO: fix render_templates and redirects for submit media button in base.html
             return redirect(url_for('search'))
 
     # else, (if "GET")
-    return render_template('upload.html', form=form)
+    return render_template('search.html', search_form=search_form, submission_form=submission_form)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
