@@ -4,6 +4,7 @@ from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
 from flask_paginate import Pagination, get_page_args
+from src.app_pkg.objects.user import User
 import math
 
 ################################################
@@ -44,20 +45,16 @@ r = Results()
 @app.route('/search', methods=['GET', 'POST'], defaults={'page': 1})
 @app.route('/search/<int:page>', methods=['GET', 'POST'])
 def search(page):
-    print(db.get_user_id(request.cookies['token']))
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
-
     r.set_page(page)
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
-
         set_form_defaults(search_form, params)
-        print
-        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), isloggedin=isloggedin, total_pages=r.get_number_of_pages())
-    return render_template('search.html', search_form=search_form, submission_form=submission_form, isloggedin=isloggedin, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), user=user, total_pages=r.get_number_of_pages())
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
 
 def set_form_defaults(form, params):
     form.category.default = params['category']

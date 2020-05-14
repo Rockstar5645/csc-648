@@ -2,6 +2,7 @@ from src.app_pkg.routes.common import validate_helper
 from src.app_pkg import app, db
 from src.app_pkg.forms import RegistrationForm
 from flask import render_template, request, make_response, redirect, url_for
+from src.app_pkg.objects.user import User
 
 
 
@@ -11,7 +12,7 @@ from flask import render_template, request, make_response, redirect, url_for
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     form = RegistrationForm()
 
     if request.method == 'POST':
