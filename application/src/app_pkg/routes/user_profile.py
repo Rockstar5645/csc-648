@@ -10,5 +10,5 @@ from src.app_pkg.forms import SearchForm
 @app.route('/user_profile')
 def user_profile():
     isloggedin = validate_helper(request.cookies)
-    form = SearchForm()
-    return render_template('user_profile.html', form=form, isloggedin=isloggedin)
+    # form = SearchForm()
+    return render_template('user_profile.html',  isloggedin=isloggedin)

@@ -54,10 +54,10 @@ class SubmissionForm(Form):
     media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
     license_field = SelectField('License', choices=licenses, validators=[])
     submit = SubmitField('Submit')
-
+#
 class MessageForm(Form):
-    subject = StringField('subject line', validators=[DataRequired])
-    message = StringField('message', validators=[DataRequired])
+    subject = StringField('subject line', validators=[DataRequired()])
+    message = StringField('message', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
