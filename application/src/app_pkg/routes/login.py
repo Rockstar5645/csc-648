@@ -2,6 +2,7 @@ from src.app_pkg.routes.common import validate_helper
 from src.app_pkg import app, db
 from src.app_pkg.forms import LoginForm
 from flask import render_template, request, redirect, url_for, make_response
+from src.app_pkg.objects.user import User
 
 ################################################
 #                     LOGIN                    #
@@ -9,7 +10,7 @@ from flask import render_template, request, redirect, url_for, make_response
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     form = LoginForm()
 
     if request.method == 'POST':
@@ -26,4 +27,4 @@ def login():
             res.set_cookie('token', 'none')
             return res
     else:
-        return render_template('login.html', form=form, isloggedin=isloggedin)
+        return render_template('login.html', form=form, user=user)

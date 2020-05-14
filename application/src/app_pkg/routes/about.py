@@ -3,7 +3,7 @@ from src.app_pkg import db, app
 from flask import render_template, request
 from src.app_pkg.forms import SearchForm
 from src.app_pkg.forms import SubmissionForm
-
+from src.app_pkg.objects.user import User
 
 
 ################################################
@@ -12,11 +12,11 @@ from src.app_pkg.forms import SubmissionForm
 
 @app.route("/about",methods=['GET', 'POST'])
 def about():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team = db.get_team()
-    return render_template('about.html', team=team, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template('about.html', team=team, search_form=search_form, submission_form=submission_form, user=user)
 
 
 ##################################################
@@ -26,48 +26,48 @@ def about():
 
 @app.route("/avery")
 def avery():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Avery")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)
 
 @app.route("/akhil")
 def akhil():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Akhil")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)
 
 @app.route("/chris")
 def chris():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Chris")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)
 
 @app.route("/elliot")
 def elliot():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Elliot")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)
 
 @app.route("/thomas")
 def thomas():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Thomas")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)
 
 @app.route("/bakulia")
 def bakulia():
-    isloggedin = validate_helper(request.cookies)
+    user = User(request.cookies['token'])
     search_form = SearchForm()
     submission_form = SubmissionForm()
     team_member = db.get_team("Bakulia")
-    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, isloggedin=isloggedin)
+    return render_template("about_team_member.html", team_member=team_member, search_form=search_form, submission_form=submission_form, user=user)

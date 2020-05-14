@@ -109,7 +109,7 @@ def term_query(q):
     return data
 
 def get_all_category(q):
-    q.conn.query("SELECT * FROM digital_media WHERE category_id LIKE %s", ("%" + q.category + "%"))
+    q.conn.query("SELECT * FROM digital_media WHERE category_id = %s", (q.category))
     data = q.conn.fetchall()
     q.conn.commit()
     return data

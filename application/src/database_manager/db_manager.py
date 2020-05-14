@@ -13,6 +13,7 @@ from src.database_manager.search import search
 from src.database_manager.select_fields import get_media_type_select_field, get_category_select_field
 from src.database_manager.team import get_team
 from src.database_manager.helpers import get_media_type, get_category_type
+from src.database_manager.user_functions import get_user_data
 
 from src.config import redis_conn
 import redis
@@ -97,4 +98,12 @@ class DB:
     
     def get_category_type(self, id):
         return get_category_type(self.db_connection, id)
+
+    def get_user_id(self, session_token):
+        session_status = get_session_id(session_token, self.redis_connection)
+        if session_status['status'] == 'success':
+            return session_status['user_id']
+
+    def get_user_data(self, user_id):
+        return get_user_data(user_id, self.db_connection)
 
