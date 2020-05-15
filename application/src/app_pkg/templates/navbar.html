@@ -56,7 +56,6 @@
 <small>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</small>
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-{% if not isloggedin %}
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -131,103 +130,34 @@
                     <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
                 </div>
                 <div class="col-auto pl-1 pr-0">
-                    <span style="color: white;">|</span>
+                    <span style="color: white; font-size: x-large;">|</span>
                 </div>
+                
+                {% if not user.isloggedin %}
+                
                 <div class="col-auto pl-1 pr-0">
                     <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
                 </div>
                 <div class="col-auto pl-1">
                     <a class="btn btn-outline-light" href="/register" role="button">Register</a>
                 </div>
-            </div>
-        </div>
-        
 
-    </div>
+                {% else %}
 
-</nav>
-{% else %}
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-{% endif %}
-
-    <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav mr-auto">
-            <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
-                <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
-                Snapster
-            </a>
-            <li class="nav-item">
-                <!--    SEARCH AND FILTER FORM       -->
-                <form class="form" action="{{ url_for('search') }}" method="POST">
-                    <div class="input-group mt-1 mb-1 ml-lg-4">
-                        <div class="input-group-prepend">
-                            {{ search_form.category(class_="btn custom-select") }}
-                        </div>
-                        {{ search_form.term(class_="form-control", style="width: 325px", maxlength="32") }}
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-check form-check-inline ml-lg-4">
-                                    {{ search_form.image_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ search_form.image_check.label.text }}</label>
-
-                                    {{ search_form.video_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ search_form.video_check.label.text }}</label>
-
-                                    {{ search_form.audio_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ search_form.audio_check.label.text }}</label>
-
-                                    {{ search_form.document_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ search_form.document_check.label.text }}</label>
-
-                                    <div class="col-auto pl-1 pr-0">
-                                        <span style="color: white;">|</span>
-                                    </div>
-                                
-                                    <div class="input-group-prepend">
-                                        {{ search_form.license(class="form-check-input") }}
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </li>
-        </ul>
-        
-        <div class="mb-lg-4">
-            <div class="row">
-                <div class="col-auto pr-0">
+                <div class="col-auto pl-0 pr-5">
                     <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" id="aboutDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
-                          About
+                        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                          {{user.username}}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="aboutDropdown">
-                          <a class="dropdown-item" href="/about">Team</a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/user_profile" >Dashboard</a>
+                            <a class="dropdown-item" href="/#" >Logout</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-auto pl-1 pr-0">
-                    <button class="btn btn-warning mr-1" type="button" data-toggle="modal" data-target="#UploadForm">Submit Media
-                    </button>
-                    <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
-                </div>
-                <div class="col-auto pl-1 pr-0">
-                    <span style="color: white; font-size: x-large;">|</span>
-                </div>
-                <div class="col-auto pl-1 pr-0">
-                    <a style="color: white; font-size: x-large;" href="/user_profile" >username</a>
-                </div>
-                </div>
+                
+                {% endif %}
+
             </div>
         </div>
         
