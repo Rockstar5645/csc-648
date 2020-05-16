@@ -19,10 +19,11 @@ def user_profile():
     search_form = SearchForm()
     submission_form = SubmissionForm()
     messages = user.get_messages()
-    if messages['status'] == 'no-messages': 
-        messages = []
-    print(messages)
-    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user, messages=messages['message-list'])
+    if messages['status'] != 'no-messages': 
+        messages = messages['message-list']
+    else:
+        messages=[]
+    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user, messages=messages)
 
 
 
