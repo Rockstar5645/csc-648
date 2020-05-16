@@ -26,4 +26,7 @@ class User(object):
         data = db.get_user_data(self.user_id)
         self.username = data[0][5]
         self.email = data[0][3]
+
+    def get_messages(self):
+        return db.get_all_messages(self.session_token)
         

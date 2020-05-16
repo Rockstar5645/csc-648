@@ -75,8 +75,8 @@ class DB:
         else:
             return get_message_by_id(message_id, session_status['user_id'], self.db_connection)
 
-    def upload_file(self, filename, description, file_path, thumb_path, category, media_type, price, session_token):
-        return upload_file(filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
+    def upload_file(self, owner, filename, description, file_path, thumb_path, category, media_type, price, session_token):
+        return upload_file(owner, filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
 
     def delete_file(self):
         return delete_file()

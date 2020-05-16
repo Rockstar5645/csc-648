@@ -7,6 +7,7 @@ from src.app_pkg.forms import SubmissionForm
 from src.app_pkg.forms import SearchForm
 from flask import render_template, request, redirect, url_for, make_response, flash, send_from_directory
 from werkzeug.utils import secure_filename
+from src.app_pkg.objects.user import User
 
 ##################################################
 #                SUBMIT MEDIA                    #
@@ -22,6 +23,7 @@ def allowed_file(filename):
 
 @app.route('/submit', methods=['GET', 'POST'])
 def upload_file():
+    user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
 
@@ -69,7 +71,7 @@ def upload_file():
 
             print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
-            results = db.upload_file(name, desc, filepath, thumbpath, cat, media, price, session_token)
+            results = db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
             submission_form.filename.default = filename
             submission_form.description.default = desc
             submission_form.price.default = price

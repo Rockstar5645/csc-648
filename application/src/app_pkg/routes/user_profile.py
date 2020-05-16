@@ -18,7 +18,11 @@ def user_profile():
     user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
-    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user)
+    messages = user.get_messages()
+    if messages['status'] == 'no-messages': 
+        messages = []
+    print(messages)
+    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user, messages=messages['message-list'])
 
 
 

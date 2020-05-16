@@ -222,7 +222,7 @@ select.minimal {
                             <div class="container">
                                 <form>
                                     <!-- Image of the Media -->
-                                    <div class=media">
+                                    <div class="media">
                                         <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
                                              height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
                                     </div>
@@ -362,18 +362,19 @@ select.minimal {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
-                           type="button">Message</a>
-                    </td>
-                    <td>datetime</td>
-                    <td>username</td>
-                    <td>
-                         <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
-                    </td>
-                </tr>
-
+                    {% for message in messages %}
+                        <tr>
+                            <td>
+                                <a class="btn btn-outline-info btn-sm btn-sm " data-target="#ReadMessage" data-toggle="modal"
+                                type="button">Message</a>
+                            </td>
+                            <td>{{ message['time_stamp'] }}</td>
+                            <td>{{ message['sender'] }}</td>
+                            <td>
+                                <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteMessage"></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
