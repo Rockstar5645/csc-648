@@ -1,17 +1,17 @@
-from flask import render_template, request
+from flask import redirect, url_for, request
 from src.app_pkg.routes.common import validate_helper
 from src.app_pkg import app, db
 from src.app_pkg.forms import MessageForm
 from src.app_pkg.objects.user import User
 
-@app.route('/send_message', method=['GET', 'POST'])
-def message():
+@app.route('/send_message', methods=['POST'])
+def send_message():
     user = User(request.cookies)
-    form = MessageForm()
-    if request.method == 'POST':
-        pass
-        # get message data
-        # call db
-        # return to parent url (if this is a modal)
+    subject = request.form['message-subject']
+    message = request.form['message-text']
+    media_id = request.form['media-id']
+    db.send_message(user.session_token, media_id, subject, message)
+    return redirect(url_for('search'))
+
 
 

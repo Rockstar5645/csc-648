@@ -9,17 +9,17 @@ from src.app_pkg.routes.common import validate_helper
 class User(object):
 
     user_id = 0
+    session_token = "None"
     username = 'default'
     email = ''
     isloggedin = False
 
     def __init__(self, cookies):
-        session_token = 'None'
         if 'token' in cookies:
-            session_token = cookies['token']
-        if validate_helper(session_token) == True:
+            self.session_token = cookies['token']
+        if validate_helper(self.session_token) == True:
             self.isloggedin = True
-            self.user_id = db.get_user_id(session_token)
+            self.user_id = db.get_user_id(self.session_token)
             self.fill_user_data()
 
     def fill_user_data(self):

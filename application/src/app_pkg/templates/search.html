@@ -399,14 +399,14 @@
                     </div>
         
                     <div class="modal-body">
-                        <form>
+                        <form class="form" action="{{ url_for('send_message') }}" method="POST">
                             <label for="recipient-name" class="col-form-label">Recipient</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fa fa-at"></i></div>
                                 </div>
                                 
-                                <input type="text" class="form-control" id="recipient-name" value="{{ item[1] }}" readonly>
+                                <input type="text" class="form-control" name="media-id" value="{{ item[0] }}" readonly>
                             </div>
         
                             <label for="recipient-name" class="col-form-label">Subject</label>
@@ -414,7 +414,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="far fa-envelope"></i></div>
                                 </div>
-                                <input type="text" class="form-control" id="message-subject" value="{{ item[2] }}" readonly>
+                                <input type="text" class="form-control" name="message-subject" value="{{ item[2] }}" readonly>
                             </div>
         
                             <label for="datepicker" class="col-form-label">Date</label>
@@ -429,20 +429,21 @@
         
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label"> Message</label>
-                                <textarea class="form-control" id="message-text" placeholder="Type your message here..."
+                                <textarea class="form-control" name="message-text" placeholder="Type your message here..."
                                             rows="10" required></textarea>
                             </div>
         
-                        </form>
-                    </div>
+                        
         
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
                             Cancel
                         </button>
-                        <button data-target="#MessageSent" data-dismiss="modal" data-toggle="modal" type="button"
+                        <button data-target="#MessageSent" data-toggle="modal" type="submit"
                                 class="btn btn-warning">Send Message
                         </button>
+                    </div>
+                    </form>
                     </div>
                 </div>
             </div>
