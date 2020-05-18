@@ -16,4 +16,4 @@ def download_media(media_id):
     results = db.get_digital_media_path_by_id(media_id)
     path = results[0][0]
     print(app.config['UPLOAD_FOLDER'] + path)
-    return send_file(app.config['UPLOAD_FOLDER']+ path, as_attachment=True)
+    return send_file(app.config['UPLOAD_FOLDER'] + path, as_attachment=True)

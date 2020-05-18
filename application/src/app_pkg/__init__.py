@@ -6,7 +6,7 @@ from flask import Flask
 from src.database_manager.db_manager import DB
 from os.path import join, dirname, realpath
 
-UPLOADS_PATH = join(dirname(realpath(__file__)), 'static')
+UPLOADS_PATH = join(dirname(realpath(__file__)), 'static/')
 
 # init flask application
 app = Flask(__name__)
