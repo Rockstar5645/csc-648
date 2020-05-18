@@ -24,9 +24,13 @@ class User(object):
 
     def fill_user_data(self):
         data = db.get_user_data(self.user_id)
+        print(data)
         self.username = data[0][5]
         self.email = data[0][3]
 
     def get_messages(self):
         return db.get_all_messages(self.session_token)
+
+    def get_digital_media(self):
+        return db.get_user_digital_media(self.user_id)
         

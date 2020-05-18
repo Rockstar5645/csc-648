@@ -18,12 +18,17 @@ def user_profile():
     user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
+    
+    # Get user digital media
+    digital_media = user.get_digital_media()
+
+    # Get user messages
     messages = user.get_messages()
     if messages['status'] == 'success': 
         messages = messages['message-list']
     else:
         messages=[]
-    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user, messages=messages)
+    return render_template('user_profile.html', search_form=search_form, submission_form=submission_form, user=user, messages=messages, digital_media=digital_media)
 
 
 

@@ -14,6 +14,7 @@ from src.database_manager.select_fields import get_media_type_select_field, get_
 from src.database_manager.team import get_team
 from src.database_manager.helpers import get_media_type, get_category_type
 from src.database_manager.user_functions import get_user_data
+from src.database_manager.get_user_digital_media import get_user_digital_media
 
 from src.config import redis_conn
 import redis
@@ -106,4 +107,7 @@ class DB:
 
     def get_user_data(self, user_id):
         return get_user_data(user_id, self.db_connection)
+
+    def get_user_digital_media(self, user_id):
+        return get_user_digital_media(user_id, self.db_connection)
 
