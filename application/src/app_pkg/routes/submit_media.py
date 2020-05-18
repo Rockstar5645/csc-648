@@ -9,18 +9,28 @@ from flask import render_template, request, redirect, url_for, make_response, fl
 from werkzeug.utils import secure_filename
 from src.app_pkg.objects.user import User
 
+# CODE REVIEW: There is a title comment but no explanation of this files function, 
+# The large submit function has inline comments and this is good.
+# Overall, good job, only small details need to be changed.
+
 ##################################################
 #                SUBMIT MEDIA                    #
 ##################################################
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
+# RECOMMENDED ACTION: add header with short description
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# RECOMMENEDED ACTION: add header with short description
 @app.route('/submit', methods=['GET', 'POST'])
 def upload_file():
+    # RECOMMENEDED ACTION: we need to check this user object 
+    # to make sure they are logged into a valid account before 
+    # allowing them to upload files
     user = User(request.cookies)
+    # CODE REVIEW: Forms have descriptive names, GOOD!
     search_form = SearchForm()
     submission_form = SubmissionForm()
 
@@ -65,6 +75,8 @@ def upload_file():
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
+            # RECOMMENEDED ACTION: print statements should be left for diagnostic purposes only, 
+            # if they are useful for debug and you wish to keep ityou should comment it out.
             print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
             db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
@@ -80,6 +92,7 @@ def upload_file():
     # else, (if "GET")
     return render_template('search.html', search_form=search_form, submission_form=submission_form)
 
+# RECOMMENEDED ACTION: add a short header comment with description of function
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['STATIC_PATH'] + 'user_images/', filename)

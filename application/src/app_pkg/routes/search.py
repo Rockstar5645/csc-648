@@ -3,7 +3,6 @@ from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, make_response
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
-from flask_paginate import Pagination, get_page_args
 from src.app_pkg.objects.user import User
 import math
 

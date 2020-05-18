@@ -366,7 +366,7 @@
                                     <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     &MediumSpace;
                                     {% if item[8] == 0 %}
-                                        <a class="btn btn-warning" href="/login">Download</a>
+                                        <a class="btn btn-warning" href="{{ url_for('download_media', media_id=(item[0])) }}">Download</a>
 
                                     {% else %}
                                         <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#SendMessage_{{item[0]}}">Contact Seller</button>
