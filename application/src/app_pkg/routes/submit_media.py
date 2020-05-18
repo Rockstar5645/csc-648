@@ -10,9 +10,6 @@ from werkzeug.utils import secure_filename
 ##################################################
 #                SUBMIT MEDIA                    #
 ##################################################
-# work in progress
-# thumbnail saved in thumbnails folder works, added STATIC_PATH = /User/.../static/ in config.py to test
-# replace ... with your path in your local setup
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -21,6 +18,7 @@ def allowed_file(filename):
 
 @app.route('/submit', methods=['GET', 'POST'])
 def upload_file():
+    isloggedin = validate_helper(request.cookies)
     form = SubmissionForm()
     # if "POST"
     if request.method == 'POST':
@@ -65,7 +63,7 @@ def upload_file():
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
-            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
+            #print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
             results = db.upload_file(name, desc, filepath, thumbpath, cat, media, price, session_token)
             form.filename.default = filename
@@ -75,12 +73,16 @@ def upload_file():
             form.media_type.default = media
             form.process()
 
-            # TODO: fix render_templates and redirects for submit media button in base.html
             return redirect(url_for('search'))
 
     # else, (if "GET")
-    return render_template('upload.html', form=form)
+    return render_template('upload.html', form=form, isloggedin=isloggedin)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['STATIC_PATH'] + 'user_images/', filename)
+
+
+@app.route('/delete_item/', methods=['GET', 'POST'])
+def delete_file(filename):
+    return 0
