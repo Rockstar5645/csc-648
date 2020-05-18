@@ -19,7 +19,7 @@ def user_profile():
     search_form = SearchForm()
     submission_form = SubmissionForm()
     messages = user.get_messages()
-    if messages['status'] != 'no-messages': 
+    if messages['status'] == 'success': 
         messages = messages['message-list']
     else:
         messages=[]

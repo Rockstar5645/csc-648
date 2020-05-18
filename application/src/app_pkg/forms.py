@@ -18,7 +18,7 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 class SearchForm(Form):
     categories = db.get_category_select_field()
-    term = StringField("Search", validators=[], default='')
+    term = StringField("Search", validators=[Length(min=2, max=40)], default='')
     category = SelectField('Category', choices=categories, validators=[], default='all')
     image_check = BooleanField("image", validators=[], default=False)
     video_check = BooleanField("video", validators=[], default=False)
@@ -28,11 +28,11 @@ class SearchForm(Form):
     submit = SubmitField("Search")
 
 class RegistrationForm(Form):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    email_prefix = StringField("Email", validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=30)])
+    email_prefix = StringField("Email", validators=[DataRequired(), Length(min=2, max=30)])
     suffix = [('@sfsu.edu', '@sfsu.edu'), ('@mail.sfsu.edu','@mail.sfsu.edu')]
     email_suffix = SelectField('Category', choices=suffix, validators=[], default='@sfsu.edu')
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=2, max=30)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     recaptcha = RecaptchaField()
     submit = SubmitField('Sign Up')
