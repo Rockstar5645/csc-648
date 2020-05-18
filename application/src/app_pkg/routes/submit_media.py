@@ -71,7 +71,7 @@ def upload_file():
 
             print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
-            results = db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
+            db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
             submission_form.filename.default = filename
             submission_form.description.default = desc
             submission_form.price.default = price

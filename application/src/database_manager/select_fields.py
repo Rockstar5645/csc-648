@@ -7,7 +7,7 @@ def get_media_type_select_field(conn):
     data = conn.fetchall()
     conn.commit()
     # make a usable list of tuples for select field
-    media_types = [(c[0], c[1]) for c in data]
+    media_types = [(c[1], c[1]) for c in data]
     return media_types
 
 def get_category_select_field(conn):
@@ -16,5 +16,5 @@ def get_category_select_field(conn):
     data = conn.fetchall()
     conn.commit()
     # make a usable list of tuples for select field
-    cats = [(c[0], c[1]) for c in data]
+    cats = [(c[1], c[1]) for c in data]
     return cats
