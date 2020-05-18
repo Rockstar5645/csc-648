@@ -35,7 +35,7 @@ def term_search(q):
     return results
 
 def no_term_search(q):
-    if q.category == '1':
+    if q.category == 'all':
         results = get_all_table(q)
     else:
         results = get_all_category(q)
@@ -44,7 +44,7 @@ def no_term_search(q):
     return results
 
 def filter_by_category(q, results):
-    if q.category == '1':
+    if q.category == 'all':
         return results
     for result in results:
         if result[6] != q.category:
