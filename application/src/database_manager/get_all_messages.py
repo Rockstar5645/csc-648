@@ -3,7 +3,7 @@ import mysql.connector
 def get_all_messages(user_id, db):
     try:
         get_all_messages_query = (
-            "SELECT m.message_id, m.subject, m.time_stamp,"
+            "SELECT m.message_id, m.subject, m.message_body, m.time_stamp,"
             " u.username AS sender, m.seen"
             " FROM messages m"
             " JOIN user u ON m.sender=u.user_id"
@@ -29,7 +29,7 @@ def get_all_messages(user_id, db):
         return status_msg
     else:
         message_list = []
-        for (message_id, subject, time_stamp, sender, seen) in db.fetchall():
+        for (message_id, subject, message_body, time_stamp, sender, seen) in db.fetchall():
             if seen == 0:
                 seen = False
             else:
@@ -38,6 +38,7 @@ def get_all_messages(user_id, db):
                 'message-id': message_id,
                 'subject': subject,
                 'time_stamp': time_stamp,
+                'message_body': message_body,
                 'sender': sender,
                 'seen': seen
             }

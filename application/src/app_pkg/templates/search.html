@@ -1,30 +1,6 @@
 {% extends 'navbar.html' %}
 {% block content %}
 
-
-{#
-    <!--        <div>-->
-<!--            <form method="POST" action="">-->
-<!--                <fieldset class="form-group">-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.category() }}-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.term() }}-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        {{ form.submit() }}-->
-<!--                    </div>-->
-<!--                </fieldset>-->
-<!--            </form>-->
-<!--            {% endblock %}-->
-<!--            {% block content %}-->
-<!--            <header>-->
-<!--            <p> CSC 648.01, Spring 2020, Team 06 </p>-->
-<!--            </header>-->
-#}
-
-
 {% if not results %}
 
     <div class="container">
@@ -239,30 +215,27 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h3 class="text-muted">Showing Results 1 - 5 of 5</h3>
+            <h3 class="text-muted">Showing Results {{ page }} of {{ total_pages }}</h3>
             <nav>
                 <ul class="pagination">
+       
                     <li class="page-item">
-                        <a class="page-link" aria-disabled="true" href="#">Previous</a>
+                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=(page-1)) }}">Previous</a>
                     </li>
+                    {% for i in range(total_pages) %}
+                        <li class="page-item">
+                            <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=(i+1)) }}">{{ i+1 }}</a>
+                        </li>
+                    {% endfor %}
                     <li class="page-item">
-                        <a class="page-link">1</a>
+                        <a class="page-link" aria-disabled="true" href="{{ url_for('search', page=(page+1)) }}">Next</a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
+                    
                 </ul>
             </nav>
         </div>
     </div>
 </div>
-
 
 <div class="container">
     <div class="row">
@@ -270,28 +243,37 @@
         <div class="col-sm-12 col-md-4">
 
             <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
-                <img id='{{item[0]}}' src="/static/{{ item[4] }}" class="card-img-top img-button" width="auto"
+                <img src="/static{{ item[5] }}" class="card-img-top img-button" width="auto"
                      height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col">
-                            <p id="name_{{item[0]}}">{{ item[2] }}</p>
+                        <div class="col-10">
+                            <p>{{ item[2] }}</p>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-2 text-right">
                             <i class="fas fa-download"></i>
                         </div>
                     </div>
                 </div>
                 <div class="row card-body">
                     <div class="col card-text">
-                        <p id="category_{{item[0]}}">{{ item[6] }}</p>
+                        <p>{{ item[6] }}</p>
+
+                    </div>
+                    <div class="col card-text">
+                        <p>{{ item[7] }}</p>
 
                     </div>
                     <div class="col card-text text-right">
-                        <p id="price_{{item[0]}}">${{ item[7] }}</p>
+                        <p>
+                            {% if item[8] == 0 %}
+                                Free
+                            {% else %}
+                                ${{ item[8] }}
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
-                <input type="hidden" id="description_{{item[0]}}" value="{{item[3]}}">
 
             </div>
 
@@ -319,9 +301,9 @@
                         <div class="container">
                             <form>
                                 <!-- Image of the Media -->
-                                <div class=media">
+                                <div class="media">
                                     <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
-                                         height="300" src="/static/{{ item[4] }}" width="300">
+                                         height="300" src="/static{{ item[5] }}" width="300">
                                 </div>
 
                                 <!-- Digital media info -->
@@ -340,20 +322,28 @@
                                         <label class="font-weight-bold">Media type:</label>
                                     </div>
                                     <div class="col">
-                                        <span>Image</span>
+                                        <span>{{ item[7] }}</span>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col text-right">
-                                        <label class="font-weight-bold">License:</label>
+                                        <label class="font-weight-bold">Price:</label>
                                     </div>
                                     <div class="col">
-                                        <span>${{ item[7] }}</span>
+                                        <span>
+                                            {% if item[8] == 0 %}
+                                                Free
+
+                                            {% else %}
+                                                ${{ item[8] }}
+
+                                            {% endif %}
+                                        </span>
                                     </div>
                                 </div>
                                 
-                                <!-- 
+                                {#
                                 <div class="row">
                                     <div class="col text-right">
                                         <label class="font-weight-bold">Author:</label>
@@ -362,7 +352,7 @@
                                         <span>{{ item[1] }}</span>
                                     </div>
                                 </div>
-                                -->
+                                #}
                                 
                                 <div class="form-group mr-3">
                                     <label class="font-weight-bold">Description:</label>
@@ -375,7 +365,15 @@
                                 <div class="form-group text-right">
                                     <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     &MediumSpace;
-                                    <a class="btn btn-warning" href="/login">Download</a>
+                                    {% if item[8] == 0 %}
+                                        <a class="btn btn-warning" href="/login">Download</a>
+
+                                    {% else %}
+                                        <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#SendMessage_{{item[0]}}">Contact Seller</button>
+
+                                    {% endif %}
+                                    
+                                    
                                 </div>
 
                             </form>
@@ -385,53 +383,103 @@
             </div>
         </div>
 
+        {% if item[8] != 0 %}
+        <!--Message Modal-->
+        <div class="modal fade" id="SendMessage_{{item[0]}}" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+        
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+        
+                    <div class="modal-body">
+                        <form class="form" action="{{ url_for('send_message') }}" method="POST">
+                            <label for="recipient-name" class="col-form-label">Recipient</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-at"></i></div>
+                                </div>
+                                
+                                <input type="text" class="form-control" name="media-id" value="{{ item[0] }}" readonly>
+                            </div>
+        
+                            <label for="recipient-name" class="col-form-label">Subject</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                </div>
+                                <input type="text" class="form-control" name="message-subject" value="{{ item[2] }}" readonly>
+                            </div>
+        
+                            <label for="datepicker" class="col-form-label">Date</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
+                                </div>
+                                <input type="text" class="form-control datepicker" id="datepicker"
+                                        readonly>
+                            </div>
+        
+        
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label"> Message</label>
+                                <textarea class="form-control" name="message-text" placeholder="Type your message here..."
+                                            rows="10" required></textarea>
+                            </div>
+        
+                        
+        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button data-target="#MessageSent" data-toggle="modal" type="submit"
+                                class="btn btn-warning">Send Message
+                        </button>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script type="text/javascript">
+        $( document ).ready(function()
+            {
+                var now = new Date();
+                $('#datepicker').val(now.toLocaleString());
+            });
+        </script>
+        
+        
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        <!--YOUR MESSAGE IS SENT MODAL -->
+        
+        <div class="modal fade in" id="MessageSent" aria-hidden="true">
+            <div class="modal-dialog modal-confirm modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-body">
+                            <p class="text-center">Your message has been sent</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
         {% endfor %}
     </div>
 
-
 </div>
-
-
-
-<script>
-    $(document).ready(function(){
-        $(".img-button").click(function(){
-            let id = $(this).attr("id")
-            let name = $("#name_" + id).text()
-            let category = $("#category_" + id).text()
-            let price = $("#price_" + id).text()
-            let description = $("#description_" + id).val()
-            console.log(name)
-            console.log(category)
-            console.log(price)
-            console.log(description)
-        });
-    });
-
-
-</script>
-
-<!--
-<div class="text-center">
-    {% for item in results %}
-    <tr>
-        <p> OWNER ID: {{ item[1] }} </p>
-        <p> IMAGE_NAME: {{ item[2] }} </p>
-        <p> DESCRIPTION: {{ item[3] }} </p>
-        <p> STATIC REFERENCE: {{ item[4] }} </p>
-        <p> THUMBNAIL REFERENCE: {{ item[5] }}
-        <p> CATEGORY: {{ item[6] }} </p>
-        <p> PRICE: ${{ item[7] }} </p>
-        <p>digital media: </p>
-        <img src="/static{{ item[4] }}" alt="image" height="512" width="512">
-        <p>thumbnail: </p>
-        <img src="/static{{ item[5] }}" alt="image" height="200" width="200">
-        </br>
-    </tr>
-    {% endfor %}
-</div>
--->
-
 
 {% endif %}
 

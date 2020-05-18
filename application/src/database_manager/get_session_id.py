@@ -16,7 +16,7 @@ def get_session_id(session_token, r):
         if pipe_return_value[1] is True:
             # session is still activate, and we have the session_id
             user_id = pipe_return_value[0].decode('utf-8')
-            print('value of {} was successfully retreived'.format(user_id))
+            # print('value of {} was successfully retreived'.format(user_id))
             success_msg = {
                 'status': 'success',
                 'user_id': user_id

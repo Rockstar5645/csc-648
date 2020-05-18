@@ -90,15 +90,13 @@ def initialize_database_skeleton(db):
              "description VARCHAR(150),"
              "file_path VARCHAR(200),"
              "thumbnail_path VARCHAR(200),"
-             "category_id INT UNSIGNED NOT NULL,"
-             "media_type_id INT UNSIGNED NOT NULL,"
+             "category VARCHAR(200),"
+             "media_type VARCHAR(200),"
              "price FLOAT(2),"
              "approval INT,"
              "PRIMARY KEY (media_id),"
              "FOREIGN KEY (owner_id) REFERENCES user (user_id),"
-             "FOREIGN KEY (category_id) REFERENCES categories (category_id),"
-             "FOREIGN KEY (media_type_id) REFERENCES media_types (media_type_id),"
-             "INDEX (description, category_id, media_type_id))")
+             "INDEX (description))")
     db.commit()
     print('Digital media table created')
 

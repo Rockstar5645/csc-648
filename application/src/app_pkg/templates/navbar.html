@@ -56,7 +56,7 @@
 <small>SFSU Software Engineering Project CSC 648-848, Spring 2020. For Demonstration Only</small>
 <!-- Navigation Bar Documentation -->
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
             aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -64,17 +64,18 @@
     
     <div class="collapse navbar-collapse" id="menu">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link mr-sm-auto" href="/" style="font-size: large;">Snapster</a>
-            </li>
+            <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
+                <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
+                Snapster
+            </a>
             <li class="nav-item">
                 <!--    SEARCH AND FILTER FORM       -->
                 <form class="form" action="{{ url_for('search') }}" method="POST">
                     <div class="input-group mt-1 mb-1 ml-lg-4">
                         <div class="input-group-prepend">
-                            {{ form.category(class_="btn custom-select") }}
+                            {{ search_form.category(class_="btn custom-select") }}
                         </div>
-                        {{ form.term(class_="form-control", style="width: 325px", maxlength="32") }}
+                        {{ search_form.term(class_="form-control", style="width: 325px", maxlength="32") }}
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search"></i>
@@ -85,24 +86,24 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-check form-check-inline ml-lg-4">
-                                    {{ form.image_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ form.image_check.label.text }}</label>
+                                    {{ search_form.image_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ search_form.image_check.label.text }}</label>
 
-                                    {{ form.video_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ form.video_check.label.text }}</label>
+                                    {{ search_form.video_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ search_form.video_check.label.text }}</label>
 
-                                    {{ form.audio_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ form.audio_check.label.text }}</label>
+                                    {{ search_form.audio_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ search_form.audio_check.label.text }}</label>
 
-                                    {{ form.document_check(class="form-check-input") }}
-                                    <label class="form-check-label" style="color: white">{{ form.document_check.label.text }}</label>
+                                    {{ search_form.document_check(class="form-check-input") }}
+                                    <label class="form-check-label" style="color: white">{{ search_form.document_check.label.text }}</label>
 
                                     <div class="col-auto pl-1 pr-0">
                                         <span style="color: white;">|</span>
                                     </div>
                                 
                                     <div class="input-group-prepend">
-                                        {{ form.license(class="form-check-input") }}
+                                        {{ search_form.license(class="form-check-input") }}
                                     </div>
                             </div>
                         </div>
@@ -129,14 +130,34 @@
                     <!--<a class="btn btn-warning mr-1" href="/submit" role="button">Submit Media</a> -->
                 </div>
                 <div class="col-auto pl-1 pr-0">
-                    <span style="color: white;">|</span>
+                    <span style="color: white; font-size: x-large;">|</span>
                 </div>
+                
+                {% if not user.isloggedin %}
+                
                 <div class="col-auto pl-1 pr-0">
                     <a class="btn btn-outline-light ml-1 mr-1" href="/login" role="button">Login</a>
                 </div>
                 <div class="col-auto pl-1">
                     <a class="btn btn-outline-light" href="/register" role="button">Register</a>
                 </div>
+
+                {% else %}
+
+                <div class="col-auto pl-0 pr-5">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                          {{user.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/user_profile" >Dashboard</a>
+                            <a class="dropdown-item" href="/logout" >Logout</a>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endif %}
+
             </div>
         </div>
         
@@ -144,7 +165,6 @@
     </div>
 
 </nav>
-
 
 
 {% block content %}{% endblock %}
@@ -184,42 +204,31 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadTitle">Title</label><span style="color:red;">*</span>
-                                <input name="name" type="text" class="form-control" id="uploadTitle" maxlength="32" required
-                                    placeholder="The searchable name of your media." style="max-width: 350px;">
+                                {{ submission_form.filename(class="form-control", maxlength="40", style="max-width: 350px;", placeholder="The searchable name of your media.") }}
+                                <small id="usernameHelpBlock" class="form-text text-muted">
+                                    If the submission is for a class, prefix the course name and number to the beginning of the title (e.g. CSC-648 or ENG-461) 
+                                </small>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadCategory">Category</label><span style="color:red;">*</span>
-                                <select name="select_category" id="uploadCategory" class="form-control" required style="max-width: 250px;">
-                                    <option value="">Select</option>
-                                    <option value="1">Spongebob</option>
-                                </select>
+                                {{ submission_form.category(class="form-control", style="max-width: 250px;") }}
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
-                                <label for="uploadCategory">Media Type</label><span style="color:red;">*</span>
-                                <select name="select_media_type" id="uploadCategory" class="form-control" required style="max-width: 250px;">
-                                    <option value="">Select</option>
-                                    <option value="1">image</option>
-                                    <option value="2">video</option>
-                                    <option value="3">audio</option>
-                                    <option value="4">document</option>
-                                </select>
+                                <label for="uploadMediaType">Media Type</label><span style="color:red;">*</span>
+                                {{ submission_form.media_type(class="form-control", style="max-width: 250px;") }}
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadLicense">License</label><span style="color:red;">*</span>
-                                <select name="select_license" id="uploadLicense" class="form-control" required style="max-width: 250px;">
-                                    <option value="">Select</option>
-                                    <option value="1">Free</option>
-                                    <option value="2">Paid</option>
-                                </select>
+                                {{ submission_form.license_field(class="form-control", style="max-width: 250px;", id="uploadLicense") }}
                             </div>
                         </div>
                         
@@ -227,23 +236,24 @@
                         <div id="priceDiv" class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadPrice">Price</label><span style="color:red;">*</span>
-                                <input name="price" type="number" class="form-control" id="uploadPrice" placeholder="$" maxlength="16" name=price value="{{request.form.price}}" style="max-width: 200px;">
+                                {{ submission_form.price(class="form-control", style="max-width: 200px;", maxlength="10") }}
                             </div>
                         </div>
                         
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadDescription">Description</label>
-                                <textarea name="description"id="uploadDescription" class="form-control" rows="3" maxlength="128"  name=description value="{{request.form.description}}" style="max-width: 350px;"
-                                placeholder="Briefly describe your content (optional)."></textarea>
+                                {{ submission_form.description(class="form-control", maxlength="128", rows="3", style="max-width: 350px;", placeholder="Briefly describe your content (optional).") }}
                             </div>
                         </div>
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
+                                <input type=file name=file>
+                                    {#
                                 <div class="custom-file">
-                                    <input name="file_input" type="file" class="form-control custom-file-input" id="uploadFile" required>
-                                    <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>
+                                    <input name="file" type="file" class="form-control custom-file-input" id="uploadFile" required>
+                                    <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>#}
                                 </div>  
                             </div>
                         </div>
