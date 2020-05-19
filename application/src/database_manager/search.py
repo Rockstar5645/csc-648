@@ -82,11 +82,11 @@ def final_check(q, results):
     if len(results) > 0:
         return results
     else:
-        if q.term == '' and q.category == '1' and len(q.media_types) == 0:
+        if q.term == '' and q.category == 'all' and len(q.media_types) == 0:
             results = get_all_table(q)
         elif q.term != '':
             results = term_query(q)
-        elif q.category != '1':
+        elif q.category != 'all':
             results = get_all_category(q)
             results = filter_by_category(q, results)
         elif len(q.media_types) > 0:
@@ -102,14 +102,13 @@ def final_check(q, results):
 ##############################################
 
 def term_query(q):
-    q.conn.query(
-                "SELECT * FROM digital_media WHERE `name` LIKE %s OR `description` LIKE %s", ("%" + q.term + "%","%" + q.term + "%"))
+    q.conn.query("SELECT * FROM digital_media WHERE `name` LIKE %s OR `description` LIKE %s", ("%" + q.term + "%","%" + q.term + "%"))
     data = q.conn.fetchall()
     q.conn.commit()
     return data
 
 def get_all_category(q):
-    q.conn.query("SELECT * FROM digital_media WHERE category_id = %s", (q.category))
+    q.conn.query("SELECT * FROM `digital_media` WHERE `category` = %s", (q.category,))
     data = q.conn.fetchall()
     q.conn.commit()
     return data

@@ -30,6 +30,7 @@ def upload_file():
     # to make sure they are logged into a valid account before 
     # allowing them to upload files
     user = User(request.cookies)
+
     # CODE REVIEW: Forms have descriptive names, GOOD!
     search_form = SearchForm()
     submission_form = SubmissionForm()

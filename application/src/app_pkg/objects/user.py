@@ -9,7 +9,7 @@ from src.app_pkg.routes.common import validate_helper
 class User(object):
 
     user_id = 0
-    session_token = "None"
+    session_token = ""
     username = 'default'
     email = ''
     isloggedin = False
