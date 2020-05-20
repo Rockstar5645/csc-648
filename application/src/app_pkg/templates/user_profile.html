@@ -119,12 +119,15 @@ select.minimal {
     </nav>
 
     <div class="tab-content" id="nav-tabContent">
+        
+       
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
         <div class="tab-pane fade show active" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
+            {% if digital_media %}
             <div>
                 <table class="table" style="text-align:center">
                     <thead  style="background:#dbc3e3; text-align:center" >
@@ -150,14 +153,6 @@ select.minimal {
                                 <option value="">Computer Science</option>
                             </select>
                         </th>
-
-                        <th>
-                            <select class="minimal" id="sortDate">
-                                <option selected value="lastDate">Date</option>
-                                <option value="firstDate">Old Date</option>
-
-                            </select>
-                        </th>
                         <th>
                             <select class="minimal" id="sortPrice">
                                 <option selected value="allPrice">Price</option>
@@ -179,116 +174,133 @@ select.minimal {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr style="text-align:center">
+                    {% for item in digital_media %}
+                        <tr style="text-align:center">
+                            <td>
+                                <a class="btn btn-outline-info btn-sm btn-sm " data-target="#modal_{{item[0]}}" data-toggle="modal" type="button">{{item[2]}}</a>
+                            </td>
+                            <td>{{item[7]}}</td>
+                            <td>{{item[6]}}</td>
+                            <td>
+                                {% if item[8] == 0 %}
+                                    Free
 
-                        <td>
-                            <a class="btn btn-outline-info btn-sm btn-sm " data-target="#viewMedia"
-                               data-toggle="modal"
-                               type="button">sponge bob 1</a>
-                        </td>
-                        <td>Image</td>
-                        <td>category</td>
-                        <td>datetime</td>
-                        <td>$</td>
-                        <td>sold</td>
-                        <td>
-                            <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
-                        </td>
-                    </tr>
+                                {% else %}
+                                    ${{ item[8] }}
+
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item[9] == 1 %}
+                                    <span>Approved</span>
+                                {% else %}
+                                    <span>Awaiting Approval</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="far fa-trash-alt" data-toggle="modal" data-target="#DeleteItem"></a>
+                            </td>
+                        </tr>
+
+                        <!--    MODAL VIEW-->
+                        <div aria-hidden="true" aria-labelledby="DigitalMediaTitle" class="modal fade" id="modal_{{item[0]}}" role="dialog" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                <div class="modal-content" id="modal">
+                                    <!-- Title of the Media -->
+                                    <div class="modal-header text-center">
+                                        <h5 class="modal-title w-100">{{ item[2] }}</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                            <span class="close">&#215;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="container">
+
+                                            <!-- Image of the Media -->
+                                            <div class="media">
+                                                <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
+                                                        height="300" src="/static/{{ item[5] }}" width="300">
+                                            </div>
+
+                                            <!-- Digital media info -->
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col text-right">
+                                                        <label class="font-weight-bold">Category:</label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span>{{ item[6] }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <label class="font-weight-bold">Media type:</label>
+                                                </div>
+                                                <div class="col">
+                                                    <span>{{ item[7] }}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <label class="font-weight-bold">Price:</label>
+                                                </div>
+                                                <div class="col">
+                                                    <span>
+                                                        {% if item[8] == 0 %}
+                                                            Free
+
+                                                        {% else %}
+                                                            ${{ item[8] }}
+
+                                                        {% endif %}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            {#
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <label class="font-weight-bold">Author:</label>
+                                                </div>
+                                                <div class="col">
+                                                    <span>{{ item[1] }}</span>
+                                                </div>
+                                            </div>
+                                            #}
+                                            
+                                            <div class="form-group mr-3">
+                                                <label class="font-weight-bold">Description:</label>
+                                                <p class="card-text">{{ item[3] }}
+                                                </p>
+                                            </div>
+
+                                            <div class="form-group text-right">
+                                                <button class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
 
-
-            <!-- SINGLE MEDIA VIEW -->
-            <!-- SINGLE MEDIA VIEW -->
-
-
-            <div aria-hidden="true" aria-labelledby="viewMedia" class="modal fade" id="viewMedia" role="dialog"
-                 tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <!-- Title of the Media -->
-                        <div class="modal-header text-center">
-                            <h5 class="modal-title w-100" id="MediaViewTitle">sponge bob 1</h5>
-                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                <span aria-hidden="true"></span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body">
-                            <div class="container">
-                                <form>
-                                    <!-- Image of the Media -->
-                                    <div class="media">
-                                        <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
-                                             height="300" src="/static/thumbnails/sb1_t.jpg" width="300">
-                                    </div>
-
-                                    <!-- Digital media info -->
-                                    <div>
-                                        <div class="row">
-                                            <div class="col text-right">
-                                                <label class="font-weight-bold">Category:</label>
-                                            </div>
-                                            <div class="col">
-                                                <span>BIO 417</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col text-right">
-                                                <label class="font-weight-bold">Media type:</label>
-                                            </div>
-                                            <div class="col">
-                                                <span>Image</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col text-right">
-                                                <label class="font-weight-bold">License:</label>
-                                            </div>
-                                            <div class="col">
-                                                <span>Free</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col text-right">
-                                                <label class="font-weight-bold">Author:</label>
-                                            </div>
-                                            <div class="col">
-                                                <span>Username</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mr-3">
-                                            <label class="font-weight-bold">Description:</label>
-                                            <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                ut aliquip
-                                                ex ea commodo consequat. Duis aute irure dolor."
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Cancel or Download Media Buttons -->
-
-                                    <div class="form-group text-right">
-                                        <button class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {% else %}
+            <div>
+                No media items have been added yet.
             </div>
+
+            {% endif %}
+
+
 
 
             <!--ARE YOU SURE TO DELETE THIS ITEM MODAL -->
@@ -337,6 +349,8 @@ select.minimal {
             </div>
 
         </div>
+
+
 
         <!-- MY MESSAGES TAB -->
         <!-- MY MESSAGES TAB -->
@@ -619,7 +633,7 @@ $( document ).ready(function()
     <!--PAGINATION -->
     <!--PAGINATION -->
     <!--PAGINATION -->
-
+    {# 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item disabled">
@@ -633,7 +647,7 @@ $( document ).ready(function()
             </li>
         </ul>
     </nav>
-
+    #}
 
 </div>
 
