@@ -10,7 +10,7 @@ from flask_wtf import RecaptchaField
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import Form
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, FileField, IntegerField, SelectMultipleField, widgets, TextAreaField
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, Regexp
 
 ################################################
 #                    FORMS                     #
@@ -46,12 +46,16 @@ class LoginForm(Form):
 class SubmissionForm(Form):
     filename = StringField('File Name', validators=[DataRequired()])
     description = TextAreaField('Description')
-    price = IntegerField('Price')
+    price = IntegerField('Price', validators=[])
     categories = db.get_category_select_field()
+    categories.remove(('all', 'all'))
+    categories.insert(0,('', 'Select'))
     media_types = db.get_media_type_select_field()
+    media_types.remove(('all', 'all'))
+    media_types.insert(0,('', 'Select'))
     licenses = [("1", "Free"), ("2", "Paid")]
-    category = SelectField('Category', choices=categories, validators=[], default='all')
-    media_type = SelectField('Media Type', choices=media_types, validators=[], default='all')
+    category = SelectField('Category', choices=categories, validators=[DataRequired()])
+    media_type = SelectField('Media Type', choices=media_types, validators=[DataRequired()])
     license_field = SelectField('License', choices=licenses, validators=[])
     submit = SubmitField('Submit')
 #

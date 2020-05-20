@@ -205,7 +205,7 @@
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadTitle">Title</label><span style="color:red;">*</span>
                                 {{ submission_form.filename(class="form-control", maxlength="40", style="max-width: 350px;", placeholder="The searchable name of your media.") }}
-                                <small id="usernameHelpBlock" class="form-text text-muted">
+                                <small class="form-text text-muted">
                                     If the submission is for a class, prefix the course name and number to the beginning of the title (e.g. CSC-648 or ENG-461) 
                                 </small>
                             </div>
@@ -214,7 +214,7 @@
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadCategory">Category</label><span style="color:red;">*</span>
-                                {{ submission_form.category(class="form-control", style="max-width: 250px;") }}
+                                {{ submission_form.category(class="form-control", style="max-width: 250px;")}}
                             </div>
                         </div>
 
@@ -236,7 +236,7 @@
                         <div id="priceDiv" class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
                                 <label for="uploadPrice">Price</label><span style="color:red;">*</span>
-                                {{ submission_form.price(class="form-control", style="max-width: 200px;", maxlength="10") }}
+                                {{ submission_form.price(class="form-control", style="max-width: 200px;", maxlength="10", id="uploadPrice") }}
                             </div>
                         </div>
                         
@@ -249,12 +249,7 @@
 
                         <div class="form-row justify-content-md-center">
                             <div class="form-group col-lg-6 col-md-8">
-                                <input type=file name=file>
-                                    {#
-                                <div class="custom-file">
-                                    <input name="file" type="file" class="form-control custom-file-input" id="uploadFile" required>
-                                    <label class="custom-file-label" for="uploadFile" style="max-width: 350px;">Select a file to upload</label>#}
-                                </div>  
+                                <input type=file name=file required>  
                             </div>
                         </div>
                         
@@ -275,11 +270,12 @@
                                 $("#uploadLicense").change(function(){
                                     let val = $("#uploadLicense option:selected").text()
                                     if(val === "Paid") {
-                                        console.log(val)
                                         $("#priceDiv").show()
+                                        $("#uploadPrice").attr("required", "True")
                                     }
                                     else {
                                         $("#priceDiv").hide()
+                                        $("#uploadPrice").removeAttr("required")
                                     }
                                 });
                             });
