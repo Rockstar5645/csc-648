@@ -2,121 +2,126 @@
 
 {% block content %}
 
-  <!-- COPYRIGHT CLAIM -->
-  <!-- COPYRIGHT CLAIM -->
-  <!-- COPYRIGHT CLAIM -->
+<!-- COPYRIGHT CLAIM -->
+<!-- COPYRIGHT CLAIM -->
+<!-- COPYRIGHT CLAIM -->
 <small class=".container-sm"> SFSU Software Engineering Project CSC 648-848, Spring 2020. For
-    Demonstration Only</small>
+  Demonstration Only</small>
 
 
-  <!-- Navigation Bar Documentation -->
-  <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
-    <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
+<!-- Navigation Bar Documentation -->
+<!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
+  <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
     <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
     Snapster
-    </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-  </nav>
+  </a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
 
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container login">
-	<div class="row">
-		<div class="col-md-5">
-			<div class="Snapster-description text-center">
-				<h2 style="color:White;font-family:Book Antiqua;"> Welcome to Snapster</h2>
-              <br><br><br><br>
-				<h4 style="color:White;font-family:Book Antiqua;">A web platform
-                At San Francisco State University
-                where the students and faculty members
-                buy, sell and share digital media
-                with ease and transparency. </h4>
-			</div>
-		</div>
-		<div class="col-md-7">
-				<div class="form-group">
-          <h2 class="mb-4">Login</h2>
-				   <div class="register-form">
-                <form class="needs-validation" action="{{ url_for('login') }}" method="POST">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="Snapster-description text-center">
+        <h2 style="color:White;font-family:Book Antiqua;"> Welcome to Snapster</h2>
+        <br><br><br><br>
+        <h4 style="color:White;font-family:Book Antiqua;">A web platform
+          At San Francisco State University
+          where the students and faculty members
+          buy, sell and share digital media
+          with ease and transparency. </h4>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group">
+        <h2 class="mb-4">Login</h2>
+        <div class="register-form">
+          <form class="needs-validation" action="{{ url_for('login') }}" method="POST">
 
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="usernameEmail">Username or Email</label>
-                            {{ form.username(class="form-control") }}
-                            <div class="invalid-feedback">
-                                Please enter your username or SFSU email.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="password">Password</label>
-                            {{ form.password(class="form-control") }}
-                            <div class="invalid-feedback">
-                                Please enter your password.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- RECAPTCHA -->
-                    <center>{{ form.recaptcha(class="g-recaptcha") }}</center>
-                    <br>
-
-<!--                    <div class="form-group text-center">-->
-<!--                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"-->
-<!--                             data-callback="verifyRecaptchaCallback"-->
-<!--                             data-expired-callback="expiredRecaptchaCallback"></div>-->
-<!--                        <input class="form-control d-none" data-recaptcha="false" required-->
-<!--                               data-error="Please complete the Captcha">-->
-<!--                        <div class="help-block with-errors"></div>-->
-<!--                    </div>-->
-
-
-<!--                    <button class="btn btn-success btn-lg btn-block" type="submit" onclick="">Login</button><br>-->
-                    <!-- SUBMIT FORM -->
-                    {{ form.submit(class="btn btn-success btn-lg btn-block") }}
-                    <br>
-                  <a href="/register"><p style="text-align:center">Don't have an account?</p></a>
-                  <a href="/forgotPassword"><p style="text-align:center">Forgot Password?</p></a>
-                </form>
-
+            <div class="form-row">
+              <div class="col mb-3">
+                <label for="usernameEmail">Username or Email</label>
+                {{ form.username(class="form-control") }}
+                <div class="invalid-feedback">
+                  Please enter your username or SFSU email.
+                </div>
+              </div>
             </div>
-			</div>
-		</div>
-	</div>
+
+
+            <div class="form-row">
+              <div class="col mb-3">
+                <label for="password">Password</label>
+                {{ form.password(class="form-control") }}
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+            </div>
+
+
+            <!-- RECAPTCHA -->
+            <center>{{ form.recaptcha(class="g-recaptcha") }}</center>
+            <br>
+
+            <!--                    <div class="form-group text-center">-->
+            <!--                        <div class="g-recaptcha " data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"-->
+            <!--                             data-callback="verifyRecaptchaCallback"-->
+            <!--                             data-expired-callback="expiredRecaptchaCallback"></div>-->
+            <!--                        <input class="form-control d-none" data-recaptcha="false" required-->
+            <!--                               data-error="Please complete the Captcha">-->
+            <!--                        <div class="help-block with-errors"></div>-->
+            <!--                    </div>-->
+
+
+            <!--                    <button class="btn btn-success btn-lg btn-block" type="submit" onclick="">Login</button><br>-->
+            <!-- SUBMIT FORM -->
+            {{ form.submit(class="btn btn-success btn-lg btn-block") }}
+            <br>
+            <a href="/register">
+              <p style="text-align:center">Don't have an account?</p>
+            </a>
+            <a href="/forgotPassword">
+              <p style="text-align:center">Forgot Password?</p>
+            </a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <style>
-body{
-		background-color: #E9E9E9;
-	}
-	.login{
-		padding: 4%;
-	}
-	.col-md-5{
-		background: linear-gradient(to bottom, #9966ff 4%, #ff9966 100%);
-		padding: 4%;
-		border-top-left-radius: .5rem;
-		border-bottom-left-radius: 0.5rem;
-	}
+  body {
+    background-color: #E9E9E9;
+  }
 
-	.col-md-7{
-		background: #fff;
-		padding: 3%;
-		border-top-right-radius: 0.5rem;
-		border-bottom-right-radius: 0.5rem;
-	}
+  .login {
+    padding: 4%;
+  }
 
+  .col-md-5 {
+    background: linear-gradient(to bottom, #9966ff 4%, #ff9966 100%);
+    padding: 4%;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+
+  .col-md-7 {
+    background: #fff;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
 </style>
 
 

@@ -10,14 +10,14 @@
 <!-- https://getbootstrap.com/docs/4.4/components/navbar/ -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #35006D;">
     <a class="navbar-brand align-top d-inline-block" style="font-size: xx-large;" href="/">
-    <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
-    Snapster
+        <img src="/static/Logo/LOGO.png" width="60" height="60" class="d-inline-block align-top" alt="">
+        Snapster
     </a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
     </button>
-  </nav>
+</nav>
 
 
 
@@ -122,10 +122,11 @@
                         <div class="form-group">
                             <div class="form-check">
 
-                                <input name="checkbox" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                <input name="checkbox" class="form-check-input" type="checkbox" value=""
+                                    id="invalidCheck" required>
                                 <label class="form-check-label" for="invalidCheck">
                                     <small>I have read and agree to terms and conditions <a href="#">Snapster Team of
-                                        Use</a></small>
+                                            Use</a></small>
 
                                 </label>
                                 <div class="invalid-feedback">
@@ -134,14 +135,16 @@
                             </div>
                         </div>
 
-                    <!-- RECAPTCHA -->
-                    <center>{{ form.recaptcha(class="g-recaptcha") }}</center>
-                    <br>
-                    <!-- SUBMIT FORM -->
-                    {{ form.submit(class="btn btn-success btn-lg btn-block") }}
-                    <br>
-                    <a href="/login"><p style="text-align:center">Already have an account?</p></a>
-                        
+                        <!-- RECAPTCHA -->
+                        <center>{{ form.recaptcha(class="g-recaptcha") }}</center>
+                        <br>
+                        <!-- SUBMIT FORM -->
+                        {{ form.submit(class="btn btn-success btn-lg btn-block") }}
+                        <br>
+                        <a href="/login">
+                            <p style="text-align:center">Already have an account?</p>
+                        </a>
+
                     </form>
 
                 </div>
@@ -152,32 +155,32 @@
 
 
 <script>
-// Disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
+    // Disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
 
 
 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#username').bootstrapValidator();
-});
+    });
 </script>
 
 
@@ -186,57 +189,56 @@
 
 <!-- SCRIPT FOR PASSWORD LENTGH VALIDATION and PASSWORD MATCHING-->
 <script>
-  $(function () {
-    var $password = $(".form-control[id='password']");
-    var $passwordAlert = $(".password-alert");
-    var $requirements = $(".requirements");
-    var leng;
-    var $leng = $(".leng");
+    $(function () {
+        var $password = $(".form-control[id='password']");
+        var $passwordAlert = $(".password-alert");
+        var $requirements = $(".requirements");
+        var leng;
+        var $leng = $(".leng");
 
-    $requirements.addClass("wrong");
-    $password.on("focus", function(){$passwordAlert.show();});
+        $requirements.addClass("wrong");
+        $password.on("focus", function () { $passwordAlert.show(); });
 
-    $password.on("input blur", function (e) {
-        var el = $(this);
-        var val = el.val();
-        $passwordAlert.show();
+        $password.on("input blur", function (e) {
+            var el = $(this);
+            var val = el.val();
+            $passwordAlert.show();
 
-        if (val.length < 8) {
-            leng = false;
-        }
-        else if (val.length > 7) {
-            leng=true;
-        }
+            if (val.length < 8) {
+                leng = false;
+            }
+            else if (val.length > 7) {
+                leng = true;
+            }
 
-        console.log(leng);
+            console.log(leng);
 
-        if(leng==true){
-            $(this).addClass("valid").removeClass("invalid");
-            $requirements.removeClass("wrong").addClass("good");
-            $passwordAlert.removeClass("alert-warning").addClass("alert-success").hide();
-        }
-        else
-        {
-            $(this).addClass("invalid").removeClass("valid");
-            $passwordAlert.removeClass("alert-success").addClass("alert-warning");
+            if (leng == true) {
+                $(this).addClass("valid").removeClass("invalid");
+                $requirements.removeClass("wrong").addClass("good");
+                $passwordAlert.removeClass("alert-warning").addClass("alert-success").hide();
+            }
+            else {
+                $(this).addClass("invalid").removeClass("valid");
+                $passwordAlert.removeClass("alert-success").addClass("alert-warning");
 
-            if(leng==false){$leng.addClass("wrong").removeClass("good");}
-            else{$leng.addClass("good").removeClass("wrong");}
-        }
+                if (leng == false) { $leng.addClass("wrong").removeClass("good"); }
+                else { $leng.addClass("good").removeClass("wrong"); }
+            }
 
 
-        if(e.type == "blur"){
+            if (e.type == "blur") {
                 $passwordAlert.hide();
             }
-    });
+        });
 
-//    CHECK FOR PASSWORD MATCHING
+        //    CHECK FOR PASSWORD MATCHING
 
         var password = document.getElementById("password")
         confirmPassword = document.getElementById("confirmPassword");
 
-        function validatePassword(){
-            if(password.value != confirmPassword.value) {
+        function validatePassword() {
+            if (password.value != confirmPassword.value) {
                 confirmPassword.setCustomValidity("Passwords Don't Match");
             } else {
                 confirmPassword.setCustomValidity('');
@@ -245,7 +247,7 @@
 
         password.onchange = validatePassword;
         confirmPassword.onkeyup = validatePassword;
-});
+    });
 
 
 
@@ -254,44 +256,43 @@
 
 
 <style>
-body{
-		background-color: #E9E9E9;
-	}
-	.register{
-		padding: 4%;
-	}
-	.col-md-5{
-		background: linear-gradient(to bottom, #9966ff 4%, #ff9966 100%);
-		padding: 4%;
-		border-top-left-radius: .5rem;
-		border-bottom-left-radius: 0.5rem;
-	}
+    body {
+        background-color: #E9E9E9;
+    }
 
-	.col-md-7{
-		background: #fff;
-		padding: 2%;
-		border-top-right-radius: 0.5rem;
-		border-bottom-right-radius: 0.5rem;
-	}
+    .register {
+        padding: 4%;
+    }
 
-    .alert{
+    .col-md-5 {
+        background: linear-gradient(to bottom, #9966ff 4%, #ff9966 100%);
+        padding: 4%;
+        border-top-left-radius: .5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+
+    .col-md-7 {
+        background: #fff;
+        padding: 2%;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .alert {
         display: none;
     }
 
-    .requirements{
+    .requirements {
         list-style-type: none;
     }
 
-    .wrong .fa-check{
+    .wrong .fa-check {
         display: none;
     }
 
-    .good .fa-times{
+    .good .fa-times {
         display: none;
     }
-
-
-
 </style>
 
 
