@@ -46,7 +46,7 @@ def no_term_search(q):
 def filter_by_category(q, results):
     if q.category == 'all':
         return results
-    for result in results:
+    for result in results[:]:
         if result[6] != q.category:
             results.remove(result)
     return results
@@ -54,28 +54,28 @@ def filter_by_category(q, results):
 def filter_by_type(q, results):
     if len(q.media_types) == 0:
         return results
-    for result in results:
+    for result in results[:]:
         if result[7] not in q.media_types:
             results.remove(result)
     return results
 
 def filter_by_approved(results):
-    for result in results:
+    for result in results[:]:
         if result[9] == 0:
             results.remove(result)
     return results
 
 def filter_by_license(q, results):
-    if q.license == 'all':
-        return results
-    elif q.license == 'free':
-        for result in results:
+    if q.license == 'free':
+        for result in results[:]:
             if result[8] > 0:
                 results.remove(result)
     elif q.license == 'paid':
-        for result in results:
+        for result in results[:]:
             if result[8] == 0:
                 results.remove(result)
+    else:
+        return results
     return results
 
 def final_check(q, results):
@@ -94,7 +94,6 @@ def final_check(q, results):
             results = filter_by_type(q, results)
         if len(results) == 0:
             return get_all_table(q)
-
         return results
 
 ##############################################
