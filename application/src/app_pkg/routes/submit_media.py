@@ -60,13 +60,11 @@ def upload_file():
             session_token = request.cookies.get('token')
             name = request.form['filename']
             desc = request.form['description']
-<<<<<<< HEAD
 
             license_val = request.form['license_field']
             print("Value", license_val)            
             price = request.form['price'] if license_val == "2" else 0.00
 
-=======
             
             license_val = request.form['license_field']
             price = 0.0
@@ -77,8 +75,7 @@ def upload_file():
                 except:
                     print("error: price is not a number")
                     return redirect(url_for('search'))
-            
->>>>>>> 9ead202c7c4563bc484b7564374666bd1d66051b
+
             cat = request.form['category']
             media = request.form['media_type']
             filepath = 'user_images/' + filename
