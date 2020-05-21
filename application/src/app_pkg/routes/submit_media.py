@@ -9,29 +9,25 @@ from flask import render_template, request, redirect, url_for, make_response, fl
 from werkzeug.utils import secure_filename
 from src.app_pkg.objects.user import User
 
-# CODE REVIEW: There is a title comment but no explanation of this files function, 
-# The large submit function has inline comments and this is good.
-# Overall, good job, only small details need to be changed.
-
 ##################################################
 #                SUBMIT MEDIA                    #
 ##################################################
+# NOTE: This function handles the route for the file upload functionality.
+# it provides user input data from the file upload button and gives it to the database digital_media API
+# it also adds the files to the static folders and generates a thumbnail image of the original image
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-# RECOMMENDED ACTION: add header with short description
+# This function allows us to check for allowed file extensions for filenames
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# RECOMMENEDED ACTION: add header with short description
+# This is the main route that handles the file upload, thumbnail generation, and passing the data to the database
 @app.route('/submit', methods=['GET', 'POST'])
 def upload_file():
-    # RECOMMENEDED ACTION: we need to check this user object 
-    # to make sure they are logged into a valid account before 
-    # allowing them to upload files
+
     user = User(request.cookies)
 
-    # CODE REVIEW: Forms have descriptive names, GOOD!
     search_form = SearchForm()
     submission_form = SubmissionForm()
 
@@ -54,7 +50,7 @@ def upload_file():
             file.save(fullPath)
             user_images = os.path.join(newPath + '/', 'src/app_pkg/static/')
 
-            #makes thumbnail and saves it to thumbnails folder
+            # makes thumbnail and saves it to thumbnails folder
             f = PILImage.open(fullPath)
             f.thumbnail((200, 200))
             f.save(user_images + 'thumbnails/t_' + filename)
@@ -64,6 +60,11 @@ def upload_file():
             session_token = request.cookies.get('token')
             name = request.form['filename']
             desc = request.form['description']
+
+            license_val = request.form['license_field']
+            print("Value", license_val)            
+            price = request.form['price'] if license_val == "2" else 0.00
+
             
             license_val = request.form['license_field']
             price = 0.0
@@ -74,15 +75,13 @@ def upload_file():
                 except:
                     print("error: price is not a number")
                     return redirect(url_for('search'))
-            
+
             cat = request.form['category']
             media = request.form['media_type']
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
-            # RECOMMENEDED ACTION: print statements should be left for diagnostic purposes only, 
-            # if they are useful for debug and you wish to keep ityou should comment it out.
-            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
+            #print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
             db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
             submission_form.filename.default = filename
@@ -97,7 +96,7 @@ def upload_file():
     # else, (if "GET")
     return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user)
 
-# RECOMMENEDED ACTION: add a short header comment with description of function
+# this function returns the static path variable from config.py and appends the user_images folder and filename to the path
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['STATIC_PATH'] + 'user_images/', filename)
