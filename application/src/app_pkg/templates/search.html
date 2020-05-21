@@ -250,9 +250,13 @@
                         <div class="col-10">
                             <p>{{ item[2] }}</p>
                         </div>
+                        {% if item[8] == 0 %}
                         <div class="col-2 text-right">
-                            <i class="fas fa-download"></i>
+                            <a href="{{ url_for('download_media', media_id=(item[0])) }}">
+                                <i class="fas fa-download" style="color: white"></i>
+                            </a> 
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row card-body">
