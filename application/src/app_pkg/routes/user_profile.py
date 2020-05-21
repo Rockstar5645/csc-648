@@ -53,32 +53,26 @@ class Page(object):
 p = Page()
 
 
-@app.route('/user_profile', methods=['GET', 'POST'], defaults={'m_page': 1, 'i_page': 1})
-def user_profile(m_page, i_page):
+@app.route('/user_profile', methods=['GET', 'POST'])
+def user_profile():
     user = User(request.cookies)
     search_form = SearchForm()
     submission_form = SubmissionForm()
-
-    p.set_item_page(i_page)
-    p.set_message_page(m_page)
     
     # Get user digital media
-    p.items = user.get_digital_media()
+    items = user.get_digital_media()
 
     # Get user messages
-    t_messages = user.get_messages()
+    messages = user.get_messages()
 
-    if t_messages['status'] == 'success': 
-        p.messages = t_messages['message-list']
+    if messages['status'] == 'success': 
+        messages = messages['message-list']
     else:
-        p.messages=[]
+        messages=[]
 
     return render_template('user_profile.html', 
     search_form=search_form, submission_form=submission_form, 
-    user=user, messages=p.messages, digital_media=p.items, 
-    messages_page=p.messages_page, item_page=p.items_page,
-    total_message_pages = p.get_number_of_message_pages(),
-    total_item_pages = p.get_number_of_item_pages())
+    user=user, messages=messages, digital_media=items)
 
 
 

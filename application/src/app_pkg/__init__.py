@@ -26,6 +26,6 @@ db = DB()
 
 # import routes
 from src.app_pkg.routes import search, about, login, registration, logout, download
-from src.app_pkg.routes import user_profile, submit_media, message
+from src.app_pkg.routes import user_profile, submit_media, message, delete_media
 
 

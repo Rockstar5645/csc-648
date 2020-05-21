@@ -15,7 +15,7 @@ from src.database_manager.team import get_team
 from src.database_manager.helpers import get_media_type, get_category_type
 from src.database_manager.user_functions import get_user_data
 from src.database_manager.get_user_digital_media import get_user_digital_media
-from src.database_manager.get_media_path import get_digital_media_path_by_id
+from src.database_manager.get_media_path import get_digital_media_path_by_id, get_digital_media_thumbnail_path_by_id
 
 from src.config import redis_conn
 import redis
@@ -80,8 +80,8 @@ class DB:
     def upload_file(self, owner, filename, description, file_path, thumb_path, category, media_type, price, session_token):
         return upload_file(owner, filename, description, file_path, thumb_path, category, media_type, price, session_token, self.db_connection)
 
-    def delete_file(self):
-        return delete_file()
+    def delete_file(self, media_id):
+        return delete_file(media_id, self.db_connection)
 
     def search(self, params):
         return search(self.db_connection, params)
@@ -114,4 +114,7 @@ class DB:
 
     def get_digital_media_path_by_id(self, id):
         return get_digital_media_path_by_id(id, self.db_connection)
+
+    def get_digital_media_thumbnail_path_by_id(self, id):
+        return get_digital_media_thumbnail_path_by_id(id, self.db_connection)
 
