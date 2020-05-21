@@ -33,180 +33,253 @@
             </div>
         </div>
         
-        <div id="carouselRecentlyAdded" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 1
-                                        </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
+        <div class="container">
+            <div class="row">                     
+                {% for item in recently_added %}
+                <div class="col-sm-12 col-md-4">
+        
+                    <div class="card text-white bg-secondary mb-3  ih-item circle effect5">
+                        <img src="/static/{{ item[5] }}" class="card-img-top img-button" width="auto"
+                             height="250" style="cursor: pointer;" data-toggle="modal" data-target="#mname_{{item[0]}}">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p>{{ item[2] }}</p>
                                 </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
+                                {% if item[8] == 0 %}
+                                <div class="col-2 text-right">
+                                    <a href="{{ url_for('download_media', media_id=(item[0])) }}">
+                                        <i class="fas fa-download" style="color: white"></i>
+                                    </a> 
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
-
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb2_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 2
-                                        </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
-                                </div>
+                        <div class="row card-body">
+                            <div class="col card-text">
+                                <p>{{ item[6] }}</p>
+        
+                            </div>
+                            <div class="col card-text">
+                                <p>{{ item[7] }}</p>
+        
+                            </div>
+                            <div class="col card-text text-right">
+                                <p>
+                                    {% if item[8] == 0 %}
+                                        Free
+                                    {% else %}
+                                        ${{ item[8] }}
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
-
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb3_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 3
+        
+                    </div>
+        
+                </div>
+        
+                <!--    MODAL VIEW-->
+                <!--    MODAL VIEW-->
+                <!--    MODAL VIEW-->
+        
+        
+                <div aria-hidden="true" aria-labelledby="DigitalMediaTitle" class="modal fade" id="mname_{{item[0]}}"
+                     role="dialog"
+                     tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                        <div class="modal-content" id="modal">
+                            <!-- Title of the Media -->
+                            <div class="modal-header text-center">
+                                <h5 class="modal-title w-100">{{ item[2] }}</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span class="close">&#215;</span>
+                                </button>
+                            </div>
+        
+                            <div class="modal-body">
+                                <div class="container">
+                                    <form>
+                                        <!-- Image of the Media -->
+                                        <div class="media">
+                                            <img alt="image" class="img-thumbnail mx-auto d-block img-fluid"
+                                                 height="300" src="/static/{{ item[5] }}" width="300">
                                         </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
+        
+                                        <!-- Digital media info -->
+                                        <div>
+                                            <div class="row">
+                                                <div class="col text-right">
+                                                    <label class="font-weight-bold">Category:</label>
+                                                </div>
+                                                <div class="col">
+                                                    <span>{{ item[6] }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Media type:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>{{ item[7] }}</span>
+                                            </div>
+                                        </div>
+        
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Price:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>
+                                                    {% if item[8] == 0 %}
+                                                        Free
+        
+                                                    {% else %}
+                                                        ${{ item[8] }}
+        
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        {#
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <label class="font-weight-bold">Author:</label>
+                                            </div>
+                                            <div class="col">
+                                                <span>{{ item[1] }}</span>
+                                            </div>
+                                        </div>
+                                        #}
+                                        
+                                        <div class="form-group mr-3">
+                                            <label class="font-weight-bold">Description:</label>
+                                            <p class="card-text">{{ item[3] }}
+                                            </p>
+                                        </div>
+        
+                                        <!-- Cancel or Download Media Buttons -->
+        
+                                        <div class="form-group text-right">
+                                            <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                            &MediumSpace;
+        
+                                            {% if item[8] == 0 %}
+                                                <a class="btn btn-warning" href="{{ url_for('download_media', media_id=(item[0])) }}">Download</a>
+                                            {% else %}
+                                                <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#SendMessage_{{item[0]}}">Contact Seller</button>
+                                            {% endif %}
+                                            
+                                            
+                                        </div>
+        
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb4_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 4
-                                        </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb5_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 5
-                                        </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card text-white bg-secondary mb-3">
-                                <img src="/static/thumbnails/sb1_t.jpg" class="card-img-top" width="250" height="250">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col">
-                                            spongebob 1
-                                        </div>
-                                        <div class="col text-right">
-                                            <i class="fas fa-download"></i>
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row card-body">
-                                    <div class="col card-text">
-                                        image
-                                    </div>
-                                    <div class="col card-text text-right">
-                                        $69.99
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
+                {% if item[8] != 0 %}
+                <!--Message Modal-->
+                <div class="modal fade" id="SendMessage_{{item[0]}}" tabindex="-1" role="dialog" aria-labelledby="sendMessageLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                        <div class="modal-content">
                 
-
-            <div class="carousel-control-prev" href="#carouselRecentlyAdded" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                
+                            <div class="modal-body">
+                                <form class="form" action="{{ url_for('send_message') }}" method="POST">
+                                    <label for="recipient-name" class="col-form-label">Recipient</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-at"></i></div>
+                                        </div>
+                                        
+                                        <input type="text" class="form-control" name="media-id" value="{{ item[0] }}" readonly>
+                                    </div>
+                
+                                    <label for="recipient-name" class="col-form-label">Subject</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                        </div>
+                                        <input type="text" class="form-control" name="message-subject" value="{{ item[2] }}" readonly>
+                                    </div>
+                
+                                    <label for="datepicker" class="col-form-label">Date</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
+                                        </div>
+                                        <input type="text" class="form-control datepicker" id="datepicker"
+                                                readonly>
+                                    </div>
+                
+                
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label"> Message</label>
+                                        <textarea class="form-control" name="message-text" placeholder="Type your message here..."
+                                                    rows="10" required></textarea>
+                                    </div>
+                
+                                
+                
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" style="margin:15px;" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button data-target="#MessageSent" data-toggle="modal" type="submit"
+                                        class="btn btn-warning">Send Message
+                                </button>
+                            </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <script type="text/javascript">
+                $( document ).ready(function()
+                    {
+                        var now = new Date();
+                        $('.datepicker').val(now.toLocaleString());
+                    });
+                </script>
+                
+                
+                <!--YOUR MESSAGE IS SENT MODAL -->
+                <!--YOUR MESSAGE IS SENT MODAL -->
+                <!--YOUR MESSAGE IS SENT MODAL -->
+                
+                <div class="modal fade in" id="MessageSent" aria-hidden="true">
+                    <div class="modal-dialog modal-confirm modal-dialog-centered modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-body">
+                                    <p class="text-center">Your message has been sent</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+        
+                {% endfor %}
             </div>
-
-            <div class="carousel-control-next" href="#carouselRecentlyAdded" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </div>
-
+        
         </div>
-
-
-    </div>
-
-    <script>
-        $('#carouselRecentlyAdded').carousel({
-            'interval' : false
-        })
-    </script>
-    
+    </div>  
 
 {% else %}
 
@@ -250,9 +323,13 @@
                         <div class="col-10">
                             <p>{{ item[2] }}</p>
                         </div>
+                        {% if item[8] == 0 %}
                         <div class="col-2 text-right">
-                            <i class="fas fa-download"></i>
+                            <a href="{{ url_for('download_media', media_id=(item[0])) }}">
+                                <i class="fas fa-download" style="color: white"></i>
+                            </a> 
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row card-body">
@@ -450,7 +527,7 @@
         $( document ).ready(function()
             {
                 var now = new Date();
-                $('#datepicker').val(now.toLocaleString());
+                $('.datepicker').val(now.toLocaleString());
             });
         </script>
         
