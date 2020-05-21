@@ -71,7 +71,6 @@ App_pkg :
 Database_manager :
 
 	All requests for database and redis queries have to go through the database API defined here. There should be no direct connection between the flask application and the database.
-
     - cnx is the module that defines the class used to manage the connection to the mysql server
     - redis_cnx is the module that defines the class used to manage the connection to the redis server
     - Database_init is the initialization script for the database, which will populate and configure the database with its initial state when deployed in production
