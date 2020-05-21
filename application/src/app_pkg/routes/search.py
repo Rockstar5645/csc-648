@@ -1,3 +1,6 @@
+
+# AUTHOR: Chris Eckhardt
+
 from src.app_pkg.forms import SearchForm
 from src.app_pkg.forms import SubmissionForm
 from flask import render_template, request, make_response
@@ -6,15 +9,15 @@ from src.app_pkg.routes.common import validate_helper
 from src.app_pkg.objects.user import User
 import math
 
-################################################
-#                SEARCH / HOME                 #
-################################################
-# AUTHOR: Chris Eckhardt
-# NOTE: This function handles the route of the searchbar functionality.
-# it provides user input data from the search form and gives it to the database search API
-# Once the Database manager API returns a result (as a list), it passes that resulting list
-# to the HTML page to be rendered.
 
+################################################
+#                Results Object                #
+################################################
+# We did not find an API for pagination that we 
+# wanted to use so we made one of our own. This 
+# results object handles search results and 
+# feeds them to the search.html 
+# in groupings of 12.
 class Results(object):
     
     def __init__(self):
@@ -37,6 +40,13 @@ class Results(object):
         if page >= 1 and page <= self.get_number_of_pages():
             self.page = page
 
+################################################
+#                SEARCH / HOME                 #
+################################################
+# NOTE: These function handles the route of the searchbar functionality.
+# it provides user input data from the search form and gives it to the database search API
+# Once the Database manager API returns a result (as a list), it passes that resulting list
+# to the HTML page to be rendered.
 
 r = Results()
 
@@ -48,12 +58,20 @@ def search(page):
     search_form = SearchForm()
     submission_form = SubmissionForm()
     r.set_page(page)
+    recently_added = db.get_recently_added()
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
         set_form_defaults(search_form, params)
-        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), user=user, total_pages=r.get_number_of_pages())
-    return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), user=user, total_pages=r.get_number_of_pages(), recently_added=recently_added)
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page, recently_added=recently_added)
+
+
+################################################
+#                Helper Function               #
+################################################
+# This function makes sure all user input in the 
+# search bar is persisted
 
 def set_form_defaults(form, params):
     form.category.default = params['category']

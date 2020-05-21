@@ -46,7 +46,7 @@ class LoginForm(Form):
 class SubmissionForm(Form):
     filename = StringField('File Name', validators=[DataRequired()])
     description = TextAreaField('Description')
-    price = IntegerField('Price', validators=[])
+    price = IntegerField('Price', validators=[Regexp('^[0-9]+$')])
     categories = db.get_category_select_field()
     categories.remove(('all', 'all'))
     categories.insert(0,('', 'Select'))
