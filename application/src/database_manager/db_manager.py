@@ -16,7 +16,6 @@ from src.database_manager.helpers import get_media_type, get_category_type
 from src.database_manager.user_functions import get_user_data
 from src.database_manager.get_user_digital_media import get_user_digital_media
 from src.database_manager.get_media_path import get_digital_media_path_by_id, get_digital_media_thumbnail_path_by_id
-from src.database_manager.get_media_path import get_digital_media_path_by_id
 from src.database_manager.get_recently_added import get_recently_added
 
 from src.config import redis_conn
@@ -122,5 +121,4 @@ class DB:
 
     def get_recently_added(self):
         return get_recently_added(self.db_connection)
-
 

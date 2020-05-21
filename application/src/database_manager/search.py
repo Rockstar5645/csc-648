@@ -132,10 +132,10 @@ class Q_Container(object):
         self.license = params['license']
         self.media_types = []
         if 'image_check' in params:
-            self.media_types.append(1)
+            self.media_types.append('image')
         if 'video_check' in params:
-            self.media_types.append(2)
+            self.media_types.append('video')
         if 'audio_check' in params:
-            self.media_types.append(3)
+            self.media_types.append('audio')
         if 'document_check' in params:
-            self.media_types.append(4)
+            self.media_types.append('document')
