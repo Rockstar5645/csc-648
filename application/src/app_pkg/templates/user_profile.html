@@ -126,6 +126,32 @@ select.minimal {
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
         <!-- MY DIGITAL MEDIA TAB -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-muted">Showing Page {{ item_age }} of {{ total_item_pages }}</h3>
+                    <nav>
+                        <ul class="pagination">
+        
+                            <li class="page-item">
+                                <a class="page-link" aria-disabled="true" href="{{ url_for('user_profile', m_page=(messages_page), i_page=(item_page-1)) }}">Previous</a>
+                            </li>
+                            {% for i in range(total_item_pages) %}
+                                <li class="page-item">
+                                    <a class="page-link" aria-disabled="true" href="{{ url_for('user_profile', m_page=(messages_page), i_page=(i+1)) }}">{{ i+1 }}</a>
+                                </li>
+                            {% endfor %}
+                            <li class="page-item">
+                                <a class="page-link" aria-disabled="true" href="{{ url_for('user_profile', m_page=(messages_page), i_page=(item_page+1)) }}">Next</a>
+                            </li>
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
         <div class="tab-pane fade show active" id="nav-items" role="tabpanel" aria-labelledby="nav-items-tab">
             {% if digital_media %}
             <div>
