@@ -460,14 +460,15 @@ select.minimal {
 
                     <div class="modal-body">
                         <form>
+                            {% for msg in messages %}
 
-                            <label for="recipient" class="col-form-label col-">Recipient</label>
+                            <label for="recipient" class="col-form-label col-">Sender</label>
                     <br>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-at"></i></div>
                         </div>
-                        <input type="text" class="form-control" id="recipient" placeholder="Author"
+                        <input type="text" class="form-control" id="recipient" placeholder="{{ msg['sender'] }}"
                                readonly>
                     </div>
 
@@ -476,7 +477,7 @@ select.minimal {
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="far fa-calendar-alt "></i></div>
                                     </div>
-                                    <input type="text" class="form-control datepicker" id="datepicker" readonly>
+                                    <input type="text" class="form-control datepicker" id="datepicker" placeholder="{{ msg['time_stamp'] }}" readonly>
                                 </div>
 
                             <label for="recipient-name" class="col-form-label">Subject</label>
@@ -484,22 +485,18 @@ select.minimal {
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="far fa-envelope "></i></div>
                                     </div>
-                                     <input type="text" class="form-control" id="messageSubject" value="Digital Media Title" readonly>
+                                     <input type="text" class="form-control" id="messageSubject" placeholder="{{ msg['subject'] }}" readonly>
                                  </div>
 
 
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label"> Message:</label>
                                 <div class="form-group">
-                                    <p class="card-text" id="messageContent">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat. Duis aute irure dolor.
-                                </p>
+                                    <input class="form-control" type="text" placeholder="{{ msg['message_body'] }}" readonly>
                                 </div>
 
                             </div>
+                            {% endfor %}
 
                         </form>
                     </div>
@@ -593,15 +590,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-$( document ).ready(function()
-    {
-        var now = new Date();
-        $('#datepicker').val(now.toLocaleString());
-        $('#datepickerReceive').val(now.toLocaleString());
-
-    });
-</script>
 
 
 
