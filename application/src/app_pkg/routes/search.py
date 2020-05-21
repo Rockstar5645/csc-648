@@ -3,7 +3,7 @@
 
 from src.app_pkg.forms import SearchForm
 from src.app_pkg.forms import SubmissionForm
-from flask import render_template, request, make_response
+from flask import render_template, request, make_response, redirect, url_for
 from src.app_pkg import app, db
 from src.app_pkg.routes.common import validate_helper
 from src.app_pkg.objects.user import User
@@ -37,8 +37,12 @@ class Results(object):
         return math.ceil(len(self.results)/12)
 
     def set_page(self, page):
-        if page >= 1 and page <= self.get_number_of_pages():
+        if page > 0 and page < self.get_number_of_pages()+1:
             self.page = page
+        elif page < 1:
+            return redirect( url_for('search', page=1) )
+        elif page > self.get_number_of_pages():
+            return redirect( url_for('search', page=self.get_number_of_pages()) )
 
 ################################################
 #                SEARCH / HOME                 #

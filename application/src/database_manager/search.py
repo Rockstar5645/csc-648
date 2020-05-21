@@ -30,8 +30,8 @@ def term_search(q):
     results = term_query(q)
     results = filter_by_category(q, results)
     results = filter_by_type(q, results)
-    results = filter_by_approved(results)
     results = filter_by_license(q, results)
+    results = filter_by_approved(results)
     return results
 
 def no_term_search(q):
@@ -41,6 +41,7 @@ def no_term_search(q):
         results = get_all_category(q)
     results = filter_by_type(q, results)
     results = filter_by_license(q, results)
+    results = filter_by_approved(results)
     return results
 
 def filter_by_category(q, results):

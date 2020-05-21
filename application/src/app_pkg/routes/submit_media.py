@@ -81,7 +81,7 @@ def upload_file():
             filepath = 'user_images/' + filename
             thumbpath = 'thumbnails/t_' + filename
 
-            #print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
+            print(name, " ", desc, " ", price, " ", cat, " ", media, " ", filepath, " ", thumbpath, " ", session_token)\
 
             db.upload_file(user.user_id, name, desc, filepath, thumbpath, cat, media, price, session_token)
             submission_form.filename.default = filename
