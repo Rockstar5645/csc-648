@@ -48,12 +48,13 @@ def search(page):
     search_form = SearchForm()
     submission_form = SubmissionForm()
     r.set_page(page)
+    recently_added = db.get_recently_added()
     if request.method == 'POST':
         params = request.form
         r.set_results( db.search(params) )
         set_form_defaults(search_form, params)
-        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), user=user, total_pages=r.get_number_of_pages())
-    return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page)
+        return render_template('search.html', search_form=search_form, submission_form=submission_form, page=r.page, results=r.get_page(1), user=user, total_pages=r.get_number_of_pages(), recently_added=recently_added)
+    return render_template('search.html', search_form=search_form, submission_form=submission_form, user=user, results=r.get_page(r.page), total_pages=r.get_number_of_pages(), page=r.page, recently_added=recently_added)
 
 def set_form_defaults(form, params):
     form.category.default = params['category']
