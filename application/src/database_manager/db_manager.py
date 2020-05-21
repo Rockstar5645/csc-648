@@ -121,8 +121,4 @@ class DB:
 
     def get_recently_added(self):
         return get_recently_added(self.db_connection)
-<<<<<<< HEAD
-=======
-
->>>>>>> 7296a3b67438a345b200c9eb2a4fa8be3c395ec4
 
