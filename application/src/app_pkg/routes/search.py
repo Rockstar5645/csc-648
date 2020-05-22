@@ -40,9 +40,9 @@ class Results(object):
         if page > 0 and page < self.get_number_of_pages()+1:
             self.page = page
         elif page < 1:
-            return redirect( url_for('search', page=1) )
+            self.page = 1
         elif page > self.get_number_of_pages():
-            return redirect( url_for('search', page=self.get_number_of_pages()) )
+            self.page = self.get_number_of_pages()
 
 ################################################
 #                SEARCH / HOME                 #
